@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 const ITEMS = [
   {
-    id: "gestao-vendas",
-    title: "SALES MANAGEMENT",
-    stack: "Java",
-    summary: "Sales management system.",
-    href: "https://github.com/ffaneto/gestao-vendas-3-info-vesp-1.0",
+    id: "Fanbook editing and translation",
+    title: "Digimon Fanbook",
+    stack: "Adobe InDesign",
+    summary: "Writing and translating fanbook in English and Spanish",
+    href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
-    id: "persona5-website",
-    title: "PERSONA 5 WEBSITE",
-    stack: "React",
-    summary: "A website for the game Persona 5.",
-    href: "https://github.com/ffaneto/persona5-website",
+    id: "Fan video edition",
+    title: "Hunter x Hunter Miniature Rose",
+    stack: "Adobe Premiere",
+    summary: "Youtube video showing fitting real life images in the context of a Hunter x Hunter episode scene",
+    href: "https://www.youtube.com/@jivaotbitotti",
   },
   {
     id: "calculadora-arranjo",
