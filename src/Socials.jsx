@@ -19,24 +19,24 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "github", label: "GITHUB", handle: "@ffaneto", href: "https://github.com/ffaneto?tab=repositories", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["SALES", "SITE","CALC", "EXERCS", "NELIO", "MORE"],
-    links: ["github.com/ffaneto/gestao-vendas-3-info-vesp-1.0","github.com/ffaneto/persona5-website", "github.com/ffaneto/calculadora-arranjo-combinacao-permutacao-java", "github.com/ffaneto/questoes-funcoes-javascript", "github.com/ffaneto/curso-nelio-alves", "github.com/ffaneto/outras-questoes-nelio-alves"],
+    id: "itch.io", label: "Itch.io", handle: "@jalonba", href: "https://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH", "EXERCS", "NELIO", "MORE"],
+    links: ["https://jalonba.itch.io/digital-monster-catalog","github.com/ffaneto/persona5-website", "github.com/ffaneto/calculadora-arranjo-combinacao-permutacao-java", "github.com/ffaneto/questoes-funcoes-javascript", "github.com/ffaneto/curso-nelio-alves", "github.com/ffaneto/outras-questoes-nelio-alves"],
     stats: [
       { tag: "USR", value: "ffaneto", color: "#7b7b7b" },
       { tag: "TOP", value: "PROJECTS",  color: "#7b7b7b" },
     ],
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@ffaneto__", href: "https://instagram.com/ffaneto__", icon: "📷", barIcon: icon2, bars: 2, newBars: [1], counts: ["POSTS", "REELS"],
-    links: ["instagram.com/ffaneto__", "instagram.com"],
+    id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: "📷", barIcon: icon2, bars: 2, newBars: [1], counts: ["POSTS", "REELS"],
+    links: ["instagram.com/tamer.jb_tcg", "instagram.com"],
     stats: [
       { tag: "SOCIAL", value: "PICS", color: "#d92323" },
       { tag: "MIND", value: "LIFE",  color: "#732424" },
     ],
   },
   {
-    id: "email", label: "EMAIL", handle: "misteryshadbr@gmail.com", href: "mailto:misteryshadbr@gmail.com", icon: "✉️", barIcon: icon3, bars: 3, newBars: [2], counts: ["INBOX", "OUTBOX", "SPAM"],
-    links: ["mailto:misteryshadbr@gmail.com", "gmail.com", "mail.google.com"],
+    id: "email", label: "EMAIL", handle: "javieralonso.barrera@gmail.com", href: "mailto:javieralonso.barrera@gmail.com", icon: "✉️", barIcon: icon3, bars: 3, newBars: [2], counts: ["INBOX", "OUTBOX", "SPAM"],
+    links: ["mailto:javieralonso.barrera@gmail.com", "gmail.com", "mail.google.com"],
     stats: [
       { tag: "CONTACT", value: "DIRECT", color: "#ffffff" },
       { tag: "TALK", value: "WORK",  color: "#d92323" },
