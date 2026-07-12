@@ -22,9 +22,11 @@ const REVEAL_CONTENT = [
   },
   {
     upper: [
-      "English Language and Literature",
+      "Localization QA Specialist with more than six years of experience",
+      "in English–Spanish localization, language quality assurance,",
+      "multilingual data annotation, and AI training projects",
     ],
-    lower: "Linguistics  |  Cognitive Lingüistics  |  Applied Linguistics",
+    lower: "Localization  |  Language QA  |  Transcreation",
   },
   {
     upper: [
@@ -45,7 +47,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "fun", label: "EDUCATION", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
+    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
     links: ["UCH/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
