@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 import mainVideo from "./assets/main1.mp4";
 
 const ITEMS = [
-  { id: "i", badge: "I", title: "EDUCATION", subtitle: "IFPB Itaporanga / IT Technician", rank: 3 },
-  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Java / JavaScript / Logic", rank: 4 },
-  { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Sales Mgmt / Calc / JS Exercises", rank: 4 },
-  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Backend / Frontend", rank: 5 },
+  { id: "i", badge: "I", title: "EDUCATION", subtitle: "BA Language and Literature / Diploma in Intercultural Studies", rank: 3 },
+  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Google Workspace / Basic JavaScript / Adobe In Design / Adobe Photoshop / Excel", rank: 4 },
+  { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Minor image and video editing projects", rank: 4 },
+  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translataion", rank: 5 },
 ];
 
 const EDUCATION_ROWS = [
-  { index: "01", title: "IFPB Campus Itaporanga", status: "3rd Yr" },
-  { index: "02", title: "IT Technician", status: "Active" },
+  { index: "01", title: "BA in English Language and Literature", status: "Completed" },
+  { index: "02", title: "MA in Computational Linguistics", status: "Aiming to pursue" },
   { index: "03", title: "Java + JavaScript", status: "Learning" },
-  { index: "04", title: "Backend Practice", status: "Daily" },
+  { index: "04", title: "UX writer", status: "Aiming to learn" },
 ];
 
 export default function ResumePage() {
