@@ -2,7 +2,7 @@ const FONTS = [
   { name: "Persona5Main", family: "'Persona5Main'" },
 ];
 
-const LABELS = ["ABOUT ME", "RESUME", "GITHUB LINK", "SOCIALS", "SIDE PROJECTS"];
+const LABELS = ["ABOUT ME", "RESUME", "ITCH LINK", "SOCIALS", "SIDE PROJECTS"];
 const SIZES  = [54, 44, 36, 44, 36];
 const SKEWS  = [-6, -11, -16, -3, -4];
 
