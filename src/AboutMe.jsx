@@ -16,20 +16,20 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Javier Barrear Bustos", "33 years old ", "Santiago, Chile"],
-    lower: "Localization specialist (EN-ES)",
+    upper: ["Javier   Barrear   Bustos", "33   years   old ", "Santiago,   Chile"],
+    lower: "Localization   specialist   (EN-ES)",
   },
   {
     upper: [
-      "Freelance language localization specialist,",
-      "Aiming to jump into the gaming industry",
+      "Freelance   language   localization   specialist,",
+      "Aiming   to   jump   into   the   gaming   industry",
     ],
-    lower: "Linguistics | Transcreation | Language data control",
+    lower: "Linguistics  |  Transcreation  |  Language data control",
   },
   {
     upper: [
-      "Focused in language quality control",
-      "Passionate aboult cultures",
+      "Focused   in   language   quality   control",
+      "Passionate   aboult   cultures",
     ],
     lower: "LinkedIn: linkedin.com/in/javierbarrerab",
   },
@@ -37,16 +37,16 @@ const REVEAL_CONTENT = [
 
 const ITEMS = [
   {
-    id: "about", label: "ABOUT ME", handle: "@ffaneto", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
+    id: "about", label: "ABOUT ME", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
     links: ["linkedin.com/in/javierbarrerab"],
     stats: [
-      { tag: "AGE", value: "16", color: "#d92323" },
-      { tag: "YEAR", value: "3rd IFPB",  color: "#7b7b7b" },
+      { tag: "AGE", value: "33", color: "#d92323" },
+      { tag: "YEARS OF EXPERIENCE", value: "+6",  color: "#7b7b7b" },
     ],
   },
   {
-    id: "fun", label: "EDUCATION", handle: "@ffaneto", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
-    links: ["ifpb/itaporanga", "it/course"],
+    id: "fun", label: "EDUCATION", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
+    links: ["ifpb/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
       { tag: "CAMPUS", value: "UNIVERISDAD DE CHILE",  color: "#732424" },
