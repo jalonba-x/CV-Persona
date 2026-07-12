@@ -16,20 +16,20 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Javier   Barrear   Bustos", "33   years   old ", "Santiago,   Chile"],
-    lower: "Localization   specialist   (EN-ES)",
+    upper: ["Hi!, I'm a freelance EN-ES  language localization specialist",
+           "Aiming   to   jump   into   the   gaming   industry",]
+    lower: "Name: Javier Barrera", "Age: 33", "Location: Santiago, Chile",
   },
   {
     upper: [
-      "Freelance   language   localization   specialist,",
-      "Aiming   to   jump   into   the   gaming   industry",
+      "I studied English Language and Literature at Universidad de Chile",
     ],
-    lower: "Linguistics  |  Transcreation  |  Language data control",
+    lower: "Linguistics  |  Cognitive Lingüistics  |  Applied Linguistics",
   },
   {
     upper: [
-      "Focused   in   language   quality   control",
-      "Passionate   aboult   cultures",
+      "Spanish (Native), English (Professional), Portuguese (Basic)",
+      "Passionate about languages and cultures",
     ],
     lower: "LinkedIn: linkedin.com/in/javierbarrerab",
   },
@@ -46,10 +46,10 @@ const ITEMS = [
   },
   {
     id: "fun", label: "EDUCATION", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
-    links: ["ifpb/Universidad de Chile", "Linguistics/course"],
+    links: ["UCH/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
-      { tag: "CAMPUS", value: "UNIVERISDAD DE CHILE",  color: "#732424" },
+      { tag: "CAMPUS", value: "Filosofía y Humanidades",  color: "#732424" },
     ],
   },
   {
