@@ -16,44 +16,44 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["name: Francisco", "age: 16 years ", "location: Brazil"],
-    lower: "3rd year technical high school student - IT",
+    upper: ["Javier Barrear Bustos", "33 years old ", "Santiago, Chile"],
+    lower: "Localization specialist (EN-ES)",
   },
   {
     upper: [
-      "I study at IFPB Campus Itaporanga,",
-      "taking the technical course in computer science.",
+      "Freelance language localization specialist,",
+      "Aiming to jump into the gaming industry",
     ],
-    lower: "Java | JavaScript | Web Development",
+    lower: "Linguistics | Transcreation | Language data control",
   },
   {
     upper: [
-      "Focused in backend development",
-      "Driven by cognition.",
+      "Focused in language quality control",
+      "Passionate aboult cultures",
     ],
-    lower: "github: github.com/ffaneto",
+    lower: "LinkedIn: linkedin.com/in/javierbarrerab",
   },
 ];
 
 const ITEMS = [
   {
-    id: "about", label: "ABOUT ME", handle: "@ffaneto", href: "https://github.com/ffaneto", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
-    links: ["github.com/ffaneto"],
+    id: "about", label: "ABOUT ME", handle: "@ffaneto", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
+    links: ["linkedin.com/in/javierbarrerab"],
     stats: [
       { tag: "AGE", value: "16", color: "#d92323" },
       { tag: "YEAR", value: "3rd IFPB",  color: "#7b7b7b" },
     ],
   },
   {
-    id: "fun", label: "EDUCATION", handle: "@ffaneto", href: "https://github.com/ffaneto", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
+    id: "fun", label: "EDUCATION", handle: "@ffaneto", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
     links: ["ifpb/itaporanga", "it/course"],
     stats: [
-      { tag: "MAJOR", value: "IT", color: "#d92323" },
-      { tag: "CAMPUS", value: "ITAPORANGA",  color: "#732424" },
+      { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
+      { tag: "CAMPUS", value: "UNIVERISDAD DE CHILE",  color: "#732424" },
     ],
   },
   {
-    id: "weird", label: "LANGUAGES", handle: "@ffaneto", href: "https://github.com/ffaneto", icon: "💻", barIcon: icon3, bars: 3, newBars: [0, 1, 2], counts: ["JAVA", "JS", "WEB"],
+    id: "weird", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars: [0, 1, 2], counts: ["JAVA", "JS", "WEB"],
     links: ["learning/java", "learning/javascript", "web/development"],
     stats: [
       { tag: "FAV", value: "JAVA", color: "#ffffff" },
