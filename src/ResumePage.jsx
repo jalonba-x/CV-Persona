@@ -5,7 +5,7 @@ import mainVideo from "./assets/main1.mp4";
 
 const ITEMS = [
   { id: "i", badge: "I", title: "EDUCATION", subtitle: "BA Language and Literature / Diploma in Intercultural Studies", rank: 3 },
-  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Google Workspace / Basic JavaScript / Adobe In Design / Adobe Photoshop / Excel", rank: 4 },
+  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Google Workspace / Basic JavaScript / Adobe In Design / Adobe Photoshop", rank: 4 },
   { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Minor image and video editing projects", rank: 4 },
   { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translataion", rank: 5 },
 ];
