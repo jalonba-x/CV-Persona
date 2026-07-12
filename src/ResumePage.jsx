@@ -7,14 +7,14 @@ const ITEMS = [
   { id: "i", badge: "I", title: "EDUCATION", subtitle: "BA Language and Literature / Diploma in Intercultural Studies", rank: 3 },
   { id: "ii", badge: "II", title: "SKILLS", subtitle: "Google Workspace / Basic JavaScript / Adobe In Design / Adobe Photoshop", rank: 4 },
   { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Minor image and video editing projects", rank: 4 },
-  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translataion", rank: 5 },
+  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translataion / Language QA", rank: 5 },
 ];
 
 const EDUCATION_ROWS = [
   { index: "01", title: "BA in English Language and Literature", status: "Completed" },
   { index: "02", title: "MA in Computational Linguistics", status: "Aiming to pursue" },
-  { index: "03", title: "Java + JavaScript", status: "Learning" },
-  { index: "04", title: "UX writer", status: "Aiming to learn" },
+  { index: "03", title: "UX Writer", status: "Learning" },
+  { index: "04", title: "Java + JavaScript", status: "Aiming to learn" },
 ];
 
 export default function ResumePage() {
@@ -432,10 +432,10 @@ export default function ResumePage() {
             </div>
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">GENERAL EXPERIENCE</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Born to backend.</div>
-                <div className="resume-detail-bullet">- Focus: Java and Javascript.</div>
+                <div className="resume-detail-bullet">- English–Spanish localization and language quality assurance.</div>
+                <div className="resume-detail-bullet">- Focus on data annotation and AI training projects.</div>
               </div>
             </div>
           </div>
