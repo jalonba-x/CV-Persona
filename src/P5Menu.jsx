@@ -4,7 +4,7 @@ import { playSelectSound } from "./utils/audio.js";
 const ITEMS = [
   { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 64, offsetX: 0,  offsetY: 0,  skew: -6,  skewY: 10  },
   { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 52, offsetX: 24, offsetY: 50,  skew: -11, skewY: -10 },
-  { id: "itch.io",  label: "ITCH LINK",   page: "github",  fontSize: 54, offsetX: 10, offsetY: 28,  skew: 0, skewY: -4  },
+  { id: "itch.io",  label: "ITCH LINK",   page: "itch",  fontSize: 54, offsetX: 10, offsetY: 28,  skew: 0, skewY: -4  },
   { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 59, offsetX: 19, offsetY: 30,  skew: -3,  skewY: 5   },
   { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 45, offsetX: 12, offsetY: 28,  skew: -4,  skewY: 7   },
 ];
