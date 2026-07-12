@@ -248,7 +248,7 @@ export default function P5Menu({ onNavigate }) {
 
       <div className="p5-overlay">
         <div className="p5-name-tag">
-          <span>Javier Barrera's</span>
+          <span>Javier's</span>
           <span>´Persona</span>
         </div>
 
