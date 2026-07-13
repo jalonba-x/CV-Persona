@@ -19,10 +19,10 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "itch.io", label: "Itch.io", handle: "@jalonba", href: "https://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH", "EXERCS", "NELIO", "MORE"],
-    links: ["https://jalonba.itch.io/digital-monster-catalog","github.com/ffaneto/persona5-website", "github.com/ffaneto/calculadora-arranjo-combinacao-permutacao-java", "github.com/ffaneto/questoes-funcoes-javascript", "github.com/ffaneto/curso-nelio-alves", "github.com/ffaneto/outras-questoes-nelio-alves"],
+    id: "itch.io", label: "Itch.io", handle: "@jalonba", href: "https://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH"],
+    links: ["https://jalonba.itch.io/digital-monster-catalog"],
     stats: [
-      { tag: "USR", value: "ffaneto", color: "#7b7b7b" },
+      { tag: "USR", value: "jalonba", color: "#7b7b7b" },
       { tag: "TOP", value: "PROJECTS",  color: "#7b7b7b" },
     ],
   },
