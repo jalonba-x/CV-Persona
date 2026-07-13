@@ -1,45 +1,46 @@
-import { useState, useEffect, useRef } from "react";
-import { playSelectSound } from "./utils/audio.js";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
+import bgVideo from "./assets/main3.mp4";
 import newsign from "./assets/newsign.png";
 import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 
+
 const CHARS = [char1, char2, char3];
 
 const ROLES = [
-  { text: "LEADER", color: "#d92323", bg: "rgba(217,35,35,0.12)", border: "rgba(217,35,35,0.5)" },
-  { text: "PARTY",  color: "#d92323", bg: "rgba(217,35,35,0.12)", border: "rgba(217,35,35,0.5)" },
-  { text: "PARTY",  color: "#d92323", bg: "rgba(217,35,35,0.12)", border: "rgba(217,35,35,0.5)" },
+  { text: "LEADER", color: "#e8c100", bg: "rgba(232,193,0,0.12)", border: "rgba(232,193,0,0.5)" },
+  { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
+  { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
 ];
 
 const ITEMS = [
   {
-    id: "itch.io", label: "ITCH LINK", handle: "@jalonba", href: "http://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH"],
-    links: ["https://jalonba.itch.io/"],
+    id: "twitch", label: "TWITCH", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
+    links: ["twitch.tv/videos/2041837265"],
     stats: [
-      { tag: "USR", value: "jalonba", color: "#7b7b7b" },
-      { tag: "TOP", value: "PROJECTS",  color: "#7b7b7b" },
+      { tag: "FOL", value: "1.2K", color: "#9147ff" },
+      { tag: "VWR", value: "042",  color: "#bf94ff" },
     ],
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: "📷", barIcon: icon2, bars: 2, newBars: [1], counts: ["POSTS", "REELS"],
-    links: ["instagram.com/tamer.jb_tcg", "instagram.com"],
+    id: "instagram", label: "INSTAGRAM", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
+    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
     stats: [
-      { tag: "SOCIAL", value: "PICS", color: "#d92323" },
-      { tag: "MIND", value: "LIFE",  color: "#732424" },
+      { tag: "FOL", value: "3.4K", color: "#e1306c" },
+      { tag: "PST", value: "128",  color: "#f77737" },
     ],
   },
   {
-    id: "email", label: "EMAIL", handle: "javieralonso.barrera@gmail.com", href: "mailto:javieralonso.barrera@gmail.com", icon: "✉️", barIcon: icon3, bars: 3, newBars: [2], counts: ["INBOX", "OUTBOX", "SPAM"],
-    links: ["mailto:javieralonso.barrera@gmail.com", "gmail.com", "mail.google.com"],
+    id: "tiktok", label: "TIKTOK", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
+    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
     stats: [
-      { tag: "CONTACT", value: "DIRECT", color: "#ffffff" },
-      { tag: "TALK", value: "WORK",  color: "#d92323" },
+      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
+      { tag: "LKS", value: "52K",  color: "#ff0050" },
     ],
   },
 ];
@@ -47,10 +48,12 @@ const ITEMS = [
 export default function Socials() {
   const [active, setActive]               = useState(0);
   const [mounted, setMounted]             = useState(false);
-  const isFirstRenderAudio = useRef(true);
   const [activeInfoBar, setActiveInfoBar] = useState(0);
   const [focus, setFocus]                 = useState("left"); // "left" | "right"
   const navigate = useNavigate();
+
+  const isMobileViewport =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
@@ -58,52 +61,28 @@ export default function Socials() {
   }, []);
 
   useEffect(() => {
-    if (isFirstRenderAudio.current) {
-      isFirstRenderAudio.current = false;
-      return;
-    }
-    playSelectSound();
-  }, [active, activeInfoBar, focus]);
-
-  useEffect(() => {
     const onKey = (e) => {
-      const getLink = (link) => link.startsWith("http") || link.startsWith("mailto") ? link : "https://" + link;
-
-      if (e.key === "Tab") {
-        e.preventDefault();
-        if (focus === "left") {
-          setFocus("right");
-          setActiveInfoBar(0);
-        } else {
-          setFocus("left");
-        }
-        return;
-      }
-
-      const isUp = e.key === "ArrowUp" || e.key.toLowerCase() === "w" || e.key.toLowerCase() === "a";
-      const isDown = e.key === "ArrowDown" || e.key.toLowerCase() === "s" || e.key.toLowerCase() === "d";
-
       if (focus === "left") {
-        if (isUp)    setActive(i => Math.max(0, i - 1));
-        if (isDown)  setActive(i => Math.min(ITEMS.length - 1, i + 1));
-        if (e.key === "ArrowLeft")  { setFocus("right"); setActiveInfoBar(0); }
+        if (e.key === "ArrowUp")    setActive(i => Math.max(0, i - 1));
+        if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, i + 1));
+        if (e.key === "ArrowRight") { setFocus("right"); setActiveInfoBar(0); }
         if (e.key === "Enter")      window.open(ITEMS[active].href, "_blank");
       } else {
         const barCount = ITEMS[active].bars;
-        if (isUp)   setActiveInfoBar(i => Math.max(0, i - 1));
-        if (isDown) setActiveInfoBar(i => Math.min(barCount - 1, i + 1));
-        if (e.key === "ArrowRight") setFocus("left");
-        if (e.key === "Enter")     window.open(getLink(ITEMS[active].links[activeInfoBar]), "_blank");
+        if (e.key === "ArrowUp")   setActiveInfoBar(i => Math.max(0, i - 1));
+        if (e.key === "ArrowDown") setActiveInfoBar(i => Math.min(barCount - 1, i + 1));
+        if (e.key === "ArrowLeft") setFocus("left");
+        if (e.key === "Enter")     window.open("https://" + ITEMS[active].links[activeInfoBar], "_blank");
       }
-      if ((e.key === "ArrowRight" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
+      if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, navigate, focus, activeInfoBar]);
+  }, [active, navigate, focus]);
 
   return (
     <div id="menu-screen">
-      {/* <video src={bgVideo} autoPlay loop muted playsInline /> */}
+      <video src={bgVideo} autoPlay loop muted playsInline />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 
@@ -130,7 +109,7 @@ export default function Socials() {
           cursor: pointer;
           pointer-events: all;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(13,13,13,0.65);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
           z-index: 1;
         }
 
@@ -154,7 +133,7 @@ export default function Socials() {
           top: 0; left: 0;
           width: 45vw;
           height: 64px;
-          background: #d92323;
+          background: #c4001a;
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
           transform: translateY(-7px);
           opacity: 0;
@@ -184,7 +163,7 @@ export default function Socials() {
           top: 0; bottom: 0;
           left: 73%;
           width: 6%;
-          background: linear-gradient(90deg, rgba(13,13,13,0.15) 0%, rgba(13,13,13,0) 100%);
+          background: linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%);
           z-index: 1;
           pointer-events: none;
           opacity: 0;
@@ -198,7 +177,7 @@ export default function Socials() {
           position: absolute;
           bottom: 0; left: 0; right: 0;
           height: 6px;
-          background: linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(13,13,13,0.55) 100%);
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);
           z-index: 10;
           pointer-events: none;
         }
@@ -219,7 +198,7 @@ export default function Socials() {
           display: flex;
           align-items: center;
           flex-shrink: 0;
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Anton', sans-serif;
           font-size: 50px;
           letter-spacing: -2px;
           color: #ffffff;
@@ -245,7 +224,7 @@ export default function Socials() {
         }
 
         .sc-icon {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
           width: 32px;
           text-align: center;
@@ -257,15 +236,15 @@ export default function Socials() {
         .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
 
         .sc-label {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 28px;
-          letter-spacing: 1px;
+          letter-spacing: 4px;
           line-height: 1;
           color: rgba(255,255,255,0.85);
           transition: color 0.2s ease;
           user-select: none;
         }
-        .sc-bar-outer.active .sc-label { color: #0d0d0d; }
+        .sc-bar-outer.active .sc-label { color: #111111; }
 
         /* lb/rb nav row */
         @keyframes sc-arrow-left {
@@ -277,18 +256,18 @@ export default function Socials() {
           50%       { transform: translateX(5px); opacity: 0.4; }
         }
         .sc-nav-btn {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 12px;
           letter-spacing: 2px;
           color: #111;
-          border: 1px solid rgba(13,13,13,0.35);
+          border: 1px solid rgba(0,0,0,0.35);
           padding: 1px 7px;
           line-height: 1.5;
           user-select: none;
         }
         .sc-nav-arrow {
           font-size: 12px;
-          color: #d92323;
+          color: #c4001a;
           display: inline-block;
         }
         .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
@@ -316,7 +295,7 @@ export default function Socials() {
         }
 
         .sc-stat-tag {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 9px;
           letter-spacing: 1.5px;
           padding: 1px 4px;
@@ -327,7 +306,7 @@ export default function Socials() {
         }
 
         .sc-stat-num {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 26px;
           font-style: italic;
           line-height: 1;
@@ -336,7 +315,7 @@ export default function Socials() {
           user-select: none;
           transition: color 0.2s ease;
         }
-        .sc-bar-outer.active .sc-stat-num { color: #0d0d0d; }
+        .sc-bar-outer.active .sc-stat-num { color: #111111; }
 
         .sc-stat-bars {
           width: 100%;
@@ -352,7 +331,7 @@ export default function Socials() {
         .sc-stat-bar-black {
           height: 2px;
           width: 100%;
-          background: #0d0d0d;
+          background: #000;
         }
 
         /* character portrait */
@@ -388,20 +367,20 @@ export default function Socials() {
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
         }
         .sc-right-nav .sc-nav-btn {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 100px;
           letter-spacing: 3px;
           line-height: 1;
           user-select: none;
-          color: #ffffff;
-          -webkit-text-stroke: 2px #0d0d0d;
+          color: #fff;
+          -webkit-text-stroke: 2px #000;
           paint-order: stroke fill;
           background: none;
           border: none;
           padding: 0 6px;
         }
         .sc-right-nav .sc-nav-label {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 28px;
           letter-spacing: 3px;
           line-height: 1;
@@ -410,30 +389,47 @@ export default function Socials() {
           padding: 0 8px;
         }
         .sc-right-nav .sc-nav-arrow {
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
-          color: #d92323;
+          color: #c4001a;
           display: inline-block;
           user-select: none;
         }
         .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* info bar under nav */
+        /* info panel */
+        .sc-info-panel {
+          position: fixed;
+          top: 132px;
+          right: 0;
+          left: 65%;
+          bottom: 84px;
+          z-index: 50;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          padding: 8px 8px 8px 0;
+          overflow-y: auto;
+          overflow-x: hidden;
+          pointer-events: none;
+        }
+
         @keyframes sc-infobar-in {
           0%   { opacity: 0; transform: translateX(40px); }
           60%  { opacity: 1; transform: translateX(-4px); }
           100% { opacity: 1; transform: translateX(0); }
         }
         .sc-info-bar-wrap {
-          position: fixed;
-          right: 0;
-          left: 65%;
+          position: relative;
+          right: auto;
+          left: auto;
+          width: 100%;
           height: 46px;
           background: transparent;
           pointer-events: all;
           cursor: pointer;
-          z-index: 50;
+          z-index: 1;
           padding: 0;
           animation: sc-infobar-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
         }
@@ -452,21 +448,8 @@ export default function Socials() {
           overflow: hidden;
         }
         .sc-info-bar-wrap.selected .sc-info-bar {
-          background: #ffffff;
+          background: #fff;
           border-radius: 7px;
-        }
-        .sc-info-bar-wrap.selected .sc-info-bar::after {
-          content: '';
-          position: absolute;
-          right: 56px;
-          top: 7px;
-          width: 120px;
-          height: 32px;
-          border-radius: 6px;
-          background: rgba(255,255,255,0.36);
-          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.55);
-          pointer-events: none;
-          z-index: 1;
         }
         .sc-info-bar-new {
           position: absolute;
@@ -482,65 +465,46 @@ export default function Socials() {
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 4px;
-          background: #d92323;
+          background: #c4001a;
           z-index: 1;
         }
         .sc-info-bar-text {
           flex: 1;
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
-          letter-spacing: 0.5px;
+          letter-spacing: 2px;
           color: #111;
           padding: 0 14px;
           user-select: none;
         }
         .sc-info-bar-box {
-          position: relative;
-          z-index: 2;
           height: 70%;
-          background: #0d0d0d;
+          background: #000;
           display: flex;
           align-items: center;
           padding: 0 12px;
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 20px;
-          letter-spacing: 0px;
-          color: #ffffff;
+          letter-spacing: 1px;
+          color: #fff;
           flex-shrink: 0;
           border-radius: 6px;
           margin-right: 4px;
           user-select: none;
         }
 
-        .sc-info-bar-icon-wrap {
-          width: 56px;
-          height: 26px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .sc-info-bar-icon {
+          height: 55%;
+          width: auto;
           flex-shrink: 0;
           margin-left: 14px;
-        }
-
-        .sc-info-bar-icon-wrap.email {
-          width: 46px;
-          height: 22px;
-        }
-
-        .sc-info-bar-icon {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
           object-fit: contain;
           pointer-events: none;
           user-select: none;
         }
 
         .sc-info-bar-count {
-          position: relative;
-          z-index: 2;
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
           letter-spacing: 1px;
           color: #111;
@@ -555,7 +519,7 @@ export default function Socials() {
           bottom: 20px; right: 28px;
           display: flex; flex-direction: column;
           align-items: flex-end; gap: 5px;
-          font-family: 'Bebas Neue', 'Persona5Main';
+          font-family: 'Bebas Neue', sans-serif;
           z-index: 50;
           opacity: 0;
           transition: opacity 0.4s ease 0.6s;
@@ -571,6 +535,70 @@ export default function Socials() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
+
+        .sc-mobile-controls {
+          display: none;
+        }
+
+        .sc-mobile-btn {
+          border: 1px solid rgba(255, 255, 255, 0.28);
+          background: rgba(0, 0, 0, 0.62);
+          color: #fff;
+          font-family: 'Bebas Neue', sans-serif;
+          letter-spacing: 1.2px;
+          font-size: 13px;
+          padding: 7px 12px;
+          border-radius: 8px;
+          min-width: 84px;
+        }
+
+        @media (max-width: 768px) {
+          .sc-root {
+            justify-content: flex-start;
+            padding-top: 12px;
+            gap: 3px;
+          }
+
+          .sc-info-panel {
+            top: min(47vh, 320px);
+            left: 8px;
+            right: 8px;
+            bottom: 58px;
+            gap: 4px;
+            padding: 4px 0;
+          }
+
+          .sc-info-bar-wrap {
+            height: 38px !important;
+          }
+
+          .sc-info-bar-text {
+            font-size: 15px;
+            letter-spacing: 1px;
+          }
+
+          .sc-info-bar-count {
+            margin-right: 10px;
+            font-size: 14px;
+          }
+
+          .sc-footer {
+            display: none;
+          }
+
+          .sc-mobile-controls {
+            position: fixed;
+            left: 8px;
+            right: 8px;
+            bottom: max(8px, env(safe-area-inset-bottom));
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            pointer-events: all;
+          }
+        }
       `}</style>
 
       <div className="sc-root" role="navigation">
@@ -579,16 +607,10 @@ export default function Socials() {
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
-              if (active === i && focus === "left") window.open(item.href, "_blank");
-              else {
-                setActive(i);
-                setFocus("left");
-              }
+              if (active === i) window.open(item.href, "_blank");
+              else setActive(i);
             }}
-            onMouseEnter={() => {
-              setActive(i);
-              setFocus("left");
-            }}
+            onMouseEnter={() => setActive(i)}
           >
             <div className="sc-bar-red" />
             <div className="sc-bar">
@@ -633,42 +655,53 @@ export default function Socials() {
         </div>
       )}
 
-      {mounted && Array.from({ length: ITEMS[active].bars }).map((_, i) => (
-        <div
-          className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
-          key={`bar-${active}-${i}`}
-          style={{ top: `${155 + i * 52}px`, animationDelay: `${i * 50}ms` }}
-          onClick={() => {
-            const link = ITEMS[active].links[i];
-            const url = link.startsWith("http") || link.startsWith("mailto") ? link : "https://" + link;
-            window.open(url, "_blank");
-            setActiveInfoBar(i);
-            setFocus("right");
-          }}
-          onMouseEnter={() => {
-            setActiveInfoBar(i);
-            setFocus("right");
-          }}
-        >
-          {ITEMS[active].newBars.includes(i) && (
-            <img className="sc-info-bar-new" src={newsign} alt="" />
-          )}
-          <div className="sc-info-bar">
-            <div className={`sc-info-bar-icon-wrap${ITEMS[active].id === "email" ? " email" : ""}`}>
-              <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
+      {mounted && (
+        <div className="sc-info-panel" key={`panel-${active}`}>
+          {Array.from({ length: ITEMS[active].bars }).map((_, i) => (
+            <div
+              className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
+              key={`bar-${active}-${i}`}
+              style={{ animationDelay: `${i * 50}ms` }}
+              onClick={() => {
+                if (isMobileViewport || activeInfoBar === i) {
+                  window.open("https://" + ITEMS[active].links[i], "_blank");
+                  return;
+                }
+                setActiveInfoBar(i);
+              }}
+              onMouseEnter={() => setActiveInfoBar(i)}
+            >
+              {ITEMS[active].newBars.includes(i) && (
+                <img className="sc-info-bar-new" src={newsign} alt="" />
+              )}
+              <div className="sc-info-bar">
+                <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
+                <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
+                <span className="sc-info-bar-box">VIEWS</span>
+                <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
+              </div>
             </div>
-            <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
-            <span className="sc-info-bar-box">VIEWS</span>
-            <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
-          </div>
+          ))}
         </div>
-      ))}
+      )}
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row"><span className="sc-footer-key">TAB</span><span>SWITCH</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">W/S/A/D</span><span>SELECT</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
+      </div>
+
+      <div className="sc-mobile-controls" aria-label="Socials mobile controls">
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
+          BACK
+        </button>
+        <button
+          className="sc-mobile-btn"
+          type="button"
+          onClick={() => window.open(ITEMS[active].href, "_blank")}
+        >
+          OPEN
+        </button>
       </div>
     </div>
   );
