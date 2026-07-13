@@ -19,7 +19,7 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "itch.io", label: "Itch.io", handle: "@jalonba", href: "https://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH"],
+    id: "itch", label: "Itch.io", handle: "@jalonba", href: "https://jalonba.itch.io/", icon: "💻", barIcon: icon1, bars: 5, newBars: [0], counts: ["FANBOOK", "PROOFEDITING","RESEARCH"],
     links: ["https://jalonba.itch.io/digital-monster-catalog"],
     stats: [
       { tag: "USR", value: "jalonba", color: "#7b7b7b" },
