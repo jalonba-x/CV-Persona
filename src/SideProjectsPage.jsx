@@ -15,35 +15,7 @@ const ITEMS = [
     title: "Hunter x Hunter Miniature Rose",
     stack: "Adobe Premiere",
     summary: "Youtube video showing fitting real life images in the context of a Hunter x Hunter episode scene",
-    href: "https://www.youtube.com/@jivaotbitotti",
-  },
-  {
-    id: "calculadora-arranjo",
-    title: "ARRANGEMENT CALCULATOR",
-    stack: "Java",
-    summary: "Arrangements, combinations, and permutations calculator.",
-    href: "https://github.com/ffaneto/calculadora-arranjo-combinacao-permutacao-java",
-  },
-  {
-    id: "questoes-javascript",
-    title: "JS EXERCISES",
-    stack: "JavaScript",
-    summary: "JavaScript functions-focused problem solving.",
-    href: "https://github.com/ffaneto/questoes-funcoes-javascript",
-  },
-  {
-    id: "curso-nelio",
-    title: "NELIO ALVES LABS",
-    stack: "Java",
-    summary: "Projects and solved exercises from Nelio Alves's course.",
-    href: "https://github.com/ffaneto/curso-nelio-alves",
-  },
-  {
-    id: "outras-questoes",
-    title: "MORE EXERCISES",
-    stack: "Java",
-    summary: "More solved exercises from Nelio Alves's course.",
-    href: "https://github.com/ffaneto/outras-questoes-nelio-alves",
+    href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
   }
 
 ];
