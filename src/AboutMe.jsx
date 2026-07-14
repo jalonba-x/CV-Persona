@@ -22,9 +22,9 @@ const REVEAL_CONTENT = [
   },
   {
     upper: [
-      "Localization specialist with ten years of experience",
-      "in English - Spanish localization, language quality assurance,",
-      "multilingual data annotation, and AI training projects",
+      "Language specialist with ten years of experience",
+      "in localization (EN-ES), language quality assurance,",
+      "and multilingual data annotation.",
     ],
     lower: "Localization | Language QA | Linguistics",
   },
