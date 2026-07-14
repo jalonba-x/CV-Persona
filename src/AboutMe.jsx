@@ -284,7 +284,7 @@ export default function AboutMe() {
           font-size: 26px;
           letter-spacing: -10px;
           word-spacing: 20px;
-          line-height: 2.5;
+          line-height: 2.0;
         }
         .sc-reveal-lower-bar {
           position: absolute;
