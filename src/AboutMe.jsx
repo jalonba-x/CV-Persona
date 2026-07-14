@@ -136,7 +136,7 @@ export default function AboutMe() {
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 6;
+          z-index: 20;
           pointer-events: none;
           display: flex;
           flex-direction: column;
@@ -382,7 +382,7 @@ export default function AboutMe() {
         /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
-          z-index: 15;
+          z-index: 21;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
