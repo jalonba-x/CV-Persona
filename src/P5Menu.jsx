@@ -224,23 +224,21 @@ export default function P5Menu({ onNavigate }) {
 
         .p5-name-tag {
     position: absolute;
-    top: 12px;
-    left: 35px;
-
+    top: 42px;
+    left: 40px;
     z-index: 20;
 
     font-family: 'FuturaStdBold';
     font-style: italic;
+    font-size: 65px;
 
-    font-size: 78px;
-
-    line-height: 0.72;
-    letter-spacing: -4px;
+    line-height: 1.0;
+    letter-spacing: 2px;
 
     color: white;
     text-shadow: 3px 3px 0 rgba(0,0,0,.35);
 
-    transform: rotate(0deg) skewX(-10deg) scaleX(1.08);
+    transform: rotate(0deg) skewX(-5deg) scaleX(1.08);
     transform-origin: left top;
 
     display: flex;
@@ -258,6 +256,7 @@ export default function P5Menu({ onNavigate }) {
 }
 
 .p5-name-tag span:last-child {
+    margin-top: 8px;
     font-size: 92px;
     letter-spacing: -5px;
 }
