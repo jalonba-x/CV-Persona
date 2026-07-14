@@ -261,6 +261,31 @@ export default function AboutMe() {
           background: linear-gradient(180deg, #d92323 0%, #d92323 100%);
           clip-path: inherit;
         }
+        .sc-reveal-upper-bar {
+          position: absolute;
+          top: 10%;
+          left: 0%;
+          width: 100%;
+          height: 40%;
+          background: rgba(13,13,13,0.92);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+          box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          color: #ffffff;
+          text-align: center;
+        }
+        .sc-reveal-upper-line {
+          font-family: 'Persona5Main';
+          font-weight: 200;
+          font-size: 26px;
+          letter-spacing: -10px;
+          word-spacing: 20px;
+          line-height: 2.0;
+        }
         .sc-reveal-lower-bar {
           position: absolute;
           top: 58%;
@@ -281,7 +306,6 @@ export default function AboutMe() {
           text-transform: lowercase;
           padding-left: 22px;
         }
-
         @keyframes sc-right-nav-pop {
           0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
           65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
