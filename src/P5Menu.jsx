@@ -227,13 +227,13 @@ export default function P5Menu({ onNavigate }) {
           top: 18px;
           left: 40px;
           z-index: 20;
-          font-family: 'Persona5Main';
+          font-family: 'FuturaStdBold';
           font-style: italic;
           font-size: 65px;
           line-height: 0.88;
           letter-spacing: 2px;
           color: #ffffff;
-          transform: rotate(18deg);
+          transform: rotate(33deg);
           transform-origin: left top;
           user-select: none;
           pointer-events: none;
