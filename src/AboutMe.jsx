@@ -16,7 +16,7 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Hi!, I'm a freelance EN-ES language localization specialist",
+    upper: ["Hello, I am a freelance EN-ES language localization specialist",
        "Looking to break into the gaming industry"],
     lower: "Name: Javier Barrera | Age: 33 | Location: Santiago, Chile",
   },
@@ -287,7 +287,7 @@ export default function AboutMe() {
           font-weight: 300;
           font-size: 25px;
           letter-spacing: -8px;
-          word-spacing: 23px;
+          word-spacing: 25px;
           line-height: 1.5;
         }
         .sc-reveal-lower-bar {
