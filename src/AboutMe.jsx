@@ -64,6 +64,10 @@ const ITEMS = [
   },
 ];
 
+/**
+ * About Me page displaying a character stylistic view.
+ * It uses layout sections mapped to array data.
+ */
 export default function AboutMe() {
   const [active, setActive]   = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -136,7 +140,7 @@ export default function AboutMe() {
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 20;
+          z-index: 6;
           pointer-events: none;
           display: flex;
           flex-direction: column;
@@ -280,11 +284,10 @@ export default function AboutMe() {
         }
         .sc-reveal-upper-line {
           font-family: 'Persona5Main';
-          font-weight: 200;
-          font-size: 26px;
-          letter-spacing: -10px;
-          word-spacing: 20px;
-          line-height: 2.0;
+          font-weight: 300;
+          font-size: 20px;
+          letter-spacing: 0.5px;
+          line-height: 1.15;
         }
         .sc-reveal-lower-bar {
           position: absolute;
@@ -367,9 +370,7 @@ export default function AboutMe() {
 
         /* ── Each bar ── */
         .sc-bar {
-          position: absolute;
-          top: 0;
-          left: 0;
+          position: relative;
           width: 45vw;
           height: 64px;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
@@ -384,12 +385,9 @@ export default function AboutMe() {
         /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
-          width: 45vw;
-          height: 90;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-          pointer-events: auto;
         }
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
@@ -567,7 +565,7 @@ export default function AboutMe() {
           display: flex;
           flex-direction: column;
           gap: 1px;
-          margin-top: 80px;
+          margin-top: 2px;
         }
         .sc-stat-bar-color {
           height: 3px;
@@ -618,40 +616,34 @@ export default function AboutMe() {
         }
       `}</style>
 
-<div 
-  className="sc-root" 
-  role="navigation"
-  onMouseLeave={() => {
-    // Optional: Reset to button 0 or leave it completely unselected when mouse exits the entire menu area
-    // setActive(0); 
-  }}
->
-  {ITEMS.map((item, i) => (
-    <div
-      key={item.id}
-      className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-      onClick={() => setActive(i)}
-      onMouseEnter={() => {
-        if (active !== i) setActive(i);
-      }}
-      style={{ pointerEvents: "auto" }} /* Double check it forces mouse detection */
-    >
-      <div className="sc-bar-red" />
-      <div className="sc-bar">
-        <img className="sc-char" src={CHARS[i]} alt="" />
-        <div className="sc-bar-fill" />
-        <div className="sc-bar-shade" />
-        <div className="sc-bar-content">
-          <div className="sc-main">
-            <div className="sc-main-top">
-              <div className="sc-label">{item.label}</div>
+      <div className="sc-root" role="navigation">
+        {ITEMS.map((item, i) => (
+          <div
+            key={item.id}
+            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+            onClick={() => {
+              setActive(i);
+            }}
+            onMouseEnter={() => {
+              setActive(i);
+            }}
+          >
+            <div className="sc-bar-red" />
+            <div className="sc-bar">
+              <img className="sc-char" src={CHARS[i]} alt="" />
+              <div className="sc-bar-fill" />
+              <div className="sc-bar-shade" />
+              <div className="sc-bar-content">
+                <div className="sc-main">
+                  <div className="sc-main-top">
+                    <div className="sc-label">{item.label}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
