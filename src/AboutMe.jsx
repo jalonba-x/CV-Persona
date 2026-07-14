@@ -620,17 +620,21 @@ export default function AboutMe() {
       <div className="sc-root" role="navigation">
         {ITEMS.map((item, i) => (
           <div
-            key={item.id}
-            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              setActive(i);
-              setRevealed(true);
-            }}
-            onMouseEnter={() => {
-              setActive(i);
-              setRevealed(true); /* Automatically reveals the sub-menu stats on hover */
-            }}
-          >
+  key={item.id}
+  className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+  onClick={() => {
+    // 1. Lock in the selection state
+    setRevealed(true);
+    // 2. Open the URL or trigger the route action
+    if (item.href) {
+      window.open(item.href, "_blank", "noopener,noreferrer");
+    }
+  }}
+  onMouseEnter={() => {
+    // Hover ONLY highlights the item and updates the preview portrait/stats
+    setActive(i);
+  }}
+>
             <div className="sc-bar-red" />
             <div className="sc-bar">
               <img className="sc-char" src={CHARS[i]} alt="" />
