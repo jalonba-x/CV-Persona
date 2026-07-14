@@ -16,7 +16,7 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Hello, I am a freelance EN-ES language localization specialist",
+    upper: ["Freelance EN-ES language localization specialist",
        "Looking to break into the gaming industry"],
     lower: "Name: Javier Barrera | Age: 33 | Location: Santiago, Chile",
   },
