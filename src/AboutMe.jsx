@@ -563,7 +563,7 @@ export default function AboutMe() {
           display: flex;
           flex-direction: column;
           gap: 1px;
-          margin-top: 2px;
+          margin-top: 80px;
         }
         .sc-stat-bar-color {
           height: 3px;
