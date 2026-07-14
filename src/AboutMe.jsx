@@ -370,14 +370,13 @@ export default function AboutMe() {
           position: relative;
           width: 45vw;
           height: 64px;
-          outline: 2px solid red;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
           cursor: pointer;
           pointer-events: all;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
-          z-index: 1;
+          z-index: 2;
         }
 
         /* wrapper holds both the red underlay and the bar */
@@ -386,6 +385,7 @@ export default function AboutMe() {
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          cursor: pointer;
         }
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
@@ -405,7 +405,7 @@ export default function AboutMe() {
           transform: translateY(-7px);
           opacity: 0;
           transition: opacity 0.2s ease;
-          z-index: 0;
+          z-index: 1;
           pointer-events: none;
         }
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
@@ -418,7 +418,7 @@ export default function AboutMe() {
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
           transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-          z-index: 0;
+          z-index: 1;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
@@ -452,7 +452,7 @@ export default function AboutMe() {
         /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
-          z-index: 2;
+          z-index: 4;
           height: 100%;
           display: flex;
           align-items: center;
