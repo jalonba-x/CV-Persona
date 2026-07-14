@@ -39,7 +39,7 @@ const REVEAL_CONTENT = [
 
 const ITEMS = [
   {
-    id: "persona", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars:, counts: ["16"],
+    id: "persona", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
     links: ["linkedin.com/in/javierbarrerab"],
     stats: [
       { tag: "AGE", value: "33", color: "#d92323" },
@@ -47,7 +47,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars:, counts: ["UCH", "Humanities"],
+    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["UCH", "Humanities"],
     links: ["UCH/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
@@ -55,7 +55,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "weird", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars:, counts: ["JAVA", "JS", "WEB"],
+    id: "weird", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars: [0, 1, 2], counts: ["JAVA", "JS", "WEB"],
     links: ["learning/java", "learning/javascript", "web/development"],
     stats: [
       { tag: "FAV", value: "JAVA", color: "#ffffff" },
