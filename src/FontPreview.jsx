@@ -1,5 +1,6 @@
 const FONTS = [
   { name: "Persona5Main", family: "'Persona5Main'" },
+  { name: "Persona5Mainmenu", family: "'Futura Std Bold'" },
 ];
 
 const LABELS = ["ABOUT ME", "RESUME", "ITCH LINK", "SOCIALS", "SIDE PROJECTS"];
