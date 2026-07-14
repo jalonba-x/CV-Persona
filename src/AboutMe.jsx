@@ -282,8 +282,8 @@ export default function AboutMe() {
           font-family: 'Persona5Main';
           font-weight: 300;
           font-size: 20px;
-          letter-spacing: 0.3px;
-          word-spacing: 5.5px;
+          letter-spacing: 0.1px;
+          word-spacing: 6px;
           line-height: 1.15;
         }
         .sc-reveal-lower-bar {
