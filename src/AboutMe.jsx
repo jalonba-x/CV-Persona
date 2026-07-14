@@ -33,13 +33,13 @@ const REVEAL_CONTENT = [
       "Spanish (Native), English (Professional), Portuguese (Basic)",
       "Passionate about languages and cultures",
     ],
-    lower: "LinkedIn: linkedin.com/in/javierbarrerab",
+    lower: "LinkedIn: @javierbarrerab",
   },
 ];
 
 const ITEMS = [
   {
-    id: "persona", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
+    id: "persona", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars:, counts: ["16"],
     links: ["linkedin.com/in/javierbarrerab"],
     stats: [
       { tag: "AGE", value: "33", color: "#d92323" },
@@ -47,7 +47,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["UCH", "Humanities"],
+    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars:, counts: ["UCH", "Humanities"],
     links: ["UCH/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
@@ -55,7 +55,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "weird", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars: [0, 1, 2], counts: ["JAVA", "JS", "WEB"],
+    id: "weird", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars:, counts: ["JAVA", "JS", "WEB"],
     links: ["learning/java", "learning/javascript", "web/development"],
     stats: [
       { tag: "FAV", value: "JAVA", color: "#ffffff" },
@@ -210,13 +210,14 @@ export default function AboutMe() {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50% { transform: translateX(5px); opacity: 0.4; }
         }
+      `}</style>
 
-        .sc-main-portrait-shell {
+.sc-main-portrait-shell {
           position: absolute;
           top: 0;
           right: -3vw;
           z-index: 13;
-          pointer-events: none;
+          pointer-events: all; /* Enabled to allow uninterrupted cursor tracking */
           width: 43vw;
           height: 100vh;
           overflow: hidden;
@@ -237,7 +238,7 @@ export default function AboutMe() {
           width: 88vw;
           height: 60vh;
           z-index: 12;
-          pointer-events: none;
+          pointer-events: all; /* Enabled so UI components don't block mouse hover updates */
           background:
             linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
@@ -451,8 +452,8 @@ export default function AboutMe() {
           z-index: 10;
           pointer-events: none;
         }
-
-        /* content layout inside each bar */
+      
+/* content layout inside each bar */
         .sc-bar-content {
           position: relative;
           z-index: 2;
@@ -624,9 +625,11 @@ export default function AboutMe() {
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
               setActive(i);
+              setRevealed(true);
             }}
             onMouseEnter={() => {
               setActive(i);
+              setRevealed(true); /* Automatically reveals the sub-menu stats on hover */
             }}
           >
             <div className="sc-bar-red" />
