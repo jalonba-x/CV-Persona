@@ -47,7 +47,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["IFPB", "TECH"],
+    id: "fun", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["UCH", "Humanities"],
     links: ["UCH/Universidad de Chile", "Linguistics/course"],
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
@@ -142,7 +142,7 @@ export default function AboutMe() {
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 16px;
+          gap: 6px;
           padding-left: 0;
         }
 
@@ -367,10 +367,8 @@ export default function AboutMe() {
 
         /* ── Each bar ── */
         .sc-bar {
-          position: absolute;
-          top: 0;
-          left:0;
-          width: 100%;
+          position: relative;
+          width: 45vw;
           height: 64px;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
@@ -378,21 +376,17 @@ export default function AboutMe() {
           pointer-events: all;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
-          z-index: 2;
+          z-index: 15;
         }
 
         /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
+          z-index: 15;
           flex-shrink: 0;
-          width: 45vw;
-          height: 64px;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-          cursor: pointer;
         }
-        .sc-bar-outer.active { 
-          z-index: 10;} 
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
@@ -404,14 +398,14 @@ export default function AboutMe() {
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
-          width: 100%;
+          width: 45vw;
           height: 64px;
           background: #d92323;
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
           transform: translateY(-7px);
           opacity: 0;
           transition: opacity 0.2s ease;
-          z-index: 1;
+          z-index: 0;
           pointer-events: none;
         }
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
@@ -424,7 +418,7 @@ export default function AboutMe() {
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
           transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-          z-index: 1;
+          z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
@@ -458,7 +452,7 @@ export default function AboutMe() {
         /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
-          z-index: 4;
+          z-index: 2;
           height: 100%;
           display: flex;
           align-items: center;
@@ -655,5 +649,8 @@ export default function AboutMe() {
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
     </div>
+  );
+}
+
   );
 }
