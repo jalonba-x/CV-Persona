@@ -135,12 +135,12 @@ export default function AboutMe() {
             alt=""
           />
         </div>
-  )}
+      )}
       <style>{`
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 20;
+          z-index: 6;
           pointer-events: none;
           display: flex;
           flex-direction: column;
@@ -216,7 +216,7 @@ export default function AboutMe() {
           top: 0;
           right: -3vw;
           z-index: 13;
-          pointer-events: all;
+          pointer-events: none;
           width: 43vw;
           height: 100vh;
           overflow: hidden;
@@ -284,11 +284,11 @@ export default function AboutMe() {
         }
         .sc-reveal-upper-line {
           font-family: 'Persona5Main';
-          font-weight: 300;
-          font-size: 25px;
-          letter-spacing: -8px;
-          word-spacing: 25px;
-          line-height: 1.8;
+          font-weight: 200;
+          font-size: 26px;
+          letter-spacing: -10px;
+          word-spacing: 20px;
+          line-height: 2.0;
         }
         .sc-reveal-lower-bar {
           position: absolute;
@@ -305,8 +305,8 @@ export default function AboutMe() {
           color: #ffffff;
           font-family: 'Bebas Neue';
           font-weight: 400;
-          font-size: 23px;
-          letter-spacing: 1px;
+          font-size: 22px;
+          letter-spacing: 0px;
           text-transform: lowercase;
           padding-left: 22px;
         }
@@ -389,7 +389,6 @@ export default function AboutMe() {
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-          pointer-events: all !important;
         }
         /* Stagger their rest positions to look wonderfully chaotic and angled */
 .sc-bar-outer:nth-child(1).mounted { transform: translateX(10px) rotate(-1deg); }
@@ -401,7 +400,7 @@ export default function AboutMe() {
   transform: translateX(40px) scale(1.04) rotate(1deg);
   z-index: 25; /* Keeps the active bar layered neatly on top of the stack */
 }
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
+  .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
@@ -462,8 +461,8 @@ export default function AboutMe() {
           z-index: 10;
           pointer-events: none;
         }
-      
-/* content layout inside each bar */
+
+        /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
           z-index: 2;
@@ -577,7 +576,7 @@ export default function AboutMe() {
           display: flex;
           flex-direction: column;
           gap: 1px;
-          margin-top: 2px;
+          margin-top: 80px;
         }
         .sc-stat-bar-color {
           height: 3px;
@@ -631,21 +630,15 @@ export default function AboutMe() {
       <div className="sc-root" role="navigation">
         {ITEMS.map((item, i) => (
           <div
-  key={item.id}
-  className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-  onClick={() => {
-    // 1. Lock in the selection state
-    setRevealed(true);
-    // 2. Open the URL or trigger the route action
-    if (item.href) {
-      window.open(item.href, "_blank", "noopener,noreferrer");
-    }
-  }}
-  onMouseEnter={() => {
-    // Hover ONLY highlights the item and updates the preview portrait/stats
-    setActive(i);
-  }}
->
+            key={item.id}
+            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+            onClick={() => {
+              setActive(i);
+            }}
+            onMouseEnter={() => {
+              setActive(i);
+            }}
+          >
             <div className="sc-bar-red" />
             <div className="sc-bar">
               <img className="sc-char" src={CHARS[i]} alt="" />
