@@ -285,9 +285,10 @@ export default function AboutMe() {
         .sc-reveal-upper-line {
           font-family: 'Persona5Main';
           font-weight: 300;
-          font-size: 20px;
-          letter-spacing: 0.5px;
-          line-height: 1.15;
+          font-size: 25px;
+          letter-spacing: -5em;
+          word-spacing: 1em
+          line-height: 1.5;
         }
         .sc-reveal-lower-bar {
           position: absolute;
@@ -305,7 +306,7 @@ export default function AboutMe() {
           font-family: 'Bebas Neue';
           font-weight: 400;
           font-size: 22px;
-          letter-spacing: 0px;
+          letter-spacing: 2px;
           text-transform: lowercase;
           padding-left: 22px;
         }
