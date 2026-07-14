@@ -370,7 +370,7 @@ export default function AboutMe() {
           position: relative;
           width: 45vw;
           height: 64px;
-          outline: 2px solid red
+          outline: 2px solid red;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
           cursor: pointer;
