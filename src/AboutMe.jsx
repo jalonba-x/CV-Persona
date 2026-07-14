@@ -135,7 +135,7 @@ export default function AboutMe() {
             alt=""
           />
         </div>
-      )}
+  )}
       <style>{`
         .sc-root {
           position: absolute;
@@ -210,14 +210,13 @@ export default function AboutMe() {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50% { transform: translateX(5px); opacity: 0.4; }
         }
-      `}</style>
 
-.sc-main-portrait-shell {
+        .sc-main-portrait-shell {
           position: absolute;
           top: 0;
           right: -3vw;
           z-index: 13;
-          pointer-events: all; /* Enabled to allow uninterrupted cursor tracking */
+          pointer-events: all;
           width: 43vw;
           height: 100vh;
           overflow: hidden;
