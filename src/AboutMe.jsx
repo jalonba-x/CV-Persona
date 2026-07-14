@@ -306,7 +306,7 @@ export default function AboutMe() {
           font-family: 'Bebas Neue';
           font-weight: 400;
           font-size: 22px;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           text-transform: lowercase;
           padding-left: 22px;
         }
