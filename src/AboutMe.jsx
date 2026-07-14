@@ -137,10 +137,6 @@ export default function AboutMe() {
         </div>
   )}
       <style>{`
-      sc-reveal-panel, .sc-main-portrait-shell, .sc-bar-outer {
-  outline: 2px dashed cyan !important;
-  background: rgba(0, 255, 255, 0.05) !important;
-}
         .sc-root {
           position: absolute;
           inset: 0;
