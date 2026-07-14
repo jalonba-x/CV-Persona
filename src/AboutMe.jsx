@@ -367,7 +367,9 @@ export default function AboutMe() {
 
         /* ── Each bar ── */
         .sc-bar {
-          position: relative;
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 45vw;
           height: 64px;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
@@ -376,14 +378,13 @@ export default function AboutMe() {
           pointer-events: all;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
-          z-index: 15;
+          z-index: 1;
         }
 
         /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
-          height: 94;
-          z-index: 21;
+          height: 90;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
