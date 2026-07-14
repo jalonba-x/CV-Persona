@@ -64,10 +64,6 @@ const ITEMS = [
   },
 ];
 
-/**
- * About Me page displaying a character stylistic view.
- * It uses layout sections mapped to array data.
- */
 export default function AboutMe() {
   const [active, setActive]   = useState(0);
   const [mounted, setMounted] = useState(false);
