@@ -286,7 +286,7 @@ export default function AboutMe() {
           font-family: 'Persona5Main';
           font-weight: 300;
           font-size: 25px;
-          letter-spacing: -5px;
+          letter-spacing: -20px;
           word-spacing: 10px;
           line-height: 1.5;
         }
