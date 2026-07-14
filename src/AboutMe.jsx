@@ -39,7 +39,7 @@ const REVEAL_CONTENT = [
 
 const ITEMS = [
   {
-    id: "about", label: "ABOUT ME", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
+    id: "persona", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
     links: ["linkedin.com/in/javierbarrerab"],
     stats: [
       { tag: "AGE", value: "33", color: "#d92323" },
@@ -137,7 +137,7 @@ export default function AboutMe() {
           position: absolute;
           inset: 0;
           z-index: 6;
-          pointer-events: all;
+          pointer-events: none;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -370,6 +370,7 @@ export default function AboutMe() {
           position: relative;
           width: 45vw;
           height: 64px;
+          outline: 2px solid red
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
           cursor: pointer;
