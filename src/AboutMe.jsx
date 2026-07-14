@@ -16,17 +16,17 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Hi!, I'm a freelance EN-ES language localization specialist",
-       "Aiming   to   jump   into   the   gaming   industry"],
-    lower: "Name: Javier Barrera | Age: 33 | Location: Santiago, Chile",
+    upper: ["Hi!,   I'm   a   freelance   EN-ES   language   localization   specialist",
+       "Aiming    to    jump    into    the    gaming    industry"],
+    lower: "Name: Javier Barrera  |  Age: 33  |  Location: Santiago, Chile",
   },
   {
     upper: [
-      "Localization specialist with ten years of experience",
-      "in English–Spanish localization, language quality assurance,",
-      "multilingual data annotation, and AI training projects",
+      "Localization   specialist   with   ten   years   of   experience",
+      "in   English–Spanish   localization,   language   quality   assurance,",
+      "multilingual   data   annotation,   and   AI   training   projects",
     ],
-    lower: "Localization  |  Language QA  |  Linguistics",
+    lower: "Localization   |   Language QA   |   Linguistics",
   },
   {
     upper: [
@@ -282,7 +282,7 @@ export default function AboutMe() {
           font-family: 'Persona5Main';
           font-weight: 300;
           font-size: 20px;
-          letter-spacing: 5.5px;
+          letter-spacing: 0.5px;
           line-height: 1.15;
         }
         .sc-reveal-lower-bar {
