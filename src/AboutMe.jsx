@@ -142,7 +142,7 @@ export default function AboutMe() {
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 6px;
+          gap: 16px;
           padding-left: 0;
         }
 
@@ -367,8 +367,10 @@ export default function AboutMe() {
 
         /* ── Each bar ── */
         .sc-bar {
-          position: relative;
-          width: 45vw;
+          position: absolute;
+          top: 0;
+          left:0;
+          width: 100%;
           height: 64px;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
@@ -383,10 +385,14 @@ export default function AboutMe() {
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
+          width: 45vw;
+          height: 64px;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
           cursor: pointer;
         }
+        .sc-bar-outer.active { 
+          z-index: 10;} 
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
@@ -398,7 +404,7 @@ export default function AboutMe() {
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
-          width: 45vw;
+          width: 100%;
           height: 64px;
           background: #d92323;
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
