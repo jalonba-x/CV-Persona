@@ -288,7 +288,7 @@ export default function AboutMe() {
           font-size: 25px;
           letter-spacing: -8px;
           word-spacing: 25px;
-          line-height: 1.5;
+          line-height: 1.6;
         }
         .sc-reveal-lower-bar {
           position: absolute;
@@ -305,7 +305,7 @@ export default function AboutMe() {
           color: #ffffff;
           font-family: 'Bebas Neue';
           font-weight: 400;
-          font-size: 24px;
+          font-size: 23px;
           letter-spacing: 1px;
           text-transform: lowercase;
           padding-left: 22px;
