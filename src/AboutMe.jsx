@@ -144,7 +144,7 @@ export default function AboutMe() {
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 6;
+          z-index: 20;
           pointer-events: none;
           display: flex;
           flex-direction: column;
@@ -241,7 +241,7 @@ export default function AboutMe() {
           width: 88vw;
           height: 60vh;
           z-index: 12;
-          pointer-events: all; /* Enabled so UI components don't block mouse hover updates */
+          pointer-events: none;
           background:
             linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
@@ -394,6 +394,16 @@ export default function AboutMe() {
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
         }
+        /* Stagger their rest positions to look wonderfully chaotic and angled */
+.sc-bar-outer:nth-child(1).mounted { transform: translateX(10px) rotate(-1deg); }
+.sc-bar-outer:nth-child(2).mounted { transform: translateX(-5px) rotate(2deg); }
+.sc-bar-outer:nth-child(3).mounted { transform: translateX(15px) rotate(-2deg); }
+
+/* Make the currently highlighted bar aggressively pop outward when active */
+.sc-bar-outer.active.mounted {
+  transform: translateX(40px) scale(1.04) rotate(1deg);
+  z-index: 25; /* Keeps the active bar layered neatly on top of the stack */
+}
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
