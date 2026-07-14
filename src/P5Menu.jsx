@@ -223,33 +223,51 @@ export default function P5Menu({ onNavigate }) {
         }
 
         .p5-name-tag {
-          position: absolute;
-          top: 18px;
-          left: 40px;
-          z-index: 20;
-          font-family: 'FuturaStdBold';
-          font-style: italic;
-          font-size: 65px;
-          line-height: 0.88;
-          letter-spacing: 2px;
-          color: #ffffff;
-          transform: rotate(33deg);
-          transform-origin: left top;
-          user-select: none;
-          pointer-events: none;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
+    position: absolute;
+    top: 12px;
+    left: 35px;
+
+    z-index: 20;
+
+    font-family: 'FuturaStdBold';
+    font-style: italic;
+
+    font-size: 78px;
+
+    line-height: 0.72;
+    letter-spacing: -4px;
+
+    color: white;
+    text-shadow: 3px 3px 0 rgba(0,0,0,.35);
+
+    transform: rotate(0deg) skewX(-10deg) scaleX(1.08);
+    transform-origin: left top;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    user-select: none;
+    pointer-events: none;
+
+    text-transform: uppercase;
         }
         .p5-name-tag span:first-child {
-          color: #ffffff;
+    font-size: 48px;
+    letter-spacing: -2px;
+}
+
+.p5-name-tag span:last-child {
+    font-size: 92px;
+    letter-spacing: -5px;
+}
         }
       `}</style>
 
       <div className="p5-overlay">
         <div className="p5-name-tag">
           <span>Javier's</span>
-          <span>´Persona</span>
+          <span>PERSONA5</span>
         </div>
 
         <nav className="p5-menu">
