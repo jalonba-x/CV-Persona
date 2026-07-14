@@ -614,32 +614,40 @@ export default function AboutMe() {
         }
       `}</style>
 
-      <div className="sc-root" role="navigation">
-        {ITEMS.map((item, i) => (
-          <div
-    key={item.id}
-    className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-    onClick={() => setActive(i)}
-    onMouseMove={() => { 
-      if (active !== i) setActive(i); // Solo actualiza si cambia de botón
-    }}
-  >
-            <div className="sc-bar-red" />
-            <div className="sc-bar">
-              <img className="sc-char" src={CHARS[i]} alt="" />
-              <div className="sc-bar-fill" />
-              <div className="sc-bar-shade" />
-              <div className="sc-bar-content">
-                <div className="sc-main">
-                  <div className="sc-main-top">
-                    <div className="sc-label">{item.label}</div>
-                  </div>
-                </div>
-              </div>
+<div 
+  className="sc-root" 
+  role="navigation"
+  onMouseLeave={() => {
+    // Optional: Reset to button 0 or leave it completely unselected when mouse exits the entire menu area
+    // setActive(0); 
+  }}
+>
+  {ITEMS.map((item, i) => (
+    <div
+      key={item.id}
+      className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+      onClick={() => setActive(i)}
+      onMouseEnter={() => {
+        if (active !== i) setActive(i);
+      }}
+      style={{ pointerEvents: "auto" }} /* Double check it forces mouse detection */
+    >
+      <div className="sc-bar-red" />
+      <div className="sc-bar">
+        <img className="sc-char" src={CHARS[i]} alt="" />
+        <div className="sc-bar-fill" />
+        <div className="sc-bar-shade" />
+        <div className="sc-bar-content">
+          <div className="sc-main">
+            <div className="sc-main-top">
+              <div className="sc-label">{item.label}</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
+    </div>
+  ))}
+</div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
