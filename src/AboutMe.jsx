@@ -393,6 +393,7 @@ export default function AboutMe() {
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          pointer-events: all !important;
         }
         /* Stagger their rest positions to look wonderfully chaotic and angled */
 .sc-bar-outer:nth-child(1).mounted { transform: translateX(10px) rotate(-1deg); }
