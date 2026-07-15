@@ -184,6 +184,7 @@ export default function AboutMe() {
   opacity: 0;
   transform: translateX(-50px);
   transition: transform 0.4s ease, opacity 0.4s ease, scale 0.2s ease;
+  overflow: hidden;
 }
 
 /* Animación de entrada cuando el componente se monta */
@@ -232,10 +233,11 @@ export default function AboutMe() {
 
 /* Miniatura del personaje dentro del botón */
 .sc-char {
-  height: 80%;
+  height: 100%;
   object-fit: contain;
   margin-right: 15px;
   z-index: 2;
+  pointer-events: none;
 }
 
 .sc-bar-content {
