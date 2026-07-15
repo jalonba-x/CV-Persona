@@ -132,255 +132,159 @@ export default function AboutMe() {
           />
         </div>
       )}
-      <style>{`
-#menu-screen {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0f1115;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
+<style>{`
+        #menu-screen {
+          position: relative;
+          width: 100vw;
+          height: 100vh;
+          background-color: #0f1115;
+          color: #ffffff;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          box-sizing: border-box;
+        }
 
-/* Capa oscura que se activa al revelar contenido */
-.sc-dim {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 40; /* Por encima de los botones, por debajo del panel */
-  backdrop-filter: blur(4px);
-}
+        .sc-dim {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.75);
+          z-index: 20;
+          backdrop-filter: blur(4px);
+        }
 
-/* ==========================================================================
-   2. BOTONES DEL MENÚ (Aquí arreglamos el problema del tercer botón)
-   ========================================================================== */
-.sc-root {
-  border: 2px dashed cyan !important;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 40px;
-  max-width: 500px;
-  /* El z-index bajo permite que el panel de revelado se ponga encima cuando se active */
-  z-index: 40; 
-}
+        .sc-root {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding: 40px;
+          max-width: 500px;
+          z-index: 10;
+        }
 
-.sc-bar-outer {
-  border: 1px solid yellow !important;
-  position: relative;
-  cursor: pointer; /* Fuerza la aparición de la manito del mouse */
-  pointer-events: auto; /* Asegura que el mouse no ignore este elemento */
-  display: flex;
-  align-items: center;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: transform 0.4s ease, opacity 0.4s ease, scale 0.2s ease;
-  overflow: hidden;
-}
+        .sc-bar-outer {
+          position: relative;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          opacity: 0;
+          transform: translateX(-50px);
+          transition: transform 0.4s ease, opacity 0.4s ease, scale 0.2s ease;
+        }
 
-/* Animación de entrada cuando el componente se monta */
-.sc-bar-outer.mounted {
-  opacity: 1;
-  transform: translateX(0);
-}
+        .sc-bar-outer.mounted {
+          opacity: 1;
+          transform: translateX(0);
+        }
 
-/* Efecto Hover y Activo */
-.sc-bar-outer:hover,
-.sc-bar-outer.active {
-  scale: 1.03;
-}
+        /* Cambia el color a rojo con hover o teclado activo */
+        .sc-bar-outer:hover,
+        .sc-bar-outer.active {
+          scale: 1.03;
+        }
 
-/* Barra decorativa roja de la izquierda */
-.sc-bar-red {
-  width: 6px;
-  height: 60px;
-  background-color: #d92323;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
+        .sc-bar-outer:hover .sc-bar-outer,
+        .sc-bar-outer.active .sc-bar-outer {
+          /* Si tenías un borde de debuggeo que cambiaba a rojo, se maneja aquí */
+        }
 
-.sc-bar-outer.active .sc-bar-red,
-.sc-bar-outer:hover .sc-bar-red {
-  opacity: 1;
-}
+        .sc-bar-red {
+          width: 6px;
+          height: 60px;
+          background-color: #d92323;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+        }
 
-/* Cuerpo del botón */
-.sc-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 60px;
-  background: rgba(30, 34, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0 15px;
-  overflow: hidden;
-}
+        .sc-bar-outer.active .sc-bar-red,
+        .sc-bar-outer:hover .sc-bar-red {
+          opacity: 1;
+        }
 
-.sc-bar-outer.active .sc-bar {
-  background: rgba(45, 52, 64, 0.9);
-  border-color: #d92323;
-}
+        .sc-bar {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 60px;
+          background: rgba(30, 34, 42, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 0 15px;
+          overflow: hidden;
+        }
 
-/* Miniatura del personaje dentro del botón */
-.sc-char {
-  height: 100%;
-  object-fit: contain;
-  margin-right: 15px;
-  z-index: 2;
-  pointer-events: none;
-}
+        .sc-char {
+          height: 80%;
+          object-fit: contain;
+          margin-right: 15px;
+          pointer-events: none;
+        }
 
-.sc-bar-content {
-  z-index: 2;
-}
+        .sc-label {
+          font-size: 1.2rem;
+          font-weight: bold;
+          letter-spacing: 2px;
+        }
 
-.sc-label {
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
+        .sc-footer {
+          position: relative;
+          width: 100%;
+          padding: 20px 40px;
+          display: flex;
+          gap: 30px;
+          background: rgba(15, 17, 21, 0.9);
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          z-index: 5;
+        }
 
-/* ==========================================================================
-   3. PANEL DE REVELADO (Aparece al hacer Click/Enter)
-   ========================================================================== */
-.sc-reveal-panel {
-  outline: 2px dashed magenta !important;
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  width: 60%;
-  background: rgba(20, 22, 26, 0.95);
-  border-left: 5px solid #d92323;
-  padding: 30px;
-  z-index: 30; /* Por encima del dim y de los botones */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-  pointer-events:non;
-}
+        .sc-footer-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 0.85rem;
+          color: #8a929e;
+        }
 
-.sc-reveal-panel.mounted {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.sc-reveal-upper-line {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
-
-.sc-reveal-lower-bar {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  color: #8a929e;
-  font-size: 0.9rem;
-}
-
-/* Retrato grande del personaje revelado */
-.sc-main-portrait-shell {
-  position: absolute;
-  right: 5%;
-  bottom: 10%;
-  width: 30%;
-  height: 70%;
-  z-index: 25; /* Detrás del texto pero delante del fondo */
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.5s ease;
-  pointer-events:non;
-}
-
-.sc-main-portrait-shell.mounted {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.sc-main-portrait {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Navegación secundaria derecha */
-.sc-right-nav {
-  position: absolute;
-  right: 5%;
-  top: 5%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 30;
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   4. FOOTER (Arreglado para que no tape hacia arriba)
-   ========================================================================== */
-.sc-footer {
-  position: relative; /* Cambiado a relative para que no flote encima de los botones */
-  width: 100%;
-  padding: 20px 40px;
-  display: flex;
-  gap: 30px;
-  background: rgba(15, 17, 21, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 5; /* Z-index bajo para que NUNCA bloquee los clics del menú */
-  box-sizing: border-box;
-}
-
-.sc-footer-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: #8a929e;
-}
-
-.sc-footer-key {
-  background: #2e3440;
-  color: #ffffff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
+        .sc-footer-key {
+          background: #2e3440;
+          color: #ffffff;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-weight: bold;
+        }
       `}</style>
 
+      {/* 2. AQUÍ SIGUEN TUS BOTONES FUERA DEL STYLE */}
       <div className="sc-root" role="navigation">
         {ITEMS.map((item, i) => (
           <div
             key={item.id}
+            role="button;;"
+            tabIndex={0}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+            onMouseMove={() => setActive(i)}
             onClick={() => {
               setActive(i);
+              setRevealed(true);
             }}
-            onMouseEnter={() => {
-              setActive(i);
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActive(i);
+                setRevealed(true);
+              }
             }}
           >
             <div className="sc-bar-red" />
             <div className="sc-bar">
               <img className="sc-char" src={CHARS[i]} alt="" />
-              <div className="sc-bar-fill" />
-              <div className="sc-bar-shade" />
               <div className="sc-bar-content">
-                <div className="sc-main">
-                  <div className="sc-main-top">
-                    <div className="sc-label">{item.label}</div>
-                  </div>
-                </div>
+                <div className="sc-label">{item.label}</div>
               </div>
             </div>
           </div>
