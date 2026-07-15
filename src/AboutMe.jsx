@@ -129,7 +129,7 @@ export default function AboutMe() {
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 6;
+          z-index: 999999 !important;
           left: 80px;
           pointer-events: none;
           display: flex;
@@ -381,8 +381,8 @@ export default function AboutMe() {
 
         .sc-bar-outer {
           position: relative;
-          pointer-events: auto;
-          cursor: pointer;
+          pointer-events: auto !important;
+          cursor: pointer !important;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform .22s ease, filter .22s ease;
@@ -407,6 +407,9 @@ export default function AboutMe() {
         .sc-bar-outer.active .sc-bar { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; opacity: 1; }
         .sc-bar-outer.mounted { transform: translateX(0); }
+        .sc-bar-outer:nth-child(1) { z-index: 30; }
+        .sc-bar-outer:nth-child(2) { z-index: 20; }
+        .sc-bar-outer:nth-child(3) { z-index: 10; }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
@@ -441,6 +444,10 @@ export default function AboutMe() {
           transform: translateX(24px) scale(1.04) rotate(-1deg);
           filter: drop-shadow(0 0 22px rgba(217,35,35,.8));
           }
+          .sc-bar-outer:hover,
+        .sc-bar-outer.active {
+          z-index: 1000 !important;
+        }
 
         .sc-bar-fill {
           position: absolute;
