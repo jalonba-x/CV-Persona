@@ -650,7 +650,12 @@ export default function AboutMe() {
     }}
 >
             <div className="sc-bar-red" />
-            <div className="sc-bar">
+            <div className="sc-bar"
+        onMouseEnter={() => setActive(i)}
+        onClick={() => {
+            setActive(i);
+            setRevealed(true);
+        }}>
               <img className="sc-char" src={CHARS[i]} alt="" />
               <div className="sc-bar-fill" />
               <div className="sc-bar-shade" />
