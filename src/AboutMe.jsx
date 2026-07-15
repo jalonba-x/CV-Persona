@@ -621,6 +621,13 @@ export default function AboutMe() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
+
+        .sc-char,
+        .sc-bar-red,
+        .sc-bar-fill,
+        .sc-bar-shade {
+          pointer-events: none !important;
+}
       `}</style>
 
       <div className="sc-root" role="navigation">
