@@ -39,7 +39,7 @@ export default function CustomMainMenu() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex]);
 
-  // --- INLINE STYLES (Safe from compilation errors) ---
+  // --- REVISED INLINE STYLES ---
   const rootStyle = {
     display: "flex",
     flexDirection: "column",
@@ -49,12 +49,15 @@ export default function CustomMainMenu() {
     margin: "0 auto",
     padding: "20px",
     boxSizing: "border-box",
+    position: "relative", // Ensures it creates a localized stacking context
+    zIndex: 10,           // Pushes the entire menu forward over hidden layouts
   };
 
   const getButtonStyle = (isActive) => ({
     display: "flex",
     alignItems: "center",
-    width: "100%",
+    width: "100%",          // Forces element to span full width
+    minHeight: "50px",      // Guarantees a solid layout footprint
     background: isActive ? "#1a1a1a" : "#111111",
     border: isActive ? "2px solid #d92323" : "2px solid #333333",
     padding: "14px 20px",
@@ -62,25 +65,36 @@ export default function CustomMainMenu() {
     fontFamily: "monospace",
     fontSize: "1.1rem",
     letterSpacing: "1px",
-    cursor: "pointer",
+    cursor: "pointer",      // Guarantees the mouse "pointer hand" icon
     textAlign: "left",
     borderRadius: "4px",
     transform: isActive ? "translateX(6px)" : "translateX(0)",
     boxShadow: isActive ? "0 0 10px rgba(217, 35, 35, 0.3)" : "none",
     transition: "all 0.2s ease-in-out",
+    position: "relative",   
+    zIndex: 12,             // Raises individual items above background rows
+    pointerEvents: "auto",  // Forces mouse inputs to register over all space
   });
+
+  const labelSpanStyle = {
+    pointerEvents: "none",  // Prevents internal text tags from stealing mouse target focus
+    flexGrow: 1,            // Stretches text zone layout to the end of the line
+  };
 
   const indicatorStyle = {
     fontWeight: "bold",
     color: "#d92323",
     display: "inline-block",
-    width: "20px",
+    width: "25px",
+    pointerEvents: "none",  // Prevents icon from blocking mouse hit detection
   };
 
   const footerStyle = {
     marginTop: "24px",
     padding: "10px 20px",
     borderTop: "1px dashed #333333",
+    position: "relative",
+    zIndex: 10,
   };
 
   const footerRowStyle = {
@@ -102,7 +116,7 @@ export default function CustomMainMenu() {
   };
 
   return (
-    <div className="ui-wrapper">
+    <div className="ui-wrapper" style={{ position: "relative", zIndex: 5 }}>
       <div style={rootStyle} role="navigation" aria-label="Main Navigation Menu">
         {menuButtons.map((btn, index) => {
           const isActive = activeIndex === index;
@@ -117,7 +131,7 @@ export default function CustomMainMenu() {
               <span style={indicatorStyle}>
                 {isActive ? "▶" : " "}
               </span>
-              <span>{btn.label}</span>
+              <span style={labelSpanStyle}>{btn.label}</span>
             </button>
           );
         })}
