@@ -13,11 +13,14 @@ import mainf from "./assets/mainf.jpeg";
 
 const CHARS = [char1, char2, char3];
 const MAIN_IMAGES = [mainm, mainm2, mainf];
+const ICONS = [icon1, icon2, icon3];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["Freelance EN-ES language localization specialist",
-       "Looking to break into the gaming industry"],
+    upper: [
+      "Freelance EN-ES language localization specialist",
+      "Looking to break into the gaming industry",
+    ],
     lower: "Name: Javier Barrera | Age: 33 | Location: Santiago, Chile",
   },
   {
@@ -39,31 +42,33 @@ const REVEAL_CONTENT = [
 
 const ITEMS = [
   {
-    id: "PERSONA", label: "PERSONA",
+    id: "PERSONA",
+    label: "PERSONA",
     stats: [
       { tag: "AGE", value: "33", color: "#d92323" },
-      { tag: "YEARS OF EXPERIENCE", value: "+6",  color: "#7b7b7b" },
+      { tag: "YEARS OF EXPERIENCE", value: "+6", color: "#7b7b7b" },
     ],
   },
   {
-    id: "EXPERIENCE", label: "EXPERIENCE",
+    id: "EXPERIENCE",
+    label: "EXPERIENCE",
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
-      { tag: "CAMPUS", value: "Filosofía y Humanidades",  color: "#732424" },
+      { tag: "CAMPUS", value: "Filosofía y Humanidades", color: "#732424" },
     ],
   },
   {
-    id: "LANGUAGES", label: "LANGUAGES",
+    id: "LANGUAGES",
+    label: "LANGUAGES",
     stats: [
       { tag: "FAV", value: "JAVA", color: "#ffffff" },
-      { tag: "FAV", value: "JS",  color: "#d92323" },
+      { tag: "FAV", value: "JS", color: "#d92323" },
     ],
   },
 ];
 
-
 export default function AboutMe() {
-  const [active, setActive]   = useState(0);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
   const [revealed, setRevealed] = useState(false);
@@ -84,8 +89,9 @@ export default function AboutMe() {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowUp") setActive(i => Math.max(0, i - 1));
-      if (e.key === "ArrowDown") setActive(i => Math.min(ITEMS.length - 1, i + 1));
+      if (e.key === "ArrowUp") setActive((i) => Math.max(0, i - 1));
+      if (e.key === "ArrowDown")
+        setActive((i) => Math.min(ITEMS.length - 1, i + 1));
       if (e.key === "Enter") setRevealed(true);
       if (e.key === "ArrowRight") setRevealed(true);
       if (e.key === "ArrowLeft") {
@@ -98,19 +104,24 @@ export default function AboutMe() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active, navigate, revealed]);
 
-  return (   
-
-    <div id="menu-screen"> 
-      {/* <video src={bgVideo} autoPlay loop muted playsInline /> */}
+  return (
+    <div id="menu-screen">
       {revealed && <div key={`dim-${active}`} className="sc-dim" />}
       {revealed && (
-        <div key={`panel-${active}`} className={`sc-reveal-panel${mounted ? " mounted" : ""}`}>
+        <div
+          key={`panel-${active}`}
+          className={`sc-reveal-panel${mounted ? " mounted" : ""}`}
+        >
           <div className="sc-reveal-upper-bar">
             {REVEAL_CONTENT[active].upper.map((line) => (
-              <div className="sc-reveal-upper-line" key={line}>{line}</div>
+              <div className="sc-reveal-upper-line" key={line}>
+                {line}
+              </div>
             ))}
           </div>
-          <div className="sc-reveal-lower-bar">{REVEAL_CONTENT[active].lower}</div>
+          <div className="sc-reveal-lower-bar">
+            {REVEAL_CONTENT[active].lower}
+          </div>
         </div>
       )}
       {revealed && (
@@ -123,14 +134,18 @@ export default function AboutMe() {
         </div>
       )}
       {revealed && (
-        <div key={`portrait-${active}`} className={`sc-main-portrait-shell${mounted ? " mounted" : ""}`}>
+        <div
+          key={`portrait-${active}`}
+          className={`sc-main-portrait-shell${mounted ? " mounted" : ""}`}
+        >
           <img
             className="sc-main-portrait"
             src={MAIN_IMAGES[active]}
             alt=""
-   />
-    </div>
-)}
+          />
+        </div>
+      )}
+
       <style>{`
         .sc-root {
           position: absolute;
@@ -156,12 +171,8 @@ export default function AboutMe() {
         }
 
         @keyframes sc-dim-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         @keyframes sc-reveal-bar-in {
@@ -207,20 +218,15 @@ export default function AboutMe() {
           50% { transform: translateX(5px); opacity: 0.4; }
         }
 
-        @keyframes p5Pulse{
-    0%{
-        transform: translateX(14px);
-    }
-    50%{
-        transform: translateX(20px);
-    }
-    100%{
-        transform: translateX(14px);
-    }
-}
-.sc-bar-outer.active{
-    animation:p5Pulse .7s infinite alternate;
-}
+        @keyframes p5Pulse {
+          0% { transform: translateX(14px); }
+          50% { transform: translateX(20px); }
+          100% { transform: translateX(14px); }
+        }
+
+        .sc-bar-outer.active {
+          animation: p5Pulse .7s infinite alternate;
+        }
 
         .sc-main-portrait-shell {
           position: absolute;
@@ -249,8 +255,7 @@ export default function AboutMe() {
           height: 60vh;
           z-index: 12;
           pointer-events: none;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
+          background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
           box-shadow:
             0 0 0 2px rgba(255,255,255,0.18),
@@ -294,7 +299,7 @@ export default function AboutMe() {
           text-align: center;
         }
         .sc-reveal-upper-line {
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-weight: 200;
           font-size: 26px;
           letter-spacing: -10px;
@@ -314,7 +319,7 @@ export default function AboutMe() {
           align-items: center;
           justify-content: flex-start;
           color: #ffffff;
-          font-family: 'Bebas Neue';
+          font-family: 'Bebas Neue', sans-serif;
           font-weight: 400;
           font-size: 23px;
           letter-spacing: 2px;
@@ -323,8 +328,8 @@ export default function AboutMe() {
         }
 
         @keyframes sc-right-nav-pop {
-          0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
-          65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
+          0% { opacity: 0; transform: scale(0.55) translateY(-10px); }
+          65% { opacity: 1; transform: scale(1.1) translateY(2px); }
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         .sc-right-nav {
@@ -341,7 +346,7 @@ export default function AboutMe() {
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
         }
         .sc-right-nav .sc-nav-btn {
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-size: 100px;
           letter-spacing: 3px;
           line-height: 1;
@@ -362,13 +367,13 @@ export default function AboutMe() {
           flex-shrink: 0;
         }
         .sc-right-nav .sc-nav-arrow {
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-size: 22px;
           color: #d92323;
           display: inline-block;
           user-select: none;
         }
-        .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
+        .sc-right-nav .sc-nav-arrow.left { animation: sc-arrow-left 0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
         .sc-main-portrait {
@@ -392,52 +397,41 @@ export default function AboutMe() {
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
           z-index: 1;
-          transform: skewW(-18deg);
+          transform: skewX(-18deg);
         }
 
-        /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
           pointer-events: auto;
-          cursor:pointer;
+          cursor: pointer;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform .22s ease, filter .22s ease;
-          }
-          .sc-bar-outer:hover{
-    transform:
-        translateX(18px)
-        scale(1.02)
-        rotate(-1deg);
-    filter:
-        drop-shadow(0 0 18px rgba(217,35,35,.55));
-
-        .sc-bar-outer:hover .sc-label{
-    color:white;
-    text-shadow:
-        0 0 8px white,
-        0 0 18px white;
-}
-
-.sc-bar-outer:hover .sc-char{
-    transform:
-        scale(1.08)
-        translateX(-6px);
-    transition:.25s;
-}
-
-.sc-bar-outer.active .sc-label{
-    color:black;
-    text-shadow:none;
+          outline: none;
         }
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; }
+        .sc-bar-outer:hover {
+          transform: translateX(18px) scale(1.02) rotate(-1deg);
+          filter: drop-shadow(0 0 18px rgba(217,35,35,.55));
+        }
+        .sc-bar-outer:hover .sc-label {
+          color: white;
+          text-shadow: 0 0 8px white, 0 0 18px white;
+        }
+        .sc-bar-outer:hover .sc-char {
+          transform: scale(1.08) translateX(-6px);
+          transition: .25s;
+        }
+        .sc-bar-outer.active .sc-label {
+          color: black;
+          text-shadow: none;
+        }
+        .sc-bar-outer.active .sc-bar { height: 90px; }
+        .sc-bar-outer.active .sc-bar-red { height: 90px; opacity: 1; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
@@ -447,27 +441,23 @@ export default function AboutMe() {
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
           transform: translateY(-7px);
           opacity: 0;
-          transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease, height 0.3s cubic-bezier(0.22,1,0.36,1);
           z-index: 0;
           pointer-events: none;
         }
-        .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
-        .sc-bar-outer.active::before{
-    content:"";
-    position:absolute;
-    left:-80px;
-    top:50%;
-    width:130px;
-    height:8px;
-    background:#d92323;
-    transform:
-        translateY(-50%)
-        rotate(-28deg);
-    z-index:-1;
-}
+        .sc-bar-outer.active::before {
+          content: "";
+          position: absolute;
+          left: -80px;
+          top: 50%;
+          width: 130px;
+          height: 8px;
+          background: #d92323;
+          transform: translateY(-50%) rotate(-28deg);
+          z-index: -1;
+        }
 
-        /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
           position: absolute;
           inset: 0;
@@ -475,15 +465,14 @@ export default function AboutMe() {
           transform: translateX(100%);
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
-          transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), clip-path .35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
-          transform: translate(X)0;
+          transform: translateX(0);
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
-        /* shade on the left edge of the white fill */
         .sc-bar-shade {
           position: absolute;
           top: 0; bottom: 0;
@@ -497,7 +486,6 @@ export default function AboutMe() {
         }
         .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
 
-        /* bottom shadow line under each bar */
         .sc-bar::after {
           content: '';
           position: absolute;
@@ -508,7 +496,6 @@ export default function AboutMe() {
           pointer-events: none;
         }
 
-        /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
           z-index: 2;
@@ -520,12 +507,11 @@ export default function AboutMe() {
           transform: skewX(18deg);
         }
 
-        /* left: role label */
         .sc-role {
           display: flex;
           align-items: center;
           flex-shrink: 0;
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-size: 50px;
           letter-spacing: -2px;
           color: #ffffff;
@@ -535,7 +521,6 @@ export default function AboutMe() {
           padding: 0 16px 0 8px;
         }
 
-        /* left: icon + name centered in remaining space */
         .sc-main {
           flex: 1;
           display: flex;
@@ -552,19 +537,18 @@ export default function AboutMe() {
         }
 
         .sc-icon {
-          font-family: 'Persona5Main';
-          font-size: 22px;
           width: 32px;
-          text-align: center;
+          height: auto;
+          object-fit: contain;
           flex-shrink: 0;
-          color: rgba(255,255,255,0.15);
-          transition: color 0.2s ease;
+          opacity: 0.6;
+          transition: opacity 0.2s ease;
           user-select: none;
         }
-        .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
+        .sc-bar-outer.active .sc-icon { opacity: 1; }
 
         .sc-label {
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-size: 28px;
           letter-spacing: 4px;
           line-height: 1;
@@ -572,13 +556,11 @@ export default function AboutMe() {
           transition: color 0.2s ease;
           user-select: none;
         }
-        .sc-bar-outer.active .sc-label { color: #0d0d0d; }
 
-        /* right: stats group */
         .sc-stats {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 14px;
           padding-right: 24px;
           flex-shrink: 0;
         }
@@ -596,7 +578,7 @@ export default function AboutMe() {
         }
 
         .sc-stat-tag {
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           font-size: 9px;
           letter-spacing: 1.5px;
           padding: 1px 4px;
@@ -604,11 +586,12 @@ export default function AboutMe() {
           border-style: solid;
           line-height: 1.4;
           user-select: none;
+          background: rgba(0,0,0,0.4);
         }
 
         .sc-stat-num {
-          font-family: 'Persona5Main';
-          font-size: 26px;
+          font-family: 'Persona5Main', sans-serif;
+          font-size: 24px;
           font-style: italic;
           line-height: 1;
           color: #ffffff;
@@ -635,7 +618,6 @@ export default function AboutMe() {
           background: #0d0d0d;
         }
 
-        /* character portrait */
         .sc-char {
           position: absolute;
           top: 0;
@@ -650,13 +632,12 @@ export default function AboutMe() {
           clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
         }
 
-        /* footer hints */
         .sc-footer {
           position: fixed;
           bottom: 20px; right: 28px;
           display: flex; flex-direction: column;
           align-items: flex-end; gap: 5px;
-          font-family: 'Persona5Main';
+          font-family: 'Persona5Main', sans-serif;
           z-index: 14;
           opacity: 0;
           transition: opacity 0.4s ease 0.6s;
@@ -678,11 +659,15 @@ export default function AboutMe() {
         {ITEMS.map((item, i) => (
           <div
             key={item.id}
-            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-onClick={()=>{
-    setActive(i);
-    setRevealed(true);
-}}
+            tabIndex={0}
+            onFocus={() => setActive(i)}
+            className={`sc-bar-outer${active === i ? " active" : ""}${
+              mounted ? " mounted" : ""
+            }`}
+            onClick={() => {
+              setActive(i);
+              setRevealed(true);
+            }}
             onMouseEnter={() => {
               setActive(i);
             }}
@@ -695,8 +680,33 @@ onClick={()=>{
               <div className="sc-bar-content">
                 <div className="sc-main">
                   <div className="sc-main-top">
+                    {ICONS[i] && (
+                      <img className="sc-icon" src={ICONS[i]} alt="" />
+                    )}
                     <div className="sc-label">{item.label}</div>
                   </div>
+                </div>
+                <div className="sc-stats">
+                  {item.stats.map((st, idx) => (
+                    <div className="sc-stat" key={idx}>
+                      <div className="sc-stat-top">
+                        <span
+                          className="sc-stat-tag"
+                          style={{ borderColor: st.color, color: st.color }}
+                        >
+                          {st.tag}
+                        </span>
+                        <span className="sc-stat-num">{st.value}</span>
+                      </div>
+                      <div className="sc-stat-bars">
+                        <div
+                          className="sc-stat-bar-color"
+                          style={{ background: st.color }}
+                        />
+                        <div className="sc-stat-bar-black" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -705,9 +715,18 @@ onClick={()=>{
       </div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>REVEAL</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">↑↓</span>
+          <span>SELECT</span>
+        </div>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">↵</span>
+          <span>REVEAL</span>
+        </div>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">ESC</span>
+          <span>BACK</span>
+        </div>
       </div>
     </div>
   );
