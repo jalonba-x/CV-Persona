@@ -403,6 +403,7 @@ export default function AboutMe() {
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform .22s ease, filter .22s ease;
+          }
           .sc-bar-outer:hover{
     transform:
         translateX(18px)
@@ -622,7 +623,7 @@ export default function AboutMe() {
           display: flex;
           flex-direction: column;
           gap: 1px;
-          margin-top: 80px;
+          margin-top: 4px;
         }
         .sc-stat-bar-color {
           height: 3px;
