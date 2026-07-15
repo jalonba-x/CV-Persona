@@ -39,24 +39,21 @@ const REVEAL_CONTENT = [
 
 const ITEMS = [
   {
-    id: "PERSONA", label: "PERSONA", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["16"],
-    links: ["linkedin.com/in/javierbarrerab"],
+    id: "PERSONA", label: "PERSONA",
     stats: [
       { tag: "AGE", value: "33", color: "#d92323" },
       { tag: "YEARS OF EXPERIENCE", value: "+6",  color: "#7b7b7b" },
     ],
   },
   {
-    id: "EXPERIENCE", label: "EXPERIENCE", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab", icon: "🏫", barIcon: icon2, bars: 2, newBars: [0, 1], counts: ["UCH", "Humanities"],
-    links: ["UCH/Universidad de Chile", "Linguistics/course"],
+    id: "EXPERIENCE", label: "EXPERIENCE",
     stats: [
       { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
       { tag: "CAMPUS", value: "Filosofía y Humanidades",  color: "#732424" },
     ],
   },
   {
-    id: "LANGUAGES", label: "LANGUAGES", handle: "@", href: "https://github.com/jalonba-x", icon: "💻", barIcon: icon3, bars: 3, newBars: [0, 1, 2], counts: ["JAVA", "JS", "WEB"],
-    links: ["learning/java", "learning/javascript", "web/development"],
+    id: "LANGUAGES", label: "LANGUAGES",
     stats: [
       { tag: "FAV", value: "JAVA", color: "#ffffff" },
       { tag: "FAV", value: "JS",  color: "#d92323" },
