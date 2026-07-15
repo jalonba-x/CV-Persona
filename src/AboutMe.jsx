@@ -411,8 +411,8 @@ export default function AboutMe() {
 
         .sc-bar-outer:hover .sc-label,
         .sc-bar-outer.active:hover .sc-label {
-          color: white;
-          text-shadow: 0 0 8px white, 0 0 18px white;
+          color: #000000;
+          text-shadow: none;
         }
 
         .sc-bar-outer:hover .sc-char {
