@@ -129,7 +129,7 @@ export default function AboutMe() {
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 50;
+          z-index: 6;
           left: 80px;
           pointer-events: none;
           display: flex;
@@ -204,9 +204,7 @@ export default function AboutMe() {
         }
 
         .sc-bar-outer.active {
-          animation: none;
-          transform: translateX(24px) scale(1.04) rotate(-1deg);
-          filter: drop-shadow(0 0 22px rgba(217,35,35,.8));
+          animation: p5Pulse .7s infinite alternate;
         }
 
         .sc-main-portrait-shell {
@@ -303,7 +301,7 @@ export default function AboutMe() {
           font-family: 'Bebas Neue', sans-serif;
           font-weight: 400;
           font-size: 23px;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
           text-transform: lowercase;
           padding-left: 22px;
         }
@@ -402,12 +400,7 @@ export default function AboutMe() {
           transform: scale(1.08) translateX(-6px);
           transition: .25s;
         }
-        .sc-bar-outer.active .sc-label, 
-        .sc-bar-outer.active:hover .sc-label {
-          color: white;
-          text-shadow: 0 0 8px white, 0 0 18px white;
-        }
-        .sc-bar-outer.active:not(:hover) .sc-label {
+        .sc-bar-outer.active .sc-label {
           color: black;
           text-shadow: none;
         }
