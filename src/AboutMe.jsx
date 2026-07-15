@@ -126,11 +126,11 @@ export default function AboutMe() {
       )}
 
       <style>{`
-        /* ── Layer 1: Main Menu Buttons Container (z-index: 100) ── */
+        /* ── Layer 1: Main Menu Buttons Container (Punches through app shields!) ── */
         .sc-root {
           position: absolute;
           inset: 0;
-          z-index: 100 !important;
+          z-index: 900000 !important;
           left: 80px;
           pointer-events: none;
           display: flex;
@@ -141,11 +141,11 @@ export default function AboutMe() {
           padding-left: 0;
         }
 
-        /* ── Layer 2: Revealed Overlays (z-index: 200 to 240) ── */
+        /* ── Layer 2: Revealed Overlays (Guaranteed to sit ABOVE the buttons!) ── */
         .sc-dim {
           position: absolute;
           inset: 0;
-          z-index: 200 !important;
+          z-index: 900010 !important;
           background: rgba(13,13,13,0.68);
           pointer-events: none;
           animation: sc-dim-in 0.32s ease-out;
@@ -209,7 +209,7 @@ export default function AboutMe() {
           position: absolute;
           top: 0;
           right: -3vw;
-          z-index: 220 !important;
+          z-index: 900030 !important;
           pointer-events: none;
           width: 43vw;
           height: 100vh;
@@ -230,7 +230,7 @@ export default function AboutMe() {
           left: -6vw;
           width: 88vw;
           height: 60vh;
-          z-index: 210 !important;
+          z-index: 900020 !important;
           pointer-events: none;
           background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
@@ -317,7 +317,7 @@ export default function AboutMe() {
           align-items: center;
           gap: 6px;
           pointer-events: none;
-          z-index: 230 !important;
+          z-index: 900040 !important;
           transform: translateX(-40px) rotate(-20deg);
           transform-origin: left bottom;
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
@@ -578,7 +578,7 @@ export default function AboutMe() {
           display: flex; flex-direction: column;
           align-items: flex-end; gap: 5px;
           font-family: 'Persona5Main', sans-serif;
-          z-index: 240 !important;
+          z-index: 900050 !important;
           opacity: 0;
           transition: opacity 0.4s ease 0.6s;
         }
