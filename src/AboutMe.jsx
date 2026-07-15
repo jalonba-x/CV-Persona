@@ -155,7 +155,7 @@ export default function AboutMe() {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 20; /* Por encima de los botones, por debajo del panel */
+  z-index: 40; /* Por encima de los botones, por debajo del panel */
   backdrop-filter: blur(4px);
 }
 
@@ -170,7 +170,7 @@ export default function AboutMe() {
   padding: 40px;
   max-width: 500px;
   /* El z-index bajo permite que el panel de revelado se ponga encima cuando se active */
-  z-index: 10; 
+  z-index: 40; 
 }
 
 .sc-bar-outer {
@@ -261,6 +261,7 @@ export default function AboutMe() {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s ease;
+  pointer-events:non;
 }
 
 .sc-reveal-panel.mounted {
@@ -293,6 +294,7 @@ export default function AboutMe() {
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.5s ease;
+  pointer-events:non;
 }
 
 .sc-main-portrait-shell.mounted {
