@@ -41,30 +41,9 @@ const REVEAL_CONTENT = [
 ];
 
 const ITEMS = [
-  {
-    id: "PERSONA",
-    label: "PERSONA",
-    stats: [
-      { tag: "AGE", value: "33", color: "#d92323" },
-      { tag: "YEARS OF EXPERIENCE", value: "+6", color: "#7b7b7b" },
-    ],
-  },
-  {
-    id: "EXPERIENCE",
-    label: "EXPERIENCE",
-    stats: [
-      { tag: "BA", value: "LINGUISTICS", color: "#d92323" },
-      { tag: "CAMPUS", value: "Filosofía y Humanidades", color: "#732424" },
-    ],
-  },
-  {
-    id: "LANGUAGES",
-    label: "LANGUAGES",
-    stats: [
-      { tag: "FAV", value: "JAVA", color: "#ffffff" },
-      { tag: "FAV", value: "JS", color: "#d92323" },
-    ],
-  },
+  { id: "PERSONA", label: "PERSONA" },
+  { id: "EXPERIENCE", label: "EXPERIENCE" },
+  { id: "LANGUAGES", label: "LANGUAGES" },
 ];
 
 export default function AboutMe() {
@@ -557,67 +536,6 @@ export default function AboutMe() {
           user-select: none;
         }
 
-        .sc-stats {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-          padding-right: 24px;
-          flex-shrink: 0;
-        }
-
-        .sc-stat {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .sc-stat-top {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
-
-        .sc-stat-tag {
-          font-family: 'Persona5Main', sans-serif;
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          padding: 1px 4px;
-          border-width: 1px;
-          border-style: solid;
-          line-height: 1.4;
-          user-select: none;
-          background: rgba(0,0,0,0.4);
-        }
-
-        .sc-stat-num {
-          font-family: 'Persona5Main', sans-serif;
-          font-size: 24px;
-          font-style: italic;
-          line-height: 1;
-          color: #ffffff;
-          letter-spacing: 1px;
-          user-select: none;
-          transition: color 0.2s ease;
-        }
-        .sc-bar-outer.active .sc-stat-num { color: #0d0d0d; }
-
-        .sc-stat-bars {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          margin-top: 4px;
-        }
-        .sc-stat-bar-color {
-          height: 3px;
-          width: 100%;
-        }
-        .sc-stat-bar-black {
-          height: 2px;
-          width: 100%;
-          background: #0d0d0d;
-        }
-
         .sc-char {
           position: absolute;
           top: 0;
@@ -685,28 +603,6 @@ export default function AboutMe() {
                     )}
                     <div className="sc-label">{item.label}</div>
                   </div>
-                </div>
-                <div className="sc-stats">
-                  {item.stats.map((st, idx) => (
-                    <div className="sc-stat" key={idx}>
-                      <div className="sc-stat-top">
-                        <span
-                          className="sc-stat-tag"
-                          style={{ borderColor: st.color, color: st.color }}
-                        >
-                          {st.tag}
-                        </span>
-                        <span className="sc-stat-num">{st.value}</span>
-                      </div>
-                      <div className="sc-stat-bars">
-                        <div
-                          className="sc-stat-bar-color"
-                          style={{ background: st.color }}
-                        />
-                        <div className="sc-stat-bar-black" />
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
