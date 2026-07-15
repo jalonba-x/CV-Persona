@@ -34,6 +34,78 @@ export default function CustomMainMenu() {
       }
     };
 
+/* Core Layout Container */
+.sc-root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Button Reset & Layout */
+.sc-bar-outer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #111111;
+  border: 2px solid #333333;
+  padding: 14px 20px;
+  color: #aaaaaa;
+  font-family: monospace; /* Retro arcade style */
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+
+/* Hover & Active Selection States */
+.sc-bar-outer:hover,
+.sc-bar-outer.active {
+  color: #ffffff;
+  background: #1a1a1a;
+  border-color: #d92323; /* Matching your red accent color */
+  box-shadow: 0 0 10px rgba(217, 35, 35, 0.3);
+  transform: translateX(6px); /* Micro-movement feedback */
+}
+
+/* Visual Indicator Style */
+.sc-indicator {
+  font-weight: bold;
+  color: #d92323;
+  display: inline-block;
+  width: 20px;
+}
+
+/* Footer Information Styling */
+.sc-footer {
+  margin-top: 24px;
+  padding: 10px 20px;
+  border-top: 1px dashed #333333;
+}
+
+.sc-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #666666;
+  margin-bottom: 6px;
+  font-family: monospace;
+}
+
+.sc-footer-key {
+  color: #d92323;
+  background: #222222;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex]);
