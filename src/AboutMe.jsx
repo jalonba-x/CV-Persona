@@ -129,11 +129,9 @@ export default function AboutMe() {
             src={MAIN_IMAGES[active]}
             alt=""
           />
-    <div className="sc-bar-outer"
-    tabIndex={0}
-    onFocus={() => setActive(i)}>
-        </div>
-      )}
+   />
+    </div>
+)}
       <style>{`
         .sc-root {
           position: absolute;
@@ -212,13 +210,13 @@ export default function AboutMe() {
 
         @keyframes p5Pulse{
     0%{
-        transform:translateX(14px);
+        transform: translateX(14px);
     }
     50%{
-        transform:translateX(20px);
+        transform: translateX(20px);
     }
     100%{
-        transform:translateX(14px);
+        transform: translateX(14px);
     }
 }
 .sc-bar-outer.active{
@@ -395,7 +393,7 @@ export default function AboutMe() {
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
           z-index: 1;
-          transfor: skewW(-18deg);
+          transform: skewW(-18deg);
         }
 
         /* wrapper holds both the red underlay and the bar */
@@ -474,14 +472,14 @@ export default function AboutMe() {
           position: absolute;
           inset: 0;
           width: 100%;
-          transform:translateX(100%);
+          transform: translateX(100%);
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
           transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
-          transform:translate(X)0;
+          transform: translate(X)0;
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
