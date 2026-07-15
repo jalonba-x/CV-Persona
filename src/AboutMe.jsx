@@ -622,12 +622,11 @@ export default function AboutMe() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        .sc-char,
-        .sc-bar-red,
-        .sc-bar-fill,
-        .sc-bar-shade {
-          pointer-events: none !important;
-}
+        .sc-bar-outer:hover{
+    outline:4px solid lime;
+    
+    }
+
       `}</style>
 
       <div className="sc-root" role="navigation">
