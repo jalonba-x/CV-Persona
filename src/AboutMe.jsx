@@ -639,7 +639,10 @@ export default function AboutMe() {
     role="button"
     tabIndex={0}
     className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-    onMouseEnter={() => setActive(i)}
+    onMouseMove={() => {
+    console.log(i);
+    setActive(i);
+}}
     onClick={() => {
         setActive(i);
         setRevealed(true);
