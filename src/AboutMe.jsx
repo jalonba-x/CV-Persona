@@ -317,6 +317,7 @@ export default function AboutMe() {
   align-items: center;
   gap: 10px;
   z-index: 30;
+  pointer-events: none;
 }
 
 /* ==========================================================================
