@@ -427,6 +427,7 @@ export default function AboutMe() {
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
           transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
+          pointer-events: none;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
