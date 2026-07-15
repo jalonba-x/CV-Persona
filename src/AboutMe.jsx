@@ -137,7 +137,7 @@ export default function AboutMe() {
           position: absolute;
           inset: 0;
           z-index: 6;
-          pointer-events: none;
+          pointer-events: auto;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
