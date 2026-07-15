@@ -630,9 +630,10 @@ export default function AboutMe() {
     role="button"
     tabIndex={0}
     className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-    onMouseMove={() => setActive(i)}
+    onMouseEnter={() => setActive(i)}
     onClick={() => {
         setActive(i);
+        setRevealed(true);
     }}
     onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
