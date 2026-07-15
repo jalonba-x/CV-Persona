@@ -163,6 +163,7 @@ export default function AboutMe() {
    2. BOTONES DEL MENÚ (Aquí arreglamos el problema del tercer botón)
    ========================================================================== */
 .sc-root {
+  border: 2px dashed cyan !important;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -174,6 +175,7 @@ export default function AboutMe() {
 }
 
 .sc-bar-outer {
+  border: 1px solid yellow !important;
   position: relative;
   cursor: pointer; /* Fuerza la aparición de la manito del mouse */
   pointer-events: auto; /* Asegura que el mouse no ignore este elemento */
@@ -250,6 +252,7 @@ export default function AboutMe() {
    3. PANEL DE REVELADO (Aparece al hacer Click/Enter)
    ========================================================================== */
 .sc-reveal-panel {
+  outline: 2px dashed magenta !important;
   position: absolute;
   top: 10%;
   left: 5%;
