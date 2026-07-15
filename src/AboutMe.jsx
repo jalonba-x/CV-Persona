@@ -39,7 +39,14 @@ export default function CustomMainMenu() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex]);
 
-  // --- REVISED INLINE STYLES ---
+  // --- CRITICAL FIX: FORCED FOREGROUND LAYOUT STYLES ---
+  const wrapperStyle = {
+    position: "relative",
+    zIndex: 9999,          // Forces entire component above any video overlays
+    isolation: "isolate",  // Prevents parent containers from flattening the layer depth
+    width: "100%",
+  };
+
   const rootStyle = {
     display: "flex",
     flexDirection: "column",
@@ -49,15 +56,15 @@ export default function CustomMainMenu() {
     margin: "0 auto",
     padding: "20px",
     boxSizing: "border-box",
-    position: "relative", // Ensures it creates a localized stacking context
-    zIndex: 10,           // Pushes the entire menu forward over hidden layouts
+    position: "relative", 
+    zIndex: 9999,          // Keeps menu controls forward
   };
 
   const getButtonStyle = (isActive) => ({
     display: "flex",
     alignItems: "center",
-    width: "100%",          // Forces element to span full width
-    minHeight: "50px",      // Guarantees a solid layout footprint
+    width: "100%",          
+    minHeight: "54px",      
     background: isActive ? "#1a1a1a" : "#111111",
     border: isActive ? "2px solid #d92323" : "2px solid #333333",
     padding: "14px 20px",
@@ -65,20 +72,20 @@ export default function CustomMainMenu() {
     fontFamily: "monospace",
     fontSize: "1.1rem",
     letterSpacing: "1px",
-    cursor: "pointer",      // Guarantees the mouse "pointer hand" icon
+    cursor: "pointer",      
     textAlign: "left",
     borderRadius: "4px",
     transform: isActive ? "translateX(6px)" : "translateX(0)",
     boxShadow: isActive ? "0 0 10px rgba(217, 35, 35, 0.3)" : "none",
-    transition: "all 0.2s ease-in-out",
+    transition: "all 0.15s ease-in-out",
     position: "relative",   
-    zIndex: 12,             // Raises individual items above background rows
-    pointerEvents: "auto",  // Forces mouse inputs to register over all space
+    zIndex: 10000,          // Guarantees surface exposure to mouse engine
+    pointerEvents: "auto",  // Commands browser to capture all clicks here
   });
 
   const labelSpanStyle = {
-    pointerEvents: "none",  // Prevents internal text tags from stealing mouse target focus
-    flexGrow: 1,            // Stretches text zone layout to the end of the line
+    pointerEvents: "none",  
+    flexGrow: 1,            
   };
 
   const indicatorStyle = {
@@ -86,15 +93,16 @@ export default function CustomMainMenu() {
     color: "#d92323",
     display: "inline-block",
     width: "25px",
-    pointerEvents: "none",  // Prevents icon from blocking mouse hit detection
+    pointerEvents: "none",  
   };
 
   const footerStyle = {
-    marginTop: "24px",
+    margin: "24px auto 0 auto",
     padding: "10px 20px",
     borderTop: "1px dashed #333333",
+    maxWidth: "400px",
     position: "relative",
-    zIndex: 10,
+    zIndex: 9999,
   };
 
   const footerRowStyle = {
@@ -116,7 +124,7 @@ export default function CustomMainMenu() {
   };
 
   return (
-    <div className="ui-wrapper" style={{ position: "relative", zIndex: 5 }}>
+    <div className="ui-wrapper" style={wrapperStyle}>
       <div style={rootStyle} role="navigation" aria-label="Main Navigation Menu">
         {menuButtons.map((btn, index) => {
           const isActive = activeIndex === index;
