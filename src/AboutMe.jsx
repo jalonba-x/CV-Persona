@@ -144,6 +144,7 @@ export default function AboutMe() {
           justify-content: center;
           gap: 6px;
           padding-left: 0;
+          background: rgba(0,255,0,.15);
         }
 
         .sc-dim {
@@ -622,8 +623,8 @@ export default function AboutMe() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        .sc-bar-outer:hover{
-    outline:4px solid lime;
+        .sc-bar-outer:nth-child(1){
+    outline:4px solid red !important;
     
     }
 
