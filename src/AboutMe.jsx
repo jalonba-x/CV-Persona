@@ -47,7 +47,7 @@ const ITEMS = [
 ];
 
 export default function AboutMe() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
   const [revealed, setRevealed] = useState(false);
