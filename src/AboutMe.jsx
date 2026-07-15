@@ -134,26 +134,22 @@ export default function AboutMe() {
       )}
       <style>{`
         .sc-root {
-          position: absolute;
-          inset: 0;
-          z-index: 6;
-          pointer-events: auto;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
-          gap: 6px;
-          padding-left: 0;
-          background: rgba(0,255,0,.15);
-        }
-
+  display: flex;
+  flex-direction: column;
+  gap: 20px;         /* Espacio controlado entre cada botón */
+  z-index: 20;        /* Lo mantiene por encima de fondos pero bajo el dim */
+  position: relative;
+  pointer-events: auto; /* Asegura que capture clics */
+}
         .sc-dim {
-          position: absolute;
-          inset: 0;
-          z-index: 12;
-          background: rgba(13,13,13,0.68);
-          pointer-events: none;
-          animation: sc-dim-in 0.32s ease-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 50; /* Por encima del menú, por debajo del panel */
+  pointer-events: all;
         }
 
         @keyframes sc-dim-in {
@@ -208,24 +204,20 @@ export default function AboutMe() {
           50% { transform: translateX(5px); opacity: 0.4; }
         }
 
-        .sc-main-portrait-shell {
-          position: absolute;
-          top: 0;
-          right: -3vw;
-          z-index: 13;
-          pointer-events: none;
-          width: 43vw;
-          height: 100vh;
-          overflow: hidden;
-          opacity: 0;
-          transform: translateX(24px) skewX(-8deg) scale(0.98);
-          transition: opacity 0.35s ease, transform 0.35s ease;
-        }
+        /* Retrato grande que se revela */
+.sc-main-portrait-shell {
+  position: absolute;
+  right: 10%;
+  bottom: 15%;
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
         .sc-main-portrait-shell.mounted {
-          opacity: 0.30;
-          transform: translateX(0) skewX(-8deg) scale(1);
-          animation: sc-portrait-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-        }
+  opacity: 1;
+  transform: translateY(0);
 
         .sc-reveal-panel {
           position: absolute;
@@ -356,14 +348,10 @@ export default function AboutMe() {
         .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        .sc-main-portrait {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: top right;
-          transform: skewX(8deg) scale(1.08);
-          transform-origin: top right;
-        }
+.sc-main-portrait {
+  max-height: 400px;
+  object-fit: contain;
+}
 
         /* ── Each bar ── */
         .sc-bar {
@@ -380,12 +368,16 @@ export default function AboutMe() {
         }
 
         /* wrapper holds both the red underlay and the bar */
-        .sc-bar-outer {
-          position: relative;
-          flex-shrink: 0;
-          transform: translateX(-100%);
-          transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-        }
+.sc-bar-outer {
+  position: relative;
+  width: 350px;
+  height: 60px;
+  cursor: pointer;    /* FUERZA la manito del mouse */
+  pointer-events: auto; /* Asegura que reaccione al hover/click */
+  transition: transform 0.2s ease, filter 0.2s ease;
+  opacity: 0;         /* Comienza invisible para la animación */
+  transform: translateX(-50px);
+}
         /* Stagger their rest positions to look wonderfully chaotic and angled */
 .sc-bar-outer:nth-child(1).mounted { transform: translateX(10px) rotate(-1deg); }
 .sc-bar-outer:nth-child(2).mounted { transform: translateX(-5px) rotate(2deg); }
@@ -396,27 +388,30 @@ export default function AboutMe() {
   transform: translateX(40px) scale(1.04) rotate(1deg);
   z-index: 25; /* Keeps the active bar layered neatly on top of the stack */
 }
+.sc-bar-outer:hover,
+.sc-bar-outer.active {
+  transform: scale(1.05) translateX(10px);
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
-        .sc-bar-outer.mounted { transform: translateX(0); }
+        .sc-bar-outer.mounted {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
         /* red underlay — peeks out below the bar when active */
         .sc-bar-red {
-          position: absolute;
-          top: 0; left: 0;
-          width: 45vw;
-          height: 64px;
-          background: #d92323;
-          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
-          transform: translateY(-7px);
-          opacity: 0;
-          transition: opacity 0.2s ease;
-          z-index: 0;
-          pointer-events: none;
-        }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background-color: #d92323;
+  transition: width 0.2s ease;
+}
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
         /* white fill — skewed parallelogram on the right 25% */
@@ -587,10 +582,12 @@ export default function AboutMe() {
 
         /* character portrait */
         .sc-char {
+ 
+          margin-right: 15px;
           position: absolute;
           top: 0;
           left: 110px;
-          height: 100%;
+          height: 80%;
           width: auto;
           max-width: 160px;
           object-fit: cover;
@@ -601,61 +598,153 @@ export default function AboutMe() {
         }
 
         /* footer hints */
-        .sc-footer {
-          position: fixed;
-          bottom: 20px; right: 28px;
-          display: flex; flex-direction: column;
-          align-items: flex-end; gap: 5px;
-          font-family: 'Persona5Main';
-          z-index: 14;
-          opacity: 0;
-          transition: opacity 0.4s ease 0.6s;
+.sc-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;       /* Altura fija y estricta */
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  z-index: 10;        /* Nivel bajo para que no tape los botones */
+  pointer-events: none; /* ¡Clave! El mouse lo atraviesa de forma invisible */
+  opacity: 0;
         }
-        .sc-footer.mounted { opacity: 1; }
+        .sc-footer.mounted { opacity: 1; 
+        }
         .sc-footer-row {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 13px; letter-spacing: 2px;
-          color: rgba(255,255,255,0.22);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #888;
         }
-        .sc-footer-key {
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 3px;
-          padding: 1px 6px; font-size: 11px;
+  .sc-footer-key {
+  background: #333;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  font-weight: bold;
         }
+.sc-bar-red {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background-color: #d92323;
+  transition: width 0.2s ease;
+}
 
+.sc-bar-outer:hover .sc-bar-red,
+.sc-bar-outer.active .sc-bar-red {
+  width: 15px; 
+}
         .sc-bar-outer:nth-child(1){
     outline:4px solid red !important;
     
     }
-.sc-bar {
-    outline: 3px solid cyan !important;
+
+    .sc-bar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
+.sc-bar-outer.active .sc-bar {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #d92323;
+}
+
+/* Texto dentro del botón */
+.sc-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.sc-bar-outer:hover .sc-label,
+.sc-bar-outer.active .sc-label {
+  color: #fff;
+}
+
+/* Personaje miniatura dentro del botón (opcional si lo usas visualmente) */
+.sc-char {
+  height: 80%;
+  margin-right: 15px;
+  pointer-events: none; /* El mouse ignora la imagen y cliquea el botón */
+}
+
+/* ==========================================================================
+   PANEL REVELADO (Aparece al hacer click)
+   ========================================================================== */
+.sc-reveal-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 60%;
+  background: #1a1a1a;
+  border: 2px solid #d92323;
+  padding: 30px;
+  z-index: 100; /* Al frente de absolutamente todo */
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.sc-reveal-panel.mounted {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.sc-reveal-upper-line {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.sc-reveal-lower-bar {
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  color: #d92323;
+  font-weight: bold;
+  }
+
+.sc-footer.mounted {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
       `}</style>
 
       <div className="sc-root" role="navigation">
         {ITEMS.map((item, i) => (
           <div
-    key={item.id}
-    role="button"
-    tabIndex={0}
-    className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-    onMouseMove={() => {
-    console.log(i);
-    setActive(i);
-}}
-    onClick={() => {
-        setActive(i);
-        setRevealed(true);
-    }}
-    onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            setActive(i);
-            setRevealed(true);
-        }
-    }}
->
+            key={item.id}
+            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+            onClick={() => {
+              setActive(i);
+            }}
+            onMouseEnter={() => {
+              setActive(i);
+            }}
+          >
             <div className="sc-bar-red" />
-             <div className="sc-bar">
+            <div className="sc-bar">
               <img className="sc-char" src={CHARS[i]} alt="" />
               <div className="sc-bar-fill" />
               <div className="sc-bar-shade" />
