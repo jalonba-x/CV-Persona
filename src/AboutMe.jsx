@@ -625,15 +625,22 @@ export default function AboutMe() {
       <div className="sc-root" role="navigation">
         {ITEMS.map((item, i) => (
           <div
-            key={item.id}
-            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              setActive(i);
-            }}
-            onMouseEnter={() => {
-              setActive(i);
-            }}
-          >
+    key={item.id}
+    role="button"
+    tabIndex={0}
+    className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+    onMouseEnter={() => setActive(i)}
+    onClick={() => {
+        setActive(i);
+        setRevealed(true);
+    }}
+    onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            setActive(i);
+            setRevealed(true);
+        }
+    }}
+>
             <div className="sc-bar-red" />
             <div className="sc-bar">
               <img className="sc-char" src={CHARS[i]} alt="" />
