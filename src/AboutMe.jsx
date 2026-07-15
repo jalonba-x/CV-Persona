@@ -133,600 +133,219 @@ export default function AboutMe() {
         </div>
       )}
       <style>{`
-        .sc-root {
+#menu-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f1115;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;         /* Espacio controlado entre cada botón */
-  z-index: 20;        /* Lo mantiene por encima de fondos pero bajo el dim */
-  position: relative;
-  pointer-events: auto; /* Asegura que capture clics */
+  justify-content: space-between;
+  box-sizing: border-box;
 }
-        .sc-dim {
+
+/* Capa oscura que se activa al revelar contenido */
+.sc-dim {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 50; /* Por encima del menú, por debajo del panel */
-  pointer-events: all;
-        }
-
-        @keyframes sc-dim-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes sc-reveal-bar-in {
-          0% {
-            opacity: 0;
-            transform: translateX(-120px) rotate(-20deg) scaleX(0.72);
-          }
-          60% {
-            opacity: 0.96;
-            transform: translateX(18px) rotate(-20deg) scaleX(1.03);
-          }
-          100% {
-            opacity: 0.92;
-            transform: translateX(0) rotate(-20deg) scaleX(1);
-          }
-        }
-
-        @keyframes sc-portrait-in {
-          0% {
-            opacity: 0;
-            transform: translateX(78px) skewX(-8deg) scale(0.94);
-            filter: blur(8px);
-          }
-          55% {
-            opacity: 0.96;
-            transform: translateX(-8px) skewX(-8deg) scale(1.015);
-            filter: blur(0);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0) skewX(-8deg) scale(1);
-            filter: blur(0);
-          }
-        }
-
-        @keyframes sc-arrow-left {
-          0%, 100% { transform: translateX(0); opacity: 1; }
-          50% { transform: translateX(-5px); opacity: 0.4; }
-        }
-
-        @keyframes sc-arrow-right {
-          0%, 100% { transform: translateX(0); opacity: 1; }
-          50% { transform: translateX(5px); opacity: 0.4; }
-        }
-
-        /* Retrato grande que se revela */
-.sc-main-portrait-shell {
-  position: absolute;
-  right: 10%;
-  bottom: 15%;
-  z-index: 90;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
+  z-index: 20; /* Por encima de los botones, por debajo del panel */
+  backdrop-filter: blur(4px);
 }
 
-        .sc-main-portrait-shell.mounted {
-  opacity: 1;
-  transform: translateY(0);
-
-        .sc-reveal-panel {
-          position: absolute;
-          top: 44vh;
-          left: -6vw;
-          width: 88vw;
-          height: 60vh;
-          z-index: 12;
-          pointer-events: none;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
-          box-shadow:
-            0 0 0 2px rgba(255,255,255,0.18),
-            18px 0 0 rgba(217,35,35,0.82),
-            28px 0 0 rgba(255,255,255,0.26);
-          opacity: 0;
-          transform: translateX(-40px) rotate(-20deg);
-          transform-origin: left bottom;
-          transition: opacity 0.3s ease, transform 0.35s ease;
-        }
-        .sc-reveal-panel.mounted {
-          opacity: 0.92;
-          transform: translateX(0) rotate(-20deg);
-          animation: sc-reveal-bar-in 0.46s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .sc-reveal-panel::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 8px;
-          background: linear-gradient(180deg, #d92323 0%, #d92323 100%);
-          clip-path: inherit;
-        }
-        .sc-reveal-upper-bar {
-          position: absolute;
-          top: 10%;
-          left: 0%;
-          width: 100%;
-          height: 40%;
-          background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
-          box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          color: #ffffff;
-          text-align: center;
-        }
-        .sc-reveal-upper-line {
-          font-family: 'Persona5Main';
-          font-weight: 200;
-          font-size: 26px;
-          letter-spacing: -10px;
-          word-spacing: 20px;
-          line-height: 2.0;
-        }
-        .sc-reveal-lower-bar {
-          position: absolute;
-          top: 58%;
-          right: 0;
-          width: 48%;
-          height: 20%;
-          background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
-          box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          color: #ffffff;
-          font-family: 'Bebas Neue';
-          font-weight: 400;
-          font-size: 22px;
-          letter-spacing: 0px;
-          text-transform: lowercase;
-          padding-left: 22px;
-        }
-        @keyframes sc-right-nav-pop {
-          0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
-          65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
-          100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .sc-right-nav {
-          position: absolute;
-          top: 10vh;
-          left: 6vw;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          pointer-events: none;
-          z-index: 14;
-          transform: translateX(-40px) rotate(-20deg);
-          transform-origin: left bottom;
-          animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
-        }
-        .sc-right-nav .sc-nav-btn {
-          font-family: 'Persona5Main';
-          font-size: 100px;
-          letter-spacing: 3px;
-          line-height: 1;
-          user-select: none;
-          color: #ffffff;
-          -webkit-text-stroke: 2px #0d0d0d;
-          paint-order: stroke fill;
-          background: none;
-          border: none;
-          padding: 0 6px;
-        }
-        .sc-right-nav .sc-nav-dot {
-          width: 16px;
-          height: 16px;
-          border-radius: 999px;
-          background: #111;
-          margin: 0 10px;
-          flex-shrink: 0;
-        }
-        .sc-right-nav .sc-nav-arrow {
-          font-family: 'Persona5Main';
-          font-size: 22px;
-          color: #d92323;
-          display: inline-block;
-          user-select: none;
-        }
-        .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
-        .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
-
-.sc-main-portrait {
-  max-height: 400px;
-  object-fit: contain;
+/* ==========================================================================
+   2. BOTONES DEL MENÚ (Aquí arreglamos el problema del tercer botón)
+   ========================================================================== */
+.sc-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 40px;
+  max-width: 500px;
+  /* El z-index bajo permite que el panel de revelado se ponga encima cuando se active */
+  z-index: 10; 
 }
 
-        /* ── Each bar ── */
-        .sc-bar {
-          position: relative;
-          width: 45vw;
-          height: 64px;
-          transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
-          background: #111;
-          cursor: pointer;
-          pointer-events: all;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(13,13,13,0.65);
-          z-index: 1;
-        }
-
-        /* wrapper holds both the red underlay and the bar */
 .sc-bar-outer {
   position: relative;
-  width: 350px;
-  height: 60px;
-  cursor: pointer;    /* FUERZA la manito del mouse */
-  pointer-events: auto; /* Asegura que reaccione al hover/click */
-  transition: transform 0.2s ease, filter 0.2s ease;
-  opacity: 0;         /* Comienza invisible para la animación */
+  cursor: pointer; /* Fuerza la aparición de la manito del mouse */
+  pointer-events: auto; /* Asegura que el mouse no ignore este elemento */
+  display: flex;
+  align-items: center;
+  opacity: 0;
   transform: translateX(-50px);
+  transition: transform 0.4s ease, opacity 0.4s ease, scale 0.2s ease;
 }
-        /* Stagger their rest positions to look wonderfully chaotic and angled */
-.sc-bar-outer:nth-child(1).mounted { transform: translateX(10px) rotate(-1deg); }
-.sc-bar-outer:nth-child(2).mounted { transform: translateX(-5px) rotate(2deg); }
-.sc-bar-outer:nth-child(3).mounted { transform: translateX(15px) rotate(-2deg); }
 
-/* Make the currently highlighted bar aggressively pop outward when active */
-.sc-bar-outer.active.mounted {
-  transform: translateX(40px) scale(1.04) rotate(1deg);
-  z-index: 25; /* Keeps the active bar layered neatly on top of the stack */
-}
-.sc-bar-outer:hover,
-.sc-bar-outer.active {
-  transform: scale(1.05) translateX(10px);
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; }
-        .sc-bar-outer.mounted {
+/* Animación de entrada cuando el componente se monta */
+.sc-bar-outer.mounted {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
-        .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
-        .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
-        .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
-        .sc-bar-red {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 100%;
-  background-color: #d92323;
-  transition: width 0.2s ease;
+/* Efecto Hover y Activo */
+.sc-bar-outer:hover,
+.sc-bar-outer.active {
+  scale: 1.03;
 }
-        .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
-        /* white fill — skewed parallelogram on the right 25% */
-        .sc-bar-fill {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          background: #ffffff;
-          clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
-          transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-          z-index: 0;
-          pointer-events: none;
-        }
-        .sc-bar-outer.active .sc-bar-fill {
-          clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
-        }
-
-        /* shade on the left edge of the white fill */
-        .sc-bar-shade {
-          position: absolute;
-          top: 0; bottom: 0;
-          left: 73%;
-          width: 6%;
-          background: linear-gradient(90deg, rgba(13,13,13,0.15) 0%, rgba(13,13,13,0) 100%);
-          z-index: 1;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.35s ease;
-        }
-        .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
-
-        /* bottom shadow line under each bar */
-        .sc-bar::after {
-          content: '';
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          height: 6px;
-          background: linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(13,13,13,0.55) 100%);
-          z-index: 10;
-          pointer-events: none;
-        }
-
-        /* content layout inside each bar */
-        .sc-bar-content {
-          position: relative;
-          z-index: 2;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 20px 0 20px;
-        }
-
-        /* left: role label */
-        .sc-role {
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          font-family: 'Persona5Main';
-          font-size: 50px;
-          letter-spacing: -2px;
-          color: #ffffff;
-          transform: rotate(-30deg);
-          user-select: none;
-          line-height: 1;
-          padding: 0 16px 0 8px;
-        }
-
-        /* left: icon + name centered in remaining space */
-        .sc-main {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 3px;
-          padding-left: 78px;
-        }
-        .sc-main-top {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .sc-icon {
-          font-family: 'Persona5Main';
-          font-size: 22px;
-          width: 32px;
-          text-align: center;
-          flex-shrink: 0;
-          color: rgba(255,255,255,0.15);
-          transition: color 0.2s ease;
-          user-select: none;
-        }
-        .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
-
-        .sc-label {
-          font-family: 'Persona5Main';
-          font-size: 28px;
-          letter-spacing: 4px;
-          line-height: 1;
-          color: rgba(255,255,255,0.85);
-          transition: color 0.2s ease;
-          user-select: none;
-        }
-        .sc-bar-outer.active .sc-label { color: #0d0d0d; }
-
-        /* right: stats group */
-        .sc-stats {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding-right: 24px;
-          flex-shrink: 0;
-        }
-
-        .sc-stat {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .sc-stat-top {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
-
-        .sc-stat-tag {
-          font-family: 'Persona5Main';
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          padding: 1px 4px;
-          border-width: 1px;
-          border-style: solid;
-          line-height: 1.4;
-          user-select: none;
-        }
-
-        .sc-stat-num {
-          font-family: 'Persona5Main';
-          font-size: 26px;
-          font-style: italic;
-          line-height: 1;
-          color: #ffffff;
-          letter-spacing: 1px;
-          user-select: none;
-          transition: color 0.2s ease;
-        }
-        .sc-bar-outer.active .sc-stat-num { color: #0d0d0d; }
-
-        .sc-stat-bars {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          margin-top: 2px;
-        }
-        .sc-stat-bar-color {
-          height: 3px;
-          width: 100%;
-        }
-        .sc-stat-bar-black {
-          height: 2px;
-          width: 100%;
-          background: #0d0d0d;
-        }
-
-        /* character portrait */
-        .sc-char {
- 
-          margin-right: 15px;
-          position: absolute;
-          top: 0;
-          left: 110px;
-          height: 80%;
-          width: auto;
-          max-width: 160px;
-          object-fit: cover;
-          object-position: top;
-          pointer-events: none;
-          z-index: 3;
-          clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
-        }
-
-        /* footer hints */
-.sc-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;       /* Altura fija y estricta */
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  z-index: 10;        /* Nivel bajo para que no tape los botones */
-  pointer-events: none; /* ¡Clave! El mouse lo atraviesa de forma invisible */
-  opacity: 0;
-        }
-        .sc-footer.mounted { opacity: 1; 
-        }
-        .sc-footer-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: #888;
-        }
-  .sc-footer-key {
-  background: #333;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid #555;
-  font-weight: bold;
-        }
+/* Barra decorativa roja de la izquierda */
 .sc-bar-red {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 100%;
+  width: 6px;
+  height: 60px;
   background-color: #d92323;
-  transition: width 0.2s ease;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.sc-bar-outer:hover .sc-bar-red,
-.sc-bar-outer.active .sc-bar-red {
-  width: 15px; 
+.sc-bar-outer.active .sc-bar-red,
+.sc-bar-outer:hover .sc-bar-red {
+  opacity: 1;
 }
-        .sc-bar-outer:nth-child(1){
-    outline:4px solid red !important;
-    
-    }
 
-    .sc-bar {
+/* Cuerpo del botón */
+.sc-bar {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  padding-left: 20px;
-  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  background: rgba(30, 34, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 15px;
   overflow: hidden;
 }
 
 .sc-bar-outer.active .sc-bar {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(45, 52, 64, 0.9);
   border-color: #d92323;
 }
 
-/* Texto dentro del botón */
+/* Miniatura del personaje dentro del botón */
+.sc-char {
+  height: 80%;
+  object-fit: contain;
+  margin-right: 15px;
+  z-index: 2;
+}
+
+.sc-bar-content {
+  z-index: 2;
+}
+
 .sc-label {
   font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 2px;
-  color: #aaa;
-  transition: color 0.2s ease;
-}
-
-.sc-bar-outer:hover .sc-label,
-.sc-bar-outer.active .sc-label {
-  color: #fff;
-}
-
-/* Personaje miniatura dentro del botón (opcional si lo usas visualmente) */
-.sc-char {
-  height: 80%;
-  margin-right: 15px;
-  pointer-events: none; /* El mouse ignora la imagen y cliquea el botón */
 }
 
 /* ==========================================================================
-   PANEL REVELADO (Aparece al hacer click)
+   3. PANEL DE REVELADO (Aparece al hacer Click/Enter)
    ========================================================================== */
 .sc-reveal-panel {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
+  top: 10%;
+  left: 5%;
   width: 60%;
-  background: #1a1a1a;
-  border: 2px solid #d92323;
+  background: rgba(20, 22, 26, 0.95);
+  border-left: 5px solid #d92323;
   padding: 30px;
-  z-index: 100; /* Al frente de absolutamente todo */
+  z-index: 30; /* Por encima del dim y de los botones */
   opacity: 0;
-  transition: all 0.3s ease;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
 }
 
 .sc-reveal-panel.mounted {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translateY(0);
 }
 
 .sc-reveal-upper-line {
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
 .sc-reveal-lower-bar {
   margin-top: 20px;
-  border-top: 1px solid #444;
   padding-top: 15px;
-  color: #d92323;
-  font-weight: bold;
-  }
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #8a929e;
+  font-size: 0.9rem;
+}
 
-.sc-footer.mounted {
+/* Retrato grande del personaje revelado */
+.sc-main-portrait-shell {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+  width: 30%;
+  height: 70%;
+  z-index: 25; /* Detrás del texto pero delante del fondo */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+}
+
+.sc-main-portrait-shell.mounted {
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transform: scale(1);
+}
+
+.sc-main-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Navegación secundaria derecha */
+.sc-right-nav {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 30;
+}
+
+/* ==========================================================================
+   4. FOOTER (Arreglado para que no tape hacia arriba)
+   ========================================================================== */
+.sc-footer {
+  position: relative; /* Cambiado a relative para que no flote encima de los botones */
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  gap: 30px;
+  background: rgba(15, 17, 21, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 5; /* Z-index bajo para que NUNCA bloquee los clics del menú */
+  box-sizing: border-box;
+}
+
+.sc-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #8a929e;
+}
+
+.sc-footer-key {
+  background: #2e3440;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
       `}</style>
