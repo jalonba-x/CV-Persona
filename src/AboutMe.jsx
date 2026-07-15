@@ -47,7 +47,7 @@ const ITEMS = [
 ];
 
 export default function AboutMe() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
   const [revealed, setRevealed] = useState(false);
@@ -436,6 +436,11 @@ export default function AboutMe() {
           transform: translateY(-50%) rotate(-28deg);
           z-index: -1;
         }
+        .sc-bar-outer.active:hover {
+          animation: none;
+          transform: translateX(24px) scale(1.04) rotate(-1deg);
+          filter: drop-shadow(0 0 22px rgba(217,35,35,.8));
+          }
 
         .sc-bar-fill {
           position: absolute;
