@@ -128,7 +128,6 @@ export default function AboutMe() {
             className="sc-main-portrait"
             src={MAIN_IMAGES[active]}
             alt=""
-          />
    />
     </div>
 )}
