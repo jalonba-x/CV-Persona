@@ -98,8 +98,9 @@ export default function AboutMe() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active, navigate, revealed]);
 
-  return (
-    <div id="menu-screen">
+  return (   
+
+    <div id="menu-screen"> 
       {/* <video src={bgVideo} autoPlay loop muted playsInline /> */}
       {revealed && <div key={`dim-${active}`} className="sc-dim" />}
       {revealed && (
@@ -128,6 +129,9 @@ export default function AboutMe() {
             src={MAIN_IMAGES[active]}
             alt=""
           />
+    <div className="sc-bar-outer"
+    tabIndex={0}
+    onFocus={() => setActive(i)}>
         </div>
       )}
       <style>{`
@@ -135,12 +139,13 @@ export default function AboutMe() {
           position: absolute;
           inset: 0;
           z-index: 6;
+          left: 80px;
           pointer-events: none;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 6px;
+          gap: 18px;
           padding-left: 0;
         }
 
@@ -204,6 +209,21 @@ export default function AboutMe() {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50% { transform: translateX(5px); opacity: 0.4; }
         }
+
+        @keyframes p5Pulse{
+    0%{
+        transform:translateX(14px);
+    }
+    50%{
+        transform:translateX(20px);
+    }
+    100%{
+        transform:translateX(14px);
+    }
+}
+.sc-bar-outer.active{
+    animation:p5Pulse .7s infinite alternate;
+}
 
         .sc-main-portrait-shell {
           position: absolute;
@@ -371,18 +391,46 @@ export default function AboutMe() {
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
           cursor: pointer;
-          pointer-events: all;
+          pointer-events: none;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
           box-shadow: 0 6px 24px rgba(13,13,13,0.65);
           z-index: 1;
+          transfor: skewW(-18deg);
         }
 
         /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
+          pointer-events: auto;
+          cursor:pointer;
           flex-shrink: 0;
           transform: translateX(-100%);
-          transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: transform .22s ease, filter .22s ease;
+          .sc-bar-outer:hover{
+    transform:
+        translateX(18px)
+        scale(1.02)
+        rotate(-1deg);
+    filter:
+        drop-shadow(0 0 18px rgba(217,35,35,.55));
+
+        .sc-bar-outer:hover .sc-label{
+    color:white;
+    text-shadow:
+        0 0 8px white,
+        0 0 18px white;
+}
+
+.sc-bar-outer:hover .sc-char{
+    transform:
+        scale(1.08)
+        translateX(-6px);
+    transition:.25s;
+}
+
+.sc-bar-outer.active .sc-label{
+    color:black;
+    text-shadow:none;
         }
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
@@ -407,17 +455,33 @@ export default function AboutMe() {
         }
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
+        .sc-bar-outer.active::before{
+    content:"";
+    position:absolute;
+    left:-80px;
+    top:50%;
+    width:130px;
+    height:8px;
+    background:#d92323;
+    transform:
+        translateY(-50%)
+        rotate(-28deg);
+    z-index:-1;
+}
+
         /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
           position: absolute;
           inset: 0;
           width: 100%;
+          transform:translateX(100%);
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
-          transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
+          transform:translate(X)0;
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
@@ -455,6 +519,7 @@ export default function AboutMe() {
           align-items: center;
           justify-content: space-between;
           padding: 0 20px 0 20px;
+          transform: skewX(18deg);
         }
 
         /* left: role label */
@@ -616,9 +681,10 @@ export default function AboutMe() {
           <div
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              setActive(i);
-            }}
+onClick={()=>{
+    setActive(i);
+    setRevealed(true);
+}}
             onMouseEnter={() => {
               setActive(i);
             }}
