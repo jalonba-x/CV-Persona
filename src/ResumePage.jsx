@@ -88,7 +88,7 @@ export default function ResumePage() {
         .resume-stack {
           position: absolute;
           top: 9vh;
-          left: 2.8vw;
+          left: 5vw;
           width: min(52vw, 820px);
           display: flex;
           flex-direction: column;
@@ -118,7 +118,9 @@ export default function ResumePage() {
         .resume-card-wrap {
           position: relative;
           opacity: 0;
-          transform: translateX(-48px);
+          transform: translateX(-90px);
+          rotate(-5deg);
+          scale(.95);
           transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
           pointer-events: all;
           cursor: pointer;
@@ -126,27 +128,47 @@ export default function ResumePage() {
         .resume-card-wrap.mounted {
           opacity: 1;
           transform: translateX(0);
+          rotate(0);
+          scale(1);
         }
 
         .resume-card {
           position: relative;
           height: 112px;
-          background: #0d0d0d;
+          background: linear-gradient(
+          180deg,
+          #181818 0%,
+          #090909 100%
+          );
           clip-path: polygon(0 0, 97% 0, 100% 100%, 3% 100%);
-          box-shadow: 0 8px 0 rgba(13,13,13,0.85);
+          box-shadow: 0 8px 0 #000,
+          12px 12px 30px rgba(0,0,0,.45);
           transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
           overflow: visible;
         }
         .resume-card-wrap.active .resume-card {
           background: #ffffff;
           box-shadow: 10px 8px 0 #d92323;
-          transform: translateX(6px);
+          translateX(8px)
+          scale(1.03)
+          rotate(-0.4deg);
         }
+
+        .resume-card-wrap.active .resume-card::after{
+        content:"";
+        position:absolute;
+        right:-18px;
+        top:0;
+        width:16px;
+        height:100%;
+        background:#d92323;
+        transform:skew(-18deg);
+}
 
         .resume-card-inner {
           position: absolute;
           inset: 0;
-          padding: 14px 22px 14px 62px;
+          padding: 14px 22px 14px 72px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
@@ -156,9 +178,9 @@ export default function ResumePage() {
         .resume-badge {
           position: absolute;
           top: 10px;
-          left: -10px;
-          width: 56px;
-          height: 70px;
+          left: 18px;
+          width: 64px;
+          height: 76px;
           background: #0d0d0d;
           border: 3px solid #ffffff;
           clip-path: polygon(14% 0, 100% 0, 84% 100%, 0 100%);
@@ -186,9 +208,9 @@ export default function ResumePage() {
 
         .resume-title {
           font-family: 'Persona5Main';
-          font-size: 56px;
+          font-size: 52px;
           line-height: 0.9;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
           color: #ffffff;
           transition: color 0.22s ease;
         }
@@ -228,7 +250,11 @@ export default function ResumePage() {
           right: 14px;
           bottom: 12px;
           height: 34px;
-          background: #ffffff;
+          background: linear-gradient(
+          90deg,
+          #ffffff,
+          #ececec
+          );
           clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
           display: flex;
           align-items: center;
@@ -259,7 +285,10 @@ export default function ResumePage() {
           min-height: 74vh;
           z-index: 12;
           padding: 22px 24px 24px 24px;
-          background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.97) 100%);
+          background: linear-gradient(
+          180deg, rgba(20,20,20,.97), rgba(8,8,8,.99)
+        );
+          background-size:cover;
           clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
           box-shadow:
             inset 0 0 0 1px rgba(255,255,255,0.16),
@@ -270,11 +299,19 @@ export default function ResumePage() {
           content: "";
           position: absolute;
           inset: 0;
+          opacity: .4;
           background:
-            linear-gradient(135deg, rgba(255,255,255,0.08) 0 15%, transparent 15% 100%),
-            linear-gradient(180deg, rgba(255,255,255,0.05), transparent 24%);
+          linear-gradient(
+          135deg,
+          rgba(255,255,255,.08) 0,
+          transparent 18%
+          ),
           pointer-events: none;
-        }
+          repeating-linear-gradient(
+          0deg, transparent 0, transparent 18px, rgba(255,255,255,.015) 19px
+);
+
+}
         .resume-detail-top {
           position: relative;
           display: grid;
@@ -305,6 +342,20 @@ export default function ResumePage() {
           letter-spacing: 2px;
           line-height: 1;
         }
+        .resume-detail-top::after{
+        content:"";
+        position:absolute;
+       left:90px;
+       bottom:10px;
+       width:180px;
+       height:4px;
+       background:#d92323;
+}        
+      .resume-detail-row:hover{
+      background:#191919;
+      border-left:8px solid #d92323;
+
+}
         .resume-detail-list {
           position: relative;
           display: flex;
