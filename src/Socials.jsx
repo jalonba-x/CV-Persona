@@ -124,6 +124,7 @@ export default function Socials() {
           z-index: 0;
         }
 
+        /* UPGRADED: Added z-index management so the active bar ALWAYS elevates above adjacent siblings */
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
@@ -200,27 +201,20 @@ export default function Socials() {
           padding: 0 20px 0 0;
         }
 
-        /* ACTUALIZADO: Tamaño adaptativo (34px -> 44px), rotación suave de -15deg y ancho fijo centrado para encajar sin cortar */
         .sc-role {
           display: flex;
           align-items: center;
-          justify-content: center;
-          width: 130px;
           flex-shrink: 0;
           font-family: 'Anton', sans-serif;
-          font-size: 34px;
-          letter-spacing: 1px;
+          font-size: 46px;
+          letter-spacing: -1px;
           color: #ffffff;
-          transform: rotate(-15deg);
-          transform-origin: center;
+          transform: rotate(-22deg);
+          transform-origin: center right;
           user-select: none;
           line-height: 1;
-          margin-left: 10px;
-          transition: font-size 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1);
-        }
-        .sc-bar-outer.active .sc-role {
-          font-size: 44px;
-          transform: rotate(-15deg) scale(1.03);
+          margin-left: 28px;
+          padding-right: 12px;
         }
 
         .sc-main {
@@ -346,6 +340,7 @@ export default function Socials() {
           background: #000;
         }
 
+        /* UPGRADED: Contained strictly to 100% bar height with diagonal clip-path trimming */
         .sc-char {
           position: absolute;
           top: 0;
@@ -694,8 +689,7 @@ export default function Socials() {
               <div className="sc-info-bar">
                 <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
                 <span className="sc-info-bar-text">{ITEMS[active].titles[i]}</span>
-                {/* ACTUALIZADO: Toma el valor dinámico desde el arreglo 'metrics' de cada ítem */}
-                <span className="sc-info-bar-box">{ITEMS[active].metrics[i]}</span>
+                <span className="sc-info-bar-box">VIEWS</span>
                 <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
               </div>
             </div>
@@ -724,5 +718,3 @@ export default function Socials() {
     </div>
   );
 }
-
-
