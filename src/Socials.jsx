@@ -718,6 +718,3 @@ export default function Socials() {
     </div>
   );
 }
-
-
-  );
