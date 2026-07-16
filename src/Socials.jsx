@@ -461,13 +461,19 @@ export default function Socials() {
           border-radius: 7px;
         }
         .sc-info-bar-new {
-          position: relative;
-          height: 85%;
-          width: auto;
-          margin: (0,-8px,0,-6px);
-          pointer-events: none;
-          z-index: 5;
-          flex-shrink: 0;
+        position: relative;
+        height: 60%; /* Ajustado para que encaje dentro de la barra de forma proporcional */
+        width: auto;
+        margin-left: 14px;
+        margin-right: 2px;
+        pointer-events: none;
+        z-index: 5;
+        flex-shrink: 0;
+        object-fit: contain;
+}
+        .sc-info-bar-new + .sc-info-bar-icon {
+  margin-left: 6px;
+}
         }
         .sc-info-bar-wrap.selected .sc-info-bar::before {
           content: '';
