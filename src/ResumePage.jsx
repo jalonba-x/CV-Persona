@@ -434,8 +434,8 @@ export default function ResumePage() {
             <div className="resume-detail-bottom">
               <div className="resume-detail-bottom-title">GENERAL EXPERIENCE</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- English–Spanish localization and language quality assurance.</div>
-                <div className="resume-detail-bullet">- Focus on data annotation and AI training projects.</div>
+                <div className="resume-detail-bullet">- EN-ES localization and language quality assurance.</div>
+                <div className="resume-detail-bullet">- Focus on data annotation and annotation guides.</div>
               </div>
             </div>
           </div>
