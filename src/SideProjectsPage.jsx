@@ -17,7 +17,6 @@ const ITEMS = [
     summary: "Youtube video showing fitting real life images in the context of a Hunter x Hunter episode scene",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
   }
-
 ];
 
 export default function SideProjectsPage() {
@@ -53,8 +52,6 @@ export default function SideProjectsPage() {
 
   return (
     <div id="menu-screen">
-      {/* <video src={bgVideo} autoPlay loop muted playsInline /> */}
-
       <style>{`
         .sp-shell {
           position: absolute;
@@ -168,17 +165,27 @@ export default function SideProjectsPage() {
           color: #ffffff;
         }
 
+        /* UPGRADED: Now formatted as an interactive, clickable button with hover state */
         .sp-link {
-          margin-top: 24px;
+          margin-top: 28px;
           font-family: 'Bebas Neue', sans-serif;
           font-size: 28px;
-          letter-spacing: 0px;
+          letter-spacing: 1px;
           color: #ffffff;
           background: #d92323;
           display: inline-flex;
           align-items: center;
-          padding: 6px 12px;
+          padding: 8px 18px;
           clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+          text-decoration: none;
+          cursor: pointer;
+          transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+        }
+        .sp-link:hover {
+          background: #ffffff;
+          color: #0d0d0d;
+          transform: translateX(6px) scale(1.02);
+          box-shadow: -6px 0 0 #d92323;
         }
 
         .sp-footer {
@@ -215,10 +222,19 @@ export default function SideProjectsPage() {
         </div>
 
         <div className="sp-right">
-          <div className="sp-tag">NEW SECTION</div>
+          <div className="sp-tag">DESCRIPTION</div>
           <div className="sp-right-title">{ITEMS[active].title}</div>
           <div className="sp-right-summary">{ITEMS[active].summary}</div>
-          <div className="sp-link">OPEN LINK: {ITEMS[active].href.replace("https://", "")}</div>
+          
+          {/* UPGRADED: Semantic anchor tag leading to the active item's href */}
+          <a 
+            className="sp-link" 
+            href={ITEMS[active].href} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            OPEN LINK: {ITEMS[active].href.replace("https://", "")}
+          </a>
         </div>
       </div>
 
