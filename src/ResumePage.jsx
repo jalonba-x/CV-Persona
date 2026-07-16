@@ -166,7 +166,6 @@ export default function ResumePage() {
           transform: skew(-18deg);
         }
 
-        /* AJUSTADO: Aumentado el padding a 115px para compensar el badge más ancho */
         .resume-card-inner {
           position: absolute;
           inset: 0;
@@ -177,38 +176,38 @@ export default function ResumePage() {
           overflow: visible;
         }
 
-        /* AJUSTADO: Ancho ampliado a 90px para dar mucho más respiro lateral al III */
+        /* CORREGIDO: Se eliminó clip-path para no cortar el borde blanco. Se deforma con skewX y rotate para lograr el romboide intacto. */
         .resume-badge {
           position: absolute;
           top: 14px;
           left: -15px;
           width: 90px;
           height: 78px;
-          z-index: 10;
+          z-index: 20;
           background: #0d0d0d;
-          border: 3px solid #ffffff;
-          clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+          border: 3.5px solid #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          transform: rotate(-8deg);
-          box-shadow: 0 4px 0 rgba(13,13,13,0.28);
+          transform: skewX(-8deg) rotate(-4deg);
+          box-shadow: 0 6px 12px rgba(0,0,0,0.6);
           transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
         }
         
-        /* AJUSTADO: Letra ligeramente reducida a 30px para asegurar margen interno */
+        /* CORREGIDO: Inclinación compensatoria para que la letra romana se lea derecha y centrada */
         .resume-badge-text {
           font-family: 'Persona5Main';
           font-size: 30px;
           color: #ffffff;
           letter-spacing: 0px;
-          transform: rotate(8deg);
+          transform: skewX(8deg) rotate(4deg);
         }
 
+        /* CORREGIDO: Animación activa sincronizada con la inclinación geométrica limpia */
         .resume-card-wrap.active .resume-badge {
           background: #d92323;
           border-color: #0d0d0d;
-          transform: translateX(8px) rotate(-8deg) scale(1.03);
+          transform: translateX(8px) skewX(-8deg) rotate(-4deg) scale(1.03);
         }
         .resume-card-wrap.active .resume-badge-text {
           color: #ffffff;
@@ -349,9 +348,7 @@ export default function ResumePage() {
           letter-spacing: 2px;
           line-height: 1;
         }
-        
-        /* CORREGIDO: Se eliminó el bloque .resume-detail-top::after que creaba la línea roja bajo LOG */
-        
+
         .resume-detail-row:hover {
           background: #191919;
           border-left: 8px solid #d92323;
