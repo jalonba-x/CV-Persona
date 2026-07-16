@@ -208,17 +208,20 @@ export default function Socials() {
           width: 130px;
           flex-shrink: 0;
           font-family: 'Anton', sans-serif;
-          font-size: 34px;
+          font-size: 30px;
           letter-spacing: 1px;
           color: #ffffff;
-          transform: rotate(-15deg);
+          transform: translate(-7px), rotate(-15deg);
           transform-origin: center right;
           user-select: none;
           line-height: 1;
           margin-left: 10px;
           transition: font-size 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1);
         }
-
+        .sc-bar-outer.active .sc-role {
+          font-size: 42px;
+          transform: translateY(-4px) rotate(-15deg) scale(1.03);
+        }
         .sc-main {
           flex: 1;
           display: flex;
