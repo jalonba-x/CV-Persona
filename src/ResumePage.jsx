@@ -132,11 +132,12 @@ export default function ResumePage() {
           scale(1);
         }
 
+        /* CORREGIDO: Empujado un poco a la derecha (margin-left: 10px en vez de -18px) para dar espacio al badge más grande */
         .resume-card {
           position: relative;
           height: 112px;
-          margin-left: -18px;
-          width: calc(100% - 18px);
+          margin-left: 10px;
+          width: calc(100% - 10px);
           background: linear-gradient(
             180deg,
             #181818 0%,
@@ -149,7 +150,6 @@ export default function ResumePage() {
           overflow: visible;
         }
 
-        /* CORREGIDO: Añadido el prefijo transform y la sintaxis correcta */
         .resume-card-wrap.active .resume-card {
           background: #ffffff;
           box-shadow: 10px 8px 0 #d92323;
@@ -167,27 +167,28 @@ export default function ResumePage() {
           transform: skew(-18deg);
         }
 
+        /* CORREGIDO: Aumentado el padding-left a 105px para que los títulos no choquen con el badge más ancho */
         .resume-card-inner {
           position: absolute;
           inset: 0;
-          padding: 14px 22px 14px 90px;
+          padding: 14px 22px 14px 105px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
           overflow: visible;
         }
 
-        /* CORREGIDO: Ajuste de posición (fuera del clip-path) y z-index único */
+        /* CORREGIDO: Aumentado de 60px a 80px de ancho, clip-path menos agresivo (8% en vez de 12%) para no cortar la III ni la IV */
         .resume-badge {
           position: absolute;
           top: 14px;
-          left: -12px;
-          width: 60px;
+          left: -15px;
+          width: 80px;
           height: 78px;
           z-index: 10;
           background: #0d0d0d;
           border: 3px solid #ffffff;
-          clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+          clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -195,16 +196,19 @@ export default function ResumePage() {
           box-shadow: 0 4px 0 rgba(13,13,13,0.28);
           transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
         }
+        
+        /* CORREGIDO: Tamaño de fuente optimizado para encajar perfectamente dentro del nuevo ancho */
         .resume-badge-text {
           font-family: 'Persona5Main';
-          font-size: 36px;
+          font-size: 34px;
           color: #ffffff;
-          letter-spacing: 1px;
+          letter-spacing: 0px;
           transform: rotate(8deg);
         }
-        /* CORREGIDO: El badge ahora también se desplaza en sincronía con la tarjeta activa */
+
+        /* CORREGIDO: Al estar activo, el badge se vuelve rojo con borde negro y letra blanca, o puedes hacerlo blanco con letra negra. ¡Esto le da máxima legibilidad y contraste! */
         .resume-card-wrap.active .resume-badge {
-          background: #0d0d0d;
+          background: #d92323;
           border-color: #0d0d0d;
           transform: translateX(8px) rotate(-8deg) scale(1.03);
         }
@@ -448,7 +452,6 @@ export default function ResumePage() {
                 setActive(index);
               }}
             >
-              {/* CORREGIDO: El badge ahora es hermano de .resume-card y no se ve afectado por su clip-path */}
               <div className="resume-badge">
                 <div className="resume-badge-text">{item.badge}</div>
               </div>
