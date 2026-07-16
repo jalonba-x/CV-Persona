@@ -229,7 +229,7 @@ export default function SideProjectsPage() {
         </div>
 
         <div className="sp-right">
-          <div className="sp-tag">DESCRIPTION</div>
+          <div className="sp-tag">DETAILS</div>
           <div className="sp-right-title">{ITEMS[active].title}</div>
           <div className="sp-right-summary">{ITEMS[active].summary}</div>
           
