@@ -204,17 +204,19 @@ export default function Socials() {
         .sc-role {
           display: flex;
           align-items: center;
+          justify-content: center;
+          width: 130px;
           flex-shrink: 0;
           font-family: 'Anton', sans-serif;
-          font-size: 46px;
-          letter-spacing: -1px;
+          font-size: 34px;
+          letter-spacing: 1px;
           color: #ffffff;
-          transform: rotate(-22deg);
+          transform: rotate(-15deg);
           transform-origin: center right;
           user-select: none;
           line-height: 1;
-          margin-left: 28px;
-          padding-right: 12px;
+          margin-left: 10px;
+          transition: font-size 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1);
         }
 
         .sc-main {
