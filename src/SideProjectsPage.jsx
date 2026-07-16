@@ -5,14 +5,21 @@ import { useNavigate } from "react-router-dom";
 const ITEMS = [
   {
     id: "Fanbook editing and translation",
-    title: "Digimon Fanbook",
+    title: "Digital Monster Catalog",
     stack: "Adobe InDesign",
-    summary: "Writing and translating fanbook in English and Spanish",
+    summary: "Fan-made, multilingual archival book detailing the debut of all Digimon from 1997 to 2026",
     href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
+    id: "Persona5-themed resume (Javier)",
+    title: "Persona5-themed resume (Javier)",
+    stack: "Github",
+    summary: "Rework of @ffaneto's persona5-website from Github",
+    href: "https://github.com/jalonba-x/CV-Persona",
+  },
+  {
     id: "Fan video edition",
-    title: "Hunter x Hunter Miniature Rose",
+    title: "Tribute to Hunter X Hunter 134 (miniature rose)",
     stack: "Adobe Premiere",
     summary: "Youtube video showing fitting real life images in the context of a Hunter x Hunter episode scene",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
