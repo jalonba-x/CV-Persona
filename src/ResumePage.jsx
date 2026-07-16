@@ -132,7 +132,6 @@ export default function ResumePage() {
           scale(1);
         }
 
-        /* CORREGIDO: Empujado un poco a la derecha (margin-left: 10px en vez de -18px) para dar espacio al badge más grande */
         .resume-card {
           position: relative;
           height: 112px;
@@ -167,23 +166,23 @@ export default function ResumePage() {
           transform: skew(-18deg);
         }
 
-        /* CORREGIDO: Aumentado el padding-left a 105px para que los títulos no choquen con el badge más ancho */
+        /* AJUSTADO: Aumentado el padding a 115px para compensar el badge más ancho */
         .resume-card-inner {
           position: absolute;
           inset: 0;
-          padding: 14px 22px 14px 105px;
+          padding: 14px 22px 14px 115px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
           overflow: visible;
         }
 
-        /* CORREGIDO: Aumentado de 60px a 80px de ancho, clip-path menos agresivo (8% en vez de 12%) para no cortar la III ni la IV */
+        /* AJUSTADO: Ancho ampliado a 90px para dar mucho más respiro lateral al III */
         .resume-badge {
           position: absolute;
           top: 14px;
           left: -15px;
-          width: 80px;
+          width: 90px;
           height: 78px;
           z-index: 10;
           background: #0d0d0d;
@@ -197,16 +196,15 @@ export default function ResumePage() {
           transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
         }
         
-        /* CORREGIDO: Tamaño de fuente optimizado para encajar perfectamente dentro del nuevo ancho */
+        /* AJUSTADO: Letra ligeramente reducida a 30px para asegurar margen interno */
         .resume-badge-text {
           font-family: 'Persona5Main';
-          font-size: 34px;
+          font-size: 30px;
           color: #ffffff;
           letter-spacing: 0px;
           transform: rotate(8deg);
         }
 
-        /* CORREGIDO: Al estar activo, el badge se vuelve rojo con borde negro y letra blanca, o puedes hacerlo blanco con letra negra. ¡Esto le da máxima legibilidad y contraste! */
         .resume-card-wrap.active .resume-badge {
           background: #d92323;
           border-color: #0d0d0d;
@@ -351,15 +349,9 @@ export default function ResumePage() {
           letter-spacing: 2px;
           line-height: 1;
         }
-        .resume-detail-top::after {
-          content: "";
-          position: absolute;
-          left: 90px;
-          bottom: 10px;
-          width: 180px;
-          height: 4px;
-          background: #d92323;
-        }        
+        
+        /* CORREGIDO: Se eliminó el bloque .resume-detail-top::after que creaba la línea roja bajo LOG */
+        
         .resume-detail-row:hover {
           background: #191919;
           border-left: 8px solid #d92323;
