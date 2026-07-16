@@ -135,37 +135,37 @@ export default function ResumePage() {
         .resume-card {
           position: relative;
           height: 112px;
-          margin-left:-18px;
-          width:calc(100% - 18px);
+          margin-left: -18px;
+          width: calc(100% - 18px);
           background: linear-gradient(
-          180deg,
-          #181818 0%,
-          #090909 100%
+            180deg,
+            #181818 0%,
+            #090909 100%
           );
           clip-path: polygon(0 0, 97% 0, 100% 100%, 3% 100%);
           box-shadow: 0 8px 0 #000,
-          12px 12px 30px rgba(0,0,0,.45);
+            12px 12px 30px rgba(0,0,0,.45);
           transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
           overflow: visible;
         }
+
+        /* CORREGIDO: Añadido el prefijo transform y la sintaxis correcta */
         .resume-card-wrap.active .resume-card {
           background: #ffffff;
           box-shadow: 10px 8px 0 #d92323;
-          transform: translateX(8px),
-          scale(1.03),
-          rotate(-0.4deg);
+          transform: translateX(8px) scale(1.03) rotate(-0.4deg);
         }
 
-        .resume-card-wrap.active .resume-card::after{
-        content:"";
-        position:absolute;
-        right:-18px;
-        top:0;
-        width:16px;
-        height:100%;
-        background:#d92323;
-        transform:skew(-18deg);
-}
+        .resume-card-wrap.active .resume-card::after {
+          content: "";
+          position: absolute;
+          right: -18px;
+          top: 0;
+          width: 16px;
+          height: 100%;
+          background: #d92323;
+          transform: skew(-18deg);
+        }
 
         .resume-card-inner {
           position: absolute;
@@ -177,13 +177,14 @@ export default function ResumePage() {
           overflow: visible;
         }
 
+        /* CORREGIDO: Ajuste de posición (fuera del clip-path) y z-index único */
         .resume-badge {
           position: absolute;
-          top: 8px;
-          left: 10px;
+          top: 14px;
+          left: -12px;
           width: 60px;
           height: 78px;
-          z-index:5;
+          z-index: 10;
           background: #0d0d0d;
           border: 3px solid #ffffff;
           clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
@@ -191,9 +192,8 @@ export default function ResumePage() {
           align-items: center;
           justify-content: center;
           transform: rotate(-8deg);
-          z-index:10;
           box-shadow: 0 4px 0 rgba(13,13,13,0.28);
-          transition: background 0.22s ease, border-color 0.22s ease;
+          transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
         }
         .resume-badge-text {
           font-family: 'Persona5Main';
@@ -202,9 +202,11 @@ export default function ResumePage() {
           letter-spacing: 1px;
           transform: rotate(8deg);
         }
+        /* CORREGIDO: El badge ahora también se desplaza en sincronía con la tarjeta activa */
         .resume-card-wrap.active .resume-badge {
           background: #0d0d0d;
           border-color: #0d0d0d;
+          transform: translateX(8px) rotate(-8deg) scale(1.03);
         }
         .resume-card-wrap.active .resume-badge-text {
           color: #ffffff;
@@ -255,9 +257,9 @@ export default function ResumePage() {
           bottom: 12px;
           height: 34px;
           background: linear-gradient(
-          90deg,
-          #ffffff,
-          #ececec
+            90deg,
+            #ffffff,
+            #ececec
           );
           clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
           display: flex;
@@ -290,9 +292,9 @@ export default function ResumePage() {
           z-index: 12;
           padding: 22px 24px 24px 24px;
           background: linear-gradient(
-          180deg, rgba(20,20,20,.97), rgba(8,8,8,.99)
-        );
-          background-size:cover;
+            180deg, rgba(20,20,20,.97), rgba(8,8,8,.99)
+          );
+          background-size: cover;
           clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
           box-shadow:
             inset 0 0 0 1px rgba(255,255,255,0.16),
@@ -305,17 +307,16 @@ export default function ResumePage() {
           inset: 0;
           opacity: .4;
           background:
-          linear-gradient(
-          135deg,
-          rgba(255,255,255,.08) 0,
-          transparent 18%
-          ),
+            linear-gradient(
+              135deg,
+              rgba(255,255,255,.08) 0,
+              transparent 18%
+            ),
+            repeating-linear-gradient(
+              0deg, transparent 0, transparent 18px, rgba(255,255,255,.015) 19px
+            );
           pointer-events: none;
-          repeating-linear-gradient(
-          0deg, transparent 0, transparent 18px, rgba(255,255,255,.015) 19px
-);
-
-}
+        }
         .resume-detail-top {
           position: relative;
           display: grid;
@@ -346,20 +347,19 @@ export default function ResumePage() {
           letter-spacing: 2px;
           line-height: 1;
         }
-        .resume-detail-top::after{
-        content:"";
-        position:absolute;
-       left:90px;
-       bottom:10px;
-       width:180px;
-       height:4px;
-       background:#d92323;
-}        
-      .resume-detail-row:hover{
-      background:#191919;
-      border-left:8px solid #d92323;
-
-}
+        .resume-detail-top::after {
+          content: "";
+          position: absolute;
+          left: 90px;
+          bottom: 10px;
+          width: 180px;
+          height: 4px;
+          background: #d92323;
+        }        
+        .resume-detail-row:hover {
+          background: #191919;
+          border-left: 8px solid #d92323;
+        }
         .resume-detail-list {
           position: relative;
           display: flex;
@@ -431,7 +431,6 @@ export default function ResumePage() {
           line-height: 1.15;
           color: #ffffff;
         }
-
       `}</style>
 
       <div className="resume-overlay">
@@ -449,10 +448,11 @@ export default function ResumePage() {
                 setActive(index);
               }}
             >
+              {/* CORREGIDO: El badge ahora es hermano de .resume-card y no se ve afectado por su clip-path */}
+              <div className="resume-badge">
+                <div className="resume-badge-text">{item.badge}</div>
+              </div>
               <div className="resume-card">
-                <div className="resume-badge">
-                  <div className="resume-badge-text">{item.badge}</div>
-                </div>
                 <div className="resume-card-inner">
                   <div className="resume-title">{item.title}</div>
                   <div className="resume-rank">
