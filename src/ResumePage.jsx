@@ -176,7 +176,6 @@ export default function ResumePage() {
           overflow: visible;
         }
 
-        /* CORREGIDO: Se eliminó clip-path para no cortar el borde blanco. Se deforma con skewX y rotate para lograr el romboide intacto. */
         .resume-badge {
           position: absolute;
           top: 14px;
@@ -194,7 +193,6 @@ export default function ResumePage() {
           transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
         }
         
-        /* CORREGIDO: Inclinación compensatoria para que la letra romana se lea derecha y centrada */
         .resume-badge-text {
           font-family: 'Persona5Main';
           font-size: 30px;
@@ -203,7 +201,6 @@ export default function ResumePage() {
           transform: skewX(8deg) rotate(4deg);
         }
 
-        /* CORREGIDO: Animación activa sincronizada con la inclinación geométrica limpia */
         .resume-card-wrap.active .resume-badge {
           background: #d92323;
           border-color: #0d0d0d;
@@ -318,14 +315,16 @@ export default function ResumePage() {
             );
           pointer-events: none;
         }
+
+        /* ADJUSTED: Gap increased to 24px, title letter-spacing zeroed and word-spacing set to 8px */
         .resume-detail-top {
           position: relative;
           display: grid;
-          grid-template-columns: 70px 1fr auto;
+          grid-template-columns: 65px 1fr auto;
           align-items: center;
-          gap: 14px;
+          gap: 24px;
           min-height: 92px;
-          padding: 0 18px;
+          padding: 0 22px;
           background: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
           color: #0d0d0d;
@@ -338,9 +337,10 @@ export default function ResumePage() {
         }
         .resume-detail-top-title {
           font-family: 'Persona5Main';
-          font-size: 42px;
-          line-height: 0.92;
-          letter-spacing: 1px;
+          font-size: 38px;
+          line-height: 0.95;
+          letter-spacing: 0px;
+          word-spacing: 8px;
         }
         .resume-detail-top-progress {
           font-family: 'Persona5Main';
@@ -401,28 +401,34 @@ export default function ResumePage() {
         .resume-detail-bottom {
           position: relative;
           margin-top: 22px;
-          padding: 18px;
+          padding: 22px 24px;
           background: rgba(13,13,13,0.97);
           clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
           box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
         }
+        
+        /* ADJUSTED: Zeroed letter-spacing and added 8px word-spacing */
         .resume-detail-bottom-title {
           font-family: 'Persona5Main';
           font-size: 30px;
-          letter-spacing: -8px;
-          word-spacing: 12px;
+          letter-spacing: 0px;
+          word-spacing: 8px;
           color: #ffffff;
           margin-bottom: 14px;
         }
         .resume-detail-bullets {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
         }
+        
+        /* ADJUSTED: Switched to Bebas Neue for clean sentence reading with proper word gaps */
         .resume-detail-bullet {
-          font-family: 'Persona5Main';
-          font-size: 21px;
-          line-height: 1.15;
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 24px;
+          line-height: 1.3;
+          letter-spacing: 0.5px;
+          word-spacing: 3px;
           color: #ffffff;
         }
       `}</style>
