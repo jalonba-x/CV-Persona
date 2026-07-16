@@ -9,7 +9,6 @@ import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 
-
 const CHARS = [char1, char2, char3];
 
 const ROLES = [
@@ -18,9 +17,11 @@ const ROLES = [
   { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
 ];
 
+// ACTUALIZADO: Se agregó el arreglo 'titles' para mostrar textos limpios en el panel derecho en lugar de URLs
 const ITEMS = [
   {
     id: "X", label: "X (TWITTER)", handle: "@jalonba", href: "https://x.com/Jalonba", icon: "𝕏", barIcon: icon1, bars: 1, newBars: [0], counts: ["76"],
+    titles: ["HxH diagram"],
     links: ["x.com/Jalonba/status/2071343110416728201"],
     stats: [
       { tag: "FOL", value: "170", color: "#9147ff" },
@@ -28,6 +29,7 @@ const ITEMS = [
   },
   {
     id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: "📷", barIcon: icon2, bars: 1, newBars: [0], counts: ["48"],
+    titles: ["Digimon card"],
     links: ["instagram.com/p/ChfplqFPmcf/"],
     stats: [
       { tag: "FOL", value: "425", color: "#e1306c" },
@@ -36,7 +38,8 @@ const ITEMS = [
   },
   {
     id: "LinkedIn", label: "LinkedIn", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab/", icon: "💼", barIcon: icon3, bars: 1, newBars: [0], counts: ["17"],
-    links: ["https://www.linkedin.com/posts/javierbarrerab_im-happy-to-share-that-im-starting-a-new-ugcPost-7007173080699523072-7DKE/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB6IDmcBLdXR3eMVLtQ4N8yZXMWuQH5ETBs"],
+    titles: ["Position update"],
+    links: ["https://www.linkedin.com/feed/update/urn:li:ugcPost:7007173080699523072/"],
     stats: [
       { tag: "CON", value: "203", color: "#00f2ea" },
     ],
@@ -47,11 +50,17 @@ export default function Socials() {
   const [active, setActive]               = useState(0);
   const [mounted, setMounted]             = useState(false);
   const [activeInfoBar, setActiveInfoBar] = useState(0);
-  const [focus, setFocus]                 = useState("left"); // "left" | "right"
+  const [focus, setFocus]                 = useState("left");
   const navigate = useNavigate();
 
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
+
+  // Función auxiliar para abrir enlaces sin duplicar "https://"
+  const openExternalLink = (url) => {
+    const targetUrl = url.startsWith("http") ? url : "https://" + url;
+    window.open(targetUrl, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
@@ -64,19 +73,19 @@ export default function Socials() {
         if (e.key === "ArrowUp")    setActive(i => Math.max(0, i - 1));
         if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, i + 1));
         if (e.key === "ArrowRight") { setFocus("right"); setActiveInfoBar(0); }
-        if (e.key === "Enter")      window.open(ITEMS[active].href, "_blank");
+        if (e.key === "Enter")      openExternalLink(ITEMS[active].href);
       } else {
         const barCount = ITEMS[active].bars;
         if (e.key === "ArrowUp")   setActiveInfoBar(i => Math.max(0, i - 1));
         if (e.key === "ArrowDown") setActiveInfoBar(i => Math.min(barCount - 1, i + 1));
         if (e.key === "ArrowLeft") setFocus("left");
-        if (e.key === "Enter")     window.open("https://" + ITEMS[active].links[activeInfoBar], "_blank");
+        if (e.key === "Enter")     openExternalLink(ITEMS[active].links[activeInfoBar]);
       }
       if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, navigate, focus]);
+  }, [active, navigate, focus, activeInfoBar]);
 
   return (
     <div id="menu-screen">
@@ -93,25 +102,31 @@ export default function Socials() {
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 6px;
+          gap: 16px;
           padding-left: 0;
         }
 
-        /* ── Each bar ── */
+        /* ACTUALIZADO: .sc-bar ya no tiene clip-path ni overflow para permitir que el retrato sobresalga */
         .sc-bar {
           position: relative;
           width: 45vw;
           height: 64px;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
-          background: #111;
           cursor: pointer;
           pointer-events: all;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
           z-index: 1;
         }
 
-        /* wrapper holds both the red underlay and the bar */
+        /* NUEVO: Capa de fondo dedicada con clip-path y sombra */
+        .sc-bar-bg {
+          position: absolute;
+          inset: 0;
+          background: #111;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
+          z-index: 0;
+        }
+
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
@@ -125,7 +140,6 @@ export default function Socials() {
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
@@ -141,7 +155,6 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
-        /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
           position: absolute;
           inset: 0;
@@ -149,28 +162,26 @@ export default function Socials() {
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
           transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-          z-index: 0;
+          z-index: 1;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
-        /* shade on the left edge of the white fill */
         .sc-bar-shade {
           position: absolute;
           top: 0; bottom: 0;
           left: 73%;
           width: 6%;
           background: linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%);
-          z-index: 1;
+          z-index: 2;
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.35s ease;
         }
         .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
 
-        /* bottom shadow line under each bar */
-        .sc-bar::after {
+        .sc-bar-bg::after {
           content: '';
           position: absolute;
           bottom: 0; left: 0; right: 0;
@@ -180,33 +191,33 @@ export default function Socials() {
           pointer-events: none;
         }
 
-        /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
-          z-index: 2;
+          z-index: 4;
           height: 100%;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 20px 0 20px;
+          padding: 0 20px 0 0;
         }
 
-        /* left: role label */
+        /* ACTUALIZADO: Margen izquierdo amplio y rotación ajustada para no cortar el texto */
         .sc-role {
           display: flex;
           align-items: center;
           flex-shrink: 0;
           font-family: 'Anton', sans-serif;
-          font-size: 50px;
-          letter-spacing: -2px;
+          font-size: 46px;
+          letter-spacing: -1px;
           color: #ffffff;
-          transform: rotate(-30deg);
+          transform: rotate(-22deg);
+          transform-origin: center right;
           user-select: none;
           line-height: 1;
-          padding: 0 16px 0 8px;
+          margin-left: 28px;
+          padding-right: 12px;
         }
 
-        /* left: icon + name centered in remaining space */
         .sc-main {
           flex: 1;
           display: flex;
@@ -244,7 +255,6 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* lb/rb nav row */
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50%       { transform: translateX(-5px); opacity: 0.4; }
@@ -271,7 +281,6 @@ export default function Socials() {
         .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* right: stats group */
         .sc-stats {
           display: flex;
           align-items: center;
@@ -332,27 +341,26 @@ export default function Socials() {
           background: #000;
         }
 
-        /* character portrait */
+        /* ACTUALIZADO: Posicionado desde 'bottom' y más alto para sobresalir libremente de la barra */
         .sc-char {
           position: absolute;
-          top: 0;
-          left: 110px;
-          height: 100%;
+          bottom: 0;
+          left: 140px;
+          height: 130px;
           width: auto;
-          max-width: 160px;
-          object-fit: cover;
-          object-position: top;
+          max-width: 180px;
+          object-fit: contain;
+          object-position: bottom left;
           pointer-events: none;
           z-index: 3;
-          clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+          filter: drop-shadow(6px 0 8px rgba(0,0,0,0.7));
+          transition: height 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s ease;
+        }
+        .sc-bar-outer.active .sc-char {
+          height: 150px;
+          transform: translateX(8px) scale(1.03);
         }
 
-        /* right-side nav bar */
-        @keyframes sc-right-nav-pop {
-          0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
-          65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
-          100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
         .sc-right-nav {
           position: fixed;
           top: 40px;
@@ -396,7 +404,6 @@ export default function Socials() {
         .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* info panel */
         .sc-info-panel {
           position: fixed;
           top: 132px;
@@ -471,9 +478,13 @@ export default function Socials() {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
           letter-spacing: 2px;
-          color: #111;
+          color: #ffffff;
           padding: 0 14px;
           user-select: none;
+          transition: color 0.2s ease;
+        }
+        .sc-info-bar-wrap.selected .sc-info-bar-text {
+          color: #111;
         }
         .sc-info-bar-box {
           height: 70%;
@@ -505,13 +516,16 @@ export default function Socials() {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
           letter-spacing: 1px;
-          color: #111;
+          color: #ffffff;
           margin-right: 80px;
           flex-shrink: 0;
           user-select: none;
+          transition: color 0.2s ease;
+        }
+        .sc-info-bar-wrap.selected .sc-info-bar-count {
+          color: #111;
         }
 
-        /* footer hints */
         .sc-footer {
           position: fixed;
           bottom: 20px; right: 28px;
@@ -554,7 +568,7 @@ export default function Socials() {
           .sc-root {
             justify-content: flex-start;
             padding-top: 12px;
-            gap: 3px;
+            gap: 6px;
           }
 
           .sc-info-panel {
@@ -605,13 +619,15 @@ export default function Socials() {
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
-              if (active === i) window.open(item.href, "_blank");
+              if (active === i) openExternalLink(item.href);
               else setActive(i);
             }}
             onMouseEnter={() => setActive(i)}
           >
             <div className="sc-bar-red" />
             <div className="sc-bar">
+              {/* NUEVO: Contenedor de fondo con clip-path separado para no cortar el retrato */}
+              <div className="sc-bar-bg" />
               <img className="sc-char" src={CHARS[i]} alt="" />
               <div className="sc-bar-fill" />
               <div className="sc-bar-shade" />
@@ -662,7 +678,7 @@ export default function Socials() {
               style={{ animationDelay: `${i * 50}ms` }}
               onClick={() => {
                 if (isMobileViewport || activeInfoBar === i) {
-                  window.open("https://" + ITEMS[active].links[i], "_blank");
+                  openExternalLink(ITEMS[active].links[i]);
                   return;
                 }
                 setActiveInfoBar(i);
@@ -674,7 +690,8 @@ export default function Socials() {
               )}
               <div className="sc-info-bar">
                 <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
-                <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
+                {/* ACTUALIZADO: Ahora lee el arreglo 'titles' en vez de recortar la URL */}
+                <span className="sc-info-bar-text">{ITEMS[active].titles[i]}</span>
                 <span className="sc-info-bar-box">VIEWS</span>
                 <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
               </div>
@@ -696,7 +713,7 @@ export default function Socials() {
         <button
           className="sc-mobile-btn"
           type="button"
-          onClick={() => window.open(ITEMS[active].href, "_blank")}
+          onClick={() => openExternalLink(ITEMS[active].href)}
         >
           OPEN
         </button>
