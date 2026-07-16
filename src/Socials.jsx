@@ -56,7 +56,6 @@ export default function Socials() {
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
-  // Función auxiliar para abrir enlaces sin duplicar "https://"
   const openExternalLink = (url) => {
     const targetUrl = url.startsWith("http") ? url : "https://" + url;
     window.open(targetUrl, "_blank", "noopener,noreferrer");
@@ -106,7 +105,6 @@ export default function Socials() {
           padding-left: 0;
         }
 
-        /* ACTUALIZADO: .sc-bar ya no tiene clip-path ni overflow para permitir que el retrato sobresalga */
         .sc-bar {
           position: relative;
           width: 45vw;
@@ -117,7 +115,6 @@ export default function Socials() {
           z-index: 1;
         }
 
-        /* NUEVO: Capa de fondo dedicada con clip-path y sombra */
         .sc-bar-bg {
           position: absolute;
           inset: 0;
@@ -127,12 +124,15 @@ export default function Socials() {
           z-index: 0;
         }
 
+        /* UPGRADED: Added z-index management so the active bar ALWAYS elevates above adjacent siblings */
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
           transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          z-index: 1;
         }
+        .sc-bar-outer.active { z-index: 20; }
         .sc-bar-outer.active .sc-bar     { height: 90px; }
         .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
@@ -201,7 +201,6 @@ export default function Socials() {
           padding: 0 20px 0 0;
         }
 
-        /* ACTUALIZADO: Margen izquierdo amplio y rotación ajustada para no cortar el texto */
         .sc-role {
           display: flex;
           align-items: center;
@@ -341,24 +340,24 @@ export default function Socials() {
           background: #000;
         }
 
-        /* ACTUALIZADO: Posicionado desde 'bottom' y más alto para sobresalir libremente de la barra */
+        /* UPGRADED: Contained strictly to 100% bar height with diagonal clip-path trimming */
         .sc-char {
           position: absolute;
+          top: 0;
           bottom: 0;
-          left: 140px;
-          height: 130px;
-          width: auto;
-          max-width: 180px;
-          object-fit: contain;
-          object-position: bottom left;
+          left: 135px;
+          height: 100%;
+          width: 170px;
+          object-fit: cover;
+          object-position: right center;
           pointer-events: none;
           z-index: 3;
-          filter: drop-shadow(6px 0 8px rgba(0,0,0,0.7));
-          transition: height 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s ease;
+          clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+          transition: width 0.3s cubic-bezier(0.22,1,0.36,1), left 0.3s cubic-bezier(0.22,1,0.36,1);
         }
         .sc-bar-outer.active .sc-char {
-          height: 150px;
-          transform: translateX(8px) scale(1.03);
+          width: 190px;
+          left: 140px;
         }
 
         .sc-right-nav {
@@ -626,7 +625,6 @@ export default function Socials() {
           >
             <div className="sc-bar-red" />
             <div className="sc-bar">
-              {/* NUEVO: Contenedor de fondo con clip-path separado para no cortar el retrato */}
               <div className="sc-bar-bg" />
               <img className="sc-char" src={CHARS[i]} alt="" />
               <div className="sc-bar-fill" />
@@ -690,7 +688,6 @@ export default function Socials() {
               )}
               <div className="sc-info-bar">
                 <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
-                {/* ACTUALIZADO: Ahora lee el arreglo 'titles' en vez de recortar la URL */}
                 <span className="sc-info-bar-text">{ITEMS[active].titles[i]}</span>
                 <span className="sc-info-bar-box">VIEWS</span>
                 <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
@@ -721,3 +718,6 @@ export default function Socials() {
     </div>
   );
 }
+
+
+  );
