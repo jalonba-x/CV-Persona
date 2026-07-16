@@ -135,8 +135,8 @@ export default function ResumePage() {
         .resume-card {
           position: relative;
           height: 112px;
-          margin-left:22px;
-          width:calc(100% - 22px);
+          margin-left:-18px;
+          width:calc(100% - 18px);
           background: linear-gradient(
           180deg,
           #181818 0%,
@@ -170,7 +170,7 @@ export default function ResumePage() {
         .resume-card-inner {
           position: absolute;
           inset: 0;
-          padding: 14px 22px 14px 82px;
+          padding: 14px 22px 14px 90px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
@@ -180,17 +180,18 @@ export default function ResumePage() {
         .resume-badge {
           position: absolute;
           top: 8px;
-          left: -28px;
-          width: 72px;
-          height: 80px;
+          left: 10px;
+          width: 60px;
+          height: 78px;
           z-index:5;
           background: #0d0d0d;
           border: 3px solid #ffffff;
-          clip-path: polygon(14% 0, 100% 0, 84% 100%, 0 100%);
+          clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
           display: flex;
           align-items: center;
           justify-content: center;
           transform: rotate(-8deg);
+          z-index:10;
           box-shadow: 0 4px 0 rgba(13,13,13,0.28);
           transition: background 0.22s ease, border-color 0.22s ease;
         }
