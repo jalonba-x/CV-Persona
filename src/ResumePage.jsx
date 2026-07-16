@@ -409,7 +409,8 @@ export default function ResumePage() {
         .resume-detail-bottom-title {
           font-family: 'Persona5Main';
           font-size: 30px;
-          letter-spacing: 2px;
+          letter-spacing: 0.5px;
+          word-spacing: 2px;
           color: #ffffff;
           margin-bottom: 14px;
         }
