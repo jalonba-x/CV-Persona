@@ -151,8 +151,8 @@ export default function ResumePage() {
         .resume-card-wrap.active .resume-card {
           background: #ffffff;
           box-shadow: 10px 8px 0 #d92323;
-          translateX(8px)
-          scale(1.03)
+          transform: translateX(8px),
+          scale(1.03),
           rotate(-0.4deg);
         }
 
