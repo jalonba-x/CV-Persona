@@ -176,7 +176,7 @@ function MenuScreen() {
 
   const handleNavigate = (page) => {
     if (page === 'github') {
-      window.open('https://github.com/ffaneto', '_blank', 'noopener,noreferrer')
+      window.open('https://github.com/jalonba-x/CV-Persona', '_blank', 'noopener,noreferrer')
       return
     }
     navigate(`/${page}`)
