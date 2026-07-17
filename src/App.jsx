@@ -15,15 +15,45 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
+/* ==========================================
+   GLOBAL MOBILE TOUCH-SWIPE ENGINE
+   Includes a Drag Interceptor to prevent accidental 
+   hyperlink clicks when scrolling or swiping.
+========================================== */
 function useTouchGestures() {
   useEffect(() => {
     let touchStartX = 0;
     let touchStartY = 0;
-    const MIN_SWIPE_DISTANCE = 45; // Minimum pixel threshold to prevent accidental taps
+    let isDragging = false;
+    const MIN_SWIPE_DISTANCE = 45; // Minimum px for left/right navigation swipes
+    const DRAG_THRESHOLD = 10;     // Minimum px to classify touch as a scroll/drag instead of a tap
 
     const onTouchStart = (e) => {
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
+      isDragging = false;
+    };
+
+    const onTouchMove = (e) => {
+      const currentX = e.changedTouches[0].screenX;
+      const currentY = e.changedTouches[0].screenY;
+      const distance = Math.hypot(currentX - touchStartX, currentY - touchStartY);
+      
+      // If the finger moves more than 10px, flag it as a scroll/drag gesture
+      if (distance > DRAG_THRESHOLD) {
+        isDragging = true;
+      }
+    };
+
+    // Intercept and destroy accidental clicks if the user was scrolling or swiping
+    const onClickCapture = (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        isDragging = false;
+        return false;
+      }
     };
 
     const onTouchEnd = (e) => {
@@ -33,44 +63,43 @@ function useTouchGestures() {
       const deltaX = touchEndX - touchStartX;
       const deltaY = touchEndY - touchStartY;
       
-      // Ignore minor movements (taps or clicks)
+      // If movement was minimal, let native taps/clicks proceed normally
       if (Math.abs(deltaX) < MIN_SWIPE_DISTANCE && Math.abs(deltaY) < MIN_SWIPE_DISTANCE) {
         return;
       }
 
       let keyToDispatch = null;
 
-      // Determine if swipe was primarily horizontal or vertical
+      // ONLY intercept horizontal swipes (left/right) for back/forward navigation
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0) {
-          // Swipe Right -> Back Navigation
-          keyToDispatch = 'ArrowLeft';
+          keyToDispatch = 'ArrowLeft'; // Swipe Right -> Go Back
         } else {
-          // Swipe Left -> Select / Forward Navigation
-          keyToDispatch = 'Enter';
-        }
-      } else {
-        if (deltaY > 0) {
-          // Swipe Down -> Move Selection Up
-          keyToDispatch = 'ArrowUp';
-        } else {
-          // Swipe Up -> Move Selection Down
-          keyToDispatch = 'ArrowDown';
+          keyToDispatch = 'Enter';     // Swipe Left -> Select / Forward
         }
       }
 
-      // Dispatch global event caught by your existing useEffect keyboard listeners
       if (keyToDispatch) {
+        // Remove focus from any touched button/link so synthetic Enter doesn't click it
+        if (document.activeElement && document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
         window.dispatchEvent(new KeyboardEvent('keydown', { key: keyToDispatch, bubbles: true }));
       }
     };
 
     window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
+    
+    // Capturing phase (true) intercepts the click before it reaches the <a> or <button>
+    window.addEventListener('click', onClickCapture, true);
 
     return () => {
       window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('click', onClickCapture, true);
     };
   }, []);
 }
@@ -377,7 +406,6 @@ function OrientationOverlay() {
 }
 
 export default function App() {
-  // Activate global touch-to-keyboard gesture translations
   useTouchGestures()
 
   return (
