@@ -66,26 +66,26 @@ export default function SideProjectsPage() {
           z-index: 10;
           display: grid;
           grid-template-columns: 48% 52%;
-          gap: 20px;
-          padding: 6vh 3vw;
+          gap: 1cqw;
+          padding: 6cqh 3cqw;
         }
 
         .sp-left {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 1.1cqh;
         }
 
         .sp-title {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 72px;
+          font-size: 3.75cqw;
           color: #ffffff;
           line-height: 0.92;
-          letter-spacing: 1px;
-          text-shadow: 0 2px 0 rgba(13,13,13,0.3);
-          margin-bottom: 8px;
+          letter-spacing: 0.05cqw;
+          text-shadow: 0 0.2cqh 0 rgba(13,13,13,0.3);
+          margin-bottom: 0.75cqh;
           opacity: 0;
-          transform: translateX(-24px);
+          transform: translateX(-1.25cqw);
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .sp-title.mounted {
@@ -95,14 +95,14 @@ export default function SideProjectsPage() {
 
         .sp-item {
           position: relative;
-          min-height: 94px;
+          min-height: 8.7cqh;
           background: rgba(13,13,13,0.94);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), 0 8px 16px rgba(13,13,13,0.35);
-          padding: 14px 16px;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.7cqw) 100%, 0 100%);
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), 0 0.75cqh 1.5cqh rgba(13,13,13,0.35);
+          padding: 1.3cqh 0.8cqw;
           cursor: pointer;
           opacity: 0;
-          transform: translateX(-36px);
+          transform: translateX(-1.8cqw);
           transition: transform 0.24s ease, background 0.24s ease, opacity 0.4s ease;
         }
         .sp-item.mounted {
@@ -111,12 +111,12 @@ export default function SideProjectsPage() {
         }
         .sp-item.active {
           background: rgba(255, 255, 255, 0.97);
-          transform: translateX(6px);
+          transform: translateX(0.3cqw);
         }
 
         .sp-item-title {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 42px;
+          font-size: 2.2cqw;
           line-height: 0.9;
           color: #ffffff;
         }
@@ -126,10 +126,10 @@ export default function SideProjectsPage() {
 
         .sp-item-stack {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 26px;
-          letter-spacing: 1.4px;
+          font-size: 1.35cqw;
+          letter-spacing: 0.07cqw;
           color: #ffffff;
-          margin-top: 4px;
+          margin-top: 0.37cqh;
         }
         .sp-item.active .sp-item-stack {
           color: #0d0d0d;
@@ -138,52 +138,51 @@ export default function SideProjectsPage() {
         .sp-right {
           position: relative;
           background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.96) 100%);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
-          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 12px 12px 0 rgba(13,13,13,0.5);
-          padding: 24px;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.9cqw) 100%, 0 100%);
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0.6cqw 1.1cqh 0 rgba(13,13,13,0.5);
+          padding: 2.2cqh 1.25cqw;
           overflow: hidden;
         }
 
         .sp-tag {
           display: inline-block;
           font-family: 'Persona5Main', sans-serif;
-          font-size: 24px;
-          letter-spacing: 1.6px;
+          font-size: 1.25cqw;
+          letter-spacing: 0.08cqw;
           background: #ffffff;
           color: #0d0d0d;
-          padding: 4px 10px;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+          padding: 0.37cqh 0.5cqw;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.4cqw) 100%, 0 100%);
         }
 
         .sp-right-title {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 64px;
+          font-size: 3.3cqw;
           line-height: 0.92;
           color: #ffffff;
-          margin-top: 16px;
+          margin-top: 1.5cqh;
         }
 
         .sp-right-summary {
-          margin-top: 16px;
+          margin-top: 1.5cqh;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 38px;
+          font-size: 2cqw;
           line-height: 1.05;
-          letter-spacing: 1px;
+          letter-spacing: 0.05cqw;
           color: #ffffff;
         }
 
-        /* UPGRADED: Now formatted as an interactive, clickable button with hover state */
         .sp-link {
-          margin-top: 28px;
+          margin-top: 2.6cqh;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 28px;
-          letter-spacing: 1px;
+          font-size: 1.45cqw;
+          letter-spacing: 0.05cqw;
           color: #ffffff;
           background: #d92323;
           display: inline-flex;
           align-items: center;
-          padding: 8px 18px;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+          padding: 0.75cqh 0.9cqw;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.5cqw) 100%, 0 100%);
           text-decoration: none;
           cursor: pointer;
           transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
@@ -191,23 +190,23 @@ export default function SideProjectsPage() {
         .sp-link:hover {
           background: #ffffff;
           color: #0d0d0d;
-          transform: translateX(6px) scale(1.02);
-          box-shadow: -6px 0 0 #d92323;
+          transform: translateX(0.3cqw) scale(1.02);
+          box-shadow: -0.3cqw 0 0 #d92323;
         }
 
         .sp-footer {
-          position: fixed;
-          right: 28px;
-          bottom: 20px;
+          position: absolute;
+          right: 1.5cqw;
+          bottom: 1.8cqh;
           z-index: 20;
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          gap: 4px;
+          gap: 0.4cqh;
           font-family: 'Persona5Main', sans-serif;
           color: rgba(255,255,255,0.7);
-          letter-spacing: 2px;
-          font-size: 12px;
+          letter-spacing: 0.1cqw;
+          font-size: 0.65cqw;
         }
       `}</style>
 
@@ -233,7 +232,6 @@ export default function SideProjectsPage() {
           <div className="sp-right-title">{ITEMS[active].title}</div>
           <div className="sp-right-summary">{ITEMS[active].summary}</div>
           
-          {/* UPGRADED: Semantic anchor tag leading to the active item's href */}
           <a 
             className="sp-link" 
             href={ITEMS[active].href} 
