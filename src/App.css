@@ -51,29 +51,41 @@ html, body {
   pointer-events: none;
 }
 
-/* Content layer allows vertical sliding with native touchscreen momentum */
+/* Outer content boundary remains locked to the viewport */
 .site-content-layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 10;
+  overflow: hidden;
+}
+
+/* 
+  CRITICAL FIX: Framer Motion page transition wrappers (.site-content-layer > *) 
+  must remain absolute with 100% height so #menu-screen never collapses to 0px.
+  We apply overflow-y: auto here so taller pages can scroll internally!
+*/
+.site-content-layer > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Let child page containers expand naturally for scrolling */
-.site-content-layer > *,
+/* Let individual content pages grow naturally when content overflows */
 .site-content-layer > * > * {
   position: relative;
   width: 100%;
   min-height: 100%;
 }
 
-/* Screens that should not scroll vertically */
+/* Screens that should explicitly lock and never scroll vertically */
 #menu-screen {
-  position: absolute;
+  position: absolute !important;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -90,25 +102,25 @@ html, body {
   pointer-events: none;
 }
 
-/* Persona 5 Stylized Sidebar Scrollbar */
-.site-content-layer::-webkit-scrollbar {
+/* Persona 5 Stylized Sidebar Scrollbar applied to the scrolling page wrappers */
+.site-content-layer > *::-webkit-scrollbar {
   width: 10px;
 }
 
-.site-content-layer::-webkit-scrollbar-track {
+.site-content-layer > *::-webkit-scrollbar-track {
   background: rgba(13, 13, 13, 0.85);
   border-left: 2px solid #000000;
 }
 
-.site-content-layer::-webkit-scrollbar-thumb {
+.site-content-layer > *::-webkit-scrollbar-thumb {
   background-color: #d92323;
   border: 2px solid #000000;
   border-radius: 0;
   box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.5);
 }
 
-.site-content-layer::-webkit-scrollbar-thumb:hover,
-.site-content-layer::-webkit-scrollbar-thumb:active {
+.site-content-layer > *::-webkit-scrollbar-thumb:hover,
+.site-content-layer > *::-webkit-scrollbar-thumb:active {
   background-color: #ff3333;
 }
 
