@@ -261,15 +261,14 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* Dedicated Persona 5 styled Link Button */
+        /* Dedicated Persona 5 styled Link Button with External Icon */
         .sc-link-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           background: rgba(255, 255, 255, 0.18);
           color: #ffffff;
-          font-size: 0.9cqw;
-          padding: 0.35cqh 0.5cqw;
+          padding: 0.4cqh 0.5cqw;
           border-radius: 0.15cqw;
           border: none;
           cursor: pointer;
@@ -286,6 +285,19 @@ export default function Socials() {
           color: #000000 !important;
           transform: scale(1.15);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .sc-ext-icon {
+          width: 1.1cqw;
+          height: 1.1cqw;
+          min-width: 14px;
+          min-height: 14px;
+          stroke: currentColor;
+          transition: transform 0.2s ease;
+        }
+
+        .sc-link-btn:hover .sc-ext-icon {
+          transform: translate(1px, -1px);
         }
 
         @keyframes sc-arrow-left {
@@ -593,8 +605,12 @@ export default function Socials() {
           }
 
           .sc-link-btn {
-            font-size: 14px;
             padding: 4px 8px;
+          }
+
+          .sc-ext-icon {
+            width: 16px;
+            height: 16px;
           }
 
           .sc-info-panel {
@@ -669,7 +685,11 @@ export default function Socials() {
                           openExternalLink(item.href);
                         }}
                       >
-                        <i className="fa-solid fa-link"></i>
+                        <svg className="sc-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
                       </button>
                     </div>
                   </div>
