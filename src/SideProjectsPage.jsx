@@ -49,7 +49,6 @@ export default function SideProjectsPage() {
     const onKey = (e) => {
       if (e.key === "ArrowUp") setActive((i) => Math.max(0, i - 1));
       if (e.key === "ArrowDown") setActive((i) => Math.min(ITEMS.length - 1, i + 1));
-      if (e.key === "Enter") window.open(ITEMS[active].href, "_blank", "noopener,noreferrer");
       if (e.key === "ArrowLeft" || e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
 
@@ -219,7 +218,7 @@ export default function SideProjectsPage() {
               className={`sp-item${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => window.open(item.href, "_blank", "noopener,noreferrer")}
+              onClick={() => setActive(index)}
             >
               <div className="sp-item-title">{item.title}</div>
               <div className="sp-item-stack">{item.stack}</div>
@@ -245,7 +244,6 @@ export default function SideProjectsPage() {
 
       <div className="sp-footer">
         <div>UP / DOWN SELECT</div>
-        <div>ENTER OPEN</div>
         <div>ESC BACK</div>
       </div>
     </div>
