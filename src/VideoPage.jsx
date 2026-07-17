@@ -11,8 +11,8 @@ export default function VideoPage({ src }) {
     width: "100vw",
     height: "100vh",
     objectFit: "cover",
-    zIndex: -1,            // MUST BE NEGATIVE ONE to push it behind text/buttons!
-    pointerEvents: "none", // ALLOWS clicks to pass right through the video to the buttons
+    zIndex: -1,            
+    pointerEvents: "none", 
   };
 
   useEffect(() => {
@@ -24,7 +24,6 @@ export default function VideoPage({ src }) {
   }, [navigate])
 
   return (
-    // Apply the styles directly to the outer wrapper so it becomes a ghost element
     <div id="video-screen" style={videoContainerStyle}>
       {src && (
         <video 
