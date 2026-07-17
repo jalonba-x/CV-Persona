@@ -330,11 +330,11 @@ function OrientationOverlay() {
           pointer-events: all;
         }
 
-        @media (orientation: portrait), (max-aspect-ratio: 4/3) {
-          .orientation-guard {
-            display: flex;
-          }
+        @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+        .orientation-guard {
+        display: flex;
         }
+      }
 
         .og-badge {
           font-family: 'Persona5Main', sans-serif;
