@@ -15,18 +15,13 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
-/* ==========================================
-   GLOBAL MOBILE TOUCH-SWIPE ENGINE
-   Includes a Drag Interceptor to prevent accidental 
-   hyperlink clicks when scrolling or swiping.
-========================================== */
 function useTouchGestures() {
   useEffect(() => {
     let touchStartX = 0;
     let touchStartY = 0;
     let isDragging = false;
-    const MIN_SWIPE_DISTANCE = 45; // Minimum px for left/right navigation swipes
-    const DRAG_THRESHOLD = 10;     // Minimum px to classify touch as a scroll/drag instead of a tap
+    const MIN_SWIPE_DISTANCE = 45; 
+    const DRAG_THRESHOLD = 10;   
 
     const onTouchStart = (e) => {
       touchStartX = e.changedTouches[0].screenX;
@@ -39,13 +34,13 @@ function useTouchGestures() {
       const currentY = e.changedTouches[0].screenY;
       const distance = Math.hypot(currentX - touchStartX, currentY - touchStartY);
       
-      // If the finger moves more than 10px, flag it as a scroll/drag gesture
+   
       if (distance > DRAG_THRESHOLD) {
         isDragging = true;
       }
     };
 
-    // Intercept and destroy accidental clicks if the user was scrolling or swiping
+ 
     const onClickCapture = (e) => {
       if (isDragging) {
         e.preventDefault();
@@ -63,14 +58,12 @@ function useTouchGestures() {
       const deltaX = touchEndX - touchStartX;
       const deltaY = touchEndY - touchStartY;
       
-      // If movement was minimal, let native taps/clicks proceed normally
       if (Math.abs(deltaX) < MIN_SWIPE_DISTANCE && Math.abs(deltaY) < MIN_SWIPE_DISTANCE) {
         return;
       }
 
       let keyToDispatch = null;
 
-      // ONLY intercept horizontal swipes (left/right) for back/forward navigation
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX > 0) {
           keyToDispatch = 'ArrowLeft'; // Swipe Right -> Go Back
@@ -80,7 +73,6 @@ function useTouchGestures() {
       }
 
       if (keyToDispatch) {
-        // Remove focus from any touched button/link so synthetic Enter doesn't click it
         if (document.activeElement && document.activeElement instanceof HTMLElement) {
           document.activeElement.blur();
         }
@@ -92,7 +84,6 @@ function useTouchGestures() {
     window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
     
-    // Capturing phase (true) intercepts the click before it reaches the <a> or <button>
     window.addEventListener('click', onClickCapture, true);
 
     return () => {
