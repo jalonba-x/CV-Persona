@@ -261,7 +261,6 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* Dedicated Persona 5 styled Link Button with External Icon */
         .sc-link-btn {
           display: inline-flex;
           align-items: center;
