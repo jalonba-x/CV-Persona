@@ -184,7 +184,6 @@ function MenuScreen() {
 
   return (
     <div id="menu-screen">
-      {/* <video src={menuVideo} autoPlay loop muted playsInline /> */}
       <P5Menu onNavigate={handleNavigate} />
     </div>
   )
@@ -230,14 +229,17 @@ function AnimatedRoutes() {
   )
 }
 
+// ---> GLOBAL 16:9 STAGE WRAPPER APPLIED HERE <---
 export default function App() {
   return (
-    <>
-      <SiteBackgroundVideo />
-      <div className="site-content-layer">
-        <AnimatedRoutes />
+    <div className="stage-container">
+      <div className="stage-viewport">
+        <SiteBackgroundVideo />
+        <div className="site-content-layer">
+          <AnimatedRoutes />
+        </div>
+        <BackgroundMusic />
       </div>
-      <BackgroundMusic />
-    </>
+    </div>
   )
 }
