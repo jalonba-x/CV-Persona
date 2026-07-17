@@ -7,7 +7,7 @@ const ITEMS = [
     id: "Fanbook editing and translation",
     title: "Digital Monster Catalog",
     stack: "Adobe InDesign",
-    summary: "Fan-made, multilingual archival book detailing the debut of all Digimon from 1997 to 2026",
+    summary: "A fan-made, multilingual archival book detailing the debut of all Digimon from 1997 to 2026",
     href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
@@ -21,7 +21,7 @@ const ITEMS = [
     id: "Fan video edition",
     title: "Tribute to Hunter X Hunter 134 (miniature rose)",
     stack: "Adobe Premiere",
-    summary: "Youtube video showing fitting real life images in the context of a Hunter x Hunter episode scene",
+    summary: "An edited anime scene using real life images instead",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
   }
 ];
