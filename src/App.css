@@ -41,7 +41,7 @@ html, body {
 /* Ensure background video and content layers fill the locked stage exactly */
 .site-bg-video,
 .site-content-layer,
-.site-content-later > *
+.site-content-layer > *,
 .site-content-layer > * > * {
   position: absolute;
   inset: 0;
