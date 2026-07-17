@@ -17,7 +17,6 @@ const ROLES = [
   { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
 ];
 
-// ACTUALIZADO: Se agregó el arreglo 'titles' para mostrar textos limpios en el panel derecho en lugar de URLs
 const ITEMS = [
   {
     id: "X", label: "X (TWITTER)", handle: "@jalonba", href: "https://x.com/Jalonba", icon: "𝕏", barIcon: icon1, bars: 1, newBars: [0], counts: ["76"],
@@ -101,14 +100,15 @@ export default function Socials() {
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 16px;
+          gap: 1.8cqh;
           padding-left: 0;
+          left: 4.5cqw;
         }
 
         .sc-bar {
           position: relative;
-          width: 45vw;
-          height: 64px;
+          width: 45cqw;
+          height: 6.5cqh;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           cursor: pointer;
           pointer-events: all;
@@ -119,12 +119,11 @@ export default function Socials() {
           position: absolute;
           inset: 0;
           background: #111;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.75cqw) 100%, 0 100%);
+          box-shadow: 0 0.6cqh 2.4cqh rgba(0,0,0,0.65);
           z-index: 0;
         }
 
-        /* UPGRADED: Added z-index management so the active bar ALWAYS elevates above adjacent siblings */
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
@@ -133,8 +132,8 @@ export default function Socials() {
           z-index: 1;
         }
         .sc-bar-outer.active { z-index: 20; }
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; }
+        .sc-bar-outer.active .sc-bar     { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar-red { height: 9cqh; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
@@ -143,11 +142,11 @@ export default function Socials() {
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
-          width: 45vw;
-          height: 64px;
+          width: 45cqw;
+          height: 6.5cqh;
           background: #c4001a;
-          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
-          transform: translateY(-7px);
+          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 0.55cqw) 100%);
+          transform: translateY(-0.7cqh);
           opacity: 0;
           transition: opacity 0.2s ease;
           z-index: 0;
@@ -160,12 +159,12 @@ export default function Socials() {
           inset: 0;
           width: 100%;
           background: #ffffff;
-          clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
+          clip-path: polygon(100% 0, 100% 0, calc(100% - 1.75cqw) 100%, calc(100% - 1.75cqw) 100%);
           transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 1;
         }
         .sc-bar-outer.active .sc-bar-fill {
-          clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
+          clip-path: polygon(22% 0, 100% 0, calc(100% - 0.75cqw) 100%, calc(22% + 7.5cqw) 100%);
         }
 
         .sc-bar-shade {
@@ -185,7 +184,7 @@ export default function Socials() {
           content: '';
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          height: 6px;
+          height: 0.6cqh;
           background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);
           z-index: 10;
           pointer-events: none;
@@ -198,29 +197,29 @@ export default function Socials() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 20px 0 0;
+          padding: 0 1.1cqw 0 0;
         }
 
         .sc-role {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 130px;
+          width: 7cqw;
           flex-shrink: 0;
           font-family: 'Anton', sans-serif;
-          font-size: 30px;
-          letter-spacing: 1px;
+          font-size: 1.6cqw;
+          letter-spacing: 0.05cqw;
           color: #ffffff;
-          transform: translate(-7px), rotate(-15deg);
+          transform: translate(-0.4cqw) rotate(-15deg);
           transform-origin: center right;
           user-select: none;
           line-height: 1;
-          margin-left: 10px;
+          margin-left: 0.55cqw;
           transition: font-size 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1);
         }
         .sc-bar-outer.active .sc-role {
-          font-size: 42px;
-          transform: translateY(-4px) rotate(-15deg) scale(1.03);
+          font-size: 2.2cqw;
+          transform: translateY(-0.4cqh) rotate(-15deg) scale(1.03);
         }
         .sc-main {
           flex: 1;
@@ -228,18 +227,18 @@ export default function Socials() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 3px;
+          gap: 0.3cqh;
         }
         .sc-main-top {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 0.65cqw;
         }
 
         .sc-icon {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          width: 32px;
+          font-size: 1.2cqw;
+          width: 1.75cqw;
           text-align: center;
           flex-shrink: 0;
           color: rgba(255,255,255,0.15);
@@ -250,8 +249,8 @@ export default function Socials() {
 
         .sc-label {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 28px;
-          letter-spacing: 4px;
+          font-size: 1.55cqw;
+          letter-spacing: 0.22cqw;
           line-height: 1;
           color: rgba(255,255,255,0.85);
           transition: color 0.2s ease;
@@ -261,24 +260,27 @@ export default function Socials() {
 
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(-5px); opacity: 0.4; }
+          50%       { transform: translateX(-0.3cqw); opacity: 0.4; }
         }
         @keyframes sc-arrow-right {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(5px); opacity: 0.4; }
+          50%       { transform: translateX(0.3cqw); opacity: 0.4; }
         }
         .sc-nav-btn {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 2px;
-          color: #111;
-          border: 1px solid rgba(0,0,0,0.35);
-          padding: 1px 7px;
-          line-height: 1.5;
+          font-size: 5.5cqw;
+          letter-spacing: 0.16cqw;
+          color: #fff;
+          -webkit-text-stroke: 0.1cqw #000;
+          paint-order: stroke fill;
+          background: none;
+          border: none;
+          padding: 0 0.3cqw;
+          line-height: 1;
           user-select: none;
         }
         .sc-nav-arrow {
-          font-size: 12px;
+          font-size: 1.2cqw;
           color: #c4001a;
           display: inline-block;
         }
@@ -288,8 +290,8 @@ export default function Socials() {
         .sc-stats {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding-right: 24px;
+          gap: 0.55cqw;
+          padding-right: 1.3cqw;
           flex-shrink: 0;
         }
 
@@ -302,15 +304,15 @@ export default function Socials() {
         .sc-stat-top {
           display: flex;
           align-items: baseline;
-          gap: 4px;
+          gap: 0.2cqw;
         }
 
         .sc-stat-tag {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          padding: 1px 4px;
-          border-width: 1px;
+          font-size: 0.5cqw;
+          letter-spacing: 0.08cqw;
+          padding: 0.05cqh 0.2cqw;
+          border-width: 0.05cqw;
           border-style: solid;
           line-height: 1.4;
           user-select: none;
@@ -318,11 +320,11 @@ export default function Socials() {
 
         .sc-stat-num {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 26px;
+          font-size: 1.4cqw;
           font-style: italic;
           line-height: 1;
           color: #ffffff;
-          letter-spacing: 1px;
+          letter-spacing: 0.05cqw;
           user-select: none;
           transition: color 0.2s ease;
         }
@@ -332,104 +334,81 @@ export default function Socials() {
           width: 100%;
           display: flex;
           flex-direction: column;
-          gap: 1px;
-          margin-top: 2px;
+          gap: 0.1cqh;
+          margin-top: 0.2cqh;
         }
         .sc-stat-bar-color {
-          height: 3px;
+          height: 0.3cqh;
           width: 100%;
         }
         .sc-stat-bar-black {
-          height: 2px;
+          height: 0.2cqh;
           width: 100%;
           background: #000;
         }
 
-        /* UPGRADED: Contained strictly to 100% bar height with diagonal clip-path trimming */
         .sc-char {
           position: absolute;
           top: 0;
           bottom: 0;
-          left: 135px;
+          left: 7cqw;
           height: 100%;
-          width: 170px;
+          width: 8.8cqw;
           object-fit: cover;
           object-position: right center;
           pointer-events: none;
           z-index: 3;
-          clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+          clip-path: polygon(0.75cqw 0, 100% 0, calc(100% - 0.75cqw) 100%, 0 100%);
           transition: width 0.3s cubic-bezier(0.22,1,0.36,1), left 0.3s cubic-bezier(0.22,1,0.36,1);
         }
         .sc-bar-outer.active .sc-char {
-          width: 190px;
-          left: 140px;
+          width: 10cqw;
+          left: 7.3cqw;
         }
 
         .sc-right-nav {
-          position: fixed;
-          top: 40px;
-          right: 40px;
+          position: absolute;
+          top: 3.7cqh;
+          right: 2.2cqw;
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 0.35cqw;
           pointer-events: none;
           z-index: 50;
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
         }
-        .sc-right-nav .sc-nav-btn {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 100px;
-          letter-spacing: 3px;
-          line-height: 1;
-          user-select: none;
-          color: #fff;
-          -webkit-text-stroke: 2px #000;
-          paint-order: stroke fill;
-          background: none;
-          border: none;
-          padding: 0 6px;
-        }
         .sc-right-nav .sc-nav-label {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 28px;
-          letter-spacing: 3px;
+          font-size: 1.55cqw;
+          letter-spacing: 0.16cqw;
           line-height: 1;
           user-select: none;
           color: #000;
           background: rgba(255, 255, 255, 0.88);
-          padding: 6px 16px;
-          border-radius: 4px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+          padding: 0.35cqh 0.85cqw;
+          border-radius: 0.2cqw;
+          box-shadow: 0 0.4cqh 1.2cqh rgba(0, 0, 0, 0.35);
         }
-        .sc-right-nav .sc-nav-arrow {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          color: #c4001a;
-          display: inline-block;
-          user-select: none;
-        }
-        .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
-        .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
         .sc-info-panel {
-          position: fixed;
-          top: 132px;
+          position: absolute;
+          top: 12.2cqh;
           right: 0;
-          left: 65%;
-          bottom: 84px;
+          left: 65cqw;
+          bottom: 7.8cqh;
           z-index: 50;
           display: flex;
           flex-direction: column;
-          gap: 6px;
-          padding: 8px 8px 8px 0;
+          gap: 0.6cqh;
+          padding: 0.75cqh 0.75cqw 0.75cqh 0;
           overflow-y: auto;
           overflow-x: hidden;
           pointer-events: none;
         }
 
         @keyframes sc-infobar-in {
-          0%   { opacity: 0; transform: translateX(40px); }
-          60%  { opacity: 1; transform: translateX(-4px); }
+          0%   { opacity: 0; transform: translateX(2.2cqw); }
+          60%  { opacity: 1; transform: translateX(-0.2cqw); }
           100% { opacity: 1; transform: translateX(0); }
         }
         .sc-info-bar-wrap {
@@ -437,7 +416,7 @@ export default function Socials() {
           right: auto;
           left: auto;
           width: 100%;
-          height: 46px;
+          height: 4.3cqh;
           background: transparent;
           pointer-events: all;
           cursor: pointer;
@@ -447,8 +426,8 @@ export default function Socials() {
         }
         .sc-info-bar-wrap.selected {
           background: #111;
-          padding: 1.5px;
-          border-radius: 8px;
+          padding: 0.15cqw;
+          border-radius: 0.4cqw;
         }
         .sc-info-bar {
           position: relative;
@@ -461,38 +440,37 @@ export default function Socials() {
         }
         .sc-info-bar-wrap.selected .sc-info-bar {
           background: #fff;
-          border-radius: 7px;
+          border-radius: 0.35cqw;
         }
         .sc-info-bar-new {
-        position: relative;
-        height: 60%; /* Ajustado para que encaje dentro de la barra de forma proporcional */
-        width: auto;
-        margin-left: 14px;
-        margin-right: 2px;
-        pointer-events: none;
-        z-index: 5;
-        flex-shrink: 0;
-        object-fit: contain;
-}
+          position: relative;
+          height: 60%;
+          width: auto;
+          margin-left: 0.75cqw;
+          margin-right: 0.1cqw;
+          pointer-events: none;
+          z-index: 5;
+          flex-shrink: 0;
+          object-fit: contain;
+        }
         .sc-info-bar-new + .sc-info-bar-icon {
-  margin-left: 6px;
-}
+          margin-left: 0.3cqw;
         }
         .sc-info-bar-wrap.selected .sc-info-bar::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
-          height: 4px;
+          height: 0.4cqh;
           background: #c4001a;
           z-index: 1;
         }
         .sc-info-bar-text {
           flex: 1;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          letter-spacing: 2px;
+          font-size: 1.2cqw;
+          letter-spacing: 0.1cqw;
           color: #ffffff;
-          padding: 0 14px;
+          padding: 0 0.75cqw;
           user-select: none;
           transition: color 0.2s ease;
         }
@@ -504,14 +482,14 @@ export default function Socials() {
           background: #000;
           display: flex;
           align-items: center;
-          padding: 0 12px;
+          padding: 0 0.65cqw;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 20px;
-          letter-spacing: 1px;
+          font-size: 1.1cqw;
+          letter-spacing: 0.05cqw;
           color: #fff;
           flex-shrink: 0;
-          border-radius: 6px;
-          margin-right: 4px;
+          border-radius: 0.3cqw;
+          margin-right: 0.2cqw;
           user-select: none;
         }
 
@@ -519,7 +497,7 @@ export default function Socials() {
           height: 55%;
           width: auto;
           flex-shrink: 0;
-          margin-left: 14px;
+          margin-left: 0.75cqw;
           object-fit: contain;
           pointer-events: none;
           user-select: none;
@@ -527,10 +505,10 @@ export default function Socials() {
 
         .sc-info-bar-count {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          letter-spacing: 1px;
+          font-size: 1.2cqw;
+          letter-spacing: 0.05cqw;
           color: #ffffff;
-          margin-right: 80px;
+          margin-right: 4.2cqw;
           flex-shrink: 0;
           user-select: none;
           transition: color 0.2s ease;
@@ -540,10 +518,10 @@ export default function Socials() {
         }
 
         .sc-footer {
-          position: fixed;
-          bottom: 20px; right: 28px;
+          position: absolute;
+          bottom: 2.5cqh; right: 1.6cqw;
           display: flex; flex-direction: column;
-          align-items: flex-end; gap: 5px;
+          align-items: flex-end; gap: 0.5cqh;
           font-family: 'Bebas Neue', sans-serif;
           z-index: 50;
           opacity: 0;
@@ -551,14 +529,14 @@ export default function Socials() {
         }
         .sc-footer.mounted { opacity: 1; }
         .sc-footer-row {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 13px; letter-spacing: 2px;
+          display: flex; align-items: center; gap: 0.4cqw;
+          font-size: 0.72cqw; letter-spacing: 0.1cqw;
           color: rgba(255,255,255,0.22);
         }
         .sc-footer-key {
           border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 3px;
-          padding: 1px 6px; font-size: 11px;
+          border-radius: 0.16cqw;
+          padding: 0.1cqh 0.3cqw; font-size: 0.6cqw;
         }
 
         .sc-mobile-controls {
@@ -695,12 +673,13 @@ export default function Socials() {
                 }
                 setActiveInfoBar(i);
               }}
-onMouseEnter={() => setActiveInfoBar(i)}
-      >
-        <div className="sc-info-bar">
-          {ITEMS[active].newBars.includes(i) && (
-            <img className="sc-info-bar-new" src={newsign} alt="New" />
-          )}                <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
+              onMouseEnter={() => setActiveInfoBar(i)}
+            >
+              <div className="sc-info-bar">
+                {ITEMS[active].newBars.includes(i) && (
+                  <img className="sc-info-bar-new" src={newsign} alt="New" />
+                )}
+                <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
                 <span className="sc-info-bar-text">{ITEMS[active].titles[i]}</span>
                 <span className="sc-info-bar-box">VIEWS</span>
                 <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
