@@ -26,42 +26,53 @@ html, body {
   z-index: 999;
 }
 
+/* Uses Dynamic Viewport Height (dvh) to prevent mobile address bars from clipping content */
 .stage-viewport {
   position: relative;
   width: 100vw;
   height: 56.25vw;
   max-height: 100vh;
-  max-width: 177.78vh;
+  max-height: 100dvh;
+  max-width: calc(100dvh * (16 / 9));
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
   background: #111;
   container-type: size;
 }
 
-/* Ensure background video and content layers fill the locked stage exactly */
-.site-bg-video,
-.site-content-layer,
-.site-content-layer > *,
-.site-content-layer > * > * {
+/* Ensure background video fills the locked stage exactly */
+.site-bg-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.site-bg-video {
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
 }
 
+/* Content layer allows vertical sliding with native touchscreen momentum */
 .site-content-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 10;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Screens inside the stage must use % instead of vw/vh to prevent overflowing */
-#menu-screen,
-#main {
+/* Let child page containers expand naturally for scrolling */
+.site-content-layer > *,
+.site-content-layer > * > * {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Screens that should not scroll vertically */
+#menu-screen {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -79,7 +90,29 @@ html, body {
   pointer-events: none;
 }
 
-/* Background Music UI - Kept absolute so it stays inside the 16:9 screen */
+/* Persona 5 Stylized Sidebar Scrollbar */
+.site-content-layer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.site-content-layer::-webkit-scrollbar-track {
+  background: rgba(13, 13, 13, 0.85);
+  border-left: 2px solid #000000;
+}
+
+.site-content-layer::-webkit-scrollbar-thumb {
+  background-color: #d92323;
+  border: 2px solid #000000;
+  border-radius: 0;
+  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.site-content-layer::-webkit-scrollbar-thumb:hover,
+.site-content-layer::-webkit-scrollbar-thumb:active {
+  background-color: #ff3333;
+}
+
+/* Background Music UI */
 .bgm-panel {
   position: absolute;
   left: 20px;
