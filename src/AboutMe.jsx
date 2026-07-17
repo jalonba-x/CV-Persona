@@ -21,7 +21,7 @@ const REVEAL_CONTENT = [
       "Freelance EN-ES language localization specialist",
       "Looking to break into the gaming industry",
     ],
-    lower: "Name: Javier Barrera | Age: 33 | Location: Santiago, Chile",
+    lower: "Name: Javier Barrera | Age: 33 | Location: Chile",
   },
   {
     upper: [
@@ -126,7 +126,6 @@ export default function AboutMe() {
       )}
 
       <style>{`
-        /* ── Layer 1: Main Menu Buttons Container ── */
         .sc-root {
           position: absolute;
           inset: 0;
@@ -141,7 +140,6 @@ export default function AboutMe() {
           padding-left: 0;
         }
 
-        /* ── Layer 2: Revealed Overlays ── */
         .sc-dim {
           position: absolute;
           inset: 0;
@@ -298,7 +296,7 @@ export default function AboutMe() {
           color: #ffffff;
           font-family: 'Bebas Neue', sans-serif;
           font-weight: 400;
-          font-size: 1.2cqw;
+          font-size: 1.4cqw;
           letter-spacing: 0.05cqw;
           text-transform: lowercase;
           padding-left: 1.2cqw;
