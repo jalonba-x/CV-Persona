@@ -126,22 +126,22 @@ export default function AboutMe() {
       )}
 
       <style>{`
-        /* ── Layer 1: Main Menu Buttons Container (Punches through app shields!) ── */
+        /* ── Layer 1: Main Menu Buttons Container ── */
         .sc-root {
           position: absolute;
           inset: 0;
           z-index: 900000 !important;
-          left: 80px;
+          left: 4.5cqw;
           pointer-events: none;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           justify-content: center;
-          gap: 18px;
+          gap: 1.8cqh;
           padding-left: 0;
         }
 
-        /* ── Layer 2: Revealed Overlays (Guaranteed to sit ABOVE the buttons!) ── */
+        /* ── Layer 2: Revealed Overlays ── */
         .sc-dim {
           position: absolute;
           inset: 0;
@@ -159,11 +159,11 @@ export default function AboutMe() {
         @keyframes sc-reveal-bar-in {
           0% {
             opacity: 0;
-            transform: translateX(-120px) rotate(-20deg) scaleX(0.72);
+            transform: translateX(-6.5cqw) rotate(-20deg) scaleX(0.72);
           }
           60% {
             opacity: 0.96;
-            transform: translateX(18px) rotate(-20deg) scaleX(1.03);
+            transform: translateX(1cqw) rotate(-20deg) scaleX(1.03);
           }
           100% {
             opacity: 0.92;
@@ -174,12 +174,12 @@ export default function AboutMe() {
         @keyframes sc-portrait-in {
           0% {
             opacity: 0;
-            transform: translateX(78px) skewX(-8deg) scale(0.94);
+            transform: translateX(4.2cqw) skewX(-8deg) scale(0.94);
             filter: blur(8px);
           }
           55% {
             opacity: 0.96;
-            transform: translateX(-8px) skewX(-8deg) scale(1.015);
+            transform: translateX(-0.4cqw) skewX(-8deg) scale(1.015);
             filter: blur(0);
           }
           100% {
@@ -191,31 +191,31 @@ export default function AboutMe() {
 
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50% { transform: translateX(-5px); opacity: 0.4; }
+          50% { transform: translateX(-0.3cqw); opacity: 0.4; }
         }
 
         @keyframes sc-arrow-right {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50% { transform: translateX(5px); opacity: 0.4; }
+          50% { transform: translateX(0.3cqw); opacity: 0.4; }
         }
 
         @keyframes p5Pulse {
-          0% { transform: translateX(14px); }
-          50% { transform: translateX(20px); }
-          100% { transform: translateX(14px); }
+          0% { transform: translateX(0.8cqw); }
+          50% { transform: translateX(1.1cqw); }
+          100% { transform: translateX(0.8cqw); }
         }
 
         .sc-main-portrait-shell {
           position: absolute;
           top: 0;
-          right: -3vw;
+          right: -3cqw;
           z-index: 900030 !important;
           pointer-events: none;
-          width: 43vw;
-          height: 100vh;
+          width: 43cqw;
+          height: 100cqh;
           overflow: hidden;
           opacity: 0;
-          transform: translateX(24px) skewX(-8deg) scale(0.98);
+          transform: translateX(1.3cqw) skewX(-8deg) scale(0.98);
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .sc-main-portrait-shell.mounted {
@@ -226,20 +226,20 @@ export default function AboutMe() {
 
         .sc-reveal-panel {
           position: absolute;
-          top: 44vh;
-          left: -6vw;
-          width: 88vw;
-          height: 60vh;
+          top: 44cqh;
+          left: -6cqw;
+          width: 88cqw;
+          height: 60cqh;
           z-index: 900020 !important;
           pointer-events: none;
           background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 4.8cqw) 100%, 0 100%);
           box-shadow:
-            0 0 0 2px rgba(255,255,255,0.18),
-            18px 0 0 rgba(217,35,35,0.82),
-            28px 0 0 rgba(255,255,255,0.26);
+            0 0 0 0.1cqw rgba(255,255,255,0.18),
+            1cqw 0 0 rgba(217,35,35,0.82),
+            1.5cqw 0 0 rgba(255,255,255,0.26);
           opacity: 0;
-          transform: translateX(-40px) rotate(-20deg);
+          transform: translateX(-2.2cqw) rotate(-20deg);
           transform-origin: left bottom;
           transition: opacity 0.3s ease, transform 0.35s ease;
         }
@@ -254,7 +254,7 @@ export default function AboutMe() {
           top: 0;
           left: 0;
           width: 100%;
-          height: 8px;
+          height: 0.8cqh;
           background: linear-gradient(180deg, #d92323 0%, #d92323 100%);
           clip-path: inherit;
         }
@@ -265,22 +265,22 @@ export default function AboutMe() {
           width: 100%;
           height: 40%;
           background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 1.2cqw) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 10px;
+          gap: 1cqh;
           color: #ffffff;
           text-align: center;
         }
         .sc-reveal-upper-line {
           font-family: 'Persona5Main', sans-serif;
           font-weight: 200;
-          font-size: 26px;
-          letter-spacing: -10px;
-          word-spacing: 20px;
+          font-size: 1.45cqw;
+          letter-spacing: -0.5cqw;
+          word-spacing: 1.1cqw;
           line-height: 2.0;
         }
         .sc-reveal-lower-bar {
@@ -290,7 +290,7 @@ export default function AboutMe() {
           width: 48%;
           height: 20%;
           background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 1.2cqw) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
           align-items: center;
@@ -298,54 +298,54 @@ export default function AboutMe() {
           color: #ffffff;
           font-family: 'Bebas Neue', sans-serif;
           font-weight: 400;
-          font-size: 22px;
-          letter-spacing: 1px;
+          font-size: 1.2cqw;
+          letter-spacing: 0.05cqw;
           text-transform: lowercase;
-          padding-left: 22px;
+          padding-left: 1.2cqw;
         }
 
         @keyframes sc-right-nav-pop {
-          0% { opacity: 0; transform: scale(0.55) translateY(-10px); }
-          65% { opacity: 1; transform: scale(1.1) translateY(2px); }
+          0% { opacity: 0; transform: scale(0.55) translateY(-1cqh); }
+          65% { opacity: 1; transform: scale(1.1) translateY(0.2cqh); }
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         .sc-right-nav {
           position: absolute;
-          top: 10vh;
-          left: 6vw;
+          top: 10cqh;
+          left: 6cqw;
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 0.35cqw;
           pointer-events: none;
           z-index: 900040 !important;
-          transform: translateX(-40px) rotate(-20deg);
+          transform: translateX(-2.2cqw) rotate(-20deg);
           transform-origin: left bottom;
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
         }
         .sc-right-nav .sc-nav-btn {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 100px;
-          letter-spacing: 3px;
+          font-size: 5.5cqw;
+          letter-spacing: 0.16cqw;
           line-height: 1;
           user-select: none;
           color: #ffffff;
-          -webkit-text-stroke: 2px #0d0d0d;
+          -webkit-text-stroke: 0.1cqw #0d0d0d;
           paint-order: stroke fill;
           background: none;
           border: none;
-          padding: 0 6px;
+          padding: 0 0.3cqw;
         }
         .sc-right-nav .sc-nav-dot {
-          width: 16px;
-          height: 16px;
+          width: 0.9cqw;
+          height: 0.9cqw;
           border-radius: 999px;
           background: #111;
-          margin: 0 10px;
+          margin: 0 0.55cqw;
           flex-shrink: 0;
         }
         .sc-right-nav .sc-nav-arrow {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 22px;
+          font-size: 1.2cqw;
           color: #d92323;
           display: inline-block;
           user-select: none;
@@ -365,14 +365,14 @@ export default function AboutMe() {
         /* ── Each bar ── */
         .sc-bar {
           position: relative;
-          width: 45vw;
-          height: 64px;
+          width: 45cqw;
+          height: 6.5cqh;
           transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
           background: #111;
           cursor: pointer;
           pointer-events: none;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(13,13,13,0.65);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 0.75cqw) 100%, 0 100%);
+          box-shadow: 0 0.6cqh 2.4cqh rgba(13,13,13,0.65);
           z-index: 1;
           transform: skewX(-18deg);
         }
@@ -399,14 +399,14 @@ export default function AboutMe() {
         }
 
         .sc-bar-outer:hover {
-          transform: translateX(18px) scale(1.02) rotate(-1deg);
-          filter: drop-shadow(0 0 18px rgba(217,35,35,.55));
+          transform: translateX(1cqw) scale(1.02) rotate(-1deg);
+          filter: drop-shadow(0 0 1cqw rgba(217,35,35,.55));
         }
 
         .sc-bar-outer.active:hover {
           animation: none;
-          transform: translateX(24px) scale(1.04) rotate(-1deg);
-          filter: drop-shadow(0 0 22px rgba(217,35,35,.8));
+          transform: translateX(1.3cqw) scale(1.04) rotate(-1deg);
+          filter: drop-shadow(0 0 1.2cqw rgba(217,35,35,.8));
         }
 
         .sc-bar-outer:hover .sc-label,
@@ -416,7 +416,7 @@ export default function AboutMe() {
         }
 
         .sc-bar-outer:hover .sc-char {
-          transform: scale(1.08) translateX(-6px);
+          transform: scale(1.08) translateX(-0.3cqw);
           transition: .25s;
         }
 
@@ -425,9 +425,9 @@ export default function AboutMe() {
           text-shadow: none;
         }
 
-        .sc-bar-outer.active { height: 90px; }
-        .sc-bar-outer.active .sc-bar { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; opacity: 1; }
+        .sc-bar-outer.active { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar-red { height: 9cqh; opacity: 1; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
@@ -436,11 +436,11 @@ export default function AboutMe() {
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
-          width: 45vw;
-          height: 64px;
+          width: 45cqw;
+          height: 6.5cqh;
           background: #d92323;
-          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
-          transform: translateY(-7px);
+          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 0.55cqw) 100%);
+          transform: translateY(-0.7cqh);
           opacity: 0;
           transition: opacity 0.2s ease, height 0.3s cubic-bezier(0.22,1,0.36,1);
           z-index: 0;
@@ -450,10 +450,10 @@ export default function AboutMe() {
         .sc-bar-outer.active::before {
           content: "";
           position: absolute;
-          left: -80px;
+          left: -4.5cqw;
           top: 50%;
-          width: 130px;
-          height: 8px;
+          width: 7cqw;
+          height: 0.8cqh;
           background: #d92323;
           transform: translateY(-50%) rotate(-28deg);
           z-index: -1;
@@ -465,13 +465,13 @@ export default function AboutMe() {
           width: 100%;
           transform: translateX(100%);
           background: #ffffff;
-          clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
+          clip-path: polygon(100% 0, 100% 0, calc(100% - 1.75cqw) 100%, calc(100% - 1.75cqw) 100%);
           transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), clip-path .35s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
           transform: translateX(0);
-          clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
+          clip-path: polygon(22% 0, 100% 0, calc(100% - 0.75cqw) 100%, calc(22% + 7.5cqw) 100%);
         }
 
         .sc-bar-shade {
@@ -491,7 +491,7 @@ export default function AboutMe() {
           content: '';
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          height: 6px;
+          height: 0.6cqh;
           background: linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(13,13,13,0.55) 100%);
           z-index: 10;
           pointer-events: none;
@@ -504,7 +504,7 @@ export default function AboutMe() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 20px 0 20px;
+          padding: 0 1.1cqw 0 1.1cqw;
           transform: skewX(18deg);
         }
 
@@ -513,13 +513,13 @@ export default function AboutMe() {
           align-items: center;
           flex-shrink: 0;
           font-family: 'Persona5Main', sans-serif;
-          font-size: 50px;
-          letter-spacing: -2px;
+          font-size: 2.75cqw;
+          letter-spacing: -0.1cqw;
           color: #ffffff;
           transform: rotate(-30deg);
           user-select: none;
           line-height: 1;
-          padding: 0 16px 0 8px;
+          padding: 0 0.85cqw 0 0.4cqw;
         }
 
         .sc-main {
@@ -528,17 +528,17 @@ export default function AboutMe() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 3px;
-          padding-left: 78px;
+          gap: 0.3cqh;
+          padding-left: 4.2cqw;
         }
         .sc-main-top {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 0.65cqw;
         }
 
         .sc-icon {
-          width: 32px;
+          width: 1.75cqw;
           height: auto;
           object-fit: contain;
           flex-shrink: 0;
@@ -550,8 +550,8 @@ export default function AboutMe() {
 
         .sc-label {
           font-family: 'Persona5Main', sans-serif;
-          font-size: 28px;
-          letter-spacing: 4px;
+          font-size: 1.55cqw;
+          letter-spacing: 0.22cqw;
           line-height: 1;
           color: rgba(255,255,255,0.85);
           transition: color 0.2s ease;
@@ -561,22 +561,22 @@ export default function AboutMe() {
         .sc-char {
           position: absolute;
           top: 0;
-          left: 110px;
+          left: 6cqw;
           height: 100%;
           width: auto;
-          max-width: 160px;
+          max-width: 8.8cqw;
           object-fit: cover;
           object-position: top;
           pointer-events: none;
           z-index: 3;
-          clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+          clip-path: polygon(1.1cqw 0%, 100% 0%, calc(100% - 1.1cqw) 100%, 0% 100%);
         }
 
         .sc-footer {
-          position: fixed;
-          bottom: 20px; right: 28px;
+          position: absolute;
+          bottom: 2.5cqh; right: 1.6cqw;
           display: flex; flex-direction: column;
-          align-items: flex-end; gap: 5px;
+          align-items: flex-end; gap: 0.5cqh;
           font-family: 'Persona5Main', sans-serif;
           z-index: 900050 !important;
           opacity: 0;
@@ -584,14 +584,14 @@ export default function AboutMe() {
         }
         .sc-footer.mounted { opacity: 1; }
         .sc-footer-row {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 13px; letter-spacing: 2px;
+          display: flex; align-items: center; gap: 0.4cqw;
+          font-size: 0.72cqw; letter-spacing: 0.1cqw;
           color: rgba(255,255,255,0.22);
         }
         .sc-footer-key {
           border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 3px;
-          padding: 1px 6px; font-size: 11px;
+          border-radius: 0.16cqw;
+          padding: 0.1cqh 0.3cqw; font-size: 0.6cqw;
         }
       `}</style>
 
