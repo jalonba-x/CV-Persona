@@ -20,7 +20,6 @@ function useTouchGestures() {
     let touchStartX = 0;
     let touchStartY = 0;
     let isDragging = false;
-    const MIN_SWIPE_DISTANCE = 45; 
     const DRAG_THRESHOLD = 10;   
 
     const onTouchStart = (e) => {
@@ -34,13 +33,11 @@ function useTouchGestures() {
       const currentY = e.changedTouches[0].screenY;
       const distance = Math.hypot(currentX - touchStartX, currentY - touchStartY);
       
-   
       if (distance > DRAG_THRESHOLD) {
         isDragging = true;
       }
     };
 
- 
     const onClickCapture = (e) => {
       if (isDragging) {
         e.preventDefault();
@@ -50,6 +47,18 @@ function useTouchGestures() {
         return false;
       }
     };
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('click', onClickCapture, true);
+
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('click', onClickCapture, true);
+    };
+  }, []);
+}
 
     const onTouchEnd = (e) => {
       const touchEndX = e.changedTouches[0].screenX;
