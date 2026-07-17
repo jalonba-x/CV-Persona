@@ -26,16 +26,16 @@ html, body {
   z-index: 999;
 }
 
-/* The rigid 16:9 game screen that scales to fit any window size */
 .stage-viewport {
   position: relative;
   width: 100vw;
-  height: 56.25vw; /* 16:9 Aspect Ratio */
+  height: 56.25vw;
   max-height: 100vh;
   max-width: 177.78vh;
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-  background: #111; /* Fallback background color */
+  background: #111;
+  container-type: size;
 }
 
 /* Ensure background video and content layers fill the locked stage exactly */
