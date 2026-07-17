@@ -71,9 +71,9 @@ function BackButton() {
     <div className="back-btn-wrapper">
       <style>{`
         .back-btn-wrapper {
-          position: fixed;
-          top: 24px;
-          left: 24px;
+          position: absolute;
+          top: 3.5cqh;
+          left: 2.5cqw;
           z-index: 10000;
           pointer-events: all;
         }
@@ -81,35 +81,37 @@ function BackButton() {
         .p5-back-button {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 0.5cqw;
           background: #d92323;
           color: #ffffff;
           border: none;
-          padding: 10px 20px 10px 14px;
+          padding: 0.6cqh 1.2cqw 0.6cqh 0.8cqw;
           font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          letter-spacing: 2px;
+          font-size: 1.4cqw;
+          letter-spacing: 0.15cqw;
           cursor: pointer;
-          clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
-          box-shadow: 4px 4px 0px #000000;
-          transition: transform 0.15s ease, background-color 0.15s ease;
+          clip-path: polygon(0.6cqw 0%, 100% 0%, calc(100% - 0.6cqw) 100%, 0% 100%);
+          box-shadow: 0.25cqw 0.25cqh 0px #000000;
+          transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
         }
 
         .p5-back-button:hover, .p5-back-button:focus {
           background: #ff2a2a;
-          transform: translate(-2px, -2px);
-          box-shadow: 6px 6px 0px #000000;
+          transform: translate(-0.15cqw, -0.15cqh);
+          box-shadow: 0.4cqw 0.4cqh 0px #000000;
           outline: none;
         }
 
         .p5-back-button:active {
-          transform: translate(2px, 2px);
-          box-shadow: 2px 2px 0px #000000;
+          transform: translate(0.1cqw, 0.1cqh);
+          box-shadow: 0.15cqw 0.15cqh 0px #000000;
         }
 
         .back-arrow-icon {
-          width: 24px;
-          height: 24px;
+          width: 1.4cqw;
+          height: 1.4cqw;
+          min-width: 16px;
+          min-height: 16px;
           stroke: #ffffff;
           stroke-width: 2.5;
           fill: none;
@@ -119,7 +121,29 @@ function BackButton() {
         }
 
         .p5-back-button:hover .back-arrow-icon {
-          transform: translateX(-4px);
+          transform: translateX(-0.3cqw);
+        }
+
+        @media (max-width: 768px) {
+          .back-btn-wrapper {
+            top: 16px;
+            left: 16px;
+          }
+          .p5-back-button {
+            font-size: 16px;
+            padding: 6px 14px 6px 10px;
+            gap: 6px;
+            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+            box-shadow: 3px 3px 0px #000000;
+          }
+          .back-arrow-icon {
+            width: 18px;
+            height: 18px;
+          }
+          .p5-back-button:hover, .p5-back-button:focus {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000000;
+          }
         }
       `}</style>
 
