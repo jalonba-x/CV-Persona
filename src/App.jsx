@@ -15,11 +15,6 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
-/* ==========================================
-   GLOBAL MOBILE TOUCH-SWIPE ENGINE
-   Translates finger swipes into synthetic keyboard events
-   so all existing page navigation works natively on mobile.
-========================================== */
 function useTouchGestures() {
   useEffect(() => {
     let touchStartX = 0;
