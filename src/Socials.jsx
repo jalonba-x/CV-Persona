@@ -395,8 +395,11 @@ export default function Socials() {
           letter-spacing: 3px;
           line-height: 1;
           user-select: none;
-          color: #111;
-          padding: 0 8px;
+          color: #000;
+          background: rgba(255, 255, 255, 0.88);
+          padding: 6px 16px;
+          border-radius: 4px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
         }
         .sc-right-nav .sc-nav-arrow {
           font-family: 'Bebas Neue', sans-serif;
