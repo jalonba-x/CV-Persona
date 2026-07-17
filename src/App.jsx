@@ -15,6 +15,71 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
+/* ==========================================
+   GLOBAL MOBILE TOUCH-SWIPE ENGINE
+   Translates finger swipes into synthetic keyboard events
+   so all existing page navigation works natively on mobile.
+========================================== */
+function useTouchGestures() {
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const MIN_SWIPE_DISTANCE = 45; // Minimum pixel threshold to prevent accidental taps
+
+    const onTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    };
+
+    const onTouchEnd = (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+      
+      // Ignore minor movements (taps or clicks)
+      if (Math.abs(deltaX) < MIN_SWIPE_DISTANCE && Math.abs(deltaY) < MIN_SWIPE_DISTANCE) {
+        return;
+      }
+
+      let keyToDispatch = null;
+
+      // Determine if swipe was primarily horizontal or vertical
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+          // Swipe Right -> Back Navigation
+          keyToDispatch = 'ArrowLeft';
+        } else {
+          // Swipe Left -> Select / Forward Navigation
+          keyToDispatch = 'Enter';
+        }
+      } else {
+        if (deltaY > 0) {
+          // Swipe Down -> Move Selection Up
+          keyToDispatch = 'ArrowUp';
+        } else {
+          // Swipe Up -> Move Selection Down
+          keyToDispatch = 'ArrowDown';
+        }
+      }
+
+      // Dispatch global event caught by your existing useEffect keyboard listeners
+      if (keyToDispatch) {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: keyToDispatch, bubbles: true }));
+      }
+    };
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+  }, []);
+}
+
 function BackgroundMusic() {
   const audioRef = useRef(null)
   const fadeRafRef = useRef(null)
@@ -229,9 +294,7 @@ function AnimatedRoutes() {
   )
 }
 
-import React from "react";
-
-export default function OrientationOverlay() {
+function OrientationOverlay() {
   return (
     <div className="orientation-guard" aria-hidden="true">
       <style>{`
@@ -252,7 +315,6 @@ export default function OrientationOverlay() {
           pointer-events: all;
         }
 
-        /* Automatically triggers on portrait screens or narrow ratios */
         @media (orientation: portrait), (max-aspect-ratio: 4/3) {
           .orientation-guard {
             display: flex;
@@ -320,8 +382,12 @@ export default function OrientationOverlay() {
 }
 
 export default function App() {
+  // Activate global touch-to-keyboard gesture translations
+  useTouchGestures()
+
   return (
     <div className="stage-container">
+      <OrientationOverlay />
       <div className="stage-viewport">
         <SiteBackgroundVideo />
         <div className="site-content-layer">
