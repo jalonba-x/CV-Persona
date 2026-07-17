@@ -104,6 +104,41 @@ function useTouchGestures() {
   }, []);
 }
 
+function BackButton() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Do not render on the main menu
+  if (location.pathname === '/') return null;
+
+  return (
+    <div className="back-btn-wrapper">
+      <style>{`
+        .back-btn-wrapper {
+          position: fixed;
+          top: 24px;
+          left: 24px;
+          z-index: 10000;
+          pointer-events: all;
+        }
+
+        .p5-back-button {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: #d92323;
+          color: #ffffff;
+          border: none;
+          padding: 10px 20px 10px 14px;
+          font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
+          font-size: 22px;
+          letter-spacing: 2px;
+          cursor: pointer;
+          clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+          box-shadow: 4px 4px 0px #000000;
+          transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+
 function BackgroundMusic() {
   const audioRef = useRef(null)
   const fadeRafRef = useRef(null)
