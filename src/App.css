@@ -14,7 +14,6 @@ html, body {
   font-family: 'Persona5Main', sans-serif;
 }
 
-/* The outer letterboxing container */
 .stage-container {
   position: fixed;
   inset: 0;
@@ -26,7 +25,6 @@ html, body {
   z-index: 999;
 }
 
-/* Uses Dynamic Viewport Height (dvh) to prevent mobile address bars from clipping content */
 .stage-viewport {
   position: relative;
   width: 100vw;
@@ -40,7 +38,6 @@ html, body {
   container-type: size;
 }
 
-/* Ensure background video fills the locked stage exactly */
 .site-bg-video {
   position: absolute;
   inset: 0;
@@ -51,7 +48,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Outer content boundary remains locked to the viewport */
 .site-content-layer {
   position: absolute;
   inset: 0;
@@ -61,11 +57,6 @@ html, body {
   overflow: hidden;
 }
 
-/* 
-  CRITICAL FIX: Framer Motion page transition wrappers (.site-content-layer > *) 
-  must remain absolute with 100% height so #menu-screen never collapses to 0px.
-  We apply overflow-y: auto here so taller pages can scroll internally!
-*/
 .site-content-layer > * {
   position: absolute;
   inset: 0;
@@ -76,14 +67,12 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Let individual content pages grow naturally when content overflows */
 .site-content-layer > * > * {
   position: relative;
   width: 100%;
   min-height: 100%;
 }
 
-/* Screens that should explicitly lock and never scroll vertically */
 #menu-screen {
   position: absolute !important;
   inset: 0;
@@ -102,7 +91,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Persona 5 Stylized Sidebar Scrollbar applied to the scrolling page wrappers */
 .site-content-layer > *::-webkit-scrollbar {
   width: 10px;
 }
@@ -124,7 +112,6 @@ html, body {
   background-color: #ff3333;
 }
 
-/* Background Music UI */
 .bgm-panel {
   position: absolute;
   left: 20px;
