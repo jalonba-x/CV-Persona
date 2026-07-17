@@ -60,50 +60,6 @@ function useTouchGestures() {
   }, []);
 }
 
-    const onTouchEnd = (e) => {
-      const touchEndX = e.changedTouches[0].screenX;
-      const touchEndY = e.changedTouches[0].screenY;
-      
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
-      
-      if (Math.abs(deltaX) < MIN_SWIPE_DISTANCE && Math.abs(deltaY) < MIN_SWIPE_DISTANCE) {
-        return;
-      }
-
-      let keyToDispatch = null;
-
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX > 0) {
-          keyToDispatch = 'ArrowLeft'; // Swipe Right -> Go Back
-        } else {
-          keyToDispatch = 'Enter';     // Swipe Left -> Select / Forward
-        }
-      }
-
-      if (keyToDispatch) {
-        if (document.activeElement && document.activeElement instanceof HTMLElement) {
-          document.activeElement.blur();
-        }
-        window.dispatchEvent(new KeyboardEvent('keydown', { key: keyToDispatch, bubbles: true }));
-      }
-    };
-
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('touchend', onTouchEnd, { passive: true });
-    
-    window.addEventListener('click', onClickCapture, true);
-
-    return () => {
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('click', onClickCapture, true);
-    };
-  }, []);
-}
-
 function BackButton() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -138,6 +94,50 @@ function BackButton() {
           box-shadow: 4px 4px 0px #000000;
           transition: transform 0.15s ease, background-color 0.15s ease;
         }
+
+        .p5-back-button:hover, .p5-back-button:focus {
+          background: #ff2a2a;
+          transform: translate(-2px, -2px);
+          box-shadow: 6px 6px 0px #000000;
+          outline: none;
+        }
+
+        .p5-back-button:active {
+          transform: translate(2px, 2px);
+          box-shadow: 2px 2px 0px #000000;
+        }
+
+        .back-arrow-icon {
+          width: 24px;
+          height: 24px;
+          stroke: #ffffff;
+          stroke-width: 2.5;
+          fill: none;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          transition: transform 0.2s ease;
+        }
+
+        .p5-back-button:hover .back-arrow-icon {
+          transform: translateX(-4px);
+        }
+      `}</style>
+
+      <button
+        type="button"
+        className="p5-back-button"
+        onClick={() => navigate('/')}
+        aria-label="Return to Main Menu"
+      >
+        <svg className="back-arrow-icon" viewBox="0 0 24 24">
+          <path d="M9 14 4 9l5-5" />
+          <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
+        </svg>
+        <span>BACK</span>
+      </button>
+    </div>
+  );
+}
 
 function BackgroundMusic() {
   const audioRef = useRef(null)
@@ -375,10 +375,10 @@ function OrientationOverlay() {
         }
 
         @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
-        .orientation-guard {
-        display: flex;
+          .orientation-guard {
+            display: flex;
+          }
         }
-      }
 
         .og-badge {
           font-family: 'Persona5Main', sans-serif;
