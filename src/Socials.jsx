@@ -21,7 +21,7 @@ const ITEMS = [
   {
     id: "X", label: "X (TWITTER)", handle: "@jalonba", href: "https://x.com/Jalonba", icon: "𝕏", barIcon: icon1, bars: 1, newBars: [0], counts: ["76"],
     titles: ["HxH diagram"],
-    links: ["x.com/Jalonba/status/2071343110416728201"],
+    links: ["https://x.com/Jalonba/status/2071343110416728201"],
     stats: [
       { tag: "FOL", value: "170", color: "#9147ff" },
     ],
@@ -29,7 +29,7 @@ const ITEMS = [
   {
     id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: "📷", barIcon: icon2, bars: 1, newBars: [0], counts: ["48"],
     titles: ["Digimon card"],
-    links: ["instagram.com/p/ChfplqFPmcf/"],
+    links: ["https://instagram.com/p/ChfplqFPmcf/"],
     stats: [
       { tag: "FOL", value: "425", color: "#e1306c" },
       { tag: "PST", value: "34",  color: "#f77737" },
@@ -132,7 +132,7 @@ export default function Socials() {
           z-index: 1;
         }
         .sc-bar-outer.active { z-index: 20; }
-        .sc-bar-outer.active .sc-bar     { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar      { height: 9cqh; }
         .sc-bar-outer.active .sc-bar-red { height: 9cqh; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
@@ -255,8 +255,38 @@ export default function Socials() {
           color: rgba(255,255,255,0.85);
           transition: color 0.2s ease;
           user-select: none;
+          display: flex;
+          align-items: center;
+          gap: 0.5cqw;
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
+
+        /* Dedicated Persona 5 styled Link Button */
+        .sc-link-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.18);
+          color: #ffffff;
+          font-size: 0.9cqw;
+          padding: 0.35cqh 0.5cqw;
+          border-radius: 0.15cqw;
+          border: none;
+          cursor: pointer;
+          transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+          pointer-events: auto;
+        }
+        .sc-bar-outer.active .sc-link-btn {
+          background: #d92323;
+          color: #ffffff;
+          box-shadow: 0 0 8px rgba(217, 35, 35, 0.5);
+        }
+        .sc-link-btn:hover {
+          background: #ffffff !important;
+          color: #000000 !important;
+          transform: scale(1.15);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
 
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
@@ -562,6 +592,11 @@ export default function Socials() {
             gap: 6px;
           }
 
+          .sc-link-btn {
+            font-size: 14px;
+            padding: 4px 8px;
+          }
+
           .sc-info-panel {
             top: min(47vh, 320px);
             left: 8px;
@@ -609,10 +644,7 @@ export default function Socials() {
           <div
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              if (active === i) openExternalLink(item.href);
-              else setActive(i);
-            }}
+            onClick={() => setActive(i)}
             onMouseEnter={() => setActive(i)}
           >
             <div className="sc-bar-red" />
@@ -626,7 +658,20 @@ export default function Socials() {
                 <div className="sc-main">
                   <div className="sc-main-top">
                     <div className="sc-icon">{item.icon}</div>
-                    <div className="sc-label">{item.label}</div>
+                    <div className="sc-label">
+                      <span>{item.label}</span>
+                      <button
+                        type="button"
+                        className="sc-link-btn"
+                        title={`Open ${item.label}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openExternalLink(item.href);
+                        }}
+                      >
+                        <i className="fa-solid fa-link"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="sc-stats">
