@@ -4,7 +4,6 @@ function fixFile(filePath, hooksPattern, depName) {
   if (!fs.existsSync(filePath)) return;
   let code = fs.readFileSync(filePath, 'utf-8');
 
-  // Fix import to include useRef
   if (!code.includes('useRef')) {
     code = code.replace(/import \{.*?\} from ["']react["'];/, str => {
       if (str.includes('useRef')) return str;
@@ -12,13 +11,11 @@ function fixFile(filePath, hooksPattern, depName) {
     });
   }
 
-  // Insert the ref
   if (!code.includes('isFirstRenderAudio')) {
     code = code.replace(/const \[mounted, setMounted\] = useState\(false\);/, 
     'const [mounted, setMounted] = useState(false);\n  const isFirstRenderAudio = useRef(true);');
   }
 
-  // Change the effect
   if (!code.includes('isFirstRenderAudio.current')) {
     code = code.replace(/  useEffect\(\(\) => \{\n\s*playSelectSound\(\);\n\s*\}, \[.*?\]\);/g, 
 `  useEffect(() => {
@@ -38,7 +35,6 @@ fixFile('src/ResumePage.jsx', '', 'active');
 fixFile('src/Socials.jsx', '', 'active, activeInfoBar, focus');
 fixFile('src/SideProjectsPage.jsx', '', 'active');
 
-// For P5Menu.jsx, the logic is slightly different:
 let p5Code = fs.readFileSync('src/P5Menu.jsx', 'utf-8');
 if (!p5Code.includes('isFirstRenderAudio')) {
   if (!p5Code.includes('useRef')) {
