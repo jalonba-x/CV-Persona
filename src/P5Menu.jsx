@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { playSelectSound } from "./utils/audio.js";
 
+// Font sizes, offsets, and spacing converted from static pixels to proportional container query units (cqw/cqh)
 const ITEMS = [
-  { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 64, offsetX: 0,  offsetY: 0,  skew: -6,  skewY: 10  },
-  { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 52, offsetX: 24, offsetY: 50,  skew: -6, skewY: -5 },
-  { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 45, offsetX: 12, offsetY: 28,  skew: -4,  skewY: 7   },
-  { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 59, offsetX: 19, offsetY: 30,  skew: -3,  skewY: 5   },
-  { id: "github link",  label: "GITHUB LINK",   page: "github",  fontSize: 54, offsetX: 10, offsetY: 28,  skew: 0, skewY: -4  },
-
+  { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
+  { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -6, skewY: -5  },
+  { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 2.8,  offsetX: 0.75, offsetY: 3.1, skew: -4, skewY: 7   },
+  { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 3.7,  offsetX: 1.2,  offsetY: 3.3, skew: -3, skewY: 5   },
+  { id: "github link",  label: "GITHUB LINK",   page: "github",  fontSize: 3.4,  offsetX: 0.6,  offsetY: 3.1, skew: 0,  skewY: -4  },
 ];
 
 const CLIP_SHAPES = [
@@ -71,17 +71,17 @@ export default function P5Menu({ onNavigate }) {
           pointer-events: none;
         }
 
-        .p5-stripe  { position:absolute; right:0; top:0; bottom:0; width:5px; background:#ffffff; z-index:10; pointer-events:none; }
-        .p5-stripe2 { position:absolute; right:9px; top:0; bottom:0; width:2px; background:rgba(255,255,255,0.22); z-index:10; pointer-events:none; }
+        .p5-stripe  { position:absolute; right:0; top:0; bottom:0; width:0.3cqw; background:#ffffff; z-index:10; pointer-events:none; }
+        .p5-stripe2 { position:absolute; right:0.55cqw; top:0; bottom:0; width:0.12cqw; background:rgba(255,255,255,0.22); z-index:10; pointer-events:none; }
 
         .p5-menu {
           position: relative;
           z-index: 20;
-          padding: 48px;
+          padding: 3cqw;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 30px;
+          gap: 2cqh;
           pointer-events: all;
         }
 
@@ -94,7 +94,7 @@ export default function P5Menu({ onNavigate }) {
           line-height: 1;
           text-decoration: none;
           opacity: 0;
-          transform: translateX(36px);
+          transform: translateX(2.2cqw);
           transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.22,1,0.36,1);
         }
         .p5-row.mounted {
@@ -124,10 +124,10 @@ export default function P5Menu({ onNavigate }) {
         }
 
         @keyframes p5-shadow-pop {
-          0%   { transform: translateY(-40%) translateX(-12px) scaleX(0) scaleY(1); }
-          55%  { transform: translateY(-46%) translateX(-15px) scaleX(1.22) scaleY(1.18); }
-          75%  { transform: translateY(-39%) translateX(-11px) scaleX(0.96) scaleY(0.97); }
-          100% { transform: translateY(-40%) translateX(-12px) scaleX(1) scaleY(1); }
+          0%   { transform: translateY(-40%) translateX(-0.75cqw) scaleX(0) scaleY(1); }
+          55%  { transform: translateY(-46%) translateX(-0.95cqw) scaleX(1.22) scaleY(1.18); }
+          75%  { transform: translateY(-39%) translateX(-0.7cqw) scaleX(0.96) scaleY(0.97); }
+          100% { transform: translateY(-40%) translateX(-0.75cqw) scaleX(1) scaleY(1); }
         }
 
         @keyframes p5-wiggle-poly {
@@ -145,7 +145,7 @@ export default function P5Menu({ onNavigate }) {
           background: rgba(255,255,255,0.85);
           z-index: 1;
           pointer-events: none;
-          transform: translateY(-40%) translateX(-12px) scaleX(0);
+          transform: translateY(-40%) translateX(-0.75cqw) scaleX(0);
           transition: transform 0.18s ease;
         }
         .p5-shadow-tri.pop {
@@ -173,13 +173,13 @@ export default function P5Menu({ onNavigate }) {
         .p5-label-base {
           font-family: 'Persona5Main';
           font-style: italic;
-          letter-spacing: 0.6px;
+          letter-spacing: 0.04cqw;
           line-height: 0.85;
           display: block;
           white-space: nowrap;
           user-select: none;
           color: #ffffff;
-          -webkit-text-stroke: 18.2px rgba(0, 0, 0, 0.8);
+          -webkit-text-stroke: 1.1cqw rgba(0, 0, 0, 0.8);
           paint-order: stroke fill;
         }
 
@@ -192,7 +192,7 @@ export default function P5Menu({ onNavigate }) {
 
         .p5-label-bright {
           color: #1a1a1a;
-          -webkit-text-stroke: 18.2px rgba(255, 255, 255, 0.9);
+          -webkit-text-stroke: 1.1cqw rgba(255, 255, 255, 0.9);
           position: absolute;
           inset: 0;
           z-index: 1;
@@ -203,64 +203,63 @@ export default function P5Menu({ onNavigate }) {
 
         .p5-hint {
           position: absolute;
-          bottom: 24px; right: 28px;
+          bottom: 2.6cqh; right: 1.7cqw;
           z-index: 20;
           display: flex; flex-direction: column;
-          align-items: flex-end; gap: 5px;
+          align-items: flex-end; gap: 0.5cqh;
           font-family: 'Persona5Main';
           opacity: 0;
           transition: opacity 0.5s ease 0.9s;
         }
         .p5-hint.mounted { opacity: 1; }
         .p5-hint-row {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 13px; letter-spacing: 2px;
+          display: flex; align-items: center; gap: 0.5cqw;
+          font-size: 0.8cqw; letter-spacing: 0.12cqw;
           color: rgba(255,255,255,0.28);
         }
         .p5-hint-key {
           border: 1px solid rgba(255,255,255,0.2);
-          border-radius: 3px;
-          padding: 1px 6px; font-size: 11px;
+          border-radius: 0.2cqw;
+          padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
         }
 
         .p5-name-tag {
-    position: absolute;
-    top: 42px;
-    left: 40px;
-    z-index: 20;
+          position: absolute;
+          top: 4.6cqh;
+          left: 2.5cqw;
+          z-index: 20;
 
-    font-family: 'FuturaStdBold';
-    font-style: italic;
-    font-size: 65px;
+          font-family: 'FuturaStdBold';
+          font-style: italic;
+          font-size: 4cqw;
 
-    line-height: 1.0;
-    letter-spacing: 2px;
+          line-height: 1.0;
+          letter-spacing: 0.12cqw;
 
-    color: white;
-    text-shadow: 3px 3px 0 rgba(0,0,0,.35);
+          color: white;
+          text-shadow: 0.2cqw 0.3cqh 0 rgba(0,0,0,.35);
 
-    transform: rotate(0deg) skewX(-5deg) scaleX(1.08);
-    transform-origin: left top;
+          transform: rotate(0deg) skewX(-5deg) scaleX(1.08);
+          transform-origin: left top;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
 
-    user-select: none;
-    pointer-events: none;
+          user-select: none;
+          pointer-events: none;
 
-    text-transform: uppercase;
+          text-transform: uppercase;
         }
         .p5-name-tag span:first-child {
-    font-size: 48px;
-    letter-spacing: -2px;
-}
+          font-size: 3.0cqw;
+          letter-spacing: -0.12cqw;
+        }
 
-.p5-name-tag span:last-child {
-    margin-top: 8px;
-    font-size: 92px;
-    letter-spacing: -5px;
-}
+        .p5-name-tag span:last-child {
+          margin-top: 0.9cqh;
+          font-size: 5.75cqw;
+          letter-spacing: -0.3cqw;
         }
       `}</style>
 
@@ -275,7 +274,9 @@ export default function P5Menu({ onNavigate }) {
             const isActive = active === i;
             const dist = Math.abs(i - active);
             const opacity = isActive ? 1 : Math.max(0.5, 1 - dist * 0.2);
-            const estW = item.label.length * item.fontSize * 0.6 + 80;
+            
+            // Width and height calculations scale dynamically in cqw units
+            const estW = item.label.length * item.fontSize * 0.6 + 5;
             const estH = item.fontSize * 0.94;
             const clipFn = CLIP_SHAPES[i] ?? CLIP_SHAPES[0];
 
@@ -285,8 +286,8 @@ export default function P5Menu({ onNavigate }) {
                 href="#"
                 className={`p5-row ${isActive ? "active" : ""} ${mounted ? "mounted" : ""}`}
                 style={{
-                  marginRight: item.offsetX,
-                  marginTop: item.offsetY,
+                  marginRight: `${item.offsetX}cqw`,
+                  marginTop: `${item.offsetY}cqh`,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
                 onClick={(e) => { e.preventDefault(); onNavigate?.(item.page); }}
@@ -302,28 +303,28 @@ export default function P5Menu({ onNavigate }) {
                     key={isActive ? `pop-${i}-${animKey}` : `idle-${i}`}
                     className={`p5-shadow-tri${isActive ? ' pop' : ''}`}
                     style={{
-                      width: estW,
-                      height: estH,
+                      width: `${estW}cqw`,
+                      height: `${estH}cqw`,
                       clipPath: clipFn(estW, estH),
                     }}
                   />
                   <div
                     className="p5-highlight"
                     style={{
-                      width: estW,
-                      height: estH,
+                      width: `${estW}cqw`,
+                      height: `${estH}cqw`,
                       clipPath: clipFn(estW, estH),
                       transform: `translateY(-50%) scaleX(${isActive ? 1 : 0})`,
                     }}
                   />
                   <div className="p5-label-wrap" style={{ opacity }}>
-                    <span className="p5-label-base p5-label-dark" style={{ fontSize: item.fontSize }}>
+                    <span className="p5-label-base p5-label-dark" style={{ fontSize: `${item.fontSize}cqw` }}>
                       {item.label}
                     </span>
                     <span
                       className="p5-label-base p5-label-bright"
                       style={{
-                        fontSize: item.fontSize,
+                        fontSize: `${item.fontSize}cqw`,
                         clipPath: clipFn(estW, estH),
                       }}
                     >
