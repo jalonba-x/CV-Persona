@@ -6,7 +6,7 @@ A highly stylized personal portfolio website heavily inspired by the UI and aest
 - **Persona 5 UI/UX Aesthetics**: Features custom "wiggle polygon" animations, dynamic text strokes, and the iconic red, black, white, and cyan color palette.
 - **Immersive Experience**: Runs a continuous ambient background video (`main1.mp4`) and features a persistent, toggleable Background Music (BGM) player with volume control.
 - **Authentic SFX**: UI interactions, such as navigating menus or entering pages, trigger authentic sound effects (`select.mp3`).
-- **Keyboard Navigation**: Fully supports traversing the main menu and certain overlays using keyboard arrow keys and `Enter/Escape`, mimicking the actual game controls.
+- **Multiplatform Navigation**: Supports desktop keyboard traversal (arrow keys, Enter, Escape) to mimic actual game controls, while providing Android and mobile users with custom touch gesture handling, dedicated UI action buttons, and automatic landscape orientation enforcement.
 - **Custom Page Transitions**: Smooth, multi-layered "stripe" transition animations when navigating between routes.
 
 ## Tech Stack & Dependencies
