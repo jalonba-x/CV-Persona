@@ -229,7 +229,96 @@ function AnimatedRoutes() {
   )
 }
 
-// ---> GLOBAL 16:9 STAGE WRAPPER APPLIED HERE <---
+import React from "react";
+
+export default function OrientationOverlay() {
+  return (
+    <div className="orientation-guard" aria-hidden="true">
+      <style>{`
+        .orientation-guard {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 99999;
+          background: rgba(13, 13, 13, 0.88);
+          backdrop-filter: blur(16px) saturate(180%);
+          -webkit-backdrop-filter: blur(16px) saturate(180%);
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          text-align: center;
+          color: #ffffff;
+          pointer-events: all;
+        }
+
+        /* Automatically triggers on portrait screens or narrow ratios */
+        @media (orientation: portrait), (max-aspect-ratio: 4/3) {
+          .orientation-guard {
+            display: flex;
+          }
+        }
+
+        .og-badge {
+          font-family: 'Persona5Main', sans-serif;
+          background: #d92323;
+          color: #ffffff;
+          font-size: 24px;
+          letter-spacing: 2px;
+          padding: 6px 18px;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+          margin-bottom: 24px;
+          box-shadow: 4px 4px 0 #000000;
+        }
+
+        .og-title {
+          font-family: 'Persona5Main', sans-serif;
+          font-size: 42px;
+          line-height: 1;
+          letter-spacing: 1px;
+          margin-bottom: 12px;
+          text-shadow: 0 4px 0 rgba(0,0,0,0.5);
+        }
+
+        .og-subtitle {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 24px;
+          letter-spacing: 1px;
+          color: rgba(255, 255, 255, 0.8);
+          max-width: 320px;
+          margin-bottom: 40px;
+        }
+
+        .og-phone-icon {
+          width: 76px;
+          height: 76px;
+          stroke: #ffffff;
+          stroke-width: 2;
+          fill: none;
+          animation: og-rotate-animation 2.4s infinite cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        @keyframes og-rotate-animation {
+          0%, 15% { transform: rotate(0deg); }
+          50%, 65% { transform: rotate(-90deg); }
+          100% { transform: rotate(0deg); }
+        }
+      `}</style>
+
+      <div className="og-badge">SYSTEM ALERT</div>
+      <div className="og-title">ROTATE DEVICE</div>
+      <div className="og-subtitle">
+        Please turn your phone to a horizontal 16:9 widescreen view to access the interface.
+      </div>
+
+      <svg className="og-phone-icon" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+        <line x1="12" y1="18" x2="12.01" y2="18" />
+      </svg>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <div className="stage-container">
