@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { playSelectSound } from "./utils/audio.js";
 
-// Font sizes, offsets, and spacing converted from static pixels to proportional container query units (cqw/cqh)
 const ITEMS = [
   { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
   { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -6, skewY: -5  },
