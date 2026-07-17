@@ -14,7 +14,7 @@ const ITEMS = [
     id: "Persona5-themed resume (Javier)",
     title: "Persona5-themed resume (Javier)",
     stack: "Github",
-    summary: "Rework of @ffaneto's persona5-website from Github",
+    summary: "An optimized version of @ffaneto's persona5-website from Github.
     href: "https://github.com/jalonba-x/CV-Persona",
   },
   {
