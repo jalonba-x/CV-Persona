@@ -15,11 +15,9 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
-// 1. NUEVO: Componente para inyectar estilos globales de corrección en iOS/Safari
 function IOSStyleGuard() {
   return (
     <style>{`
-      /* Previene el efecto rebote (rubber-band) y el zoom de doble toque en iPhone */
       html, body {
         overscroll-behavior: none;
         touch-action: manipulation;
@@ -27,7 +25,6 @@ function IOSStyleGuard() {
         -webkit-user-select: none;
         user-select: none;
       }
-      /* Soporte para altura dinámica en Safari Móvil */
       .stage-container, .stage-viewport {
         height: 100vh;
         height: 100dvh;
@@ -92,7 +89,6 @@ function BackButton() {
       <style>{`
         .back-btn-wrapper {
           position: absolute;
-          /* 2. MEJORA iOS: Soporte para Safe Area (Notch y Dynamic Island en landscape) */
           top: max(3.5cqh, env(safe-area-inset-top, 16px));
           left: max(2.5cqw, env(safe-area-inset-left, 16px));
           z-index: 10000;
@@ -293,7 +289,6 @@ function BackgroundMusic() {
       await tryAutoplay()
     }
 
-    // 3. MEJORA iOS: Safari móvil requiere escuchar eventos directos de toque (touchstart/touchend)
     window.addEventListener('pointerdown', unlock, { once: true })
     window.addEventListener('touchstart', unlock, { once: true })
     window.addEventListener('keydown', unlock, { once: true })
@@ -361,7 +356,6 @@ function MenuScreen() {
   )
 }
 
-// 4. MEJORA iOS: Forzar reproducción de video si el modo de ahorro de batería (Low Power Mode) bloqueó el Autoplay
 function SiteBackgroundVideo() {
   const videoRef = useRef(null);
 
@@ -372,7 +366,6 @@ function SiteBackgroundVideo() {
     const attemptPlay = () => {
       if (video.paused) {
         video.play().catch(() => {
-          // El navegador bloqueó el autoplay, se reintentará en la primera interacción
         });
       }
     };
@@ -451,7 +444,6 @@ function OrientationOverlay() {
           text-align: center;
           color: #ffffff;
           pointer-events: all;
-          /* Soporte para altura dinámica en iOS */
           height: 100vh;
           height: 100dvh;
         }
