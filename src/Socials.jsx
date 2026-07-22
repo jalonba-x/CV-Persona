@@ -498,8 +498,8 @@ export default function Socials() {
         .sc-info-panel {
           position: absolute;
           top: 12.2cqh;
-          right: 12cqw;
-          left: 46cqw;
+          right: 6cqw;
+          left: 76cqw;
           bottom: 7.8cqh;
           z-index: 50;
           display: flex;
