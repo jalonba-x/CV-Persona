@@ -126,6 +126,26 @@ export default function AboutMe() {
       )}
 
       <style>{`
+        /* =========================================================
+           GLOBAL OVERRIDE: Remove 16:9 pillarbox overlay / vertical lines
+           ========================================================= */
+        #menu-screen {
+          position: absolute !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          max-width: none !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+        }
+
+        #menu-screen::before,
+        #menu-screen::after {
+          display: none !important;
+        }
+
         .sc-root {
           position: absolute;
           inset: 0;
@@ -141,8 +161,10 @@ export default function AboutMe() {
         }
 
         .sc-dim {
-          position: absolute;
-          inset: 0;
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
           z-index: 900010 !important;
           background: rgba(13,13,13,0.68);
           pointer-events: none;
