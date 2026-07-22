@@ -154,7 +154,7 @@ export default function Socials() {
           justify-content: center;
           gap: 1.8cqh;
           padding-left: 0;
-          left: 9.5cqw;
+          left: 10.5cqw;
         }
 
         .sc-bar {
