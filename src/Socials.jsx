@@ -253,11 +253,13 @@ export default function Socials() {
           left: 78%;
           transform: translateX(calc(-100% - 0.5cqw)); 
         }
-        .sc-icon {
+.sc-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-family: 'Bebas Neue', sans-serif;
           font-size: 1.2cqw;
           width: 1.75cqw;
-          text-align: center;
           flex-shrink: 0;
           color: rgba(255,255,255,0.15);
           transition: color 0.2s ease;
