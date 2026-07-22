@@ -428,6 +428,31 @@ export default function ResumePage() {
           word-spacing: 0.15cqw;
           color: #ffffff;
         }
+
+        /* --- MOBILE & SMALL SCREEN OPTIMIZATIONS --- */
+        @media screen and (max-width: 1024px), screen and (max-height: 650px) {
+          .resume-stack {
+            top: 18cqh;
+            left: 4cqw;
+            transform: scale(0.85);
+          }
+          .resume-detail-panel {
+            top: 18cqh;
+            min-height: 70cqh;
+          }
+        }
+
+        @media screen and (max-width: 768px), screen and (max-height: 500px) {
+          .resume-stack {
+            top: 23cqh;
+            left: 3cqw;
+            transform: scale(0.75);
+          }
+          .resume-detail-panel {
+            top: 23cqh;
+            min-height: 65cqh;
+          }
+        }
       `}</style>
 
       <div className="resume-overlay">
