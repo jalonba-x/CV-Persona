@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { playSelectSound } from "./utils/audio.js";
 
 const ITEMS = [
-  { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
-  { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -6, skewY: -5  },
-  { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 2.8,  offsetX: 0.75, offsetY: 3.1, skew: -4, skewY: 7   },
-  { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 3.7,  offsetX: 1.2,  offsetY: 3.3, skew: -3, skewY: 5   },
-  { id: "github link",  label: "GITHUB LINK",   page: "github",  fontSize: 3.4,  offsetX: 0.6,  offsetY: 3.1, skew: 0,  skewY: -4  },
+  { id: "about",       label: "ABOUT ME",      page: "about",    fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
+  { id: "resume",      label: "RESUME",        page: "resume",   fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -6, skewY: -5  },
+  { id: "sideproj",    label: "SIDE PROJECTS", page: "sideproj", fontSize: 2.8,  offsetX: 0.75, offsetY: 3.1, skew: -4, skewY: 7   },
+  { id: "socials",     label: "SOCIALS",       page: "socials",  fontSize: 3.7,  offsetX: 1.2,  offsetY: 3.3, skew: -3, skewY: 5   },
+  { id: "github link", label: "GITHUB LINK",   page: "github",   fontSize: 3.4,  offsetX: 0.6,  offsetY: 3.1, skew: 0,  skewY: -4  },
 ];
 
 const CLIP_SHAPES = [
@@ -55,7 +55,7 @@ export default function P5Menu({ onNavigate }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active]);
+  }, [active, onNavigate]);
 
   return (
     <>
@@ -68,6 +68,10 @@ export default function P5Menu({ onNavigate }) {
           align-items: center;
           justify-content: center;
           pointer-events: none;
+          /* Explicit container containment ensures cqw/cqh scale accurately against the stage */
+          container-type: size;
+          width: 100%;
+          height: 100%;
         }
 
         .p5-stripe  { position:absolute; right:0; top:0; bottom:0; width:0.3cqw; background:#ffffff; z-index:10; pointer-events:none; }
@@ -82,6 +86,9 @@ export default function P5Menu({ onNavigate }) {
           align-items: center;
           gap: 2cqh;
           pointer-events: all;
+          /* Base scale multipliers for standard screens */
+          --scale: 1;
+          --y-scale: 1;
         }
 
         .p5-row {
@@ -95,6 +102,10 @@ export default function P5Menu({ onNavigate }) {
           opacity: 0;
           transform: translateX(2.2cqw);
           transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.22,1,0.36,1);
+          
+          /* Dynamic sizing calculated via CSS variable multipliers */
+          margin-right: calc(var(--item-x) * var(--scale));
+          margin-top: calc(var(--item-y) * var(--y-scale));
         }
         .p5-row.mounted {
           opacity: 1 !important;
@@ -120,6 +131,7 @@ export default function P5Menu({ onNavigate }) {
           display: flex;
           align-items: center;
           isolation: isolate;
+          transform: skewX(var(--item-skew)) skewY(var(--item-skew-y));
         }
 
         @keyframes p5-shadow-pop {
@@ -146,6 +158,8 @@ export default function P5Menu({ onNavigate }) {
           pointer-events: none;
           transform: translateY(-40%) translateX(-0.75cqw) scaleX(0);
           transition: transform 0.18s ease;
+          width: calc(var(--item-w) * var(--scale));
+          height: calc(var(--item-h) * var(--scale));
         }
         .p5-shadow-tri.pop {
           animation: p5-shadow-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -159,9 +173,13 @@ export default function P5Menu({ onNavigate }) {
           z-index: 2;
           transition: transform 0.22s cubic-bezier(0.22,1,0.36,1);
           pointer-events: none;
+          width: calc(var(--item-w) * var(--scale));
+          height: calc(var(--item-h) * var(--scale));
+          transform: translateY(-50%) scaleX(0);
         }
         .p5-row.active .p5-highlight {
           animation: p5-wiggle-poly 0.66s ease-in-out infinite;
+          transform: translateY(-50%) scaleX(1);
         }
 
         .p5-label-wrap {
@@ -180,6 +198,7 @@ export default function P5Menu({ onNavigate }) {
           color: #ffffff;
           -webkit-text-stroke: 1.1cqw rgba(0, 0, 0, 0.8);
           paint-order: stroke fill;
+          font-size: calc(var(--item-font) * var(--scale));
         }
 
         .p5-label-dark {
@@ -227,38 +246,59 @@ export default function P5Menu({ onNavigate }) {
           top: 4.6cqh;
           left: 2.5cqw;
           z-index: 20;
-
           font-family: 'FuturaStdBold';
           font-style: italic;
           font-size: 4cqw;
-
           line-height: 1.0;
           letter-spacing: 0.12cqw;
-
           color: white;
           text-shadow: 0.2cqw 0.3cqh 0 rgba(0,0,0,.35);
-
           transform: rotate(0deg) skewX(-5deg) scaleX(1.08);
           transform-origin: left top;
-
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-
           user-select: none;
           pointer-events: none;
-
           text-transform: uppercase;
         }
         .p5-name-tag span:first-child {
           font-size: 3.0cqw;
           letter-spacing: -0.12cqw;
         }
-
         .p5-name-tag span:last-child {
           margin-top: 0.9cqh;
           font-size: 5.75cqw;
           letter-spacing: -0.3cqw;
+        }
+
+        /* =========================================================
+           MOBILE LANDSCAPE WIDESCREEN OPTIMIZATIONS
+           ========================================================= */
+        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+          .p5-menu {
+            /* Scale overall font and box sizes down by 25% to prevent horizontal bloat */
+            --scale: 0.75;
+            /* Aggressively compress vertical offsets by 55% so items don't overflow the bottom */
+            --y-scale: 0.45;
+            gap: 1cqh;
+            /* Shift menu right-of-center to take advantage of 16:9 widescreen layout */
+            margin-left: 18cqw;
+          }
+
+          .p5-name-tag {
+            /* Anchor title securely inside the left notch/camera safe zone */
+            top: max(6cqh, env(safe-area-inset-top, 16px));
+            left: max(4cqw, env(safe-area-inset-left, 24px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.85);
+          }
+        }
+
+        /* Touch Device Decluttering: Hide keyboard hints on phones and tablets */
+        @media (hover: none) and (pointer: coarse) {
+          .p5-hint {
+            display: none !important;
+          }
         }
       `}</style>
 
@@ -274,7 +314,6 @@ export default function P5Menu({ onNavigate }) {
             const dist = Math.abs(i - active);
             const opacity = isActive ? 1 : Math.max(0.5, 1 - dist * 0.2);
             
-            // Width and height calculations scale dynamically in cqw units
             const estW = item.label.length * item.fontSize * 0.6 + 5;
             const estH = item.fontSize * 0.94;
             const clipFn = CLIP_SHAPES[i] ?? CLIP_SHAPES[0];
@@ -285,8 +324,13 @@ export default function P5Menu({ onNavigate }) {
                 href="#"
                 className={`p5-row ${isActive ? "active" : ""} ${mounted ? "mounted" : ""}`}
                 style={{
-                  marginRight: `${item.offsetX}cqw`,
-                  marginTop: `${item.offsetY}cqh`,
+                  '--item-x': `${item.offsetX}cqw`,
+                  '--item-y': `${item.offsetY}cqh`,
+                  '--item-font': `${item.fontSize}cqw`,
+                  '--item-w': `${estW}cqw`,
+                  '--item-h': `${estH}cqw`,
+                  '--item-skew': `${item.skew}deg`,
+                  '--item-skew-y': `${item.skewY}deg`,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
                 onClick={(e) => { e.preventDefault(); onNavigate?.(item.page); }}
@@ -294,38 +338,23 @@ export default function P5Menu({ onNavigate }) {
                 aria-current={isActive ? "page" : undefined}
               >
                 <div className="p5-glow" />
-                <div
-                  className="p5-skew-wrap"
-                  style={{ transform: `skewX(${item.skew}deg) skewY(${item.skewY}deg)` }}
-                >
+                <div className="p5-skew-wrap">
                   <div
                     key={isActive ? `pop-${i}-${animKey}` : `idle-${i}`}
                     className={`p5-shadow-tri${isActive ? ' pop' : ''}`}
-                    style={{
-                      width: `${estW}cqw`,
-                      height: `${estH}cqw`,
-                      clipPath: clipFn(estW, estH),
-                    }}
+                    style={{ clipPath: clipFn(estW, estH) }}
                   />
                   <div
                     className="p5-highlight"
-                    style={{
-                      width: `${estW}cqw`,
-                      height: `${estH}cqw`,
-                      clipPath: clipFn(estW, estH),
-                      transform: `translateY(-50%) scaleX(${isActive ? 1 : 0})`,
-                    }}
+                    style={{ clipPath: clipFn(estW, estH) }}
                   />
                   <div className="p5-label-wrap" style={{ opacity }}>
-                    <span className="p5-label-base p5-label-dark" style={{ fontSize: `${item.fontSize}cqw` }}>
+                    <span className="p5-label-base p5-label-dark">
                       {item.label}
                     </span>
                     <span
                       className="p5-label-base p5-label-bright"
-                      style={{
-                        fontSize: `${item.fontSize}cqw`,
-                        clipPath: clipFn(estW, estH),
-                      }}
+                      style={{ clipPath: clipFn(estW, estH) }}
                     >
                       {item.label}
                     </span>
