@@ -213,6 +213,30 @@ export default function SideProjectsPage() {
           box-shadow: -0.3cqw 0 0 #d92323;
         }
 
+.sp-footer {
+  position: absolute;
+  bottom: 2.6cqh; right: 1.7cqw;
+  z-index: 20;
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0.5cqh;
+  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
+  opacity: 0;
+  transition: opacity 0.5s ease 0.9s;
+}
+
+.sp-footer.mounted { opacity: 1; }
+
+.sp-footer-row {
+  display: flex; align-items: center; gap: 0.5cqw;
+  font-size: 0.8cqw; letter-spacing: 0.12cqw;
+  color: rgba(255,255,255,0.28);
+}
+
+.sp-footer-key {
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.2cqw;
+  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+}
 
       `}</style>
 
@@ -248,8 +272,6 @@ export default function SideProjectsPage() {
             OPEN LINK: {ITEMS[active].href.replace("https://", "")}
           </a>
         </div>
-      </div>
-
 <div className={`sp-footer${mounted ? " mounted" : ""}`}>
         <div className="sp-footer-row">
           <span className="sp-footer-key">↑↓</span>
