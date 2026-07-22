@@ -61,9 +61,6 @@ export default function P5Menu({ onNavigate }) {
   return (
     <>
       <style>{`
-        /* =========================================================
-           GLOBAL OVERRIDE: Remove the long bottom rectangle
-           ========================================================= */
         .bgm-panel {
           background: transparent !important;
           border: none !important;
@@ -285,27 +282,35 @@ export default function P5Menu({ onNavigate }) {
            MOBILE LANDSCAPE WIDESCREEN OPTIMIZATIONS
            ========================================================= */
        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+          
+          .p5-overlay {
+            height: 100dvh;
+          }
+
+          /* Force the background video to also respect the chrome bar */
+          :global(.site-bg-video) {
+            height: 100dvh !important;
+            top: env(safe-area-inset-top, 0px) !important;
+          }
+          
           .p5-menu {
             /* Scaled down further to ensure vertical fit on mobile screens */
             --scale: 0.55; 
             --y-scale: 0.75;
             
-            /* Dynamically aligns menu to the right half while respecting notches */
-            margin-left: auto;
-            margin-right: max(10vw, env(safe-area-inset-right, 24px));
+            margin-right: auto;
+            margin-left: max(10vw, env(safe-area-inset-right, 24px));
             gap: 2.5vh; 
             
-            /* Prevents clipping at the top/bottom of small displays */
             padding-top: max(2vh, env(safe-area-inset-top));
             padding-bottom: max(2vh, env(safe-area-inset-bottom));
             justify-content: center;
           }
 
           .p5-name-tag {
-            /* Hard-anchors the title to the top-left, respecting safe areas */
-            top: max(16px, env(safe-area-inset-top, 16px));
-            left: max(24px, env(safe-area-inset-left, 24px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.60);
+            top: max(20px, env(safe-area-inset-top, 20px));
+            left: max(12px, env(safe-area-inset-left, 12px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.80);
           }
         }
 
