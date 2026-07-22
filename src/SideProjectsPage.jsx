@@ -66,7 +66,7 @@ export default function SideProjectsPage() {
           display: grid;
           grid-template-columns: 48% 52%;
           gap: 1.5cqw;
-          /* Desktop default: max(150px, 16vh) pushes panels below widescreen PC headers */
+          /* Desktop default: pushes panels below widescreen PC headers */
           padding-top: max(150px, 16vh);
           padding-right: 3.5cqw;
           padding-bottom: 4cqh;
@@ -112,6 +112,7 @@ export default function SideProjectsPage() {
           opacity: 0;
           transform: translateX(-1.8cqw);
           transition: transform 0.24s ease, background 0.24s ease, opacity 0.4s ease;
+          box-sizing: border-box;
         }
         .sp-item.mounted {
           opacity: 1;
@@ -155,6 +156,7 @@ export default function SideProjectsPage() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          box-sizing: border-box;
         }
 
         .sp-tag {
@@ -224,18 +226,22 @@ export default function SideProjectsPage() {
         }
 
         /* =========================================================
-           COMPACT / MOBILE OPTIMIZATIONS (Landscape & Portrait)
-           Triggers on narrow phone widths OR short landscape heights
+           MOBILE LANDSCAPE & TABLET (Short Screens: max-height 600px)
+           Locks content strictly in the safe zone between UI buttons
            ========================================================= */
-        @media (max-width: 850px), (max-height: 550px) {
+        @media (max-width: 900px), (max-height: 600px) {
           .sp-shell {
-            /* Guarantees content sits strictly between top BACK button and bottom BGM button */
-            padding-top: max(80px, calc(env(safe-area-inset-top) + 65px));
-            padding-bottom: max(60px, calc(env(safe-area-inset-bottom) + 45px));
-            padding-left: max(20px, 4vw);
-            padding-right: max(20px, 4vw);
+            /* Override inset:0. Lock coordinates strictly between top and bottom UI bars */
+            inset: auto;
+            top: max(68px, calc(env(safe-area-inset-top) + 58px));
+            bottom: max(58px, calc(env(safe-area-inset-bottom) + 48px));
+            left: max(16px, 3vw);
+            right: max(16px, 3vw);
+            width: auto;
+            height: auto;
+            padding: 0;
             gap: 12px;
-            align-content: center; /* Centering mirrors the balanced vertical spacing of the desktop web layout */
+            align-items: center; /* Vertically centers the grid inside the safe box */
           }
 
           .sp-left {
@@ -243,7 +249,6 @@ export default function SideProjectsPage() {
             justify-content: center;
           }
 
-          /* Switches title text to "PROJECTS" on a single line */
           .title-desktop {
             display: none;
           }
@@ -252,20 +257,21 @@ export default function SideProjectsPage() {
           }
 
           .sp-title {
-            font-size: 18px;
-            margin-bottom: 4px;
+            font-size: 16px;
+            margin-bottom: 2px;
             letter-spacing: 1px;
+            line-height: 1;
           }
 
-          /* Scaled down item bars to prevent vertical overflowing */
+          /* Compact 36px height ensures 3 items + title take only ~145px total vertical height */
           .sp-item {
-            min-height: 38px;
+            min-height: 36px;
             padding: 6px 10px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
           }
 
           .sp-item-title {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1;
             letter-spacing: -0.3px;
           }
@@ -276,11 +282,12 @@ export default function SideProjectsPage() {
             letter-spacing: 0.5px;
           }
 
-          /* Detail panel scaled proportionally to match the height of the 3 left bars */
+          /* Detail panel matches left column height and scrolls independently if needed */
           .sp-right {
-            padding: 12px 14px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-            max-height: calc(100vh - 140px);
+            height: 100%;
+            max-height: 100%;
+            padding: 10px 14px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
             justify-content: center;
           }
 
@@ -291,22 +298,22 @@ export default function SideProjectsPage() {
           }
 
           .sp-right-title {
-            font-size: 16px;
-            margin-top: 6px;
+            font-size: 15px;
+            margin-top: 4px;
             line-height: 1.05;
             letter-spacing: -0.3px;
           }
 
           .sp-right-summary {
             font-size: 12px;
-            margin-top: 6px;
+            margin-top: 4px;
             line-height: 1.15;
           }
 
           .sp-link {
             font-size: 12px;
-            padding: 5px 10px;
-            margin-top: 10px;
+            padding: 4px 8px;
+            margin-top: 8px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
           }
 
@@ -315,42 +322,58 @@ export default function SideProjectsPage() {
           }
         }
 
-        /* Portrait mode adjustment: stacks left list and right panel vertically */
+        /* =========================================================
+           MOBILE PORTRAIT (Vertical Phone Orientation)
+           Stacks left list and right panel vertically inside the box
+           ========================================================= */
         @media (max-width: 768px) and (orientation: portrait) {
           .sp-shell {
             grid-template-columns: 1fr;
-            grid-template-rows: auto auto;
-            align-content: start;
-            padding-top: max(80px, calc(env(safe-area-inset-top) + 65px));
-            padding-bottom: max(70px, calc(env(safe-area-inset-bottom) + 60px));
-            gap: 14px;
+            grid-template-rows: auto 1fr;
+            align-items: start;
+            top: max(75px, calc(env(safe-area-inset-top) + 65px));
+            bottom: max(65px, calc(env(safe-area-inset-bottom) + 55px));
+            left: max(16px, 4vw);
+            right: max(16px, 4vw);
+            gap: 12px;
             overflow-y: auto;
           }
+
           .sp-left {
             gap: 6px;
           }
+
           .sp-item {
             min-height: 42px;
             padding: 8px 12px;
           }
+
           .sp-item-title {
             font-size: 15px;
           }
+
           .sp-item-stack {
             font-size: 11px;
           }
+
           .sp-right {
+            height: auto;
             max-height: none;
             padding: 14px;
+            justify-content: flex-start;
           }
+
           .sp-right-title {
             font-size: 18px;
           }
+
           .sp-right-summary {
             font-size: 13px;
           }
+
           .sp-link {
             font-size: 13px;
+            margin-top: 10px;
           }
         }
       `}</style>
