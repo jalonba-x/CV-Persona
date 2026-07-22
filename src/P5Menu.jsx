@@ -61,7 +61,7 @@ export default function P5Menu({ onNavigate }) {
     <>
       <style>{`
         /* =========================================================
-           GLOBAL OVERRIDE: Remove the long bottom rectangle
+           GLOBAL OVERRIDE
            ========================================================= */
         .bgm-panel {
           background: transparent !important;
@@ -112,6 +112,8 @@ export default function P5Menu({ onNavigate }) {
           transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.22,1,0.36,1);
           margin-right: calc(var(--item-x) * var(--scale));
           margin-top: calc(var(--item-y) * var(--y-scale));
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
         }
         .p5-row.mounted {
           opacity: 1 !important;
@@ -279,26 +281,52 @@ export default function P5Menu({ onNavigate }) {
         }
 
         /* =========================================================
-           MOBILE LANDSCAPE WIDESCREEN OPTIMIZATIONS
+           MOBILE OPTIMIZATIONS (PORTRAIT & LANDSCAPE)
            ========================================================= */
-        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+        @media (max-width: 768px) {
+          .p5-overlay {
+            justify-content: flex-start;
+          }
+
           .p5-menu {
-            --scale: 0.55; 
+            --scale: 1.25;
+            --y-scale: 0.85;
+            align-items: flex-start;
+            margin-left: max(5vw, env(safe-area-inset-left, 16px));
+            margin-right: auto;
+            gap: 1.2vh;
+            padding-top: max(14vh, env(safe-area-inset-top, 60px));
+            padding-bottom: max(3vh, env(safe-area-inset-bottom));
+          }
+
+          .p5-name-tag {
+            top: max(2.5vh, env(safe-area-inset-top, 16px));
+            left: max(5vw, env(safe-area-inset-left, 16px));
+            transform: rotate(0deg) skewX(-5deg) scale(1.1);
+          }
+        }
+
+        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+          .p5-overlay {
+            justify-content: flex-start;
+          }
+
+          .p5-menu {
+            --scale: 0.62; 
             --y-scale: 0.75;
-            
-            margin-left: auto;
-            margin-right: max(10vw, env(safe-area-inset-right, 24px));
-            gap: 2.5vh; 
-            
-            padding-top: max(2vh, env(safe-area-inset-top));
+            align-items: flex-start;
+            margin-left: max(4vw, env(safe-area-inset-left, 20px));
+            margin-right: auto;
+            gap: 2vh; 
+            padding-top: max(12vh, env(safe-area-inset-top, 40px));
             padding-bottom: max(2vh, env(safe-area-inset-bottom));
             justify-content: center;
           }
 
           .p5-name-tag {
-            top: max(12px, env(safe-area-inset-top, 12px));
-            left: max(12px, env(safe-area-inset-left, 12px));
-            transform: rotate(0deg) skewX(-5deg) scale(1.20);
+            top: max(10px, env(safe-area-inset-top, 10px));
+            left: max(4vw, env(safe-area-inset-left, 20px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.95);
           }
         }
 
