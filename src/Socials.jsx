@@ -58,6 +58,9 @@ export default function Socials() {
     if (isFirstRenderAudio.current) {
       isFirstRenderAudio.current = false;
       return;
+        }
+    playSelectSound();
+  }, [active]);
   
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
