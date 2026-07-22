@@ -355,13 +355,13 @@ function SiteBackgroundVideo() {
           object-position: center center;
         }
 
-        /* Mobile shift adjustment: pull video down to avoid navigator / notch cropping */
+        /* Mobile alignment: pin upper video bounds flush to the top edge/navigation bar */
         @media (max-width: 950px) {
           .site-bg-video {
             object-position: center top;
-            top: max(10px, env(safe-area-inset-top, 10px));
-            height: calc(100% - max(10px, env(safe-area-inset-top, 10px)));
-            transform: translateY(12px);
+            top: 0;
+            height: 100%;
+            transform: none;
           }
         }
       `}</style>
