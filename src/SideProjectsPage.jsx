@@ -11,15 +11,15 @@ const ITEMS = [
     href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
-    id: "Persona5-themed resume (Javier)",
-    title: "Persona5-themed resume (Javier)",
+    id: "Persona5-themed Resume (Javier)",
+    title: "Persona5-themed Resume (Javier)",
     stack: "Github",
     summary: "An optimized version of @ffaneto's persona5-website from Github",
     href: "https://github.com/jalonba-x/CV-Persona",
   },
   {
     id: "Fan video edition",
-    title: "Tribute to Hunter X Hunter 134 (miniature rose)",
+    title: "Tribute to Hunter X Hunter 134 (Miniature Rose)",
     stack: "Adobe Premiere",
     summary: "An edited anime scene using real life images instead",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
@@ -114,7 +114,7 @@ export default function SideProjectsPage() {
         }
 
         .sp-item-title {
-          font-family: 'Bebas Nue', sans-serif;
+          font-family: 'FuturaStdBold', sans-serif;
           font-size: 2.6cqw;
           line-height: 1.1;
           color: #ffffff;
@@ -159,7 +159,7 @@ export default function SideProjectsPage() {
         }
 
         .sp-right-title {
-          font-family: 'Bebas Neue', sans-serif;
+          font-family: 'FuturaStdBold', sans-serif;
           font-size: 4cqw;
           line-height: 1;
           color: #ffffff;
