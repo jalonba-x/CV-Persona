@@ -491,7 +491,7 @@ export default function ResumePage() {
 
         .sc-footer {
   position: absolute;
-  bottom: 2.6cqh; right: 6.7cqw;
+  bottom: 2.6cqh; right: 7.0cqw;
   z-index: 20;
   display: flex; flex-direction: column;
   align-items: flex-end; gap: 0.5cqh;
