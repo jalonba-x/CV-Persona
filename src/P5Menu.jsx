@@ -290,13 +290,13 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 1.38; /* Scaled up 50% from 0.92 */
+            --scale: 1.38;
             --y-scale: 0.75;
             align-items: flex-start;
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
             gap: 0.8vh;
-            padding-top: max(16vh, env(safe-area-inset-top, 90px));
+            padding-top: max(22vh, env(safe-area-inset-top, 130px));
             padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
           }
 
@@ -314,13 +314,13 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.825; /* Scaled up 50% from 0.55 */
+            --scale: 0.825;
             --y-scale: 0.65;
             align-items: flex-start;
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
             gap: 0.5vh; 
-            padding-top: max(14vh, env(safe-area-inset-top, 45px));
+            padding-top: max(18vh, env(safe-area-inset-top, 65px));
             padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
             justify-content: flex-start;
           }
