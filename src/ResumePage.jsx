@@ -595,9 +595,22 @@ export default function ResumePage() {
                 ))}
               </div>
             </div>
-          </div>
-        )}
+   <div className={`sc-footer${mounted ? " mounted" : ""}`}>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">↑↓</span>
+          <span>NAVIGATE</span>
+        </div>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">↵</span>
+          <span>CONFIRM</span>
+        </div>
+        <div className="sc-footer-row">
+          <span className="sc-footer-key">ESC</span>
+          <span>BACK</span>
+        </div>
       </div>
     </div>
   );
 }
+
+
