@@ -344,18 +344,40 @@ function MenuScreen() {
 
 function SiteBackgroundVideo() {
   return (
-    <video
-      className="site-bg-video"
-      src={mainVideo}
-      autoPlay
-      loop
-      muted
-      playsInline
-      disablePictureInPicture
-      disableRemotePlayback
-      preload="auto"
-      aria-hidden="true"
-    />
+    <>
+      <style>{`
+        .site-bg-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+
+        /* Mobile shift adjustment: pull video down to avoid navigator / notch cropping */
+        @media (max-width: 950px) {
+          .site-bg-video {
+            object-position: center top;
+            top: max(10px, env(safe-area-inset-top, 10px));
+            height: calc(100% - max(10px, env(safe-area-inset-top, 10px)));
+            transform: translateY(12px);
+          }
+        }
+      `}</style>
+      <video
+        className="site-bg-video"
+        src={mainVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        disablePictureInPicture
+        disableRemotePlayback
+        preload="auto"
+        aria-hidden="true"
+      />
+    </>
   )
 }
 
