@@ -78,22 +78,22 @@ function BackButton() {
           pointer-events: all;
         }
 
-        .p5-back-button {
-          display: flex;
-          align-items: center;
-          gap: 0.5cqw;
-          background: #d92323;
-          color: #ffffff;
-          border: none;
-          padding: 0.6cqh 1.2cqw 0.6cqh 0.8cqw;
-          font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
-          font-size: 1.4cqw;
-          letter-spacing: 0.15cqw;
-          cursor: pointer;
-          clip-path: polygon(0.6cqw 0%, 100% 0%, calc(100% - 0.6cqw) 100%, 0% 100%);
-          box-shadow: 0.25cqw 0.25cqh 0px #000000;
-          transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-        }
+.p5-back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.35cqw;
+  background: #d92323;
+  color: #ffffff;
+  border: none;
+  padding: 0.4cqh 0.8cqw 0.4cqh 0.6cqw;
+  font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
+  font-size: 1.0cqw;
+  letter-spacing: 0.1cqw;
+  cursor: pointer;
+  clip-path: polygon(0.4cqw 0%, 100% 0%, calc(100% - 0.4cqw) 100%, 0% 100%);
+  box-shadow: 0.15cqw 0.15cqh 0px #000000;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
 
         .p5-back-button:hover, .p5-back-button:focus {
           background: #ff2a2a;
