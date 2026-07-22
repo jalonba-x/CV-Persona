@@ -154,7 +154,7 @@ export default function Socials() {
           justify-content: center;
           gap: 1.8cqh;
           padding-left: 0;
-          left: 4.5cqw;
+          left: 7.5cqw;
         }
 
         .sc-bar {
@@ -474,7 +474,7 @@ export default function Socials() {
         .sc-right-nav {
           position: absolute;
           top: 3.7cqh;
-          right: 2.2cqw;
+          right: 6cqw;
           display: flex;
           align-items: center;
           gap: 0.35cqw;
@@ -498,14 +498,14 @@ export default function Socials() {
         .sc-info-panel {
           position: absolute;
           top: 12.2cqh;
-          right: 0;
-          left: 65cqw;
+          right: 6cqw;
+          left: 56cqw;
           bottom: 7.8cqh;
           z-index: 50;
           display: flex;
           flex-direction: column;
           gap: 0.6cqh;
-          padding: 0.75cqh 0.75cqw 0.75cqh 0;
+          padding: 0.75cqh 0;
           overflow-y: auto;
           overflow-x: hidden;
           pointer-events: none;
@@ -624,7 +624,7 @@ export default function Socials() {
 
         .sc-footer {
           position: absolute;
-          bottom: 2.5cqh; right: 1.6cqw;
+          bottom: 2.5cqh; right: 6cqw;
           display: flex; flex-direction: column;
           align-items: flex-end; gap: 0.5cqh;
           font-family: 'Bebas Neue', sans-serif;
@@ -662,6 +662,7 @@ export default function Socials() {
 
         @media (max-width: 768px) {
           .sc-root {
+            left: 4.5cqw;
             justify-content: flex-start;
             padding-top: 12px;
             gap: 6px;
