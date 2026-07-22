@@ -3,7 +3,8 @@ import { playSelectSound } from "./utils/audio.js";
 
 const ITEMS = [
   { id: "about",       label: "ABOUT ME",      page: "about",    fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
-  { id: "resume",      label: "RESUME",        page: "resume",   fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -6, skewY: -5  },
+  // Changed skew from -6 to -4, and skewY from -5 to 3 to soften the jarring reverse angle
+  { id: "resume",      label: "RESUME",        page: "resume",   fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -4, skewY: 3   },
   { id: "sideproj",    label: "SIDE PROJECTS", page: "sideproj", fontSize: 2.8,  offsetX: 0.75, offsetY: 3.1, skew: -4, skewY: 7   },
   { id: "socials",     label: "SOCIALS",       page: "socials",  fontSize: 3.7,  offsetX: 1.2,  offsetY: 3.3, skew: -3, skewY: 5   },
   { id: "github link", label: "GITHUB LINK",   page: "github",   fontSize: 3.4,  offsetX: 0.6,  offsetY: 3.1, skew: 0,  skewY: -4  },
@@ -254,7 +255,7 @@ export default function P5Menu({ onNavigate }) {
           z-index: 20;
           font-family: 'FuturaStdBold';
           font-style: italic;
-          font-size: 2.0cqw;
+          font-size: 1.8cqw;
           line-height: 1.0;
           letter-spacing: 0.12cqw;
           color: white;
@@ -268,14 +269,16 @@ export default function P5Menu({ onNavigate }) {
           pointer-events: none;
           text-transform: uppercase;
         }
+        /* Reduced from 3.0cqw to 2.2cqw for PC viewports */
         .p5-name-tag span:first-child {
-          font-size: 3.0cqw;
+          font-size: 2.2cqw;
           letter-spacing: -0.12cqw;
         }
+        /* Reduced from 5.75cqw to 4.2cqw for PC viewports */
         .p5-name-tag span:last-child {
-          margin-top: 0.9cqh;
-          font-size: 5.75cqw;
-          letter-spacing: -0.3cqw;
+          margin-top: 0.6cqh;
+          font-size: 4.2cqw;
+          letter-spacing: -0.25cqw;
         }
 
         /* =========================================================
