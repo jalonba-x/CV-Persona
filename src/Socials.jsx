@@ -28,7 +28,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: "📷", barIcon: icon2, bars: 1, newBars: [0], counts: ["48"],
+    id: "instagram", label: "INSTAGRAM", handle: "@tamer.jb_tcg", href: "https://instagram.com/tamer.jb_tcg", icon: <span style={{ position: "relative", top: "-3px" }}>📷</span>, barIcon: icon2, bars: 1, newBars: [0], counts: ["48"],
     titles: ["Digimon card"],
     links: ["https://instagram.com/p/ChfplqFPmcf/"],
     stats: [
@@ -37,7 +37,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "LinkedIn", label: "LinkedIn", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab/", icon: "💼", barIcon: icon3, bars: 1, newBars: [0], counts: ["17"],
+    id: "LinkedIn", label: "LinkedIn", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab/", icon: <span style={{ position: "relative", top: "-3px" }}>💼</span>, barIcon: icon3, bars: 1, newBars: [0], counts: ["17"],
     titles: ["Position update"],
     links: ["https://www.linkedin.com/feed/update/urn:li:ugcPost:7007173080699523072/"],
     stats: [
