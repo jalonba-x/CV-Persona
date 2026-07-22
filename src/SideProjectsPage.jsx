@@ -65,8 +65,13 @@ export default function SideProjectsPage() {
           z-index: 10;
           display: grid;
           grid-template-columns: 48% 52%;
-          gap: 1cqw;
-          padding: 6cqh 3cqw;
+          gap: 1.5cqw;
+          /* Pushes both columns 95px down to permanently clear the top-left red Back button */
+          padding-top: max(95px, calc(env(safe-area-inset-top) + 75px));
+          padding-right: 3.5cqw;
+          padding-bottom: 4cqh;
+          padding-left: 3.5cqw;
+          box-sizing: border-box;
         }
 
         .sp-left {
@@ -139,8 +144,12 @@ export default function SideProjectsPage() {
           background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.96) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 0.9cqw) 100%, 0 100%);
           box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0.6cqw 1.1cqh 0 rgba(13,13,13,0.5);
-          padding: 2.2cqh 1.25cqw;
-          overflow: hidden;
+          padding: 2.2cqh 1.5cqw;
+          overflow-y: auto;
+          overflow-x: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .sp-tag {
@@ -206,6 +215,77 @@ export default function SideProjectsPage() {
           color: rgba(255,255,255,0.7);
           letter-spacing: 0.1cqw;
           font-size: 0.65cqw;
+        }
+
+        /* =========================================================
+           MOBILE & NARROW VIEWPORT OPTIMIZATIONS
+           ========================================================= */
+        @media (max-width: 768px) {
+          .sp-shell {
+            padding-top: max(90px, calc(env(safe-area-inset-top) + 70px));
+            padding-left: 4cqw;
+            padding-right: 4cqw;
+            padding-bottom: 20px;
+            gap: 12px;
+          }
+
+          .sp-title {
+            font-size: 24px;
+            margin-bottom: 6px;
+          }
+
+          .sp-item {
+            min-height: 52px;
+            padding: 10px 12px;
+          }
+
+          .sp-item-title {
+            font-size: 16px;
+          }
+
+          .sp-item-stack {
+            font-size: 12px;
+          }
+
+          .sp-right {
+            padding: 16px;
+          }
+
+          .sp-tag {
+            font-size: 12px;
+          }
+
+          .sp-right-title {
+            font-size: 22px;
+            margin-top: 10px;
+          }
+
+          .sp-right-summary {
+            font-size: 15px;
+            margin-top: 10px;
+          }
+
+          .sp-link {
+            font-size: 14px;
+            padding: 8px 14px;
+            margin-top: 16px;
+          }
+
+          .sp-footer {
+            display: none;
+          }
+        }
+
+        /* Stacks left list and right panel vertically in portrait mobile mode */
+        @media (max-width: 768px) and (orientation: portrait) {
+          .sp-shell {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            overflow-y: auto;
+          }
+          .sp-left {
+            gap: 8px;
+          }
         }
       `}</style>
 
