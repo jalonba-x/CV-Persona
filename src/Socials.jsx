@@ -250,7 +250,7 @@ export default function Socials() {
           transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 .sc-bar-outer.active .sc-main-top {
-          left: 100%;
+          left: 72%;
           transform: translateX(calc(-100% - 0.5cqw)); 
         }
         .sc-icon {
