@@ -254,7 +254,7 @@ export default function P5Menu({ onNavigate }) {
           z-index: 20;
           font-family: 'FuturaStdBold';
           font-style: italic;
-          font-size: 3.0cqw;
+          font-size: 2.0cqw;
           line-height: 1.0;
           letter-spacing: 0.12cqw;
           color: white;
