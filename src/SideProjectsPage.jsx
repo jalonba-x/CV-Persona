@@ -11,15 +11,15 @@ const ITEMS = [
     href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
-    id: "Persona5-themed resume (Javier)",
-    title: "Persona5-themed resume (Javier)",
+    id: "Persona5-themed resume",
+    title: "Persona5-themed resume",
     stack: "Github",
     summary: "An optimized version of @ffaneto's persona5-website from Github",
     href: "https://github.com/jalonba-x/CV-Persona",
   },
   {
     id: "Fan video edition",
-    title: "Tribute to Hunter X Hunter 134 (miniature rose)",
+    title: "Tribute to HxH 134 (miniature rose)",
     stack: "Adobe Premiere",
     summary: "An edited anime scene using real life images instead",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
