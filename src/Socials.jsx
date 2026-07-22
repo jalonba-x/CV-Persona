@@ -232,22 +232,26 @@ export default function Socials() {
           font-size: 2.2cqw;
           transform: translateY(-0.4cqh) rotate(-15deg) scale(1.03);
         }
-        .sc-main {
+.sc-main {
           flex: 1;
+          position: relative;
           display: flex;
-          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          gap: 0.3cqh;
+          height: 100%;
         }
-        .sc-main-top {
+      .sc-main-top {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           align-items: center;
           gap: 0.65cqw;
-          transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+          white-space: nowrap;
+          transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
-                .sc-bar-outer.active sc.main-top {
-        transform: translateX(4.5cqw);
+.sc-bar-outer.active .sc-main-top {
+          left: 100%;
+          transform: translateX(calc(-100% - 0.5cqw)); 
         }
         .sc-icon {
           font-family: 'Bebas Neue', sans-serif;
