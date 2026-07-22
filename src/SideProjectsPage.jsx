@@ -211,7 +211,7 @@ export default function SideProjectsPage() {
 
       <div className="sp-shell">
         <div className="sp-left">
-          <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECT LOG</div>
+          <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECTS</div>
           {ITEMS.map((item, index) => (
             <div
               key={item.id}
