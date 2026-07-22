@@ -296,7 +296,7 @@ export default function P5Menu({ onNavigate }) {
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
             gap: 0.8vh;
-            padding-top: max(22vh, env(safe-area-inset-top, 130px));
+            padding-top: max(28vh, env(safe-area-inset-top, 165px));
             padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
           }
 
@@ -320,7 +320,7 @@ export default function P5Menu({ onNavigate }) {
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
             gap: 0.5vh; 
-            padding-top: max(18vh, env(safe-area-inset-top, 65px));
+            padding-top: max(22vh, env(safe-area-inset-top, 85px));
             padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
             justify-content: flex-start;
           }
