@@ -184,3 +184,17 @@ html, body {
   border-width: 1px;
   opacity: 1;
 }
+@media (max-width: 768px) {
+  .bgm-panel {
+    transform: scale(0.75) !important;
+    transform-origin: bottom left !important; /* Adjust if anchored to bottom-right, top-left, etc. */
+  }
+}
+
+/* Landscape Mobile & Low-Height Screens */
+@media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+  .bgm-panel {
+    transform: scale(0.7) !important;
+    transform-origin: bottom left !important;
+  }
+}
