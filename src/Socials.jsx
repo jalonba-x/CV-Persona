@@ -498,7 +498,7 @@ export default function Socials() {
         .sc-info-panel {
           position: absolute;
           top: 12.2cqh;
-          right: 6cqw;
+          right: 10cqw;
           left: 76cqw;
           bottom: 7.8cqh;
           z-index: 50;
