@@ -113,16 +113,18 @@ export default function ResumePage() {
       </div>
       <style>{`
         #menu-screen {
-          position: absolute !important;
+          position: fixed !important;
           inset: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
+          width: 100vw !important;
+          height: 100vh !important;
           max-width: none !important;
-          background: transparent !important;
+          background: #000 !important;
           box-shadow: none !important;
           border: none !important;
           outline: none !important;
+          overflow: hidden !important;
           container-type: size;
+          z-index: 1;
         }
 
         #menu-screen::before,
@@ -138,27 +140,41 @@ export default function ResumePage() {
         }
 
         .resume-entry-mask {
-          position: absolute;
+          position: fixed;
           inset: 0;
+          width: 100vw;
+          height: 100vh;
           z-index: 9;
           overflow: hidden;
           background: #732424;
           clip-path: circle(0 at 50% 50%);
           animation: resume-entry-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           pointer-events: none;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .resume-entry-video {
           position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
+          top: 50%;
+          left: 50%;
+          width: 100vw;
+          height: 100vh;
+          transform: translate(-50%, -50%);
           object-fit: cover;
+          pointer-events: none;
         }
 
         @keyframes resume-entry-reveal {
-          from { clip-path: circle(0 at 50% 50%); }
-          to { clip-path: circle(150vmax at 50% 50%); }
+          0% {
+            clip-path: circle(0 at 50% 50%);
+          }
+          99% {
+            clip-path: circle(150vmax at 50% 50%);
+          }
+          100% {
+            clip-path: none; /* Discards clip layer to stop GPU edge repetition */
+          }
         }
 
         .resume-overlay {
@@ -166,6 +182,7 @@ export default function ResumePage() {
           inset: 0;
           z-index: 10;
           pointer-events: none;
+          overflow: hidden;
         }
 
         .resume-stack {
