@@ -624,7 +624,7 @@ export default function Socials() {
 
 .sc-footer {
   position: absolute;
-  bottom: 2.6cqh; right: 7.2cqw;
+  bottom: 2.6cqh; right: 8.2cqw;
   z-index: 20;
   display: flex; flex-direction: column;
   align-items: flex-end; gap: 0.5cqh;
