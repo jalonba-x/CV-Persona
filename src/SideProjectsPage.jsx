@@ -170,6 +170,7 @@ export default function SideProjectsPage() {
 
         .sp-right-title {
           font-family: 'Persona5Main', sans-serif;
+          letter-spacing: -1cqw;
           font-size: 3.3cqw;
           line-height: -1;
           color: #ffffff;
