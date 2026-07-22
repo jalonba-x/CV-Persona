@@ -474,7 +474,7 @@ export default function Socials() {
         .sc-right-nav {
           position: absolute;
           top: 3.7cqh;
-          right: 6cqw;
+          right: 9cqw;
           display: flex;
           align-items: center;
           gap: 0.35cqw;
@@ -499,7 +499,7 @@ export default function Socials() {
           position: absolute;
           top: 12.2cqh;
           right: 6cqw;
-          left: 66cqw;
+          left: 96cqw;
           bottom: 7.8cqh;
           z-index: 50;
           display: flex;
