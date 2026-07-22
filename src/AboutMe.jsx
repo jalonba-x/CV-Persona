@@ -127,7 +127,7 @@ export default function AboutMe() {
 
       <style>{`
         /* =========================================================
-           GLOBAL OVERRIDE: Remove 16:9 pillarbox overlay / vertical lines
+           GLOBAL OVERRIDE: Remove 16:9 pillarbox overlay
            ========================================================= */
         #menu-screen {
           position: absolute !important;
@@ -219,19 +219,14 @@ export default function AboutMe() {
           50% { transform: translateX(0.3cqw); opacity: 0.4; }
         }
 
-        @keyframes p5Pulse {
-          0% { transform: translateX(0.8cqw); }
-          50% { transform: translateX(1.1cqw); }
-          100% { transform: translateX(0.8cqw); }
-        }
-
+        /* ── Main Portrait Shell (Layered safely behind panel & to right) ── */
         .sc-main-portrait-shell {
           position: absolute;
           top: 0;
-          right: -10cqw; /* Moved further right */
-          z-index: 900030 !important;
+          right: -2cqw;
+          z-index: 900015 !important;
           pointer-events: none;
-          width: 43cqw;
+          width: 38cqw;
           height: 100cqh;
           overflow: hidden;
           opacity: 0;
@@ -239,17 +234,27 @@ export default function AboutMe() {
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .sc-main-portrait-shell.mounted {
-          opacity: 0.30;
+          opacity: 0.40;
           transform: translateX(0) skewX(-8deg) scale(1);
           animation: sc-portrait-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
+        .sc-main-portrait {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top right;
+          transform: skewX(8deg) scale(1.08);
+          transform-origin: top right;
+        }
+
+        /* ── Reveal Container & Text Bars ── */
         .sc-reveal-panel {
           position: absolute;
-          top: 44cqh;
-          left: 15cqw; /* Moved right to clear the back button starting at its midpoint */
-          width: 88cqw;
-          height: 60cqh;
+          top: 42cqh;
+          left: 14cqw;
+          width: 85cqw;
+          height: 58cqh;
           z-index: 900020 !important;
           pointer-events: none;
           background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
@@ -264,7 +269,7 @@ export default function AboutMe() {
           transition: opacity 0.3s ease, transform 0.35s ease;
         }
         .sc-reveal-panel.mounted {
-          opacity: 0.92;
+          opacity: 0.94;
           transform: translateX(0) rotate(-20deg);
           animation: sc-reveal-bar-in 0.46s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -275,42 +280,48 @@ export default function AboutMe() {
           left: 0;
           width: 100%;
           height: 0.8cqh;
-          background: linear-gradient(180deg, #d92323 0%, #d92323 100%);
+          background: #d92323;
           clip-path: inherit;
         }
+
+        /* Upper Container: Resized & bounded to 60% left area */
         .sc-reveal-upper-bar {
           position: absolute;
-          top: 10%;
-          left: 0%;
-          width: 100%;
-          height: 40%;
-          background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 1.2cqw) 100%, 0 100%);
+          top: 8%;
+          left: 2%;
+          width: 60%;
+          height: 48%;
+          background: rgba(13,13,13,0.94);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 1.8cqw) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
-          gap: 1cqh;
+          gap: 0.6cqh;
+          padding: 0 2cqw;
           color: #ffffff;
-          text-align: center;
         }
         .sc-reveal-upper-line {
           font-family: 'Persona5Main', sans-serif;
-          font-weight: 200;
-          font-size: 1.45cqw;
-          letter-spacing: -0.5cqw;
-          word-spacing: 1.1cqw;
-          line-height: 2.0;
+          font-weight: 400;
+          font-size: 1.15cqw;
+          letter-spacing: 0.03cqw;
+          word-spacing: 0.2cqw;
+          line-height: 1.4;
+          white-space: nowrap;
+          text-align: left;
         }
+
+        /* Lower Container: Shifted under upper container on the left */
         .sc-reveal-lower-bar {
           position: absolute;
-          top: 58%;
-          right: 0;
-          width: 48%;
-          height: 20%;
-          background: rgba(13,13,13,0.92);
-          clip-path: polygon(0 0, 100% 0, calc(100% - 1.2cqw) 100%, 0 100%);
+          top: 60%;
+          left: 5%;
+          width: 55%;
+          height: 22%;
+          background: rgba(13,13,13,0.94);
+          clip-path: polygon(0 0, 100% 0, calc(100% - 1.5cqw) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
           align-items: center;
@@ -318,10 +329,9 @@ export default function AboutMe() {
           color: #ffffff;
           font-family: 'Bebas Neue', sans-serif;
           font-weight: 400;
-          font-size: 1.4cqw;
-          letter-spacing: 0.05cqw;
-          text-transform: lowercase;
-          padding-left: 1.2cqw;
+          font-size: 1.35cqw;
+          letter-spacing: 0.08cqw;
+          padding-left: 1.8cqw;
         }
 
         @keyframes sc-right-nav-pop {
@@ -332,7 +342,7 @@ export default function AboutMe() {
         .sc-right-nav {
           position: absolute;
           top: 10cqh;
-          left: 22cqw; /* Shifted right in line with the panel */
+          left: 22cqw;
           display: flex;
           align-items: center;
           gap: 0.35cqw;
@@ -373,16 +383,7 @@ export default function AboutMe() {
         .sc-right-nav .sc-nav-arrow.left { animation: sc-arrow-left 0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        .sc-main-portrait {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: top right;
-          transform: skewX(8deg) scale(1.08);
-          transform-origin: top right;
-        }
-
-        /* ── Each bar ── */
+        /* ── Menu Bars ── */
         .sc-bar {
           position: relative;
           width: 45cqw;
@@ -408,7 +409,6 @@ export default function AboutMe() {
           z-index: 10;
         }
 
-        /* Prevent sibling overlap while confining buttons inside Layer 1 */
         .sc-bar-outer:nth-child(1) { z-index: 30; }
         .sc-bar-outer:nth-child(2) { z-index: 20; }
         .sc-bar-outer:nth-child(3) { z-index: 10; }
@@ -526,20 +526,6 @@ export default function AboutMe() {
           justify-content: space-between;
           padding: 0 1.1cqw 0 1.1cqw;
           transform: skewX(18deg);
-        }
-
-        .sc-role {
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          font-family: 'Persona5Main', sans-serif;
-          font-size: 2.75cqw;
-          letter-spacing: -0.1cqw;
-          color: #ffffff;
-          transform: rotate(-30deg);
-          user-select: none;
-          line-height: 1;
-          padding: 0 0.85cqw 0 0.4cqw;
         }
 
         .sc-main {
