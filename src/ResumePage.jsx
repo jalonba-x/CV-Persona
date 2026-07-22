@@ -595,6 +595,7 @@ export default function ResumePage() {
                 ))}
               </div>
             </div>
+          </div>
    <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row">
           <span className="sc-footer-key">↑↓</span>
@@ -609,6 +610,7 @@ export default function ResumePage() {
           <span>BACK</span>
         </div>
       </div>
+    </div>
   );
 }
 
