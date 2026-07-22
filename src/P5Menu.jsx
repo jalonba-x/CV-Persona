@@ -286,31 +286,30 @@ export default function P5Menu({ onNavigate }) {
           .p5-overlay {
             height: 100dvh;
           }
-
-          /* Force the background video to also respect the chrome bar */
           :global(.site-bg-video) {
             height: 100dvh !important;
-            top: env(safe-area-inset-top, 0px) !important;
+            top: 0 !important;
+            object-position: center top !important;
           }
           
           .p5-menu {
-            /* Scaled down further to ensure vertical fit on mobile screens */
-            --scale: 0.55; 
-            --y-scale: 0.75;
+            --scale: 0.48; 
+            --y-scale: 0.68;
             
             margin-right: auto;
-            margin-left: max(10vw, env(safe-area-inset-right, 24px));
-            gap: 2.5vh; 
+            margin-left: max(14vw, env(safe-area-inset-right, 20px));
+            gap: 1.8vh; 
             
-            padding-top: max(2vh, env(safe-area-inset-top));
+            padding-top: max(22vh, env(safe-area-inset-top));
             padding-bottom: max(2vh, env(safe-area-inset-bottom));
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: flex-start;
           }
 
           .p5-name-tag {
-            top: max(20px, env(safe-area-inset-top, 20px));
-            left: max(12px, env(safe-area-inset-left, 12px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.80);
+            top: max(8px, env(safe-area-inset-top, 8px));
+            left: max(12vw, env(safe-area-inset-left, 16px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.68);
           }
         }
 
