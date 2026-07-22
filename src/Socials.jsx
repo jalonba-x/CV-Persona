@@ -52,15 +52,12 @@ export default function Socials() {
   const [activeInfoBar, setActiveInfoBar] = useState(0);
   const [focus, setFocus]                 = useState("left");
   const navigate = useNavigate();
+  const isFirstRenderAudio = useRef(true);
 
-const isFirstRenderAudio = useRef(true);
   useEffect(() => {
     if (isFirstRenderAudio.current) {
       isFirstRenderAudio.current = false;
       return;
-    }
-    playSelectSound();
-  }, [active, activeInfoBar]);
   
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
