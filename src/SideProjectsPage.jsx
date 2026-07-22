@@ -272,6 +272,7 @@ export default function SideProjectsPage() {
             OPEN LINK: {ITEMS[active].href.replace("https://", "")}
           </a>
         </div>
+     </div>   
 <div className={`sp-footer${mounted ? " mounted" : ""}`}>
         <div className="sp-footer-row">
           <span className="sp-footer-key">↑↓</span>
@@ -286,5 +287,6 @@ export default function SideProjectsPage() {
           <span>BACK</span>
         </div>
       </div>
+     </div> 
   );
 }
