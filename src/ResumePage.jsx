@@ -184,7 +184,7 @@ export default function ResumePage() {
         .resume-stack {
           position: absolute;
           top: 9cqh;
-          left: 5cqw;
+          left: 10.5cqw;
           width: min(52cqw, 820px);
           display: flex;
           flex-direction: column;
@@ -374,7 +374,6 @@ export default function ResumePage() {
           top: 9.5cqh;
           right: 3cqw;
           width: min(44cqw, 680px);
-          min-height: 74cqh;
           z-index: 12;
           padding: 2cqh 1.25cqw 2.2cqh 1.25cqw;
           background: linear-gradient(180deg, rgba(20,20,20,.97), rgba(8,8,8,.99));
@@ -518,24 +517,22 @@ export default function ResumePage() {
         @media screen and (max-width: 1024px), screen and (max-height: 650px) {
           .resume-stack {
             top: 18cqh;
-            left: 4cqw;
+            left: 9.5cqw;
             transform: scale(0.85);
           }
           .resume-detail-panel {
             top: 18cqh;
-            min-height: 70cqh;
           }
         }
 
         @media screen and (max-width: 768px), screen and (max-height: 500px) {
           .resume-stack {
             top: 23cqh;
-            left: 3cqw;
+            left: 8.5cqw;
             transform: scale(0.75);
           }
           .resume-detail-panel {
             top: 23cqh;
-            min-height: 65cqh;
           }
         }
       `}</style>
