@@ -582,26 +582,30 @@ export default function AboutMe() {
         }
 
         .sc-footer {
-          position: absolute;
-          bottom: 2.5cqh; right: 1.6cqw;
-          display: flex; flex-direction: column;
-          align-items: flex-end; gap: 0.5cqh;
-          font-family: 'Persona5Main', sans-serif;
-          z-index: 900050 !important;
-          opacity: 0;
-          transition: opacity 0.4s ease 0.6s;
-        }
+    position: absolute;
+  bottom: 2.6cqh; right: 1.7cqw;
+  z-index: 20;
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0.5cqh;
+  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
+  opacity: 0;
+  transition: opacity 0.5s ease 0.9s;
+}
         .sc-footer.mounted { opacity: 1; }
         .sc-footer-row {
-          display: flex; align-items: center; gap: 0.4cqw;
-          font-size: 0.72cqw; letter-spacing: 0.1cqw;
-          color: rgba(255,255,255,0.22);
+display: flex; align-items: center; gap: 0.5cqw;
+  font-size: 0.8cqw; letter-spacing: 0.12cqw;
+  color: rgba(255,255,255,0.28);
         }
         .sc-footer-key {
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 0.16cqw;
-          padding: 0.1cqh 0.3cqw; font-size: 0.6cqw;
+border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.2cqw;
+  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
         }
+        @media (hover: none) and (pointer: coarse) {
+  .p5-hint {
+    display: none !important;
+  }
       `}</style>
 
       <div className="sc-root" role="navigation">
@@ -644,11 +648,11 @@ export default function AboutMe() {
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row">
           <span className="sc-footer-key">↑↓</span>
-          <span>SELECT</span>
+          <span>NAVIGATE</span>
         </div>
         <div className="sc-footer-row">
           <span className="sc-footer-key">↵</span>
-          <span>REVEAL</span>
+          <span>CONFIRM</span>
         </div>
         <div className="sc-footer-row">
           <span className="sc-footer-key">ESC</span>
