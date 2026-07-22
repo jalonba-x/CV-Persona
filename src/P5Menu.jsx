@@ -60,6 +60,16 @@ export default function P5Menu({ onNavigate }) {
   return (
     <>
       <style>{`
+        /* =========================================================
+           GLOBAL OVERRIDE: Remove the long bottom rectangle
+           ========================================================= */
+        .bgm-panel {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+          width: auto !important;
+        }
+
         .p5-overlay {
           position: absolute;
           inset: 0;
@@ -68,7 +78,6 @@ export default function P5Menu({ onNavigate }) {
           align-items: center;
           justify-content: center;
           pointer-events: none;
-          /* Explicit container containment ensures cqw/cqh scale accurately against the stage */
           container-type: size;
           width: 100%;
           height: 100%;
@@ -86,7 +95,6 @@ export default function P5Menu({ onNavigate }) {
           align-items: center;
           gap: 2cqh;
           pointer-events: all;
-          /* Base scale multipliers for standard screens */
           --scale: 1;
           --y-scale: 1;
         }
@@ -102,8 +110,6 @@ export default function P5Menu({ onNavigate }) {
           opacity: 0;
           transform: translateX(2.2cqw);
           transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.22,1,0.36,1);
-          
-          /* Dynamic sizing calculated via CSS variable multipliers */
           margin-right: calc(var(--item-x) * var(--scale));
           margin-top: calc(var(--item-y) * var(--y-scale));
         }
@@ -277,24 +283,20 @@ export default function P5Menu({ onNavigate }) {
            ========================================================= */
         @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
           .p5-menu {
-            /* Scale overall font and box sizes down by 25% to prevent horizontal bloat */
-            --scale: 0.75;
-            /* Aggressively compress vertical offsets by 55% so items don't overflow the bottom */
-            --y-scale: 0.45;
-            gap: 1cqh;
-            /* Shift menu right-of-center to take advantage of 16:9 widescreen layout */
-            margin-left: 18cqw;
+            --scale: 0.70;
+            --y-scale: 0.85; /* Relaxed from 0.45 to give the items vertical breathing room */
+            gap: 3.5vh; /* Enforces guaranteed vertical spacing between items */
+            margin-left: 25cqw; /* Pushes the menu further right */
           }
 
           .p5-name-tag {
-            /* Anchor title securely inside the left notch/camera safe zone */
-            top: max(6cqh, env(safe-area-inset-top, 16px));
-            left: max(4cqw, env(safe-area-inset-left, 24px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.85);
+            /* Hard-anchors the title to the top-left, respecting the browser chrome */
+            top: max(8px, env(safe-area-inset-top, 8px));
+            left: max(16px, env(safe-area-inset-left, 16px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.65);
           }
         }
 
-        /* Touch Device Decluttering: Hide keyboard hints on phones and tablets */
         @media (hover: none) and (pointer: coarse) {
           .p5-hint {
             display: none !important;
