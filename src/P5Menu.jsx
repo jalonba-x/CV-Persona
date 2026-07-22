@@ -290,14 +290,14 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.95;
-            --y-scale: 0.62;
+            --scale: 0.92;
+            --y-scale: 0.6;
             align-items: flex-start;
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
             gap: 0.6vh;
-            padding-top: max(14.5vh, env(safe-area-inset-top, 75px));
-            padding-bottom: max(6vh, env(safe-area-inset-bottom, 30px));
+            padding-top: max(22vh, env(safe-area-inset-top, 120px));
+            padding-bottom: max(5vh, env(safe-area-inset-bottom, 20px));
           }
 
           .p5-name-tag {
@@ -320,8 +320,8 @@ export default function P5Menu({ onNavigate }) {
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
             gap: 0.5vh; 
-            padding-top: max(13vh, env(safe-area-inset-top, 45px));
-            padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
+            padding-top: max(18vh, env(safe-area-inset-top, 60px));
+            padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
             justify-content: flex-start;
           }
 
