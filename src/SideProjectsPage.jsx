@@ -78,6 +78,7 @@ export default function SideProjectsPage() {
           display: flex;
           flex-direction: column;
           gap: 1.1cqh;
+          min-height: 0;
         }
 
         .sp-title {
@@ -157,6 +158,7 @@ export default function SideProjectsPage() {
           flex-direction: column;
           align-items: flex-start;
           box-sizing: border-box;
+          min-height: 0;
         }
 
         .sp-tag {
@@ -227,26 +229,28 @@ export default function SideProjectsPage() {
 
         /* =========================================================
            MOBILE LANDSCAPE & TABLET (Short Screens: max-height 600px)
-           Locks content strictly in the safe zone between UI buttons
+           Guarantees elements sit strictly between top/bottom buttons
            ========================================================= */
         @media (max-width: 900px), (max-height: 600px) {
           .sp-shell {
-            /* Override inset:0. Lock coordinates strictly between top and bottom UI bars */
             inset: auto;
-            top: max(68px, calc(env(safe-area-inset-top) + 58px));
-            bottom: max(58px, calc(env(safe-area-inset-bottom) + 48px));
+            /* Hard 85px top and 65px bottom boundaries prevent touching the UI buttons */
+            top: max(85px, calc(env(safe-area-inset-top) + 70px));
+            bottom: max(65px, calc(env(safe-area-inset-bottom) + 55px));
             left: max(16px, 3vw);
             right: max(16px, 3vw);
             width: auto;
             height: auto;
             padding: 0;
-            gap: 12px;
-            align-items: center; /* Vertically centers the grid inside the safe box */
+            gap: 10px;
+            align-items: center;
           }
 
           .sp-left {
-            gap: 6px;
+            gap: 5px;
             justify-content: center;
+            max-height: 100%;
+            overflow-y: auto;
           }
 
           .title-desktop {
@@ -257,63 +261,63 @@ export default function SideProjectsPage() {
           }
 
           .sp-title {
-            font-size: 16px;
+            font-size: 15px;
             margin-bottom: 2px;
             letter-spacing: 1px;
             line-height: 1;
           }
 
-          /* Compact 36px height ensures 3 items + title take only ~145px total vertical height */
+          /* Ultra-compact 32px height reduces total column height to ~130px */
           .sp-item {
-            min-height: 36px;
-            padding: 6px 10px;
+            min-height: 32px;
+            padding: 5px 8px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
           }
 
           .sp-item-title {
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1;
             letter-spacing: -0.1px;
           }
 
           .sp-item-stack {
-            font-size: 10px;
+            font-size: 9px;
             margin-top: 2px;
             letter-spacing: 0.5px;
           }
 
-          /* Detail panel matches left column height and scrolls independently if needed */
+          /* Details box shrinks to match and scrolls internally instead of bleeding out */
           .sp-right {
             height: 100%;
             max-height: 100%;
-            padding: 10px 14px;
+            padding: 8px 12px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-            justify-content: center;
+            justify-content: flex-start;
           }
 
           .sp-tag {
-            font-size: 10px;
-            padding: 2px 6px;
+            font-size: 9px;
+            padding: 2px 5px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
           }
 
           .sp-right-title {
-            font-size: 15px;
+            font-size: 14px;
             margin-top: 4px;
             line-height: 1.05;
             letter-spacing: -0.3px;
           }
 
           .sp-right-summary {
-            font-size: 12px;
+            font-size: 11px;
             margin-top: 4px;
             line-height: 1.15;
           }
 
           .sp-link {
-            font-size: 12px;
+            font-size: 11px;
             padding: 4px 8px;
-            margin-top: 8px;
+            margin-top: 6px;
             clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
           }
 
@@ -324,15 +328,15 @@ export default function SideProjectsPage() {
 
         /* =========================================================
            MOBILE PORTRAIT (Vertical Phone Orientation)
-           Stacks left list and right panel vertically inside the box
+           Stacks left list and right panel vertically inside the safe box
            ========================================================= */
         @media (max-width: 768px) and (orientation: portrait) {
           .sp-shell {
             grid-template-columns: 1fr;
             grid-template-rows: auto 1fr;
             align-items: start;
-            top: max(75px, calc(env(safe-area-inset-top) + 65px));
-            bottom: max(65px, calc(env(safe-area-inset-bottom) + 55px));
+            top: max(85px, calc(env(safe-area-inset-top) + 70px));
+            bottom: max(70px, calc(env(safe-area-inset-bottom) + 60px));
             left: max(16px, 4vw);
             right: max(16px, 4vw);
             gap: 12px;
@@ -341,10 +345,12 @@ export default function SideProjectsPage() {
 
           .sp-left {
             gap: 6px;
+            max-height: none;
+            overflow-y: visible;
           }
 
           .sp-item {
-            min-height: 42px;
+            min-height: 40px;
             padding: 8px 12px;
           }
 
