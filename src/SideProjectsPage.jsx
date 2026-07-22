@@ -66,7 +66,7 @@ export default function SideProjectsPage() {
           display: grid;
           grid-template-columns: 48% 52%;
           gap: 1.5cqw;
-          /* Increased top padding to max(150px, 16vh) to push both left and right panels safely below the global desktop Back banner */
+          /* Desktop default: max(150px, 16vh) pushes panels below widescreen PC headers */
           padding-top: max(150px, 16vh);
           padding-right: 3.5cqw;
           padding-bottom: 4cqh;
@@ -95,6 +95,11 @@ export default function SideProjectsPage() {
         .sp-title.mounted {
           opacity: 1;
           transform: translateX(0);
+        }
+
+        /* Responsive title text switching */
+        .title-mobile {
+          display: none;
         }
 
         .sp-item {
@@ -218,57 +223,73 @@ export default function SideProjectsPage() {
         }
 
         /* =========================================================
-           MOBILE & NARROW VIEWPORT OPTIMIZATIONS
+           COMPACT / MOBILE OPTIMIZATIONS (Landscape & Portrait)
+           Triggers on narrow phone widths OR short landscape heights
            ========================================================= */
-        @media (max-width: 768px) {
+        @media (max-width: 850px), (max-height: 550px) {
           .sp-shell {
-            padding-top: max(90px, calc(env(safe-area-inset-top) + 70px));
-            padding-left: 4cqw;
-            padding-right: 4cqw;
-            padding-bottom: 20px;
+            /* Pulls both panels up to sit right underneath the top-left red Back button */
+            padding-top: max(65px, calc(env(safe-area-inset-top) + 50px));
+            padding-left: 3.5cqw;
+            padding-right: 3.5cqw;
+            padding-bottom: 15px;
             gap: 12px;
           }
 
+          .sp-left {
+            gap: 6px;
+          }
+
+          /* Switches title text from "PROJECT LOG" to "PROJECTS" on a single line */
+          .title-desktop {
+            display: none;
+          }
+          .title-mobile {
+            display: inline;
+          }
+
           .sp-title {
-            font-size: 24px;
-            margin-bottom: 6px;
+            font-size: 22px;
+            margin-bottom: 4px;
           }
 
           .sp-item {
-            min-height: 52px;
-            padding: 10px 12px;
+            min-height: 44px;
+            padding: 6px 10px;
           }
 
           .sp-item-title {
-            font-size: 16px;
+            font-size: 15px;
           }
 
           .sp-item-stack {
-            font-size: 12px;
+            font-size: 11px;
+            margin-top: 2px;
           }
 
           .sp-right {
-            padding: 16px;
+            padding: 12px 14px;
           }
 
           .sp-tag {
-            font-size: 12px;
+            font-size: 11px;
+            padding: 2px 6px;
           }
 
           .sp-right-title {
-            font-size: 22px;
-            margin-top: 10px;
+            font-size: 18px;
+            margin-top: 6px;
           }
 
           .sp-right-summary {
-            font-size: 15px;
-            margin-top: 10px;
+            font-size: 13px;
+            margin-top: 6px;
           }
 
           .sp-link {
-            font-size: 14px;
-            padding: 8px 14px;
-            margin-top: 16px;
+            font-size: 13px;
+            padding: 6px 12px;
+            margin-top: 12px;
           }
 
           .sp-footer {
@@ -276,7 +297,7 @@ export default function SideProjectsPage() {
           }
         }
 
-        /* Stacks left list and right panel vertically in portrait mobile mode */
+        /* Stacks left list and right panel vertically when phones are held in portrait mode */
         @media (max-width: 768px) and (orientation: portrait) {
           .sp-shell {
             grid-template-columns: 1fr;
@@ -291,7 +312,10 @@ export default function SideProjectsPage() {
 
       <div className="sp-shell">
         <div className="sp-left">
-          <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECT LOG</div>
+          <div className={`sp-title${mounted ? " mounted" : ""}`}>
+            <span className="title-desktop">PROJECT LOG</span>
+            <span className="title-mobile">PROJECTS</span>
+          </div>
           {ITEMS.map((item, index) => (
             <div
               key={item.id}
