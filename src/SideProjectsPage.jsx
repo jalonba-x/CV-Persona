@@ -279,10 +279,6 @@ export default function SideProjectsPage() {
           <span>NAVIGATE</span>
         </div>
         <div className="sp-footer-row">
-          <span className="sp-footer-key">↵</span>
-          <span>CONFIRM</span>
-        </div>
-        <div className="sp-footer-row">
           <span className="sp-footer-key">ESC</span>
           <span>BACK</span>
         </div>
