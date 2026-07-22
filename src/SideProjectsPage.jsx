@@ -85,7 +85,7 @@ export default function SideProjectsPage() {
           font-size: 3.75cqw;
           color: #ffffff;
           line-height: 0.92;
-          letter-spacing: -5cqw;
+          letter-spacing: 0.05cqw;
           text-shadow: 0 0.2cqh 0 rgba(13,13,13,0.3);
           margin-bottom: 0.75cqh;
           opacity: 0;
@@ -170,7 +170,7 @@ export default function SideProjectsPage() {
         .sp-right-title {
           font-family: 'Persona5Main', sans-serif;
           font-size: 3.3cqw;
-          line-height: 0.92;
+          line-height: -1;
           color: #ffffff;
           margin-top: 1.5cqh;
         }
