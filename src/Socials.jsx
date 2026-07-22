@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { playSelectSound } from "./utils/audio.js";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
@@ -52,6 +53,15 @@ export default function Socials() {
   const [focus, setFocus]                 = useState("left");
   const navigate = useNavigate();
 
+const isFirstRenderAudio = useRef(true);
+  useEffect(() => {
+    if (isFirstRenderAudio.current) {
+      isFirstRenderAudio.current = false;
+      return;
+    }
+    playSelectSound();
+  }, [active, activeInfoBar]);
+  
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
