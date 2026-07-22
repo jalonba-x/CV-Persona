@@ -282,38 +282,27 @@ export default function P5Menu({ onNavigate }) {
            MOBILE LANDSCAPE WIDESCREEN OPTIMIZATIONS
            ========================================================= */
         @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
-          
-          /* Switch height to dvh to automatically avoid the mobile browser chrome bar */
-          .p5-overlay {
-            height: 100dvh;
-          }
-
-          /* Force the background video to also respect the chrome bar */
-          :global(.site-bg-video) {
-            height: 100dvh !important;
-            top: env(safe-area-inset-top, 0px) !important;
-          }
-
           .p5-menu {
+            /* Scaled down further to ensure vertical fit on mobile screens */
             --scale: 0.55; 
             --y-scale: 0.75;
             
-            /* Moved menu to the left */
-            margin-right: auto;
-            margin-left: max(8vw, env(safe-area-inset-left, 24px));
+            /* Dynamically aligns menu to the right half while respecting notches */
+            margin-left: auto;
+            margin-right: max(10vw, env(safe-area-inset-right, 24px));
             gap: 2.5vh; 
             
-            /* Pushed down slightly to accommodate the larger title above */
-            padding-top: max(12vh, env(safe-area-inset-top));
+            /* Prevents clipping at the top/bottom of small displays */
+            padding-top: max(2vh, env(safe-area-inset-top));
             padding-bottom: max(2vh, env(safe-area-inset-bottom));
             justify-content: center;
           }
 
           .p5-name-tag {
-            /* Title pushed down from the chrome bar, moved further left, and scaled up */
-            top: max(20px, env(safe-area-inset-top, 20px));
-            left: max(12px, env(safe-area-inset-left, 12px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.80);
+            /* Hard-anchors the title to the top-left, respecting safe areas */
+            top: max(16px, env(safe-area-inset-top, 16px));
+            left: max(24px, env(safe-area-inset-left, 24px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.60);
           }
         }
 
