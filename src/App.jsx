@@ -15,88 +15,6 @@ const BGM_VOLUME_KEY = 'p5-bgm-volume'
 const DEFAULT_VOLUME = 0.45
 const FADE_MS = 450
 
-/* =========================================================
-   MASTER VIEWPORT GUARD
-   Enforces edge-to-edge widescreen rendering, eliminates 3:4
-   pillarboxing, and sets up mobile landscape safe areas.
-   ========================================================= */
-function MasterViewportGuard() {
-  return (
-    <style>{`
-      html, body, #root {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #0d0d0d;
-        overscroll-behavior: none;
-        touch-action: manipulation;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-      }
-
-      /* Force root stage to fill 100% of widescreen displays */
-      .stage-container, .stage-viewport {
-        position: relative;
-        width: 100vw;
-        width: 100dvw;
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
-        max-width: none !important;
-        max-height: none !important;
-        aspect-ratio: auto !important;
-        margin: 0 !important;
-      }
-
-      /* Guarantee background video stretches to side edges without black bars */
-      .site-bg-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        z-index: 0;
-        pointer-events: none;
-      }
-
-      .site-content-layer {
-        position: absolute;
-        inset: 0;
-        z-index: 10;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-      }
-
-      /* =========================================================
-         MOBILE LANDSCAPE EDGE-TO-EDGE OVERRIDES
-         Reclaims horizontal space and injects notch/camera safe zones
-         ========================================================= */
-      @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
-        .stage-viewport {
-          width: 100vw !important;
-          height: 100dvh !important;
-        }
-
-        /* This global padding creates a wide, collision-free stage for all pages */
-        .site-content-layer {
-          padding-top: max(65px, calc(env(safe-area-inset-top) + 55px));
-          padding-bottom: max(55px, calc(env(safe-area-inset-bottom) + 45px));
-          padding-left: max(24px, calc(env(safe-area-inset-left) + 20px));
-          padding-right: max(24px, calc(env(safe-area-inset-right) + 20px));
-        }
-      }
-    `}</style>
-  );
-}
-
 function useTouchGestures() {
   useEffect(() => {
     let touchStartX = 0;
@@ -146,6 +64,7 @@ function BackButton() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Do not render on the main menu
   if (location.pathname === '/') return null;
 
   return (
@@ -153,8 +72,8 @@ function BackButton() {
       <style>{`
         .back-btn-wrapper {
           position: absolute;
-          top: max(3.5cqh, env(safe-area-inset-top, 16px));
-          left: max(2.5cqw, env(safe-area-inset-left, 16px));
+          top: 3.5cqh;
+          left: 2.5cqw;
           z-index: 10000;
           pointer-events: all;
         }
@@ -205,22 +124,25 @@ function BackButton() {
           transform: translateX(-0.3cqw);
         }
 
-        /* Optimized for mobile landscape widescreen */
-        @media (max-width: 950px), (max-height: 600px) {
+        @media (max-width: 768px) {
           .back-btn-wrapper {
-            top: max(12px, env(safe-area-inset-top, 12px));
-            left: max(16px, env(safe-area-inset-left, 16px));
+            top: 16px;
+            left: 16px;
           }
           .p5-back-button {
-            font-size: 15px;
-            padding: 5px 12px 5px 10px;
-            gap: 5px;
-            clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+            font-size: 16px;
+            padding: 6px 14px 6px 10px;
+            gap: 6px;
+            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
             box-shadow: 3px 3px 0px #000000;
           }
           .back-arrow-icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+          }
+          .p5-back-button:hover, .p5-back-button:focus {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000000;
           }
         }
       `}</style>
@@ -351,11 +273,9 @@ function BackgroundMusic() {
     }
 
     window.addEventListener('pointerdown', unlock, { once: true })
-    window.addEventListener('touchstart', unlock, { once: true })
     window.addEventListener('keydown', unlock, { once: true })
     return () => {
       window.removeEventListener('pointerdown', unlock)
-      window.removeEventListener('touchstart', unlock)
       window.removeEventListener('keydown', unlock)
     }
   }, [])
@@ -364,19 +284,6 @@ function BackgroundMusic() {
 
   return (
     <div className="bgm-panel">
-      <style>{`
-        /* Responsive Mobile Landscape overrides for BGM Panel */
-        @media (max-width: 950px), (max-height: 600px) {
-          .bgm-panel {
-            position: absolute !important;
-            bottom: max(10px, env(safe-area-inset-bottom, 10px)) !important;
-            right: max(16px, env(safe-area-inset-right, 16px)) !important;
-            z-index: 10000;
-            transform: scale(0.88);
-            transform-origin: bottom right;
-          }
-        }
-      `}</style>
       <audio ref={audioRef} loop preload="none" src="/audio/background.mp3" />
       <button
         className={`bgm-toggle${isPlaying ? ' on' : ''}`}
@@ -431,36 +338,8 @@ function MenuScreen() {
 }
 
 function SiteBackgroundVideo() {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const attemptPlay = () => {
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
-    };
-
-    attemptPlay();
-
-    const handleTouchResume = () => {
-      attemptPlay();
-    };
-
-    window.addEventListener('touchstart', handleTouchResume, { once: true });
-    window.addEventListener('click', handleTouchResume, { once: true });
-
-    return () => {
-      window.removeEventListener('touchstart', handleTouchResume);
-      window.removeEventListener('click', handleTouchResume);
-    };
-  }, []);
-
   return (
     <video
-      ref={videoRef}
       className="site-bg-video"
       src={mainVideo}
       autoPlay
@@ -507,7 +386,7 @@ function OrientationOverlay() {
           position: fixed;
           inset: 0;
           z-index: 99999;
-          background: rgba(13, 13, 13, 0.92);
+          background: rgba(13, 13, 13, 0.88);
           backdrop-filter: blur(16px) saturate(180%);
           -webkit-backdrop-filter: blur(16px) saturate(180%);
           flex-direction: column;
@@ -517,12 +396,8 @@ function OrientationOverlay() {
           text-align: center;
           color: #ffffff;
           pointer-events: all;
-          width: 100vw;
-          height: 100vh;
-          height: 100dvh;
         }
 
-        /* Strictly activates on vertical phones to demand widescreen rotation */
         @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
           .orientation-guard {
             display: flex;
@@ -594,7 +469,6 @@ export default function App() {
 
   return (
     <div className="stage-container">
-      <MasterViewportGuard />
       <OrientationOverlay />
       <div className="stage-viewport">
         <SiteBackgroundVideo />
