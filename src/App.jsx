@@ -355,12 +355,12 @@ function SiteBackgroundVideo() {
           object-position: center center;
         }
 
-        /* Mobile alignment: pin upper video bounds flush to the top edge/navigation bar */
+        /* Mobile shift: shift video upwards while keeping red cat & hanging sign in frame */
         @media (max-width: 950px) {
           .site-bg-video {
-            object-position: center top;
-            top: 0;
-            height: 100%;
+            object-position: center 8%;
+            top: -3vh;
+            height: 106%;
             transform: none;
           }
         }
