@@ -622,27 +622,30 @@ export default function Socials() {
           color: #111;
         }
 
-        .sc-footer {
-          position: absolute;
-          bottom: 2.5cqh; right: 6cqw;
-          display: flex; flex-direction: column;
-          align-items: flex-end; gap: 0.5cqh;
-          font-family: 'Bebas Neue', sans-serif;
-          z-index: 50;
-          opacity: 0;
-          transition: opacity 0.4s ease 0.6s;
-        }
-        .sc-footer.mounted { opacity: 1; }
-        .sc-footer-row {
-          display: flex; align-items: center; gap: 0.4cqw;
-          font-size: 0.72cqw; letter-spacing: 0.1cqw;
-          color: rgba(255,255,255,0.22);
-        }
-        .sc-footer-key {
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 0.16cqw;
-          padding: 0.1cqh 0.3cqw; font-size: 0.6cqw;
-        }
+.sc-footer {
+  position: absolute;
+  bottom: 2.6cqh; right: 1.7cqw;
+  z-index: 20;
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0.5cqh;
+  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
+  opacity: 0;
+  transition: opacity 0.5s ease 0.9s;
+}
+
+.sc-footer.mounted { opacity: 1; }
+
+.sc-footer-row {
+  display: flex; align-items: center; gap: 0.5cqw;
+  font-size: 0.8cqw; letter-spacing: 0.12cqw;
+  color: rgba(255,255,255,0.28);
+}
+
+.sc-footer-key {
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.2cqw;
+  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+}
 
         .sc-mobile-controls {
           display: none;
@@ -819,7 +822,7 @@ export default function Socials() {
       )}
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>NAVIGATE</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
