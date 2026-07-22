@@ -33,7 +33,7 @@ html, body {
   max-height: 100dvh;
   max-width: calc(100dvh * (16 / 9));
   overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  /*box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);*/
   background: transparent;
   container-type: size;
 }
