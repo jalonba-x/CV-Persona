@@ -3,7 +3,6 @@ import { playSelectSound } from "./utils/audio.js";
 
 const ITEMS = [
   { id: "about",       label: "ABOUT ME",      page: "about",    fontSize: 4.0,  offsetX: 0,    offsetY: 0,   skew: -6, skewY: 10  },
-  // Changed skew from -6 to -4, and skewY from -5 to 3 to soften the jarring reverse angle
   { id: "resume",      label: "RESUME",        page: "resume",   fontSize: 3.25, offsetX: 1.5,  offsetY: 5.5, skew: -4, skewY: 3   },
   { id: "sideproj",    label: "SIDE PROJECTS", page: "sideproj", fontSize: 2.8,  offsetX: 0.75, offsetY: 3.1, skew: -4, skewY: 7   },
   { id: "socials",     label: "SOCIALS",       page: "socials",  fontSize: 3.7,  offsetX: 1.2,  offsetY: 3.3, skew: -3, skewY: 5   },
@@ -61,6 +60,9 @@ export default function P5Menu({ onNavigate }) {
   return (
     <>
       <style>{`
+        /* =========================================================
+           GLOBAL OVERRIDE: Remove the long bottom rectangle
+           ========================================================= */
         .bgm-panel {
           background: transparent !important;
           border: none !important;
@@ -266,12 +268,10 @@ export default function P5Menu({ onNavigate }) {
           pointer-events: none;
           text-transform: uppercase;
         }
-        /* Reduced from 3.0cqw to 2.2cqw for PC viewports */
         .p5-name-tag span:first-child {
           font-size: 2.2cqw;
           letter-spacing: -0.12cqw;
         }
-        /* Reduced from 5.75cqw to 4.2cqw for PC viewports */
         .p5-name-tag span:last-child {
           margin-top: 0.6cqh;
           font-size: 4.2cqw;
@@ -281,35 +281,39 @@ export default function P5Menu({ onNavigate }) {
         /* =========================================================
            MOBILE LANDSCAPE WIDESCREEN OPTIMIZATIONS
            ========================================================= */
-       @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
           
+          /* Switch height to dvh to automatically avoid the mobile browser chrome bar */
           .p5-overlay {
             height: 100dvh;
           }
+
+          /* Force the background video to also respect the chrome bar */
           :global(.site-bg-video) {
             height: 100dvh !important;
-            top: 0 !important;
-            object-position: center top !important;
+            top: env(safe-area-inset-top, 0px) !important;
           }
-          
+
           .p5-menu {
-            --scale: 0.48; 
-            --y-scale: 0.68;
+            --scale: 0.55; 
+            --y-scale: 0.75;
             
+            /* Moved menu to the left */
             margin-right: auto;
-            margin-left: max(14vw, env(safe-area-inset-right, 20px));
-            gap: 1.8vh; 
+            margin-left: max(8vw, env(safe-area-inset-left, 24px));
+            gap: 2.5vh; 
             
-            padding-top: max(22vh, env(safe-area-inset-top));
+            /* Pushed down slightly to accommodate the larger title above */
+            padding-top: max(12vh, env(safe-area-inset-top));
             padding-bottom: max(2vh, env(safe-area-inset-bottom));
-            justify-content: flex-start;
-            align-items: flex-start;
+            justify-content: center;
           }
 
           .p5-name-tag {
-            top: max(8px, env(safe-area-inset-top, 8px));
-            left: max(12vw, env(safe-area-inset-left, 16px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.68);
+            /* Title pushed down from the chrome bar, moved further left, and scaled up */
+            top: max(20px, env(safe-area-inset-top, 20px));
+            left: max(12px, env(safe-area-inset-left, 12px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.80);
           }
         }
 
