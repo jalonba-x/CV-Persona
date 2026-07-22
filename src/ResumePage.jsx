@@ -142,25 +142,21 @@ export default function ResumePage() {
         .resume-entry-mask {
           position: fixed;
           inset: 0;
-          width: 100vw;
-          height: 100vh;
+          width: 100%;
+          height: 100%;
           z-index: 9;
           overflow: hidden;
           background: #732424;
           clip-path: circle(0 at 50% 50%);
           animation: resume-entry-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           pointer-events: none;
-          transform: translateZ(0);
-          backface-visibility: hidden;
         }
 
         .resume-entry-video {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 100vw;
-          height: 100vh;
-          transform: translate(-50%, -50%);
+          inset: 0;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
           pointer-events: none;
         }
@@ -173,7 +169,7 @@ export default function ResumePage() {
             clip-path: circle(150vmax at 50% 50%);
           }
           100% {
-            clip-path: none; /* Discards clip layer to stop GPU edge repetition */
+            clip-path: none;
           }
         }
 
