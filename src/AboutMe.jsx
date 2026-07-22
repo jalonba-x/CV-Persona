@@ -341,10 +341,10 @@ export default function AboutMe() {
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* ── L/R Navigation controls (positioned in-between left navigation and reveal panel) ── */
+        /* ── L/R Navigation controls (Moved up to top: 14cqh to clear the reveal panel) ── */
         .sc-right-nav {
           position: absolute;
-          top: 24cqh;
+          top: 14cqh;
           left: 9cqw;
           display: flex;
           align-items: center;
