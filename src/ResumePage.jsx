@@ -54,6 +54,32 @@ export default function ResumePage() {
         <video className="resume-entry-video" src={mainVideo} autoPlay loop muted playsInline />
       </div>
       <style>{`
+
+#menu-screen {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+#menu-screen::before,
+#menu-screen::after {
+  display: none !important;
+}
+
+.sc-dim {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+      
         .resume-entry-mask {
           position: absolute;
           inset: 0;
