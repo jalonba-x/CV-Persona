@@ -198,7 +198,7 @@ export default function AboutMe() {
             filter: blur(8px);
           }
           55% {
-            opacity: 0.96;
+            opacity: 1;
             transform: translateX(-0.4cqw) skewX(-8deg) scale(1.015);
             filter: blur(0);
           }
@@ -219,12 +219,12 @@ export default function AboutMe() {
           50% { transform: translateX(0.3cqw); opacity: 0.4; }
         }
 
-        /* ── Main Portrait Shell (Layered safely behind panel & to right) ── */
+        /* ── Main Portrait Shell (Placed on top of panel with full opacity) ── */
         .sc-main-portrait-shell {
           position: absolute;
           top: 0;
           right: -2cqw;
-          z-index: 900015 !important;
+          z-index: 900025 !important; /* Higher than sc-reveal-panel (900020) */
           pointer-events: none;
           width: 38cqw;
           height: 100cqh;
@@ -234,7 +234,7 @@ export default function AboutMe() {
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .sc-main-portrait-shell.mounted {
-          opacity: 0.40;
+          opacity: 1; /* Full opacity */
           transform: translateX(0) skewX(-8deg) scale(1);
           animation: sc-portrait-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -284,12 +284,12 @@ export default function AboutMe() {
           clip-path: inherit;
         }
 
-        /* Upper Container: Resized & bounded to 60% left area */
+        /* Upper Container: Extended width to right side to avoid clipping text */
         .sc-reveal-upper-bar {
           position: absolute;
           top: 8%;
           left: 2%;
-          width: 60%;
+          width: 88%; /* Expanded from 60% */
           height: 48%;
           background: rgba(13,13,13,0.94);
           clip-path: polygon(0 0, 100% 0, calc(100% - 1.8cqw) 100%, 0 100%);
