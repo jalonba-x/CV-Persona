@@ -127,8 +127,8 @@ function BackButton() {
         /* Mobile specific scaling */
         @media (max-width: 768px) {
           .back-btn-wrapper {
-            top: 16px;
-            left: 16px;
+            top: max(16px, env(safe-area-inset-top));
+            left: max(16px, env(safe-area-inset-left));
           }
           .p5-back-button {
             font-size: 12px;
