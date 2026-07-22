@@ -126,8 +126,7 @@ position: absolute;
   clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
   backdrop-filter: blur(2px);
   transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}}
-
+}
 .bgm-panel:hover,
 .bgm-panel:focus-within {
   gap: 10px; 
