@@ -371,7 +371,7 @@ export default function ResumePage() {
 
         .resume-detail-panel {
           position: absolute;
-          top: 9.5cqh;
+          top: 18cqh;
           right: 9cqw;
           width: min(44cqw, 680px);
           z-index: 12;
