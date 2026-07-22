@@ -295,13 +295,13 @@ export default function P5Menu({ onNavigate }) {
             align-items: flex-start;
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
-            gap: 0.5vh;
-            padding-top: max(8.5vh, env(safe-area-inset-top, 60px));
-            padding-bottom: max(8vh, env(safe-area-inset-bottom, 50px));
+            gap: 0.6vh;
+            padding-top: max(14.5vh, env(safe-area-inset-top, 75px));
+            padding-bottom: max(6vh, env(safe-area-inset-bottom, 30px));
           }
 
           .p5-name-tag {
-            top: max(1.8vh, env(safe-area-inset-top, 10px));
+            top: max(2vh, env(safe-area-inset-top, 12px));
             left: max(5vw, env(safe-area-inset-left, 16px));
             transform: rotate(0deg) skewX(-5deg) scale(0.95);
           }
@@ -320,8 +320,8 @@ export default function P5Menu({ onNavigate }) {
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
             gap: 0.5vh; 
-            padding-top: max(9vh, env(safe-area-inset-top, 40px));
-            padding-bottom: max(6vh, env(safe-area-inset-bottom, 30px));
+            padding-top: max(13vh, env(safe-area-inset-top, 45px));
+            padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
             justify-content: flex-start;
           }
 
