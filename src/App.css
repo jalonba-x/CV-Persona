@@ -34,18 +34,16 @@ html, body {
   max-width: calc(100dvh * (16 / 9));
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-  background: #111;
+  background: transparent;
   container-type: size;
 }
 
 .site-bg-video {
   position: absolute;
   inset: 0;
-  left: O;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
   pointer-events: none;
 }
 
