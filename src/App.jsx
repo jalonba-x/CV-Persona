@@ -470,9 +470,9 @@ export default function App() {
 
   return (
     <div className="stage-container">
+      <SiteBackgroundVideo />
       <OrientationOverlay />
       <div className="stage-viewport">
-        <SiteBackgroundVideo />
         <BackButton />
         <div className="site-content-layer">
           <AnimatedRoutes />
