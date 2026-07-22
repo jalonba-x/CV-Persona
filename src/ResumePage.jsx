@@ -7,7 +7,7 @@ const ITEMS = [
   { id: "i", badge: "I", title: "EDUCATION", subtitle: "BA Language and Literature / Diploma in Intercultural Studies", rank: 3 },
   { id: "ii", badge: "II", title: "SKILLS", subtitle: "Google Workspace / Basic JavaScript / Adobe In Design / Adobe Photoshop", rank: 4 },
   { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Minor image and video editing projects", rank: 4 },
-  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translataion / Language QA", rank: 5 },
+  { id: "iv", badge: "IV", title: "FOCUS", subtitle: "Localization / Translation / Language QA", rank: 5 },
 ];
 
 const EDUCATION_ROWS = [
@@ -19,7 +19,7 @@ const EDUCATION_ROWS = [
 
 export default function ResumePage() {
   const navigate = useNavigate();
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
 
