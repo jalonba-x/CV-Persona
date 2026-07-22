@@ -286,47 +286,49 @@ export default function P5Menu({ onNavigate }) {
         @media (max-width: 768px) {
           .p5-overlay {
             justify-content: flex-start;
+            align-items: flex-start;
           }
 
           .p5-menu {
-            --scale: 1.25;
-            --y-scale: 0.85;
+            --scale: 0.95;
+            --y-scale: 0.62;
             align-items: flex-start;
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
-            gap: 1.2vh;
-            padding-top: max(14vh, env(safe-area-inset-top, 60px));
-            padding-bottom: max(3vh, env(safe-area-inset-bottom));
+            gap: 0.5vh;
+            padding-top: max(8.5vh, env(safe-area-inset-top, 60px));
+            padding-bottom: max(8vh, env(safe-area-inset-bottom, 50px));
           }
 
           .p5-name-tag {
-            top: max(2.5vh, env(safe-area-inset-top, 16px));
+            top: max(1.8vh, env(safe-area-inset-top, 10px));
             left: max(5vw, env(safe-area-inset-left, 16px));
-            transform: rotate(0deg) skewX(-5deg) scale(1.1);
+            transform: rotate(0deg) skewX(-5deg) scale(0.95);
           }
         }
 
         @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
           .p5-overlay {
             justify-content: flex-start;
+            align-items: flex-start;
           }
 
           .p5-menu {
-            --scale: 0.62; 
-            --y-scale: 0.75;
+            --scale: 0.55; 
+            --y-scale: 0.55;
             align-items: flex-start;
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
-            gap: 2vh; 
-            padding-top: max(12vh, env(safe-area-inset-top, 40px));
-            padding-bottom: max(2vh, env(safe-area-inset-bottom));
-            justify-content: center;
+            gap: 0.5vh; 
+            padding-top: max(9vh, env(safe-area-inset-top, 40px));
+            padding-bottom: max(6vh, env(safe-area-inset-bottom, 30px));
+            justify-content: flex-start;
           }
 
           .p5-name-tag {
-            top: max(10px, env(safe-area-inset-top, 10px));
+            top: max(8px, env(safe-area-inset-top, 8px));
             left: max(4vw, env(safe-area-inset-left, 20px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.95);
+            transform: rotate(0deg) skewX(-5deg) scale(0.85);
           }
         }
 
