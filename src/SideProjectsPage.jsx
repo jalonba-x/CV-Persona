@@ -124,6 +124,7 @@ export default function SideProjectsPage() {
 
         .sp-item-title {
           font-family: 'Persona5Main', sans-serif;
+          letter-spacing: -0.5cqw;
           font-size: 2.2cqw;
           line-height: 0.9;
           color: #ffffff;
@@ -160,7 +161,7 @@ export default function SideProjectsPage() {
           display: inline-block;
           font-family: 'Persona5Main', sans-serif;
           font-size: 1.25cqw;
-          letter-spacing: -1.5cqw;
+          letter-spacing: 0.08cqw;
           background: #ffffff;
           color: #0d0d0d;
           padding: 0.37cqh 0.5cqw;
