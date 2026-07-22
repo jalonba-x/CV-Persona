@@ -264,6 +264,7 @@ export default function Socials() {
           color: rgba(255,255,255,0.15);
           transition: color 0.2s ease;
           user-select: none;
+          transform: translateY(-0.2cqw);
         }
         .sc-bar-outer.active .sc-icon { color: #111111; }
 
