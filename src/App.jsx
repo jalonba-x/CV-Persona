@@ -359,7 +359,7 @@ function SiteBackgroundVideo() {
         @media (max-width: 950px) {
           .site-bg-video {
             object-position: center 3%;
-            top: -5vh;
+            top: -8vh;
             height: 110%;
             transform: none;
           }
