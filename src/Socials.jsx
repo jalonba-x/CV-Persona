@@ -141,6 +141,7 @@ export default function Socials() {
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 1;
         }
+
         .sc-bar-outer.active { z-index: 20; }
         .sc-bar-outer.active .sc-bar      { height: 9cqh; }
         .sc-bar-outer.active .sc-bar-red { height: 9cqh; }
@@ -243,8 +244,11 @@ export default function Socials() {
           display: flex;
           align-items: center;
           gap: 0.65cqw;
+          transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
+                .sc-bar-outer.active sc.main-top {
+        transform: translateX(4.5cqw);
+        }
         .sc-icon {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 1.2cqw;
@@ -255,7 +259,7 @@ export default function Socials() {
           transition: color 0.2s ease;
           user-select: none;
         }
-        .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
+        .sc-bar-outer.active .sc-icon { color: #111111; }
 
         .sc-label {
           font-family: 'Bebas Neue', sans-serif;
