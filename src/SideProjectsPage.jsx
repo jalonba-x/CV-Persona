@@ -66,7 +66,7 @@ export default function SideProjectsPage() {
           display: grid;
           grid-template-columns: 48% 52%;
           gap: 1cqw;
-          padding: 6cqh 3cqw;
+          padding: 10cqh 5cqw 6cqh 5cqw;
         }
 
         .sp-left {
@@ -114,10 +114,14 @@ export default function SideProjectsPage() {
         }
 
         .sp-item-title {
-          font-family: 'Persona5Main', sans-serif;
-          font-size: 2.2cqw;
-          line-height: 0.9;
+          font-family: 'Bebas Nue', sans-serif;
+          font-size: 2.6cqw;
+          line-height: 1.1;
           color: #ffffff;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         .sp-item.active .sp-item-title {
           color: #111;
@@ -155,11 +159,15 @@ export default function SideProjectsPage() {
         }
 
         .sp-right-title {
-          font-family: 'Persona5Main', sans-serif;
-          font-size: 3.3cqw;
-          line-height: 0.92;
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 4cqw;
+          line-height: 1;
           color: #ffffff;
           margin-top: 1.5cqh;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         .sp-right-summary {
