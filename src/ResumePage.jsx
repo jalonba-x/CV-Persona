@@ -372,7 +372,7 @@ export default function ResumePage() {
         .resume-detail-panel {
           position: absolute;
           top: 9.5cqh;
-          right: 3cqw;
+          right: 6cqw;
           width: min(44cqw, 680px);
           z-index: 12;
           padding: 2cqh 1.25cqw 2.2cqh 1.25cqw;
@@ -601,5 +601,3 @@ export default function ResumePage() {
     </div>
   );
 }
-
-            
