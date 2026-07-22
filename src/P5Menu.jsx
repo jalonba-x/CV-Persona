@@ -290,20 +290,20 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 1.38;
-            --y-scale: 0.75;
+            --scale: 1.2;
+            --y-scale: 0.6;
             align-items: flex-start;
-            margin-left: max(5vw, env(safe-area-inset-left, 16px));
+            margin-left: max(4vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
-            gap: 0.8vh;
-            padding-top: max(28vh, env(safe-area-inset-top, 165px));
+            gap: 0.4vh;
+            padding-top: max(12vh, env(safe-area-inset-top, 50px));
             padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
           }
 
           .p5-name-tag {
-            top: max(2vh, env(safe-area-inset-top, 12px));
-            left: max(5vw, env(safe-area-inset-left, 16px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.95);
+            top: max(1.8vh, env(safe-area-inset-top, 10px));
+            left: max(4vw, env(safe-area-inset-left, 16px));
+            transform: rotate(0deg) skewX(-5deg) scale(0.88);
           }
         }
 
@@ -314,21 +314,21 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.825;
-            --y-scale: 0.65;
+            --scale: 0.78;
+            --y-scale: 0.52;
             align-items: flex-start;
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
-            gap: 0.5vh; 
-            padding-top: max(22vh, env(safe-area-inset-top, 85px));
-            padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
+            gap: 0.2vh; 
+            padding-top: max(11vh, env(safe-area-inset-top, 45px));
+            padding-bottom: max(2vh, env(safe-area-inset-bottom, 10px));
             justify-content: flex-start;
           }
 
           .p5-name-tag {
-            top: max(8px, env(safe-area-inset-top, 8px));
+            top: max(1.5vh, env(safe-area-inset-top, 6px));
             left: max(4vw, env(safe-area-inset-left, 20px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.85);
+            transform: rotate(0deg) skewX(-5deg) scale(0.8);
           }
         }
 
