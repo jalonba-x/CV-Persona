@@ -112,7 +112,7 @@ html, body {
 }
 
 .bgm-panel {
-  position: absolute;
+position: absolute;
   left: max(20px, env(safe-area-inset-left));
   bottom: max(20px, env(safe-area-inset-bottom));
   z-index: 9999999;
@@ -120,14 +120,13 @@ html, body {
   align-items: center;
   gap: 0; 
   background: rgba(13, 13, 13, 0.82);
-  border: none;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-  will-change: transform, filter;
+  will-change: transform, filter;   
   padding: 8px 10px;
   clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
   backdrop-filter: blur(2px);
   transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
+}}
 
 .bgm-panel:hover,
 .bgm-panel:focus-within {
@@ -135,8 +134,7 @@ html, body {
 }
 
 .bgm-toggle {
-  border: none;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   background: rgba(13, 13, 13, 0.86);
   color: #ffffff;
   padding: 8px 10px;
