@@ -228,7 +228,7 @@ export default function AboutMe() {
         .sc-main-portrait-shell {
           position: absolute;
           top: 0;
-          right: -3cqw;
+          right: -10cqw; /* Moved further right */
           z-index: 900030 !important;
           pointer-events: none;
           width: 43cqw;
@@ -247,7 +247,7 @@ export default function AboutMe() {
         .sc-reveal-panel {
           position: absolute;
           top: 44cqh;
-          left: -6cqw;
+          left: 15cqw; /* Moved right to clear the back button starting at its midpoint */
           width: 88cqw;
           height: 60cqh;
           z-index: 900020 !important;
@@ -332,7 +332,7 @@ export default function AboutMe() {
         .sc-right-nav {
           position: absolute;
           top: 10cqh;
-          left: 6cqw;
+          left: 22cqw; /* Shifted right in line with the panel */
           display: flex;
           align-items: center;
           gap: 0.35cqw;
