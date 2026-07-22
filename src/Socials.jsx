@@ -239,20 +239,17 @@ export default function Socials() {
           align-items: center;
           height: 100%;
         }
-.sc-main-top {
+      .sc-main-top {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
           align-items: center;
-          /* Add justify-content to push everything to the right edge */
-          justify-content: flex-end; 
           gap: 0.65cqw;
-          /* Set a fixed width wide enough to hold your longest text "X (TWITTER)" */
-          width: 12cqw; 
           white-space: nowrap;
           transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }.sc-bar-outer.active .sc-main-top {
+        }
+.sc-bar-outer.active .sc-main-top {
           left: 78%;
           transform: translateX(calc(-100% - 0.5cqw)); 
         }
