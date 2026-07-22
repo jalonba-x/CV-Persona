@@ -116,12 +116,13 @@ export default function SideProjectsPage() {
         .sp-item-title {
           font-family: 'FuturaStdBold', sans-serif;
           font-size: 2.6cqw;
-          line-height: 1.1;
+          line-height: 1.2;
           color: #ffffff;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          padding-bottom: 0.1em;
         }
         .sp-item.active .sp-item-title {
           color: #111;
@@ -143,8 +144,9 @@ export default function SideProjectsPage() {
           background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.96) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 0.9cqw) 100%, 0 100%);
           box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0.6cqw 1.1cqh 0 rgba(13,13,13,0.5);
-          padding: 2.2cqh 1.25cqw;
+          padding: 2.2cqh 1.25cqw 3cqh 1.25cqw;
           overflow: hidden;
+          align-self: start;
         }
 
         .sp-tag {
@@ -161,13 +163,14 @@ export default function SideProjectsPage() {
         .sp-right-title {
           font-family: 'FuturaStdBold', sans-serif;
           font-size: 4cqw;
-          line-height: 1;
+          line-height: 1.1;
           color: #ffffff;
           margin-top: 1.5cqh;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          padding: 0.1em;
         }
 
         .sp-right-summary {
