@@ -33,7 +33,8 @@ const REVEAL_CONTENT = [
   },
   {
     upper: [
-      "Spanish (Native), English (Professional), Portuguese (Basic)",
+      "Spanish (Native), English (Professional)",
+      "Portuguese (Basic)",
       "Passionate about languages and cultures",
     ],
     lower: "LinkedIn: @javierbarrerab",
