@@ -132,7 +132,7 @@ export default function Socials() {
           z-index: 1;
         }
         .sc-bar-outer.active { z-index: 20; }
-        .sc-bar-outer.active .sc-bar      { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar     { height: 9cqh; }
         .sc-bar-outer.active .sc-bar-red { height: 9cqh; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
@@ -301,11 +301,11 @@ export default function Socials() {
 
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(-0.3cqw); opacity: 0.4; }
+          50%      { transform: translateX(-0.3cqw); opacity: 0.4; }
         }
         @keyframes sc-arrow-right {
           0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(0.3cqw); opacity: 0.4; }
+          50%      { transform: translateX(0.3cqw); opacity: 0.4; }
         }
         .sc-nav-btn {
           font-family: 'Bebas Neue', sans-serif;
@@ -596,43 +596,108 @@ export default function Socials() {
           min-width: 84px;
         }
 
+        /* =========================================================
+           MOBILE OPTIMIZATIONS FOR ANDROID & iPHONE VIEWPORTS
+           ========================================================= */
         @media (max-width: 768px) {
           .sc-root {
             justify-content: flex-start;
-            padding-top: 12px;
-            gap: 6px;
+            /* Pushes the social bars 85px down to permanently clear the top-left red Back button */
+            padding-top: max(85px, calc(env(safe-area-inset-top) + 65px));
+            gap: 8px;
+            left: 3cqw;
+          }
+
+          /* Explicit sizing ensures bars remain legible and proportional on mobile screens */
+          .sc-bar, .sc-bar-red {
+            width: 70cqw;
+            height: 44px;
+          }
+          .sc-bar-outer.active .sc-bar,
+          .sc-bar-outer.active .sc-bar-red {
+            height: 52px;
+          }
+
+          .sc-role {
+            font-size: 13px;
+            width: 50px;
+          }
+          .sc-bar-outer.active .sc-role {
+            font-size: 15px;
+          }
+          .sc-label {
+            font-size: 16px;
+            letter-spacing: 1.5px;
+          }
+          .sc-stat-num {
+            font-size: 14px;
           }
 
           .sc-link-btn {
             padding: 4px 8px;
           }
-
           .sc-ext-icon {
             width: 16px;
             height: 16px;
           }
 
+          /* Dynamically anchors below the buttons to prevent any overlap */
           .sc-info-panel {
-            top: min(47vh, 320px);
-            left: 8px;
-            right: 8px;
-            bottom: 58px;
-            gap: 4px;
+            top: min(50vh, 255px);
+            left: 10px;
+            right: 10px;
+            bottom: 65px;
+            gap: 6px;
             padding: 4px 0;
           }
 
+          /* Slimmed down from 38px to 32px for a sleeker mobile profile */
           .sc-info-bar-wrap {
-            height: 38px !important;
+            height: 32px !important;
+            border-radius: 6px !important;
           }
 
+          .sc-info-bar {
+            padding: 0 4px;
+          }
+
+          /* Scaled down "NEW" sign and icon so they stay proportional inside the thinner bar */
+          .sc-info-bar-new {
+            height: 44%;
+            margin-left: 6px;
+            margin-right: 4px;
+            object-fit: contain;
+          }
+
+          .sc-info-bar-icon {
+            height: 50%;
+            margin-left: 2px;
+            margin-right: 4px;
+            object-fit: contain;
+          }
+
+          /* flex: 1 and ellipsis ensure text takes remaining space cleanly without wrapping */
           .sc-info-bar-text {
-            font-size: 15px;
-            letter-spacing: 1px;
+            flex: 1;
+            font-size: 13px;
+            letter-spacing: 0.6px;
+            padding: 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .sc-info-bar-box {
+            height: 60%;
+            font-size: 10px;
+            padding: 0 5px;
+            border-radius: 3px;
+            margin-right: 4px;
           }
 
           .sc-info-bar-count {
-            margin-right: 10px;
-            font-size: 14px;
+            margin-right: 8px;
+            font-size: 13px;
           }
 
           .sc-footer {
@@ -641,15 +706,21 @@ export default function Socials() {
 
           .sc-mobile-controls {
             position: fixed;
-            left: 8px;
-            right: 8px;
-            bottom: max(8px, env(safe-area-inset-bottom));
+            left: 10px;
+            right: 10px;
+            bottom: max(10px, env(safe-area-inset-bottom));
             z-index: 60;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
             pointer-events: all;
+          }
+
+          .sc-mobile-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            min-height: 40px;
           }
         }
       `}</style>
