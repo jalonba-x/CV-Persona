@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { playSelectSound } from "./utils/audio.js";
 import char1 from "./assets/char1.png";
