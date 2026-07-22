@@ -125,7 +125,7 @@ export default function SideProjectsPage() {
 
         .sp-item-title {
           font-family: 'Persona5Main', sans-serif;
-          letter-spacing: -0.8cqw;
+          letter-spacing: 0.0cqw;
           font-size: 2.2cqw;
           line-height: 0.9;
           color: #ffffff;
@@ -273,7 +273,7 @@ export default function SideProjectsPage() {
           .sp-item-title {
             font-size: 13px;
             line-height: 1;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.1px;
           }
 
           .sp-item-stack {
@@ -381,7 +381,7 @@ export default function SideProjectsPage() {
       <div className="sp-shell">
         <div className="sp-left">
           <div className={`sp-title${mounted ? " mounted" : ""}`}>
-            <span className="title-desktop">PROJECT LOG</span>
+            <span className="title-desktop">PROJECTS</span>
             <span className="title-mobile">PROJECTS</span>
           </div>
           {ITEMS.map((item, index) => (
