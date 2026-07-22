@@ -274,9 +274,13 @@ function BackgroundMusic() {
     }
 
     window.addEventListener('pointerdown', unlock, { once: true })
+    window.addEventListener('touchstart', unlock, { once: true })
+    window.addEventListener('touchend', unlock, { once: true })
     window.addEventListener('keydown', unlock, { once: true })
     return () => {
       window.removeEventListener('pointerdown', unlock)
+      window.removeEventListener('touchstart', unlock)
+      window.removeEventListener('touchend', unlock)
       window.removeEventListener('keydown', unlock)
     }
   }, [])
@@ -347,6 +351,8 @@ function SiteBackgroundVideo() {
       loop
       muted
       playsInline
+      disablePictureInPicture
+      disableRemotePlayback
       preload="auto"
       aria-hidden="true"
     />
