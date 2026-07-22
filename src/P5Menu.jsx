@@ -61,7 +61,7 @@ export default function P5Menu({ onNavigate }) {
     <>
       <style>{`
         /* =========================================================
-           GLOBAL OVERRIDE
+           GLOBAL OVERRIDES
            ========================================================= */
         .bgm-panel {
           background: transparent !important;
@@ -290,20 +290,26 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.92;
-            --y-scale: 0.6;
+            --scale: 1.08;
+            --y-scale: 0.68;
             align-items: flex-start;
             margin-left: max(5vw, env(safe-area-inset-left, 16px));
             margin-right: auto;
-            gap: 0.6vh;
-            padding-top: max(22vh, env(safe-area-inset-top, 120px));
-            padding-bottom: max(5vh, env(safe-area-inset-bottom, 20px));
+            gap: 0.8vh;
+            padding-top: max(18vh, env(safe-area-inset-top, 95px));
+            padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
           }
 
           .p5-name-tag {
             top: max(2vh, env(safe-area-inset-top, 12px));
             left: max(5vw, env(safe-area-inset-left, 16px));
             transform: rotate(0deg) skewX(-5deg) scale(0.95);
+          }
+
+          /* Scales down the BGM panel/button on mobile screens */
+          .bgm-panel {
+            transform: scale(0.75) !important;
+            transform-origin: bottom left !important;
           }
         }
 
@@ -314,13 +320,13 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.55; 
-            --y-scale: 0.55;
+            --scale: 0.62; 
+            --y-scale: 0.58;
             align-items: flex-start;
             margin-left: max(4vw, env(safe-area-inset-left, 20px));
             margin-right: auto;
             gap: 0.5vh; 
-            padding-top: max(18vh, env(safe-area-inset-top, 60px));
+            padding-top: max(15vh, env(safe-area-inset-top, 50px));
             padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
             justify-content: flex-start;
           }
@@ -329,6 +335,11 @@ export default function P5Menu({ onNavigate }) {
             top: max(8px, env(safe-area-inset-top, 8px));
             left: max(4vw, env(safe-area-inset-left, 20px));
             transform: rotate(0deg) skewX(-5deg) scale(0.85);
+          }
+
+          .bgm-panel {
+            transform: scale(0.7) !important;
+            transform-origin: bottom left !important;
           }
         }
 
