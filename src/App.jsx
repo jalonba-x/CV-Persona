@@ -78,40 +78,40 @@ function BackButton() {
           pointer-events: all;
         }
 
-.p5-back-button {
-  display: flex;
-  align-items: center;
-  gap: 0.35cqw;
-  background: #d92323;
-  color: #ffffff;
-  border: none;
-  padding: 0.4cqh 0.8cqw 0.4cqh 0.6cqw;
-  font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
-  font-size: 1.0cqw;
-  letter-spacing: 0.1cqw;
-  cursor: pointer;
-  clip-path: polygon(0.4cqw 0%, 100% 0%, calc(100% - 0.4cqw) 100%, 0% 100%);
-  box-shadow: 0.15cqw 0.15cqh 0px #000000;
-  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-}
+        .p5-back-button {
+          display: flex;
+          align-items: center;
+          gap: 0.35cqw;
+          background: #d92323;
+          color: #ffffff;
+          border: none;
+          padding: 0.4cqh 0.8cqw 0.4cqh 0.6cqw;
+          font-family: 'Persona5Main', 'Bebas Neue', sans-serif;
+          font-size: 1.0cqw;
+          letter-spacing: 0.1cqw;
+          cursor: pointer;
+          clip-path: polygon(0.4cqw 0%, 100% 0%, calc(100% - 0.4cqw) 100%, 0% 100%);
+          box-shadow: 0.15cqw 0.15cqh 0px #000000;
+          transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease; 
+        }
 
         .p5-back-button:hover, .p5-back-button:focus {
           background: #ff2a2a;
-          transform: translate(-0.15cqw, -0.15cqh);
-          box-shadow: 0.4cqw 0.4cqh 0px #000000;
+          transform: translate(-0.1cqw, -0.1cqh);
+          box-shadow: 0.25cqw 0.25cqh 0px #000000;
           outline: none;
         }
 
         .p5-back-button:active {
-          transform: translate(0.1cqw, 0.1cqh);
-          box-shadow: 0.15cqw 0.15cqh 0px #000000;
+          transform: translate(0.05cqw, 0.05cqh);
+          box-shadow: 0.1cqw 0.1cqh 0px #000000;
         }
 
         .back-arrow-icon {
-          width: 1.4cqw;
-          height: 1.4cqw;
-          min-width: 16px;
-          min-height: 16px;
+          width: 1.0cqw;
+          height: 1.0cqw;
+          min-width: 12px;
+          min-height: 12px;
           stroke: #ffffff;
           stroke-width: 2.5;
           fill: none;
@@ -121,28 +121,29 @@ function BackButton() {
         }
 
         .p5-back-button:hover .back-arrow-icon {
-          transform: translateX(-0.3cqw);
+          transform: translateX(-0.2cqw);
         }
 
+        /* Mobile specific scaling */
         @media (max-width: 768px) {
           .back-btn-wrapper {
             top: 16px;
             left: 16px;
           }
           .p5-back-button {
-            font-size: 16px;
-            padding: 6px 14px 6px 10px;
-            gap: 6px;
-            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-            box-shadow: 3px 3px 0px #000000;
+            font-size: 12px;
+            padding: 4px 10px 4px 8px;
+            gap: 4px;
+            clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+            box-shadow: 2px 2px 0px #000000;
           }
           .back-arrow-icon {
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
           }
           .p5-back-button:hover, .p5-back-button:focus {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px #000000;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000000;
           }
         }
       `}</style>
