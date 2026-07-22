@@ -254,21 +254,14 @@ export default function Socials() {
           transform: translateX(calc(-100% - 0.5cqw)); 
         }
 .sc-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          /* Use standard system fonts instead of Bebas Neue to equalize baselines */
-          font-family: system-ui, -apple-system, sans-serif;
-          /* Force the bounding box to tightly wrap the icon/emoji */
-          line-height: 1; 
+          font-family: 'Bebas Neue', sans-serif;
           font-size: 1.2cqw;
           width: 1.75cqw;
+          text-align: center;
           flex-shrink: 0;
           color: rgba(255,255,255,0.15);
           transition: color 0.2s ease;
           user-select: none;
-          /* Keep a slight nudge if the emojis still look a hair too low relative to the text next to them */
-          transform: translateY(-0.15cqw);
         }
         .sc-bar-outer.active .sc-icon { color: #111111; }
 
