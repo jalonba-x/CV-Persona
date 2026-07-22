@@ -66,8 +66,8 @@ export default function SideProjectsPage() {
           display: grid;
           grid-template-columns: 48% 52%;
           gap: 1.5cqw;
-          /* Pushes both columns 95px down to permanently clear the top-left red Back button */
-          padding-top: max(95px, calc(env(safe-area-inset-top) + 75px));
+          /* Increased top padding to max(150px, 16vh) to push both left and right panels safely below the global desktop Back banner */
+          padding-top: max(150px, 16vh);
           padding-right: 3.5cqw;
           padding-bottom: 4cqh;
           padding-left: 3.5cqw;
