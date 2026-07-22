@@ -135,7 +135,7 @@ export default function SideProjectsPage() {
         .sp-item-stack {
           font-family: 'Persona5Main', sans-serif;
           font-size: 1.35cqw;
-          letter-spacing: 0.07cqw;
+          letter-spacing: -3cqw;
           color: #ffffff;
           margin-top: 0.37cqh;
         }
