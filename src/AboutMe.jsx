@@ -219,12 +219,12 @@ export default function AboutMe() {
           50% { transform: translateX(0.3cqw); opacity: 0.4; }
         }
 
-        /* ── Main Portrait Shell (Placed on top of panel with full opacity) ── */
+        /* ── Main Portrait Shell ── */
         .sc-main-portrait-shell {
           position: absolute;
           top: 0;
           right: -2cqw;
-          z-index: 900025 !important; /* Higher than sc-reveal-panel (900020) */
+          z-index: 900025 !important;
           pointer-events: none;
           width: 38cqw;
           height: 100cqh;
@@ -234,7 +234,7 @@ export default function AboutMe() {
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .sc-main-portrait-shell.mounted {
-          opacity: 1; /* Full opacity */
+          opacity: 1;
           transform: translateX(0) skewX(-8deg) scale(1);
           animation: sc-portrait-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -284,12 +284,12 @@ export default function AboutMe() {
           clip-path: inherit;
         }
 
-        /* Upper Container: Extended width to right side to avoid clipping text */
+        /* Upper Container */
         .sc-reveal-upper-bar {
           position: absolute;
           top: 8%;
           left: 2%;
-          width: 88%; /* Expanded from 60% */
+          width: 88%;
           height: 48%;
           background: rgba(13,13,13,0.94);
           clip-path: polygon(0 0, 100% 0, calc(100% - 1.8cqw) 100%, 0 100%);
@@ -313,7 +313,7 @@ export default function AboutMe() {
           text-align: left;
         }
 
-        /* Lower Container: Shifted under upper container on the left */
+        /* Lower Container */
         .sc-reveal-lower-bar {
           position: absolute;
           top: 60%;
@@ -339,10 +339,12 @@ export default function AboutMe() {
           65% { opacity: 1; transform: scale(1.1) translateY(0.2cqh); }
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
+
+        /* ── L/R Navigation controls (positioned in-between left navigation and reveal panel) ── */
         .sc-right-nav {
           position: absolute;
-          top: 10cqh;
-          left: 22cqw;
+          top: 24cqh;
+          left: 9cqw;
           display: flex;
           align-items: center;
           gap: 0.35cqw;
