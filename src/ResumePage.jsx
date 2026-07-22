@@ -609,7 +609,6 @@ export default function ResumePage() {
           <span>BACK</span>
         </div>
       </div>
-    </div>
   );
 }
 
