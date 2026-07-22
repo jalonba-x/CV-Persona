@@ -101,6 +101,23 @@ export default function Socials() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 
+        #menu-screen {
+          position: absolute !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          max-width: none !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+        }
+
+        #menu-screen::before,
+        #menu-screen::after {
+          display: none !important;
+        }
+
         .sc-root {
           position: absolute;
           inset: 0;
