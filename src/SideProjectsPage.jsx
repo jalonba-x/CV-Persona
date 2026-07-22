@@ -11,15 +11,15 @@ const ITEMS = [
     href: "https://jalonba.itch.io/digital-monster-catalog",
   },
   {
-    id: "Persona5-themed resume",
-    title: "Persona5-themed resume",
+    id: "Persona5-themed resume (Javier)",
+    title: "Persona5-themed resume (Javier)",
     stack: "Github",
     summary: "An optimized version of @ffaneto's persona5-website from Github",
     href: "https://github.com/jalonba-x/CV-Persona",
   },
   {
     id: "Fan video edition",
-    title: "Tribute to HxH 134 (miniature rose)",
+    title: "Tribute to Hunter X Hunter 134 (miniature rose)",
     stack: "Adobe Premiere",
     summary: "An edited anime scene using real life images instead",
     href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
@@ -65,20 +65,14 @@ export default function SideProjectsPage() {
           z-index: 10;
           display: grid;
           grid-template-columns: 48% 52%;
-          gap: 1.5cqw;
-          /* Desktop default: pushes panels below widescreen PC headers */
-          padding-top: max(150px, 16vh);
-          padding-right: 3.5cqw;
-          padding-bottom: 4cqh;
-          padding-left: 3.5cqw;
-          box-sizing: border-box;
+          gap: 1cqw;
+          padding: 6cqh 3cqw;
         }
 
         .sp-left {
           display: flex;
           flex-direction: column;
           gap: 1.1cqh;
-          min-height: 0;
         }
 
         .sp-title {
@@ -98,10 +92,6 @@ export default function SideProjectsPage() {
           transform: translateX(0);
         }
 
-        .title-mobile {
-          display: none;
-        }
-
         .sp-item {
           position: relative;
           min-height: 8.7cqh;
@@ -113,7 +103,6 @@ export default function SideProjectsPage() {
           opacity: 0;
           transform: translateX(-1.8cqw);
           transition: transform 0.24s ease, background 0.24s ease, opacity 0.4s ease;
-          box-sizing: border-box;
         }
         .sp-item.mounted {
           opacity: 1;
@@ -126,7 +115,6 @@ export default function SideProjectsPage() {
 
         .sp-item-title {
           font-family: 'Persona5Main', sans-serif;
-          letter-spacing: 0.0cqw;
           font-size: 2.2cqw;
           line-height: 0.9;
           color: #ffffff;
@@ -151,14 +139,8 @@ export default function SideProjectsPage() {
           background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.96) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 0.9cqw) 100%, 0 100%);
           box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0.6cqw 1.1cqh 0 rgba(13,13,13,0.5);
-          padding: 2.2cqh 1.5cqw;
-          overflow-y: auto;
-          overflow-x: hidden;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          box-sizing: border-box;
-          min-height: 0;
+          padding: 2.2cqh 1.25cqw;
+          overflow: hidden;
         }
 
         .sp-tag {
@@ -174,9 +156,8 @@ export default function SideProjectsPage() {
 
         .sp-right-title {
           font-family: 'Persona5Main', sans-serif;
-          letter-spacing: -0.5cqw;
           font-size: 3.3cqw;
-          line-height: 0.95;
+          line-height: 0.92;
           color: #ffffff;
           margin-top: 1.5cqh;
         }
@@ -226,170 +207,11 @@ export default function SideProjectsPage() {
           letter-spacing: 0.1cqw;
           font-size: 0.65cqw;
         }
-
-        /* =========================================================
-           MOBILE LANDSCAPE & TABLET (Short Screens: max-height 600px)
-           Guarantees elements sit strictly between top/bottom buttons
-           ========================================================= */
-        @media (max-width: 900px), (max-height: 600px) {
-          .sp-shell {
-            inset: auto;
-            /* Hard 85px top and 65px bottom boundaries prevent touching the UI buttons */
-            top: max(85px, calc(env(safe-area-inset-top) + 70px));
-            bottom: max(65px, calc(env(safe-area-inset-bottom) + 55px));
-            left: max(16px, 3vw);
-            right: max(16px, 3vw);
-            width: auto;
-            height: auto;
-            padding: 0;
-            gap: 10px;
-            align-items: center;
-          }
-
-          .sp-left {
-            gap: 5px;
-            justify-content: center;
-            max-height: 100%;
-            overflow-y: auto;
-          }
-
-          .title-desktop {
-            display: none;
-          }
-          .title-mobile {
-            display: inline;
-          }
-
-          .sp-title {
-            font-size: 15px;
-            margin-bottom: 2px;
-            letter-spacing: 1px;
-            line-height: 1;
-          }
-
-          /* Ultra-compact 32px height reduces total column height to ~130px */
-          .sp-item {
-            min-height: 32px;
-            padding: 5px 8px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-          }
-
-          .sp-item-title {
-            font-size: 12px;
-            line-height: 1;
-            letter-spacing: -0.1px;
-          }
-
-          .sp-item-stack {
-            font-size: 9px;
-            margin-top: 2px;
-            letter-spacing: 0.5px;
-          }
-
-          /* Details box shrinks to match and scrolls internally instead of bleeding out */
-          .sp-right {
-            height: 100%;
-            max-height: 100%;
-            padding: 8px 12px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-            justify-content: flex-start;
-          }
-
-          .sp-tag {
-            font-size: 9px;
-            padding: 2px 5px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
-          }
-
-          .sp-right-title {
-            font-size: 14px;
-            margin-top: 4px;
-            line-height: 1.05;
-            letter-spacing: -0.3px;
-          }
-
-          .sp-right-summary {
-            font-size: 11px;
-            margin-top: 4px;
-            line-height: 1.15;
-          }
-
-          .sp-link {
-            font-size: 11px;
-            padding: 4px 8px;
-            margin-top: 6px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
-          }
-
-          .sp-footer {
-            display: none;
-          }
-        }
-
-        /* =========================================================
-           MOBILE PORTRAIT (Vertical Phone Orientation)
-           Stacks left list and right panel vertically inside the safe box
-           ========================================================= */
-        @media (max-width: 768px) and (orientation: portrait) {
-          .sp-shell {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr;
-            align-items: start;
-            top: max(85px, calc(env(safe-area-inset-top) + 70px));
-            bottom: max(70px, calc(env(safe-area-inset-bottom) + 60px));
-            left: max(16px, 4vw);
-            right: max(16px, 4vw);
-            gap: 12px;
-            overflow-y: auto;
-          }
-
-          .sp-left {
-            gap: 6px;
-            max-height: none;
-            overflow-y: visible;
-          }
-
-          .sp-item {
-            min-height: 40px;
-            padding: 8px 12px;
-          }
-
-          .sp-item-title {
-            font-size: 15px;
-          }
-
-          .sp-item-stack {
-            font-size: 11px;
-          }
-
-          .sp-right {
-            height: auto;
-            max-height: none;
-            padding: 14px;
-            justify-content: flex-start;
-          }
-
-          .sp-right-title {
-            font-size: 18px;
-          }
-
-          .sp-right-summary {
-            font-size: 13px;
-          }
-
-          .sp-link {
-            font-size: 13px;
-            margin-top: 10px;
-          }
-        }
       `}</style>
 
       <div className="sp-shell">
         <div className="sp-left">
-          <div className={`sp-title${mounted ? " mounted" : ""}`}>
-            <span className="title-desktop">PROJECTS</span>
-            <span className="title-mobile">PROJECTS</span>
-          </div>
+          <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECT LOG</div>
           {ITEMS.map((item, index) => (
             <div
               key={item.id}
