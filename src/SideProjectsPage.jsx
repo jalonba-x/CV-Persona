@@ -65,24 +65,21 @@ export default function SideProjectsPage() {
           z-index: 10;
           display: grid;
           grid-template-columns: 48% 52%;
-          gap: 1cqw;
+          grid-template-rows: auto 1fr;
+          column-gap: 1.5cqw;
           padding: 10cqh 5cqw 6cqh 5cqw;
         }
 
-        .sp-left {
-          display: flex;
-          flex-direction: column;
-          gap: 1.1cqh;
-        }
-
         .sp-title {
+          grid-column: 1;
+          grid-row: 1;
           font-family: 'Persona5Main', sans-serif;
           font-size: 3.75cqw;
           color: #ffffff;
           line-height: 0.92;
           letter-spacing: 0.05cqw;
           text-shadow: 0 0.2cqh 0 rgba(13,13,13,0.3);
-          margin-bottom: 0.75cqh;
+          margin-bottom: 1.5cqh;
           opacity: 0;
           transform: translateX(-1.25cqw);
           transition: opacity 0.35s ease, transform 0.35s ease;
@@ -90,6 +87,14 @@ export default function SideProjectsPage() {
         .sp-title.mounted {
           opacity: 1;
           transform: translateX(0);
+        }
+
+        .sp-left {
+          grid-column: 1;
+          grid-row: 2;
+          display: flex;
+          flex-direction: column;
+          gap: 1.1cqh;
         }
 
         .sp-item {
@@ -140,6 +145,8 @@ export default function SideProjectsPage() {
         }
 
         .sp-right {
+          grid-column: 2;
+          grid-row: 2;
           position: relative;
           background: linear-gradient(180deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.96) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 0.9cqw) 100%, 0 100%);
@@ -221,8 +228,9 @@ export default function SideProjectsPage() {
       `}</style>
 
       <div className="sp-shell">
+        <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECTS</div>
+        
         <div className="sp-left">
-          <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECTS</div>
           {ITEMS.map((item, index) => (
             <div
               key={item.id}
