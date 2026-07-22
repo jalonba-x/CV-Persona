@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { playSelectSound } from "./utils/audio.js";
 import char1 from "./assets/char1.png";
@@ -58,7 +58,7 @@ export default function Socials() {
     if (isFirstRenderAudio.current) {
       isFirstRenderAudio.current = false;
       return;
-        }
+    }
     playSelectSound();
   }, [active]);
   
@@ -87,7 +87,7 @@ export default function Socials() {
         if (e.key === "ArrowUp")   setActiveInfoBar(i => Math.max(0, i - 1));
         if (e.key === "ArrowDown") setActiveInfoBar(i => Math.min(barCount - 1, i + 1));
         if (e.key === "ArrowLeft") setFocus("left");
-        if (e.key === "Enter")     openExternalLink(ITEMS[active].links[activeInfoBar]);
+        if (e.key === "Enter")      openExternalLink(ITEMS[active].links[activeInfoBar]);
       }
       if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
@@ -97,18 +97,37 @@ export default function Socials() {
 
   return (
     <div id="menu-screen">
-      <video src={bgVideo} autoPlay loop muted playsInline />
+      <video className="sc-bg-video" src={bgVideo} autoPlay loop muted playsInline />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 
 #menu-screen {
-  position: absolute !important;
+  position: fixed !important;
   inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 1 !important;
+}
+
+#menu-screen video,
+.sc-bg-video {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  max-width: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
   border: none !important;
   outline: none !important;
 }
@@ -255,14 +274,16 @@ export default function Socials() {
           font-size: 2.2cqw;
           transform: translateY(-0.4cqh) rotate(-15deg) scale(1.03);
         }
-.sc-main {
+
+        .sc-main {
           flex: 1;
           position: relative;
           display: flex;
           align-items: center;
           height: 100%;
         }
-      .sc-main-top {
+
+        .sc-main-top {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
@@ -272,11 +293,13 @@ export default function Socials() {
           white-space: nowrap;
           transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
-.sc-bar-outer.active .sc-main-top {
+
+        .sc-bar-outer.active .sc-main-top {
           left: 78%;
           transform: translateX(calc(-100% - 0.5cqw)); 
         }
-.sc-icon {
+
+        .sc-icon {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 1.2cqw;
           width: 1.75cqw;
