@@ -185,7 +185,7 @@ function BackgroundMusic() {
   const fadeTo = (target, done) => {
     const audio = audioRef.current
     if (!audio) return
-
+    
     stopFade()
     const start = audio.volume
     const diff = target - start
@@ -205,7 +205,7 @@ function BackgroundMusic() {
     fadeRafRef.current = requestAnimationFrame(tick)
   }
 
-  const startMusic = async () => {
+ const startMusic = async () => {
     const audio = audioRef.current
     if (!audio) return
 
@@ -289,6 +289,14 @@ function BackgroundMusic() {
 
   return (
     <div className="bgm-panel">
+      {/* Hide BGM button when the orientation alert is triggered on mobile */}
+      <style>{`
+        @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+          .bgm-panel {
+            display: none !important;
+          }
+        }
+      `}</style>
       <audio ref={audioRef} loop preload="none" src="/audio/background.mp3" />
       <button
         className={`bgm-toggle${isPlaying ? ' on' : ''}`}
@@ -302,7 +310,7 @@ function BackgroundMusic() {
         {isPlaying ? 'BGM ON' : 'BGM OFF'}
       </button>
 
-      <div className="bgm-slider-wrap" aria-label="Background music volume">
+<div className="bgm-slider-wrap" aria-label="Background music volume">
         <span className="bgm-slider-label">VOL</span>
         <input
           className="bgm-slider"
