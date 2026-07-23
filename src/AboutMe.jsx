@@ -151,7 +151,7 @@ export default function AboutMe() {
           position: absolute;
           inset: 0;
           z-index: 900000 !important;
-          left: 4.5cqw;
+          left: max(4.5cqw, env(safe-area-inset-left));
           pointer-events: none;
           display: flex;
           flex-direction: column;
@@ -341,7 +341,7 @@ export default function AboutMe() {
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* ── L/R Navigation controls (Moved up to top: 14cqh to clear the reveal panel) ── */
+        /* ── L/R Navigation controls ── */
         .sc-right-nav {
           position: absolute;
           top: 14cqh;
@@ -582,30 +582,84 @@ export default function AboutMe() {
         }
 
         .sc-footer {
-    position: absolute;
-  bottom: 2.6cqh; right: 1.7cqw;
-  z-index: 20;
-  display: flex; flex-direction: column;
-  align-items: flex-end; gap: 0.5cqh;
-  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
-  opacity: 0;
-  transition: opacity 0.5s ease 0.9s;
-}
+          position: absolute;
+          bottom: max(2.6cqh, env(safe-area-inset-bottom)); 
+          right: max(1.7cqw, env(safe-area-inset-right));
+          z-index: 20;
+          display: flex; flex-direction: column;
+          align-items: flex-end; gap: 0.5cqh;
+          font-family: 'Persona5Main';
+          opacity: 0;
+          transition: opacity 0.5s ease 0.9s;
+        }
         .sc-footer.mounted { opacity: 1; }
+        
         .sc-footer-row {
-display: flex; align-items: center; gap: 0.5cqw;
-  font-size: 0.8cqw; letter-spacing: 0.12cqw;
-  color: rgba(255,255,255,0.28);
+          display: flex; align-items: center; gap: 0.5cqw;
+          font-size: 0.8cqw; letter-spacing: 0.12cqw;
+          color: rgba(255,255,255,0.28);
         }
+        
         .sc-footer-key {
-border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.2cqw;
-  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 0.2cqw;
+          padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
         }
+
+        /* =========================================================
+           MOBILE OPTIMIZATIONS
+           ========================================================= */
+
+        /* Hide keyboard hints on touch devices */
         @media (hover: none) and (pointer: coarse) {
-  .p5-hint {
-    display: none !important;
-  }
+          .sc-footer {
+            display: none !important;
+          }
+        }
+
+        /* Landscape Mobile & Low-Height Screens */
+        @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
+          /* Make menu bars slightly larger for fat fingers */
+          .sc-bar {
+             height: 8.5cqh;
+             width: 50cqw;
+          }
+          .sc-bar-outer.active { height: 11cqh; }
+          .sc-bar-outer.active .sc-bar { height: 11cqh; }
+          .sc-bar-outer.active .sc-bar-red { height: 11cqh; }
+          
+          .sc-label {
+            font-size: 2.2cqw;
+          }
+          
+          /* Pull the reveal panel up and expand it to maximize space */
+          .sc-reveal-panel {
+            top: 35cqh;
+            left: 10cqw;
+            width: 88cqw;
+            height: 65cqh;
+          }
+          
+          /* Dramatically boost font sizing for mobile screens */
+          .sc-reveal-upper-line {
+            font-size: 2cqw;
+            word-spacing: 0.3cqw;
+          }
+          
+          .sc-reveal-lower-bar {
+            font-size: 2.2cqw;
+            padding-left: 2.5cqw;
+          }
+          
+          /* Shift the right nav slightly out of the way */
+          .sc-right-nav {
+            top: 10cqh;
+            left: 5cqw;
+          }
+          .sc-right-nav .sc-nav-btn {
+            font-size: 6.5cqw;
+          }
+        }
       `}</style>
 
       <div className="sc-root" role="navigation">
