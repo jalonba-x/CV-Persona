@@ -627,7 +627,7 @@ export default function AboutMe() {
             bottom: 0 !important;
             height: 100vh !important;
             z-index: 900030 !important;
-            transform: translateY(-3vh) !important; 
+            transform: translateY(-4vh) !important; 
   }
           }
 
