@@ -628,7 +628,6 @@ export default function AboutMe() {
             height: 100vh !important;
             z-index: 900030 !important;
             transform: translateY(-9vh) !important; 
-  }
           }
 
           /* Ajuste de dimensiones de botones usando viewport units (vw/vh) */
@@ -644,32 +643,36 @@ export default function AboutMe() {
             font-size: 2.2vw !important;
           }
           
-          /* Pull the reveal panel up and expand it to maximize space */
+          /* Romper la restricción 16:9 del panel informativo desplegable */
           .sc-reveal-panel {
-            top: 35cqh;
-            left: 10cqw;
-            width: 88cqw;
-            height: 65cqh;
+            position: fixed !important;
+            top: 35vh !important;
+            left: 8vw !important;
+            width: 84vw !important;
+            height: 62vh !important;
+            z-index: 900035 !important;
           }
           
-          /* Dramatically boost font sizing for mobile screens */
+          /* Ajuste de tipografía adaptada a pantallas panorámicas reales */
           .sc-reveal-upper-line {
-            font-size: 2cqw;
-            word-spacing: 0.3cqw;
+            font-size: 2.1vw !important;
+            word-spacing: 0.3vw !important;
           }
           
           .sc-reveal-lower-bar {
-            font-size: 2.2cqw;
-            padding-left: 2.5cqw;
+            font-size: 2.3vw !important;
+            padding-left: 2.5vw !important;
           }
           
-          /* Shift the right nav slightly out of the way */
+          /* Romper la restricción 16:9 de la navegación de botones L/R */
           .sc-right-nav {
-            top: 10cqh;
-            left: 5cqw;
+            position: fixed !important;
+            top: 10vh !important;
+            left: 5vw !important;
+            z-index: 900040 !important;
           }
           .sc-right-nav .sc-nav-btn {
-            font-size: 6.5cqw;
+            font-size: 6.5vw !important;
           }
 
           /* --- Romper el ratio 9:16 / 16:9 y llevar el retrato al extremo derecho real --- */
