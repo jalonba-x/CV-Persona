@@ -256,7 +256,7 @@ export default function AboutMe() {
           left: 14cqw;
           width: 85cqw;
           height: 58cqh;
-          z-index: 900020 !important;
+          z-index: 900035 !important;
           pointer-events: none;
           background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 4.8cqw) 100%, 0 100%);
