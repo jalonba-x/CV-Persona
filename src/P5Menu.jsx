@@ -320,9 +320,9 @@ export default function P5Menu({ onNavigate }) {
             margin-left: max(6vw, env(safe-area-inset-left));
             margin-right: auto;
             /* Slightly bumped gap from 0.5vh to 0.8vh */
-            gap: 0.8vh; 
-            /* Increased from 22vh to 32vh to center between title and bottom button */
-            padding-top: max(32vh, calc(env(safe-area-inset-top) + 25vh));
+            gap: 0.6vh; 
+            /* Increased from 22vh to 24vh to center between title and bottom button */
+            padding-top: max(24vh, calc(env(safe-area-inset-top) + 25vh));
             padding-bottom: max(3vh, env(safe-area-inset-bottom));
           }
 
