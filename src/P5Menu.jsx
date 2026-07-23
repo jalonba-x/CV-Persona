@@ -164,7 +164,7 @@ export default function P5Menu({ onNavigate }) {
           background: rgba(255,255,255,0.85);
           z-index: 1;
           pointer-events: none;
-          transform: translateY(-40%) translateX(-0.75cqw) scaleX(0);
+          transform: translateY(-40%) translateX(calc(-0.75cqw * var(--scale))) scaleX(0);
           transition: transform 0.18s ease;
           width: calc(var(--item-w) * var(--scale));
           height: calc(var(--item-h) * var(--scale));
@@ -198,13 +198,14 @@ export default function P5Menu({ onNavigate }) {
         .p5-label-base {
           font-family: 'Persona5Main';
           font-style: italic;
-          letter-spacing: 0.04cqw;
+          letter-spacing: calc(0.04cqw * var(--scale));
           line-height: 0.85;
           display: block;
           white-space: nowrap;
           user-select: none;
           color: #ffffff;
-          -webkit-text-stroke: 1.1cqw rgba(0, 0, 0, 0.8);
+          /* Stroke is now tied to var(--scale) so it stays sharp when scaled down */
+          -webkit-text-stroke: calc(1.1cqw * var(--scale)) rgba(0, 0, 0, 0.8);
           paint-order: stroke fill;
           font-size: calc(var(--item-font) * var(--scale));
         }
@@ -218,7 +219,8 @@ export default function P5Menu({ onNavigate }) {
 
         .p5-label-bright {
           color: #1a1a1a;
-          -webkit-text-stroke: 1.1cqw rgba(255, 255, 255, 0.9);
+          /* Stroke is now tied to var(--scale) */
+          -webkit-text-stroke: calc(1.1cqw * var(--scale)) rgba(255, 255, 255, 0.9);
           position: absolute;
           inset: 0;
           z-index: 1;
@@ -315,27 +317,25 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            --scale: 0.8; 
-            --y-scale: 0.7;
+            /* Reduced scale by ~40% so items fit proportionally on short landscape screens */
+            --scale: 0.48; 
+            --y-scale: 0.45;
             align-items: flex-start;
-            /* Using vw moves elements near the left border of the screen (left 1/3) */
             margin-left: max(6vw, env(safe-area-inset-left));
             margin-right: auto;
-            gap: 1vh; 
-            /* Reduced from 34cqh to 25vh to pull menu items back up toward title */
-            padding-top: max(25vh, calc(env(safe-area-inset-top) + 18vh));
+            gap: 0.5vh; 
+            padding-top: max(22vh, calc(env(safe-area-inset-top) + 15vh));
             padding-bottom: max(3vh, env(safe-area-inset-bottom));
           }
 
           .p5-name-tag {
             top: max(5vh, env(safe-area-inset-top));
-            /* Matches the 6vw left alignment of the menu items */
             left: max(6vw, env(safe-area-inset-left));
             transform: rotate(0deg) skewX(-5deg) scale(0.75);
           }
 
           .p5-row {
-            padding: 1.5vh 0;
+            padding: 0.8vh 0;
           }
         }
 
