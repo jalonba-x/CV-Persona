@@ -101,48 +101,42 @@ export default function Socials() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 
-#menu-screen {
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: none !important;
-  background: #000 !important;
-  box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  z-index: 1 !important;
-}
+        #menu-screen {
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          max-width: none !important;
+          background: #000 !important;
+          box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+          overflow: hidden !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          z-index: 1 !important;
+        }
 
-#menu-screen video,
-.sc-bg-video {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-  border: none !important;
-  outline: none !important;
-}
+        #menu-screen video,
+        .sc-bg-video {
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          object-position: center !important;
+          z-index: 0 !important;
+          pointer-events: none !important;
+          border: none !important;
+          outline: none !important;
+        }
 
-#menu-screen::before,
-#menu-screen::after {
-  display: none !important;
-}
+        #menu-screen::before,
+        #menu-screen::after {
+          display: none !important;
+        }
 
-.sc-dim {
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-}
         .sc-root {
           position: absolute;
           inset: 0;
@@ -185,7 +179,7 @@ export default function Socials() {
         }
 
         .sc-bar-outer.active { z-index: 20; }
-        .sc-bar-outer.active .sc-bar      { height: 9cqh; }
+        .sc-bar-outer.active .sc-bar       { height: 9cqh; }
         .sc-bar-outer.active .sc-bar-red { height: 9cqh; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
@@ -622,102 +616,235 @@ export default function Socials() {
           color: #111;
         }
 
-.sc-footer {
-  position: absolute;
-  bottom: 2.6cqh; right: 8.2cqw;
-  z-index: 20;
-  display: flex; flex-direction: column;
-  align-items: flex-end; gap: 0.5cqh;
-  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
-  opacity: 0;
-  transition: opacity 0.5s ease 0.9s;
-}
+        .sc-footer {
+          position: absolute;
+          bottom: 2.6cqh; right: 8.2cqw;
+          z-index: 20;
+          display: flex; flex-direction: column;
+          align-items: flex-end; gap: 0.5cqh;
+          font-family: 'Persona5Main';
+          opacity: 0;
+          transition: opacity 0.5s ease 0.9s;
+        }
 
-.sc-footer.mounted { opacity: 1; }
+        .sc-footer.mounted { opacity: 1; }
 
-.sc-footer-row {
-  display: flex; align-items: center; gap: 0.5cqw;
-  font-size: 0.8cqw; letter-spacing: 0.12cqw;
-  color: rgba(255,255,255,0.28);
-}
+        .sc-footer-row {
+          display: flex; align-items: center; gap: 0.5cqw;
+          font-size: 0.8cqw; letter-spacing: 0.12cqw;
+          color: rgba(255,255,255,0.28);
+        }
 
-.sc-footer-key {
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.2cqw;
-  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
-}
+        .sc-footer-key {
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 0.2cqw;
+          padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+        }
 
         .sc-mobile-controls {
           display: none;
         }
 
-        .sc-mobile-btn {
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          background: rgba(0, 0, 0, 0.62);
-          color: #fff;
-          font-family: 'Bebas Neue', sans-serif;
-          letter-spacing: 1.2px;
-          font-size: 13px;
-          padding: 7px 12px;
-          border-radius: 8px;
-          min-width: 84px;
-        }
-
+        /* =========================================
+           MOBILE OPTIMIZATIONS (< 768px)
+           ========================================= */
         @media (max-width: 768px) {
           .sc-root {
-            left: 4.5cqw;
+            position: relative;
+            left: 0;
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 80px);
             justify-content: flex-start;
-            padding-top: 12px;
-            gap: 6px;
+            padding: 75px 4vw 20px 4vw;
+            gap: 12px;
+            overflow-y: auto;
+            box-sizing: border-box;
           }
+
+          /* Expand bars to full readable width */
+          .sc-bar, .sc-bar-red {
+            width: 92vw;
+            height: 64px !important;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+          }
+          .sc-bar-red {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 8px) 100%);
+            transform: translateY(-6px);
+          }
+          .sc-bar-outer.active .sc-bar,
+          .sc-bar-outer.active .sc-bar-red {
+            height: 76px !important;
+          }
+
+          .sc-bar-fill {
+            clip-path: polygon(100% 0, 100% 0, calc(100% - 24px) 100%, calc(100% - 24px) 100%);
+          }
+          .sc-bar-outer.active .sc-bar-fill {
+            clip-path: polygon(25% 0, 100% 0, calc(100% - 12px) 100%, calc(25% + 40px) 100%);
+          }
+
+          /* Adjust character image placement for wider mobile bars */
+          .sc-char {
+            left: 12px;
+            width: 55px;
+            clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+          }
+          .sc-bar-outer.active .sc-char {
+            left: 14px;
+            width: 65px;
+          }
+
+          /* Scale typography to pixel values so they don't shrink to micro-sizes */
+          .sc-role {
+            width: 50px;
+            font-size: 14px;
+            margin-left: 8px;
+            transform: translate(0) rotate(-15deg);
+          }
+          .sc-bar-outer.active .sc-role {
+            font-size: 18px;
+            transform: translateY(-2px) rotate(-15deg) scale(1.05);
+          }
+
+          .sc-label {
+            font-size: 20px;
+            letter-spacing: 2px;
+            gap: 8px;
+          }
+
+          .sc-icon {
+            font-size: 18px;
+            width: 24px;
+          }
+
+          .sc-main-top {
+            left: 54%;
+            gap: 8px;
+          }
+          .sc-bar-outer.active .sc-main-top {
+            left: 75%;
+            transform: translateX(-100%);
+          }
+
+          .sc-stat-tag { font-size: 10px; padding: 1px 4px; }
+          .sc-stat-num { font-size: 18px; }
+          .sc-stats { gap: 10px; padding-right: 16px; }
 
           .sc-link-btn {
-            padding: 4px 8px;
+            padding: 6px 10px;
+            border-radius: 4px;
           }
-
           .sc-ext-icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
           }
 
+          /* Top Navigation Header repositioned for mobile */
+          .sc-right-nav {
+            top: 18px;
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92vw;
+            justify-content: center;
+            gap: 6px;
+          }
+          .sc-nav-btn { font-size: 28px; -webkit-text-stroke: 1.5px #000; }
+          .sc-nav-arrow { font-size: 16px; }
+          .sc-right-nav .sc-nav-label {
+            font-size: 18px;
+            padding: 6px 16px;
+            letter-spacing: 2px;
+          }
+
+          /* Flow info panel directly beneath selection bars instead of floating */
           .sc-info-panel {
-            top: min(47vh, 320px);
-            left: 8px;
-            right: 8px;
-            bottom: 58px;
-            gap: 4px;
-            padding: 4px 0;
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            bottom: auto;
+            width: 92vw;
+            max-height: none;
+            overflow: visible;
+            gap: 8px;
+            padding: 4px 0 20px 0;
+            margin-top: 4px;
           }
 
           .sc-info-bar-wrap {
-            height: 38px !important;
+            height: 52px !important;
+            border-radius: 6px;
           }
-
+          .sc-info-bar-wrap.selected {
+            padding: 2px;
+            border-radius: 8px;
+          }
           .sc-info-bar-text {
-            font-size: 15px;
-            letter-spacing: 1px;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            padding: 0 12px;
           }
-
+          .sc-info-bar-box {
+            font-size: 13px;
+            padding: 0 8px;
+            height: 65%;
+          }
           .sc-info-bar-count {
-            margin-right: 10px;
-            font-size: 14px;
+            margin-right: 14px;
+            font-size: 18px;
+          }
+          .sc-info-bar-icon {
+            margin-left: 12px;
           }
 
           .sc-footer {
             display: none;
           }
 
+          /* Persona 5 Styled Mobile Bottom Bar */
           .sc-mobile-controls {
             position: fixed;
-            left: 8px;
-            right: 8px;
-            bottom: max(8px, env(safe-area-inset-bottom));
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 60;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 12px;
+            padding: 12px 4vw max(16px, env(safe-area-inset-bottom)) 4vw;
+            background: linear-gradient(0deg, #000000 70%, rgba(0,0,0,0) 100%);
             pointer-events: all;
+          }
+
+          .sc-mobile-btn {
+            flex: 1;
+            height: 48px;
+            border: 2px solid #fff;
+            background: #111;
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 18px;
+            border-radius: 4px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+          }
+          .sc-mobile-btn:active {
+            transform: scale(0.96);
+            background: #c4001a;
+            border-color: #000;
+          }
+          .sc-mobile-btn.primary {
+            background: #c4001a;
+            border-color: #ff2a4b;
+            clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%);
           }
         }
       `}</style>
@@ -832,11 +959,11 @@ export default function Socials() {
           BACK
         </button>
         <button
-          className="sc-mobile-btn"
+          className="sc-mobile-btn primary"
           type="button"
           onClick={() => openExternalLink(ITEMS[active].href)}
         >
-          OPEN
+          OPEN {ITEMS[active].id.toUpperCase()}
         </button>
       </div>
     </div>
