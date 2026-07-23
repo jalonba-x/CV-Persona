@@ -125,21 +125,21 @@ function BackButton() {
         }
 
         /* Mobile specific scaling */
-        @media (max-width: 768px) {
+@media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 500px) {
           .back-btn-wrapper {
             top: max(16px, env(safe-area-inset-top));
             left: max(16px, env(safe-area-inset-left));
           }
           .p5-back-button {
-            font-size: 12px;
-            padding: 4px 10px 4px 8px;
-            gap: 4px;
+            font-size: 14px;
+            padding: 6px 12px 6px 10px;
+            gap: 6px;
             clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
             box-shadow: 2px 2px 0px #000000;
           }
           .back-arrow-icon {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
           }
           .p5-back-button:hover, .p5-back-button:focus {
             transform: translate(-1px, -1px);
@@ -356,7 +356,7 @@ function SiteBackgroundVideo() {
         }
 
         /* Mobile shift: shifted up a bit more while preserving top sign detail */
-        @media (max-width: 950px) {
+        @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 500px) {
           .site-bg-video {
             object-position: center 3%;
             top: -8vh;
