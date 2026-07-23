@@ -79,6 +79,7 @@ export default function ResumePage() {
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
+  const detailPanelRef = useRef(null);
 
   useEffect(() => {
     if (isFirstRenderAudio.current) {
@@ -104,6 +105,14 @@ export default function ResumePage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [navigate]);
 
+  // Smooth scroll to details on mobile when a card is tapped
+  const handleCardClick = (index) => {
+    setActive(index);
+    if (window.innerWidth <= 768 && detailPanelRef.current) {
+      detailPanelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
+
   const currentDetail = DETAILS[active];
 
   return (
@@ -111,6 +120,7 @@ export default function ResumePage() {
       <div className="resume-entry-mask" aria-hidden="true">
         <video className="resume-entry-video" src={mainVideo} autoPlay loop muted playsInline />
       </div>
+      
       <style>{`
         #menu-screen {
           position: fixed !important;
@@ -162,15 +172,9 @@ export default function ResumePage() {
         }
 
         @keyframes resume-entry-reveal {
-          0% {
-            clip-path: circle(0 at 50% 50%);
-          }
-          99% {
-            clip-path: circle(150vmax at 50% 50%);
-          }
-          100% {
-            clip-path: none;
-          }
+          0% { clip-path: circle(0 at 50% 50%); }
+          99% { clip-path: circle(150vmax at 50% 50%); }
+          100% { clip-path: none; }
         }
 
         .resume-overlay {
@@ -179,6 +183,26 @@ export default function ResumePage() {
           z-index: 10;
           pointer-events: none;
           overflow: hidden;
+        }
+
+        /* Mobile Back Button */
+        .mobile-back-btn {
+          display: none;
+          position: fixed;
+          top: 15px;
+          left: 15px;
+          z-index: 50;
+          background: #d92323;
+          color: #fff;
+          font-family: 'Persona5Main', sans-serif;
+          font-size: 1.1rem;
+          padding: 8px 16px;
+          border: 2px solid #000;
+          box-shadow: 3px 3px 0 #000;
+          transform: skew(-10deg);
+          cursor: pointer;
+          pointer-events: all;
+          letter-spacing: 1px;
         }
 
         .resume-stack {
@@ -363,6 +387,9 @@ export default function ResumePage() {
           letter-spacing: 0px;
           color: #0d0d0d;
           transition: color 0.22s ease;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .resume-card-wrap.active .resume-subtitle {
@@ -490,29 +517,29 @@ export default function ResumePage() {
         }
 
         .sc-footer {
-  position: absolute;
-  bottom: 2.6cqh; right: 7.2cqw;
-  z-index: 20;
-  display: flex; flex-direction: column;
-  align-items: flex-end; gap: 0.5cqh;
-  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
-  opacity: 0;
-  transition: opacity 0.5s ease 0.9s;
-}
+          position: absolute;
+          bottom: 2.6cqh; right: 7.2cqw;
+          z-index: 20;
+          display: flex; flex-direction: column;
+          align-items: flex-end; gap: 0.5cqh;
+          font-family: 'Persona5Main';
+          opacity: 0;
+          transition: opacity 0.5s ease 0.9s;
+        }
 
-.sc-footer.mounted { opacity: 1; }
+        .sc-footer.mounted { opacity: 1; }
 
-.sc-footer-row {
-  display: flex; align-items: center; gap: 0.5cqw;
-  font-size: 0.8cqw; letter-spacing: 0.12cqw;
-  color: rgba(255,255,255,0.28);
-}
+        .sc-footer-row {
+          display: flex; align-items: center; gap: 0.5cqw;
+          font-size: 0.8cqw; letter-spacing: 0.12cqw;
+          color: rgba(255,255,255,0.28);
+        }
 
-.sc-footer-key {
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.2cqw;
-  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
-}
+        .sc-footer-key {
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 0.2cqw;
+          padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+        }
 
         .resume-detail-bottom-title {
           font-family: 'Persona5Main';
@@ -538,29 +565,116 @@ export default function ResumePage() {
           color: #ffffff;
         }
 
-        /* Responsive Breakpoints */
-        @media screen and (max-width: 1024px), screen and (max-height: 650px) {
+        /* --- RESPONSIVE TABLET & MOBILE OPTIMIZATIONS --- */
+        @media screen and (max-width: 1024px) {
           .resume-stack {
-            top: 18cqh;
-            left: 9.5cqw;
-            transform: scale(0.85);
+            top: 12cqh;
+            left: 5cqw;
+            width: min(48cqw, 600px);
+            transform: scale(0.9);
           }
           .resume-detail-panel {
-            top: 18cqh;
+            top: 12cqh;
+            right: 4cqw;
+            width: min(45cqw, 500px);
           }
         }
 
-        @media screen and (max-width: 768px), screen and (max-height: 500px) {
+        @media screen and (max-width: 768px), screen and (max-height: 600px) {
+          /* Enable scrolling and switch to vertical flex stack */
+          .resume-overlay {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 70px 4vw 60px 4vw;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .mobile-back-btn { display: block; }
+          .sc-footer { display: none; } /* Hide keyboard hints */
+
           .resume-stack {
-            top: 23cqh;
-            left: 8.5cqw;
-            transform: scale(0.75);
+            position: relative;
+            top: auto; left: auto;
+            width: 94%;
+            max-width: 500px;
+            transform: none !important;
+            gap: 15px;
           }
+
+          .resume-list-tag { font-size: 1.8rem; margin-bottom: 5px; }
+
+          .resume-card {
+            height: 75px;
+            margin-left: 10px;
+            width: calc(100% - 10px);
+            clip-path: polygon(0 0, 96% 0, 100% 100%, 3% 100%);
+          }
+
+          .resume-card-inner { padding: 10px 15px 10px 55px; }
+          .resume-title { font-size: 1.4rem; }
+          .resume-rank-label { font-size: 0.75rem; }
+          .resume-rank-number { font-size: 1.4rem; }
+
+          .resume-badge {
+            width: 36px; height: 52px;
+            left: -8px; top: 10px;
+            border-width: 2px;
+          }
+          .resume-badge-text { font-size: 1.1rem; }
+
+          .resume-subtitle-bar {
+            left: 50px; right: 10px;
+            bottom: 8px; height: 24px;
+            padding: 0 10px;
+          }
+          .resume-subtitle { font-size: 0.85rem; }
+
           .resume-detail-panel {
-            top: 23cqh;
+            position: relative;
+            top: auto; right: auto;
+            width: 94%;
+            max-width: 500px;
+            padding: 15px;
+            margin-bottom: 30px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
           }
+
+          .resume-detail-top {
+            grid-template-columns: 40px 1fr auto;
+            min-height: 50px;
+            padding: 10px 12px;
+            gap: 10px;
+          }
+          .resume-detail-top-index { font-size: 1.4rem; }
+          .resume-detail-top-title { font-size: 1.2rem; }
+          .resume-detail-top-progress { font-size: 1.3rem; }
+
+          .resume-detail-row {
+            grid-template-columns: 30px 1fr auto;
+            min-height: 44px;
+            padding: 6px 10px;
+            gap: 10px;
+          }
+          .resume-detail-row-index { font-size: 1rem; }
+          .resume-detail-row-title { font-size: 1rem; }
+          .resume-detail-status { font-size: 0.85rem; padding: 4px 8px; }
+
+          .resume-detail-bottom { padding: 15px; }
+          .resume-detail-bottom-title { font-size: 1.2rem; margin-bottom: 10px; }
+          .resume-detail-bullet { font-size: 1rem; line-height: 1.4; }
         }
       `}</style>
+
+      <button 
+        className="mobile-back-btn" 
+        onClick={() => navigate(-1)}
+        aria-label="Go Back"
+      >
+        ◀ BACK
+      </button>
 
       <div className="resume-overlay">
         <div className="resume-stack">
@@ -571,7 +685,7 @@ export default function ResumePage() {
               className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(index)}
+              onClick={() => handleCardClick(index)}
             >
               <div className="resume-badge">
                 <div className="resume-badge-text">{item.badge}</div>
@@ -593,7 +707,7 @@ export default function ResumePage() {
         </div>
 
         {currentDetail && (
-          <div className="resume-detail-panel">
+          <div className="resume-detail-panel" ref={detailPanelRef}>
             <div className="resume-detail-top">
               <div className="resume-detail-top-index">{currentDetail.index}</div>
               <div className="resume-detail-top-title">{currentDetail.title}</div>
@@ -621,18 +735,19 @@ export default function ResumePage() {
               </div>
             </div>
           </div>
-      )}
-<div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row">
-          <span className="sc-footer-key">↑↓</span>
-          <span>NAVIGATE</span>
+        )}
+
+        <div className={`sc-footer${mounted ? " mounted" : ""}`}>
+          <div className="sc-footer-row">
+            <span className="sc-footer-key">↑↓</span>
+            <span>NAVIGATE</span>
+          </div>
+          <div className="sc-footer-row">
+            <span className="sc-footer-key">ESC</span>
+            <span>BACK</span>
+          </div>
         </div>
-        <div className="sc-footer-row">
-          <span className="sc-footer-key">ESC</span>
-          <span>BACK</span>
-        </div>
-      </div>
-    </div> 
-  </div>  
+      </div> 
+    </div>  
   );
 }
