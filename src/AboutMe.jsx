@@ -619,17 +619,27 @@ export default function AboutMe() {
 
         /* Landscape Mobile & Low-Height Screens */
         @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
-          /* Make menu bars slightly larger for fat fingers */
-          .sc-bar {
-             height: 8.5cqh;
-             width: 50cqw;
+          /* Romper la restricción 16:9 y fijar el contenedor de botones a la izquierda real */
+          .sc-root {
+            position: fixed !important;
+            left: max(1.5vw, env(safe-area-inset-left)) !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            height: 100vh !important;
+            z-index: 900030 !important;
           }
-          .sc-bar-outer.active { height: 11cqh; }
-          .sc-bar-outer.active .sc-bar { height: 11cqh; }
-          .sc-bar-outer.active .sc-bar-red { height: 11cqh; }
+
+          /* Ajuste de dimensiones de botones usando viewport units (vw/vh) */
+          .sc-bar {
+             height: 8.5vh !important;
+             width: 42vw !important;
+          }
+          .sc-bar-outer.active { height: 11vh !important; }
+          .sc-bar-outer.active .sc-bar { height: 11vh !important; }
+          .sc-bar-outer.active .sc-bar-red { height: 11vh !important; }
           
           .sc-label {
-            font-size: 2.2cqw;
+            font-size: 2.2vw !important;
           }
           
           /* Pull the reveal panel up and expand it to maximize space */
@@ -660,7 +670,7 @@ export default function AboutMe() {
             font-size: 6.5cqw;
           }
 
-          /* --- NUEVO: Romper el ratio 9:16 / 16:9 y llevar el retrato al extremo derecho real --- */
+          /* --- Romper el ratio 9:16 / 16:9 y llevar el retrato al extremo derecho real --- */
           .sc-main-portrait-shell {
             position: fixed !important;
             top: 0 !important;
@@ -671,11 +681,11 @@ export default function AboutMe() {
           }
 
           .sc-main-portrait {
-            object-fit: contain !important; /* Evita que la imagen se recorte excesivamente al achicar */
-  object-position: right top !important;
-  transform: skewX(8deg) scale(0.85) !important; /* Reduce el tamaño visual del personaje */
-  transform-origin: top right !important;
-}
+            object-fit: contain !important;
+            object-position: right top !important;
+            transform: skewX(8deg) scale(0.85) !important;
+            transform-origin: top right !important;
+          }
         }
       `}</style>
 
