@@ -607,7 +607,7 @@ export default function AboutMe() {
         }
 
         /* =========================================================
-           MOBILE OPTIMIZATIONS
+           MOBILE OPTIMIZATIONS (Landscape & Low-Height)
            ========================================================= */
 
         /* Hide keyboard hints on touch devices */
@@ -617,47 +617,74 @@ export default function AboutMe() {
           }
         }
 
-        /* Landscape Mobile & Low-Height Screens */
+        /* Landscape Mobile & Low-Height Screens (Ultrawide / Beyond 16:9) */
         @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
-          /* Make menu bars slightly larger for fat fingers */
-          .sc-bar {
-             height: 8.5cqh;
-             width: 50cqw;
+          /* 1. Force global Back button way left beyond 16:9 ratio to the true viewport edge */
+          .back-btn, .back-button, .sc-back-btn, .nav-back, .back-link, .p5-back-btn,
+          [class*="back-btn"], [class*="back-button"], [id*="back-btn"], [id*="back-button"],
+          a[class*="back"], button[class*="back"] {
+            left: max(1.5vw, env(safe-area-inset-left)) !important;
+            top: 3vh !important;
+            z-index: 999999 !important;
           }
-          .sc-bar-outer.active { height: 11cqh; }
-          .sc-bar-outer.active .sc-bar { height: 11cqh; }
-          .sc-bar-outer.active .sc-bar-red { height: 11cqh; }
+
+          /* 2. Move main portrait beyond 16:9 ratio flush to the physical right border */
+          .sc-main-portrait-shell {
+            top: 0 !important;
+            right: -6vw !important;
+            width: 50vw !important;
+            height: 100vh !important;
+          }
+
+          /* 3. Move the three main bar-buttons to the far left beyond 16:9 ratio */
+          .sc-root {
+            left: max(1vw, env(safe-area-inset-left)) !important;
+            width: 36vw !important;
+            padding-left: 0 !important;
+          }
+          .sc-bar, .sc-bar-red {
+            height: 10vh !important;
+            width: 36vw !important;
+          }
+          .sc-bar-outer.active { height: 12.5vh !important; }
+          .sc-bar-outer.active .sc-bar { height: 12.5vh !important; }
+          .sc-bar-outer.active .sc-bar-red { height: 12.5vh !important; }
           
           .sc-label {
-            font-size: 2.2cqw;
+            font-size: 1.8vw !important;
           }
-          
-          /* Pull the reveal panel up and expand it to maximize space */
-          .sc-reveal-panel {
-            top: 35cqh;
-            left: 10cqw;
-            width: 88cqw;
-            height: 65cqh;
+          .sc-char {
+            max-width: 7vw !important;
+            left: 4.5vw !important;
           }
-          
-          /* Dramatically boost font sizing for mobile screens */
-          .sc-reveal-upper-line {
-            font-size: 2cqw;
-            word-spacing: 0.3cqw;
-          }
-          
-          .sc-reveal-lower-bar {
-            font-size: 2.2cqw;
-            padding-left: 2.5cqw;
-          }
-          
-          /* Shift the right nav slightly out of the way */
+
+          /* 4. Move LB / RB buttons to the left, safely away from panels and < BACK */
           .sc-right-nav {
-            top: 10cqh;
-            left: 5cqw;
+            top: 10vh !important;
+            left: 24vw !important;
+            transform: rotate(-18deg) !important;
           }
           .sc-right-nav .sc-nav-btn {
-            font-size: 6.5cqw;
+            font-size: 4.5vw !important;
+          }
+          .sc-right-nav .sc-nav-arrow {
+            font-size: 2.2vw !important;
+          }
+
+          /* 5. Position reveal panel cleanly to the right of bar-buttons without covering them */
+          .sc-reveal-panel {
+            top: 40vh !important;
+            left: 34vw !important;
+            width: 60vw !important;
+            height: 56vh !important;
+          }
+          .sc-reveal-upper-line {
+            font-size: 1.7vw !important;
+            word-spacing: 0.2vw !important;
+          }
+          .sc-reveal-lower-bar {
+            font-size: 1.9vw !important;
+            padding-left: 2vw !important;
           }
         }
       `}</style>
