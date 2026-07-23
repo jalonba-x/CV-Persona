@@ -310,22 +310,23 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            /* Scale reduced to 0.78 to ensure bottom items fit on 400px tall screens */
-            --scale: 0.78; 
-            --y-scale: 0.65;
+            /* Scale reduced slightly to keep items within vertical bounds */
+            --scale: 0.8; 
+            --y-scale: 0.7;
             align-items: flex-start;
-            /* CRITICAL: Changed from vw to cqw to respect the 16:9 pillarbox boundaries */
-            margin-left: max(4cqw, env(safe-area-inset-left));
+            /* Shifted from 4cqw to 30cqw (roughly 1/3 across the screen) */
+            margin-left: max(30cqw, env(safe-area-inset-left));
             margin-right: auto;
-            gap: 0.5cqh; 
-            padding-top: max(20cqh, env(safe-area-inset-top));
+            gap: 1.2cqh; 
+            /* Increased top padding from 20cqh to 34cqh to eliminate title overlap */
+            padding-top: max(34cqh, calc(env(safe-area-inset-top) + 24cqh));
             padding-bottom: max(3cqh, env(safe-area-inset-bottom));
           }
 
           .p5-name-tag {
-            /* Pushed down slightly so it doesn't collide with physical notches */
             top: max(6cqh, env(safe-area-inset-top));
-            left: max(4cqw, env(safe-area-inset-left));
+            /* Aligned horizontally with the menu items at 30cqw */
+            left: max(30cqw, env(safe-area-inset-left));
             transform: rotate(0deg) skewX(-5deg) scale(0.75);
           }
 
@@ -334,7 +335,8 @@ export default function P5Menu({ onNavigate }) {
             padding: 1.5cqh 0;
           }
         }
-      /* Hide keyboard hints on touch devices */
+
+        /* Hide keyboard hints on touch devices */
         @media (hover: none) and (pointer: coarse) {
           .p5-hint {
             display: none !important;
