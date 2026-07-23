@@ -627,6 +627,8 @@ export default function AboutMe() {
             bottom: 0 !important;
             height: 100vh !important;
             z-index: 900030 !important;
+            transform: translateY(-3vh) !important; 
+  }
           }
 
           /* Ajuste de dimensiones de botones usando viewport units (vw/vh) */
