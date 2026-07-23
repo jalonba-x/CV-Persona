@@ -288,50 +288,53 @@ export default function P5Menu({ onNavigate }) {
             justify-content: flex-start;
             align-items: flex-start;
           }
-
           .p5-menu {
-            --scale: 1.38;
+            --scale: 1.2;
             --y-scale: 0.75;
             align-items: flex-start;
-            margin-left: max(5vw, env(safe-area-inset-left, 16px));
-            margin-right: auto;
-            gap: 0.8vh;
-            padding-top: max(28vh, env(safe-area-inset-top, 165px));
-            padding-bottom: max(4vh, env(safe-area-inset-bottom, 20px));
+            margin-left: max(5cqw, env(safe-area-inset-left));
+            padding-top: max(28cqh, env(safe-area-inset-top));
           }
 
-          .p5-name-tag {
-            top: max(2vh, env(safe-area-inset-top, 12px));
-            left: max(5vw, env(safe-area-inset-left, 16px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.95);
+         .p5-name-tag {
+            top: max(4cqh, env(safe-area-inset-top));
+            left: max(5cqw, env(safe-area-inset-left));
+            transform: rotate(0deg) skewX(-5deg) scale(0.9);
           }
         }
 
-        @media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
+       @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
           .p5-overlay {
             justify-content: flex-start;
             align-items: flex-start;
           }
 
           .p5-menu {
-            --scale: 0.825;
+            /* Scale reduced to 0.78 to ensure bottom items fit on 400px tall screens */
+            --scale: 0.78; 
             --y-scale: 0.65;
             align-items: flex-start;
-            margin-left: max(4vw, env(safe-area-inset-left, 20px));
+            /* CRITICAL: Changed from vw to cqw to respect the 16:9 pillarbox boundaries */
+            margin-left: max(4cqw, env(safe-area-inset-left));
             margin-right: auto;
-            gap: 0.5vh; 
-            padding-top: max(22vh, env(safe-area-inset-top, 85px));
-            padding-bottom: max(3vh, env(safe-area-inset-bottom, 15px));
-            justify-content: flex-start;
+            gap: 0.5cqh; 
+            padding-top: max(20cqh, env(safe-area-inset-top));
+            padding-bottom: max(3cqh, env(safe-area-inset-bottom));
           }
 
           .p5-name-tag {
-            top: max(8px, env(safe-area-inset-top, 8px));
-            left: max(4vw, env(safe-area-inset-left, 20px));
-            transform: rotate(0deg) skewX(-5deg) scale(0.85);
+            /* Pushed down slightly so it doesn't collide with physical notches */
+            top: max(6cqh, env(safe-area-inset-top));
+            left: max(4cqw, env(safe-area-inset-left));
+            transform: rotate(0deg) skewX(-5deg) scale(0.75);
+          }
+
+          /* Fat-finger optimization: increase vertical hit area without changing visual size */
+          .p5-row {
+            padding: 1.5cqh 0;
           }
         }
-
+      /* Hide keyboard hints on touch devices */
         @media (hover: none) and (pointer: coarse) {
           .p5-hint {
             display: none !important;
