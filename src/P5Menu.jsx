@@ -305,34 +305,37 @@ export default function P5Menu({ onNavigate }) {
 
        @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
           .p5-overlay {
+            /* BREAKOUT: Fixed positioning ignores centered 16:9 container boundaries */
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
             justify-content: flex-start;
             align-items: flex-start;
           }
 
           .p5-menu {
-            /* Scale reduced slightly to keep items within vertical bounds */
             --scale: 0.8; 
             --y-scale: 0.7;
             align-items: flex-start;
-            /* Shifted from 4cqw to 30cqw (roughly 1/3 across the screen) */
-            margin-left: max(30cqw, env(safe-area-inset-left));
+            /* Using vw moves elements near the left border of the screen (left 1/3) */
+            margin-left: max(6vw, env(safe-area-inset-left));
             margin-right: auto;
-            gap: 1.2cqh; 
-            /* Increased top padding from 20cqh to 34cqh to eliminate title overlap */
-            padding-top: max(34cqh, calc(env(safe-area-inset-top) + 24cqh));
-            padding-bottom: max(3cqh, env(safe-area-inset-bottom));
+            gap: 1vh; 
+            /* Reduced from 34cqh to 25vh to pull menu items back up toward title */
+            padding-top: max(25vh, calc(env(safe-area-inset-top) + 18vh));
+            padding-bottom: max(3vh, env(safe-area-inset-bottom));
           }
 
           .p5-name-tag {
-            top: max(6cqh, env(safe-area-inset-top));
-            /* Aligned horizontally with the menu items at 30cqw */
-            left: max(30cqw, env(safe-area-inset-left));
+            top: max(5vh, env(safe-area-inset-top));
+            /* Matches the 6vw left alignment of the menu items */
+            left: max(6vw, env(safe-area-inset-left));
             transform: rotate(0deg) skewX(-5deg) scale(0.75);
           }
 
-          /* Fat-finger optimization: increase vertical hit area without changing visual size */
           .p5-row {
-            padding: 1.5cqh 0;
+            padding: 1.5vh 0;
           }
         }
 
