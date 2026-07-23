@@ -31,6 +31,7 @@ export default function SideProjectsPage() {
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const isFirstRenderAudio = useRef(true);
+  const detailPanelRef = useRef(null);
 
   useEffect(() => {
     if (isFirstRenderAudio.current) {
@@ -56,11 +57,52 @@ export default function SideProjectsPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active, navigate]);
 
+  // Handle tap on mobile: set active and smooth scroll to details panel
+  const handleItemClick = (index) => {
+    setActive(index);
+    if (window.innerWidth <= 768 && detailPanelRef.current) {
+      detailPanelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
+
   return (
-    
-    
     <div id="menu-screen">
       <style>{`
+        #menu-screen {
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          max-width: none !important;
+          background: #000 !important;
+          box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+          overflow: hidden !important;
+          container-type: size;
+          z-index: 1;
+        }
+
+        /* Mobile Back Button */
+        .mobile-back-btn {
+          display: none;
+          position: fixed;
+          top: 15px;
+          left: 15px;
+          z-index: 50;
+          background: #d92323;
+          color: #fff;
+          font-family: 'Persona5Main', sans-serif;
+          font-size: 1.1rem;
+          padding: 8px 16px;
+          border: 2px solid #000;
+          box-shadow: 3px 3px 0 #000;
+          transform: skew(-10deg);
+          cursor: pointer;
+          pointer-events: all;
+          letter-spacing: 1px;
+        }
+
         .sp-shell {
           position: absolute;
           inset: 0;
@@ -70,6 +112,7 @@ export default function SideProjectsPage() {
           grid-template-rows: auto 1fr;
           column-gap: 1.5cqw;
           padding: 10cqh 5cqw 6cqh 5cqw;
+          overflow: hidden;
         }
 
         .sp-title {
@@ -213,32 +256,120 @@ export default function SideProjectsPage() {
           box-shadow: -0.3cqw 0 0 #d92323;
         }
 
-.sp-footer {
-  position: absolute;
-  bottom: 2.6cqh; right: 1.7cqw;
-  z-index: 20;
-  display: flex; flex-direction: column;
-  align-items: flex-end; gap: 0.5cqh;
-  font-family: 'Persona5Main'; /* Ensure this font is loaded on the sub-page */
-  opacity: 0;
-  transition: opacity 0.5s ease 0.9s;
-}
+        .sp-footer {
+          position: absolute;
+          bottom: 2.6cqh; right: 1.7cqw;
+          z-index: 20;
+          display: flex; flex-direction: column;
+          align-items: flex-end; gap: 0.5cqh;
+          font-family: 'Persona5Main', sans-serif;
+          opacity: 0;
+          transition: opacity 0.5s ease 0.9s;
+        }
 
-.sp-footer.mounted { opacity: 1; }
+        .sp-footer.mounted { opacity: 1; }
 
-.sp-footer-row {
-  display: flex; align-items: center; gap: 0.5cqw;
-  font-size: 0.8cqw; letter-spacing: 0.12cqw;
-  color: rgba(255,255,255,0.28);
-}
+        .sp-footer-row {
+          display: flex; align-items: center; gap: 0.5cqw;
+          font-size: 0.8cqw; letter-spacing: 0.12cqw;
+          color: rgba(255,255,255,0.28);
+        }
 
-.sp-footer-key {
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.2cqw;
-  padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
-}
+        .sp-footer-key {
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 0.2cqw;
+          padding: 0.1cqh 0.35cqw; font-size: 0.7cqw;
+        }
 
+        /* --- RESPONSIVE TABLET & MOBILE OPTIMIZATIONS --- */
+        @media screen and (max-width: 1024px) {
+          .sp-shell {
+            padding: 8cqh 4cqw 5cqh 4cqw;
+          }
+        }
+
+        @media screen and (max-width: 768px), screen and (max-height: 600px) {
+          .mobile-back-btn { display: block; }
+          .sp-footer { display: none; } /* Hide keyboard hints on touch screens */
+
+          .sp-shell {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 70px 4vw 60px 4vw;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .sp-title {
+            font-size: 2rem;
+            margin-bottom: 5px;
+          }
+
+          .sp-left {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 12px;
+          }
+
+          .sp-item {
+            min-height: 70px;
+            padding: 12px 15px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+          }
+
+          .sp-item-title {
+            font-size: 1.3rem;
+          }
+
+          .sp-item-stack {
+            font-size: 0.9rem;
+            margin-top: 4px;
+          }
+
+          .sp-right {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px auto 40px auto;
+            padding: 20px 18px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+          }
+
+          .sp-tag {
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+          }
+
+          .sp-right-title {
+            font-size: 1.6rem;
+            margin-top: 12px;
+          }
+
+          .sp-right-summary {
+            font-size: 1.15rem;
+            margin-top: 12px;
+            line-height: 1.3;
+          }
+
+          .sp-link {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            padding: 12px 16px;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            word-break: break-all; /* Prevents long URLs from overflowing horizontally */
+          }
+        }
       `}</style>
+
+      <button 
+        className="mobile-back-btn" 
+        onClick={() => navigate(-1)}
+        aria-label="Go Back"
+      >
+        ◀ BACK
+      </button>
 
       <div className="sp-shell">
         <div className={`sp-title${mounted ? " mounted" : ""}`}>PROJECTS</div>
@@ -250,7 +381,7 @@ export default function SideProjectsPage() {
               className={`sp-item${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(index)}
+              onClick={() => handleItemClick(index)}
             >
               <div className="sp-item-title">{item.title}</div>
               <div className="sp-item-stack">{item.stack}</div>
@@ -258,7 +389,7 @@ export default function SideProjectsPage() {
           ))}
         </div>
 
-        <div className="sp-right">
+        <div className="sp-right" ref={detailPanelRef}>
           <div className="sp-tag">DETAILS</div>
           <div className="sp-right-title">{ITEMS[active].title}</div>
           <div className="sp-right-summary">{ITEMS[active].summary}</div>
@@ -272,17 +403,18 @@ export default function SideProjectsPage() {
             OPEN LINK: {ITEMS[active].href.replace("https://", "")}
           </a>
         </div>
-     </div>   
-<div className={`sp-footer${mounted ? " mounted" : ""}`}>
-        <div className="sp-footer-row">
-          <span className="sp-footer-key">↑↓</span>
-          <span>NAVIGATE</span>
-        </div>
-        <div className="sp-footer-row">
-          <span className="sp-footer-key">ESC</span>
-          <span>BACK</span>
+
+        <div className={`sp-footer${mounted ? " mounted" : ""}`}>
+          <div className="sp-footer-row">
+            <span className="sp-footer-key">↑↓</span>
+            <span>NAVIGATE</span>
+          </div>
+          <div className="sp-footer-row">
+            <span className="sp-footer-key">ESC</span>
+            <span>BACK</span>
+          </div>
         </div>
       </div>
-     </div> 
+    </div>
   );
 }
