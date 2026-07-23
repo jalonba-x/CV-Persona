@@ -204,7 +204,6 @@ export default function P5Menu({ onNavigate }) {
           white-space: nowrap;
           user-select: none;
           color: #ffffff;
-          /* Stroke is now tied to var(--scale) so it stays sharp when scaled down */
           -webkit-text-stroke: calc(1.1cqw * var(--scale)) rgba(0, 0, 0, 0.8);
           paint-order: stroke fill;
           font-size: calc(var(--item-font) * var(--scale));
@@ -219,7 +218,6 @@ export default function P5Menu({ onNavigate }) {
 
         .p5-label-bright {
           color: #1a1a1a;
-          /* Stroke is now tied to var(--scale) */
           -webkit-text-stroke: calc(1.1cqw * var(--scale)) rgba(255, 255, 255, 0.9);
           position: absolute;
           inset: 0;
@@ -307,7 +305,6 @@ export default function P5Menu({ onNavigate }) {
 
        @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
           .p5-overlay {
-            /* BREAKOUT: Fixed positioning ignores centered 16:9 container boundaries */
             position: fixed !important;
             inset: 0 !important;
             width: 100vw !important;
@@ -317,14 +314,15 @@ export default function P5Menu({ onNavigate }) {
           }
 
           .p5-menu {
-            /* Reduced scale by ~40% so items fit proportionally on short landscape screens */
             --scale: 0.48; 
             --y-scale: 0.45;
             align-items: flex-start;
             margin-left: max(6vw, env(safe-area-inset-left));
             margin-right: auto;
-            gap: 0.5vh; 
-            padding-top: max(22vh, calc(env(safe-area-inset-top) + 15vh));
+            /* Slightly bumped gap from 0.5vh to 0.8vh */
+            gap: 0.8vh; 
+            /* Increased from 22vh to 32vh to center between title and bottom button */
+            padding-top: max(32vh, calc(env(safe-area-inset-top) + 25vh));
             padding-bottom: max(3vh, env(safe-area-inset-bottom));
           }
 
