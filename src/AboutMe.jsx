@@ -665,14 +665,17 @@ export default function AboutMe() {
             position: fixed !important;
             top: 0 !important;
             right: -2vw !important;
-            width: 46vw !important;
+            width: 30vw !important;
             height: 100vh !important;
             z-index: 900025 !important;
           }
 
           .sc-main-portrait {
-            object-position: center right;
-          }
+            object-fit: contain !important; /* Evita que la imagen se recorte excesivamente al achicar */
+  object-position: right top !important;
+  transform: skewX(8deg) scale(0.85) !important; /* Reduce el tamaño visual del personaje */
+  transform-origin: top right !important;
+}
         }
       `}</style>
 
