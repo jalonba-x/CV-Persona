@@ -12,6 +12,10 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Persona5Main', sans-serif;
+  -webkit-text-size-adjust: 100%; /* Prevents iOS from randomly inflating font sizes in landscape */
+  -webkit-tap-highlight-color: transparent; /* Removes the ugly gray/blue flash when tapping buttons */
+  -webkit-touch-callout: none; /* Prevents long-press popup menus on images/UI */
+   user-select: none;
 }
 
 .stage-container {
@@ -27,13 +31,10 @@ html, body {
 
 .stage-viewport {
   position: relative;
-  width: 100vw;
-  height: 56.25vw;
-  max-height: 100vh;
-  max-height: 100dvh;
-  max-width: calc(100dvh * (16 / 9));
+  /* Use min() to guarantee the box NEVER exceeds 16:9 or the physical screen boundaries */
+  width: min(100vw, calc(100dvh * (16 / 9)));
+  height: min(100dvh, calc(100vw * (9 / 16)));
   overflow: hidden;
-  /*box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);*/
   background: transparent;
   container-type: size;
 }
@@ -184,17 +185,29 @@ position: absolute;
   border-width: 1px;
   opacity: 1;
 }
-@media (max-width: 768px) {
+@media (hover: none) and (pointer: coarse), (max-height: 550px) {
   .bgm-panel {
-    transform: scale(0.75) !important;
-    transform-origin: bottom left !important; /* Adjust if anchored to bottom-right, top-left, etc. */
-  }
-}
-
-/* Landscape Mobile & Low-Height Screens */
-@media (max-width: 950px) and (orientation: landscape), (max-height: 600px) {
-  .bgm-panel {
-    transform: scale(0.7) !important;
+    /* Scale down slightly more to preserve precious vertical real estate */
+    transform: scale(0.65) !important;
     transform-origin: bottom left !important;
+    /* Increase bottom safe-area cushion slightly for phones with gesture bars */
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  /* Prevent hover-locking on touch devices: only expand slider when focus is inside the input */
+  .bgm-panel:hover .bgm-slider-wrap {
+    max-width: 0;
+    padding: 0;
+    border-width: 0;
+    opacity: 0;
+  }
+  
+  /* Slider will only open if they explicitly interact with it or we force it via class */
+  .bgm-panel:focus-within .bgm-slider-wrap,
+  .bgm-panel:active .bgm-slider-wrap {
+    max-width: 180px;
+    padding: 6px 8px;
+    border-width: 1px;
+    opacity: 1;
   }
 }
