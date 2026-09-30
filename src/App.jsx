@@ -311,7 +311,7 @@ function BackgroundMusic() {
       </button>
 
 <div className="bgm-slider-wrap" aria-label="Background music volume">
-        <span className="bgm-slider-label">VOL</span>
+        <span className="bgm-slider-label"style={{ color: '#ffffff' }}>VOL</span>
         <input
           className="bgm-slider"
           type="range"
@@ -363,7 +363,7 @@ function SiteBackgroundVideo() {
           object-position: center center;
         }
 
-        /* Mobile shift: shifted up a bit more while preserving top sign detail */
+
         @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 500px) {
           .site-bg-video {
             object-position: center 3%;
