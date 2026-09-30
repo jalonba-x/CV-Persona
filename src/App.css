@@ -12,9 +12,9 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Persona5Main', sans-serif;
-  -webkit-text-size-adjust: 100%; /* Prevents iOS from randomly inflating font sizes in landscape */
-  -webkit-tap-highlight-color: transparent; /* Removes the ugly gray/blue flash when tapping buttons */
-  -webkit-touch-callout: none; /* Prevents long-press popup menus on images/UI */
+  -webkit-text-size-adjust: 100%; 
+  -webkit-tap-highlight-color: transparent; 
+  -webkit-touch-callout: none; 
    user-select: none;
 }
 
@@ -31,7 +31,7 @@ html, body {
 
 .stage-viewport {
   position: relative;
-  /* Use min() to guarantee the box NEVER exceeds 16:9 or the physical screen boundaries */
+  
   width: min(100vw, calc(100dvh * (16 / 9)));
   height: min(100dvh, calc(100vw * (9 / 16)));
   overflow: hidden;
@@ -187,14 +187,14 @@ position: absolute;
 }
 @media (hover: none) and (pointer: coarse), (max-height: 550px) {
   .bgm-panel {
-    /* Scale down slightly more to preserve precious vertical real estate */
+    
     transform: scale(0.65) !important;
     transform-origin: bottom left !important;
-    /* Increase bottom safe-area cushion slightly for phones with gesture bars */
+    
     bottom: max(12px, env(safe-area-inset-bottom));
   }
 
-  /* Prevent hover-locking on touch devices: only expand slider when focus is inside the input */
+  
   .bgm-panel:hover .bgm-slider-wrap {
     max-width: 0;
     padding: 0;
@@ -202,7 +202,7 @@ position: absolute;
     opacity: 0;
   }
   
-  /* Slider will only open if they explicitly interact with it or we force it via class */
+  
   .bgm-panel:focus-within .bgm-slider-wrap,
   .bgm-panel:active .bgm-slider-wrap {
     max-width: 180px;
