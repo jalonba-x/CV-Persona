@@ -17,6 +17,7 @@ const ICONS = [icon1, icon2, icon3];
 
 const REVEAL_CONTENT = [
   {
+    title: "ABOUT ME",
     upper: [
       "Freelance EN-ES language localization specialist",
       "Looking to break into the gaming industry",
@@ -24,6 +25,7 @@ const REVEAL_CONTENT = [
     lower: "Name: Javier Barrera | Age: 33 | Location: Chile",
   },
   {
+    title: "EXPERIENCE",
     upper: [
       "Language specialist with ten years of experience",
       "in localization (EN-ES), language quality assurance,",
@@ -32,6 +34,7 @@ const REVEAL_CONTENT = [
     lower: "Localization | Language QA | Linguistics",
   },
   {
+    title: "LANGUAGES",
     upper: [
       "Spanish (Native), English (Professional)",
       "Portuguese (Basic)",
@@ -93,6 +96,10 @@ export default function AboutMe() {
           className={`sc-reveal-panel${mounted ? " mounted" : ""}`}
         >
           <div className="sc-reveal-upper-bar">
+            {/* Added Card Header Title */}
+            <div className="sc-reveal-title">
+              {REVEAL_CONTENT[active].title}
+            </div>
             {REVEAL_CONTENT[active].upper.map((line) => (
               <div className="sc-reveal-upper-line" key={line}>
                 {line}
@@ -303,6 +310,18 @@ export default function AboutMe() {
           padding: 0 2cqw;
           color: #ffffff;
         }
+
+        /* Card Title Style */
+        .sc-reveal-title {
+          font-family: 'Bebas Neue', 'Persona5Main', sans-serif;
+          font-size: 1.5cqw;
+          letter-spacing: 0.1cqw;
+          color: #d92323;
+          text-transform: uppercase;
+          margin-bottom: 0.3cqh;
+          line-height: 1;
+        }
+
         .sc-reveal-upper-line {
           font-family: 'Persona5Main', sans-serif;
           font-weight: 400;
@@ -610,16 +629,13 @@ export default function AboutMe() {
            MOBILE OPTIMIZATIONS
            ========================================================= */
 
-        /* Hide keyboard hints on touch devices */
         @media (hover: none) and (pointer: coarse) {
           .sc-footer {
             display: none !important;
           }
         }
 
-        /* Landscape Mobile & Low-Height Screens */
         @media (hover: none) and (pointer: coarse) and (orientation: landscape), (max-height: 600px) {
-          /* Romper la restricción 16:9 y fijar el contenedor de botones a la izquierda real */
           .sc-root {
             position: fixed !important;
             left: max(1.5vw, env(safe-area-inset-left)) !important;
@@ -630,7 +646,6 @@ export default function AboutMe() {
             transform: translateY(-9vh) !important; 
           }
 
-          /* Ajuste de dimensiones de botones usando viewport units (vw/vh) */
           .sc-bar {
              height: 8.5vh !important;
              width: 42vw !important;
@@ -643,7 +658,6 @@ export default function AboutMe() {
             font-size: 2.2vw !important;
           }
           
-          /* Romper la restricción 16:9 del panel informativo desplegable */
           .sc-reveal-panel {
             position: fixed !important;
             top: 35vh !important;
@@ -652,8 +666,11 @@ export default function AboutMe() {
             height: 62vh !important;
             z-index: 900035 !important;
           }
+
+          .sc-reveal-title {
+            font-size: 2.5vw !important;
+          }
           
-          /* Ajuste de tipografía adaptada a pantallas panorámicas reales */
           .sc-reveal-upper-line {
             font-size: 2.1vw !important;
             word-spacing: 0.3vw !important;
@@ -664,7 +681,6 @@ export default function AboutMe() {
             padding-left: 2.5vw !important;
           }
           
-          /* Romper la restricción 16:9 de la navegación de botones L/R */
           .sc-right-nav {
             position: fixed !important;
             top: 10vh !important;
@@ -675,7 +691,6 @@ export default function AboutMe() {
             font-size: 6.5vw !important;
           }
 
-          /* --- Romper el ratio 9:16 / 16:9 y llevar el retrato al extremo derecho real --- */
           .sc-main-portrait-shell {
             position: fixed !important;
             top: 0 !important;
