@@ -18,11 +18,11 @@ const ITEMS = [
     href: "https://github.com/jalonba-x/CV-Persona",
   },
   {
-    id: "Fan video edition",
-    title: "Tribute to Hunter X Hunter 134 (Miniature Rose)",
-    stack: "Adobe Premiere",
-    summary: "An edited anime scene using real life images instead",
-    href: "https://www.youtube.com/watch?v=95LTGvaMmOg&t",
+    id: "Manga Letterer",
+    title: "Volunteer Digital Typesetter",
+    stack: "Adobe Photoshop",
+    summary: "Typeset dialogue, narration, and translated Sound Effects (SFX) using Adobe Photoshop",
+    href: "https://drive.google.com/drive/u/1/folders/1tZdaPD3BG0TOMZjACzDfl5QvN2-tEAal",
   }
 ];
 
