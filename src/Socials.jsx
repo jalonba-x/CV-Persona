@@ -39,7 +39,7 @@ const ITEMS = [
   {
     id: "LinkedIn", label: "LinkedIn", handle: "@javierbarrerab", href: "https://www.linkedin.com/in/javierbarrerab/", icon: <span style={{ position: "relative", top: "-3px" }}>💼</span>, barIcon: icon3, bars: 1, newBars: [0], counts: ["17"],
     titles: ["Position update"],
-    links: ["https://www.linkedin.com/feed/update/urn:li:ugcPost:7007173080699523072/"],
+    links: ["https://www.linkedin.com/in/javierbarrerab/"],
     stats: [
       { tag: "CON", value: "203", color: "#00f2ea" },
     ],
